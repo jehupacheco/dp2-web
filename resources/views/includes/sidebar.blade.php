@@ -1,7 +1,7 @@
 <div class="col-md-3 left_col">
     <div class="left_col scroll-view">
         <div class="navbar nav_title" style="border: 0;">
-            <a href="{{ url('/') }}" class="site_title"><i class="fa fa-paw"></i> <span>Gentellela Alela!</span></a>
+            <a href="{{ url('/') }}" class="site_title"><i class="fa fa-paw"></i> <span>AutómataPucpSystem</span></a>
         </div>
         
         <div class="clearfix"></div>
@@ -12,7 +12,7 @@
                 <img src="{{ Gravatar::src(Auth::user()->email) }}" alt="Avatar of {{ Auth::user()->name }}" class="img-circle profile_img">
             </div>
             <div class="profile_info">
-                <span>Welcome,</span>
+                <span>Bienvenido,</span>
                 <h2>{{ Auth::user()->name }}</h2>
             </div>
         </div>
@@ -23,25 +23,54 @@
         <!-- sidebar menu -->
         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
             <div class="menu_section">
-                <h3>Group 1</h3>
+                <h3>Menú</h3>
                 <ul class="nav side-menu">
-                    <li><a><i class="fa fa-home"></i> Multiple link <span class="fa fa-chevron-down"></span></a>
+                    <li>
+                        <a href="javascript:void(0)">
+                            <i class="fa fa-laptop"></i>
+                            Usuario
+                        </a>
+                    </li>
+                    <li><a><i class="fa fa-home"></i> Autos <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="#">Link 1</a></li>
-                            <li><a href="#">Link 2</a></li>
-                            <li><a href="#">Link 3</a></li>
+                            <li><a href="#">Auto Vendedor</a></li>
+                            <li><a href="#">Auto Jardinero</a></li>
+                            <li><a href="#">Auto Paramédico</a></li>
+                            <li><a href="#">Auto Normal 1</a></li>
+                            <li><a href="#">Auto Normal 2</a></li>
+                            <li><a href="#">Auto Deportista</a></li>
+                        </ul>
+                    </li>
+                    <li><a><i class="fa fa-home"></i> Estadisticas <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="#">Estadistica 1</a></li>
+                            <li><a href="#">Estadistica 2</a></li>
+                            <li><a href="#">Estadistica 3</a></li>
+                        </ul>
+                    </li>
+                    <li><a><i class="fa fa-home"></i> Reportes <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="#">Reporte 1</a></li>
+                            <li><a href="#">Reporte 2</a></li>
+                            <li><a href="#">Reporte 3</a></li>
+                        </ul>
+                    </li>
+                    <li><a><i class="fa fa-home"></i> Alertas <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="#">Alerta 1</a></li>
+                            <li><a href="#">Alerta 2</a></li>
+                            <li><a href="#">Alerta 3</a></li>
                         </ul>
                     </li>
                     <li>
                         <a href="javascript:void(0)">
                             <i class="fa fa-laptop"></i>
-                            One link
-                            <span class="label label-success pull-right">Flag</span>
+                            Cerrar Sesión
                         </a>
                     </li>
                 </ul>
             </div>
-            <div class="menu_section">
+            <!-- <div class="menu_section">
                 <h3>Group 2</h3>
                 <ul class="nav side-menu">
                     <li>
@@ -69,7 +98,7 @@
                         </ul>
                     </li>
                 </ul>
-            </div>
+            </div> -->
         
         </div>
         <!-- /sidebar menu -->

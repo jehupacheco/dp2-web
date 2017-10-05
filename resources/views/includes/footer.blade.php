@@ -1,6 +1,6 @@
 <footer>
     <div class="pull-right">
-        Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+        Copyright AutómataPucp © 2017 - Build by <a href="https://colorlib.com">Auto Electrónico Pucp</a>
     </div>
     <div class="clearfix"></div>
 </footer>
