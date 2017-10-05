@@ -114,20 +114,10 @@ For install all NPM package
 npm install
 ```
 
-Or for install just minimal package
-
-```
-npm install --global bower gulp
-npm install gulp
-npm install laravel-elixir
-```
-
 And then, run this commands
 
 ```
-php artisan key:generate
-bower install
-gulp
+npm run build
 ```
 
 Configure your ```.env``` file and run :
