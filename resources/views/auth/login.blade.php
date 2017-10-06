@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <title>Gentellela Alela! | </title>
+    <title>AutómataPucpSystem | </title>
     
     <!-- Bootstrap -->
     <link href="{{ asset("css/bootstrap.min.css") }}" rel="stylesheet">
@@ -25,7 +25,7 @@
             <section class="login_content">
 				{!! BootForm::open(['url' => url('/login'), 'method' => 'post']) !!}
                     
-				<h1>Login Form</h1>
+				<h1>Login</h1>
 			
 				{!! BootForm::email('email', 'Email', old('email'), ['placeholder' => 'Email', 'afterInput' => '<span>test</span>'] ) !!}
 			
@@ -47,8 +47,7 @@
 					<br />
                         
 					<div>
-						<h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
-						<p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
+						<p>Copyright AutómataPucp © 2017 - Build by Auto Electrónico Pucp</p>
 					</div>
 				</div>
 				{!! BootForm::close() !!}

@@ -27,11 +27,17 @@
                 <ul class="nav side-menu">
                     <li>
                         <a href="javascript:void(0)">
-                            <i class="fa fa-laptop"></i>
-                            Usuario
+                            <i class="fa fa-dashboard"></i>
+                            Dashboard
                         </a>
                     </li>
-                    <li><a><i class="fa fa-home"></i> Autos <span class="fa fa-chevron-down"></span></a>
+                    <li>
+                        <a href="javascript:void(0)">
+                            <i class="fa fa-user"></i>
+                            Usuarios
+                        </a>
+                    </li>
+                    <li><a><i class="fa fa-bus"></i> Vehiculos <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="#">Auto Vendedor</a></li>
                             <li><a href="#">Auto Jardinero</a></li>
@@ -41,32 +47,14 @@
                             <li><a href="#">Auto Deportista</a></li>
                         </ul>
                     </li>
-                    <li><a><i class="fa fa-home"></i> Estadisticas <span class="fa fa-chevron-down"></span></a>
-                        <ul class="nav child_menu">
-                            <li><a href="#">Estadistica 1</a></li>
-                            <li><a href="#">Estadistica 2</a></li>
-                            <li><a href="#">Estadistica 3</a></li>
-                        </ul>
-                    </li>
-                    <li><a><i class="fa fa-home"></i> Reportes <span class="fa fa-chevron-down"></span></a>
+                    <li><a><i class="fa fa-bar-chart"></i> Reportes <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="#">Reporte 1</a></li>
                             <li><a href="#">Reporte 2</a></li>
                             <li><a href="#">Reporte 3</a></li>
                         </ul>
                     </li>
-                    <li><a><i class="fa fa-home"></i> Alertas <span class="fa fa-chevron-down"></span></a>
-                        <ul class="nav child_menu">
-                            <li><a href="#">Alerta 1</a></li>
-                            <li><a href="#">Alerta 2</a></li>
-                            <li><a href="#">Alerta 3</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0)">
-                            <i class="fa fa-laptop"></i>
-                            Cerrar Sesión
-                        </a>
+                    <li><a><i class="fa fa-car"></i>Estacionamiento</a>
                     </li>
                 </ul>
             </div>
