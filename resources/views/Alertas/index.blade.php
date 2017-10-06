@@ -64,7 +64,7 @@
 			                            <div class="byline">
 			                              <span>Hace 1 día</span> por <a>Juan Perez</a>
 			                            </div>
-			                            <p class="excerpt">El auto tuvo un choque frontal con algún objeto y debe ser llevado a revisión por precausión...<a>Leer&nbsp;Más</a>
+			                            <p class="excerpt">El auto tuvo un choque frontal con algún objeto y debe ser llevado a revisión por precaución...<a>Leer&nbsp;Más</a>
 			                            </p>
 			                          </div>
 			                        </div>
