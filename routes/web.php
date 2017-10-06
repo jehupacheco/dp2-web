@@ -20,4 +20,8 @@ Route::get('/', 'HomeController@index');
 
 Route::get('/sensores','SensorController@index');
 
-Route::get('/alertas','AlertaController@index');
+Route::get('/alertas','AlertController@index');
+
+Route::get('/ubicaciones/buscar_usuario','LocationController@search_user');
+
+Route::get('/ubicaciones/buscar/usuarios','LocationController@users_result');

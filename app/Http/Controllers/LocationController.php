@@ -4,8 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class AlertaController extends Controller
+class LocationController extends Controller
 {
+
+
+    public function search_user()
+    {
+        return view('Ubicaciones.search_user');
+    }
+
+    public function users_result()
+    {
+        return view('Ubicaciones.users_result');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +24,7 @@ class AlertaController extends Controller
      */
     public function index()
     {
-        return view('Alertas.index');
+        
     }
 
     /**
