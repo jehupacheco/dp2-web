@@ -73,7 +73,7 @@
 			                        <div class="block">
 			                          <div class="block_content">
 			                            <h2 class="title">
-			                                              <a>¡Precausión! Peso excedido de la maletera del auto</a>
+			                                              <a>¡Precaución! Peso excedido de la maletera del auto</a>
 			                                          </h2>
 			                            <div class="byline">
 			                              <span>Hace 2 días</span> por <a>Jardinero Felíz</a>
