@@ -12,7 +12,7 @@
     	<div>
     		  <div class="page-title">
               <div class="title_left">
-                <h3>Sensores <small>Usuarios de autos</small></h3>
+                <h3> <small>Usuarios de autos</small></h3>
               </div>
 
               <div class="title_right">
@@ -83,7 +83,7 @@
                               <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-user">
                                 </i> <i class="fa fa-comments-o"></i> </button>
                               <button type="button" class="btn btn-primary btn-xs">
-                                <i class="fa fa-user"> </i> Ver Perfil
+                                <i class="fa fa-user"> </i> Ver Usuario
                               </button>
                             </div>
                           </div>
@@ -121,7 +121,7 @@
                               <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-user">
                                 </i> <i class="fa fa-comments-o"></i> </button>
                               <button type="button" class="btn btn-primary btn-xs">
-                                <i class="fa fa-user"> </i> Ver Perfil
+                                <i class="fa fa-user"> </i> Ver Usuario
                               </button>
                             </div>
                           </div>
@@ -131,10 +131,10 @@
                       <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
                         <div class="well profile_view">
                           <div class="col-sm-12">
-                            <h4 class="brief"><i>Digital Strategist</i></h4>
+                            <h4 class="brief"><i>Usuario de vehículo</i></h4>
                             <div class="left col-xs-7">
                               <h2>Nicole Pearson</h2>
-                              <p><strong>About: </strong> Web Designer / UI. </p>
+                              <p><strong>Tipo de vehículo: </strong> Vehículo para ventas </p>
                               <ul class="list-unstyled">
                                 <li><i class="fa fa-building"></i> Dirección: Av.Universitaria 1802, San Miguel </li>
                                 <li><i class="fa fa-phone"></i> Phone #: 99999999</li>
@@ -169,10 +169,10 @@
                       <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
                         <div class="well profile_view">
                           <div class="col-sm-12">
-                            <h4 class="brief"><i>Digital Strategist</i></h4>
+                            <h4 class="brief"><i>Usuario de vehículo</i></h4>
                             <div class="left col-xs-7">
                               <h2>Nicole Pearson</h2>
-                              <p><strong>About: </strong> Web Designer / UI. </p>
+                              <p><strong>Tipo de vehículo: </strong> Vehículo para la jardinería </p>
                               <ul class="list-unstyled">
                                 <li><i class="fa fa-building"></i> Dirección: Av.Universitaria 1802, San Miguel </li>
                                 <li><i class="fa fa-phone"></i> Phone #: 99999999</li>
@@ -207,7 +207,7 @@
                       <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
                         <div class="well profile_view">
                           <div class="col-sm-12">
-                            <h4 class="brief"><i>Digital Strategist</i></h4>
+                            <h4 class="brief"><i>Usuario de vehículo</i></h4>
                             <div class="left col-xs-7">
                               <h2>Nicole Pearson</h2>
                               <p><strong>About: </strong> Web Designer / UX / Graphic Artist / Coffee Lover </p>
@@ -245,10 +245,10 @@
                       <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
                         <div class="well profile_view">
                           <div class="col-sm-12">
-                            <h4 class="brief"><i>Digital Strategist</i></h4>
+                            <h4 class="brief"><i>Usuario de vehículo</i></h4>
                             <div class="left col-xs-7">
                               <h2>Nicole Pearson</h2>
-                              <p><strong>About: </strong> Web Designer / UI. </p>
+                              <p><strong>Tipo de vehículo: </strong> Vehículo para ventas </p>
                               <ul class="list-unstyled">
                                 <li><i class="fa fa-building"></i> Dirección: Av.Universitaria 1802, San Miguel </li>
                                 <li><i class="fa fa-phone"></i> Phone #: 99999999</li>
@@ -283,10 +283,10 @@
                       <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
                         <div class="well profile_view">
                           <div class="col-sm-12">
-                            <h4 class="brief"><i>Digital Strategist</i></h4>
+                            <h4 class="brief"><i>Usuario de vehículo</i></h4>
                             <div class="left col-xs-7">
                               <h2>Nicole Pearson</h2>
-                              <p><strong>About: </strong> Web Designer / UI. </p>
+                              <p><strong>Tipo de vehículo: </strong> Vehículo de uso diario </p>
                               <ul class="list-unstyled">
                                 <li><i class="fa fa-building"></i> Dirección: Av.Universitaria 1802, San Miguel </li>
                                 <li><i class="fa fa-phone"></i> Phone #: 99999999</li>
@@ -321,10 +321,10 @@
                       <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
                         <div class="well profile_view">
                           <div class="col-sm-12">
-                            <h4 class="brief"><i>Digital Strategist</i></h4>
+                            <h4 class="brief"><i>Usuario de vehículo</i></h4>
                             <div class="left col-xs-7">
                               <h2>Nicole Pearson</h2>
-                              <p><strong>About: </strong> Web Designer / UI. </p>
+                              <p><strong>Tipo de vehículo: </strong> Vehículo de uso diario </p>
                               <ul class="list-unstyled">
                                 <li><i class="fa fa-building"></i> Dirección: Av.Universitaria 1802, San Miguel </li>
                                 <li><i class="fa fa-phone"></i> Phone #: 99999999</li>
@@ -359,10 +359,10 @@
                       <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
                         <div class="well profile_view">
                           <div class="col-sm-12">
-                            <h4 class="brief"><i>Digital Strategist</i></h4>
+                            <h4 class="brief"><i>Usuario de vehículo</i></h4>
                             <div class="left col-xs-7">
                               <h2>Nicole Pearson</h2>
-                              <p><strong>About: </strong> Web Designer / UI. </p>
+                              <p><strong>Tipo de vehículo: </strong> Vehículo de uso diario </p>
                               <ul class="list-unstyled">
                                 <li><i class="fa fa-building"></i> Dirección: Av.Universitaria 1802, San Miguel </li>
                                 <li><i class="fa fa-phone"></i> Phone #: 99999999</li>
@@ -387,7 +387,7 @@
                               <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-user">
                                 </i> <i class="fa fa-comments-o"></i> </button>
                               <button type="button" class="btn btn-primary btn-xs">
-                                <i class="fa fa-user"> </i> Ver Perfil
+                                <i class="fa fa-user"> </i> Ver Usuario
                               </button>
                             </div>
                           </div>

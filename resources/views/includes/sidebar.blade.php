@@ -32,7 +32,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="javascript:void(0)">
+                        <a href="{{url('/usuarios')}}">
                             <i class="fa fa-user"></i>
                             Usuarios
                         </a>
