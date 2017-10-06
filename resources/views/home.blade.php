@@ -33,10 +33,14 @@
 					<img src="/img/mapa.jpg" alt="Ubicación" class="img-circle profile_img">
 				</div>
 				<div class="col-md-4 col-sm-4 col-xs-4">
-					<img src="/img/sensores.png" alt="Avatar of {{ Auth::user()->name }}" class="img-circle profile_img">
+					<a href="{{url('/sensores')}}">
+						<img src="/img/sensores.png" alt="Avatar of {{ Auth::user()->name }}" class="img-circle profile_img">
+					</a>
 				</div>
 				<div class="col-md-4 col-sm-4 col-xs-4">
-					<img src="/img/alertas.png" alt="Avatar of {{ Auth::user()->name }}" class="img-circle profile_img">
+					<a href="{{url('/alertas')}}">
+						<img src="/img/alertas.png" alt="Avatar of {{ Auth::user()->name }}" class="img-circle profile_img" >
+					</a>
 				</div>
 			</div>
 			<div class="row">
