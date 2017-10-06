@@ -14,3 +14,10 @@
 Auth::routes();
 Route::get('/logout', 'Auth\LoginController@logout');
 Route::get('/', 'HomeController@index');
+
+
+
+
+Route::get('/sensores','SensorController@index');
+
+Route::get('/alertas','AlertaController@index');
