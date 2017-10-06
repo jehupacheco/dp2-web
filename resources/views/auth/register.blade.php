@@ -9,12 +9,7 @@
     
     <title>Gentellela Alela! | </title>
     
-    <!-- Bootstrap -->
-    <link href="{{ asset("css/bootstrap.min.css") }}" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="{{ asset("css/font-awesome.min.css") }}" rel="stylesheet">
-    <!-- Custom Theme Style -->
-    <link href="{{ asset("css/gentelella.min.css") }}" rel="stylesheet">
+    <link href="{{ asset("css/app.min.css") }}" rel="stylesheet">
 
 </head>
 
@@ -55,5 +50,6 @@
         </section>
     </div>
 </div>
+<script src="{{ asset("js/app.min.js") }}"></script>
 </body>
 </html>

@@ -11,12 +11,7 @@
 
         <title>AutómataPucpSystem | </title>
 
-        <!-- Bootstrap -->
-        <link href="{{ asset("css/bootstrap.min.css") }}" rel="stylesheet">
-        <!-- Font Awesome -->
-        <link href="{{ asset("css/font-awesome.min.css") }}" rel="stylesheet">
-        <!-- Custom Theme Style -->
-        <link href="{{ asset("css/gentelella.min.css") }}" rel="stylesheet">
+        <link href="{{ asset("css/app.min.css") }}" rel="stylesheet">
 
         @stack('stylesheets')
 
@@ -37,12 +32,7 @@
             </div>
         </div>
 
-        <!-- jQuery -->
-        <script src="{{ asset("js/jquery.min.js") }}"></script>
-        <!-- Bootstrap -->
-        <script src="{{ asset("js/bootstrap.min.js") }}"></script>
-        <!-- Custom Theme Scripts -->
-        <script src="{{ asset("js/gentelella.min.js") }}"></script>
+        <script src="{{ asset("js/app.min.js") }}"></script>
 
         @stack('scripts')
 
