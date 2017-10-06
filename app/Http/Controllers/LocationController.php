@@ -17,6 +17,10 @@ class LocationController extends Controller
     {
         return view('Ubicaciones.users_result');
     }
+
+    public function mostrar_mapa(){
+        return view('Ubicaciones.mapa');
+    }
     /**
      * Display a listing of the resource.
      *
