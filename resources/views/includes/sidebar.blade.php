@@ -54,7 +54,10 @@
                             <li><a href="#">Reporte de Historial de Alertas</a></li>
                         </ul>
                     </li>
-                    <li><a><i class="fa fa-car"></i>Estacionamiento</a>
+                    <li>
+                        <a href="{{url('/estacionamiento')}}">
+                            <i class="fa fa-car"></i>Estacionamiento
+                        </a>
                     </li>
                 </ul>
             </div>
