@@ -15,20 +15,20 @@ class AutoController extends Controller
     {   
         try {
             if($tipo_id==1){//Jardinería
-                return view('Autos.auto-jardinero.index.blade');
+                return view('Autos.auto-jardinero.index');
             }
             elseif($tipo_id=2){//Eco-amigable
-                return view('Autos.auto-ecoamigable.index.blade');
+                return view('Autos.auto-ecoamigable.index');
             }
-            elseif (condition) {
-                # code...
+            elseif($tipo_id==3) {
+               return view('Autos.auto-cardiopatia.index');
             }
             else{
-
+                return view('Autos.auto-jardinero.index');
             }
 
         } catch (Exception $e) {
-            
+            return view('Autos.auto-jardinero.index');
         }
     }
 
