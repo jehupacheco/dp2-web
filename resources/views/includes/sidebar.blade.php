@@ -43,7 +43,7 @@
                             <li><a href="#">Auto Jardinero</a></li>
                             <li><a href="#">Auto Paramédico</a></li>
                             <li><a href="#">Auto Normal 1</a></li>
-                            <li><a href="#">Auto Normal 2</a></li>
+                            <li><a href="{{url('/vehiculosPrincipal')}}">Auto Normal 2</a></li>
                             <li><a href="#">Auto Deportista</a></li>
                         </ul>
                     </li>
