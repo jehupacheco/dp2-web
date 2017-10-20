@@ -30,6 +30,8 @@ Route::get('/ubicaciones/buscar/usuarios','LocationController@users_result');
 
 Route::get('/ubicaciones/usuario/1/mapa','LocationController@mostrar_mapa');
 
+
 Route::get('/estacionamiento','ParkingController@index');
 
 Route::get('/vehiculosPrincipal','HomeController@vehiculosPrincipal');
+
