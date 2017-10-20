@@ -16,6 +16,8 @@ Route::get('/logout', 'Auth\LoginController@logout');
 Route::get('/', 'HomeController@index');
 
 
+Route::get('/usuarios','UserController@index');
+Route::get('/usuario/1/perfil','UserController@show_profile');
 
 
 Route::get('/sensores','SensorController@index');
