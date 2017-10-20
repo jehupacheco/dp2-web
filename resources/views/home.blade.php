@@ -58,7 +58,7 @@
 			</div>
 			<div class="row">
 				<div class="col-md-4 col-sm-4 col-xs-4 text-center">
-					<label for="">Ver en tienpo real donde se encuentran ubicados los autos asginados al usuario</label>
+					<label for="">Ver en tiempo real donde se encuentran ubicados los autos asginados al usuario</label>
 				</div>
 				<div class="col-md-4 col-sm-4 col-xs-4 text-center">
 					<label for="">Ver la lectura de los sensores generadas por los autos que se encuentran asignados al usuario </label>

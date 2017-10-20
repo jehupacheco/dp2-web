@@ -32,7 +32,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="javascript:void(0)">
+                        <a href="{{url('/usuarios')}}">
                             <i class="fa fa-user"></i>
                             Usuarios
                         </a>
@@ -54,7 +54,10 @@
                             <li><a href="#">Reporte 3</a></li>
                         </ul>
                     </li>
-                    <li><a><i class="fa fa-car"></i>Estacionamiento</a>
+                    <li>
+                        <a href="{{url('/estacionamiento')}}">
+                            <i class="fa fa-car"></i>Estacionamiento
+                        </a>
                     </li>
                 </ul>
             </div>

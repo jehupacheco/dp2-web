@@ -16,6 +16,8 @@ Route::get('/logout', 'Auth\LoginController@logout');
 Route::get('/', 'HomeController@index');
 
 
+Route::get('/usuarios','UserController@index');
+Route::get('/usuario/1/perfil','UserController@show_profile');
 
 
 Route::get('/sensores','SensorController@index');
@@ -27,3 +29,5 @@ Route::get('/ubicaciones/buscar_usuario','LocationController@search_user');
 Route::get('/ubicaciones/buscar/usuarios','LocationController@users_result');
 
 Route::get('/ubicaciones/usuario/1/mapa','LocationController@mostrar_mapa');
+
+Route::get('/estacionamiento','ParkingController@index');
