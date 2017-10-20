@@ -128,11 +128,11 @@
 
                       <div class="" role="tabpanel" data-example-id="togglable-tabs">
                         <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-                          <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Recent Activity</a>
+                          <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Recientes Notificaciones</a>
                           </li>
-                          <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Projects Worked on</a>
+                          <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Datos de Pago</a>
                           </li>
-                          <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Profile</a>
+                          <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Perfil</a>
                           </li>
                         </ul>
                         <div id="myTabContent" class="tab-content">
@@ -147,9 +147,10 @@
                                   <p class="month">May</p>
                                 </div>
                                 <div class="message_wrapper">
-                                  <h4 class="heading">Desmond Davison</h4>
-                                  <blockquote class="message">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth.</blockquote>
+                                  <h4 class="heading">César Aguilera</h4>
+                                  <blockquote class="message">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat quisquam, reprehenderit eius! Saepe cupiditate debitis adipisci laudantium alias nihil</blockquote>
                                   <br />
+
                                   <p class="url">
                                     <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
                                     <a href="#"><i class="fa fa-paperclip"></i> User Acceptance Test.doc </a>
@@ -163,8 +164,8 @@
                                   <p class="month">May</p>
                                 </div>
                                 <div class="message_wrapper">
-                                  <h4 class="heading">Brian Michaels</h4>
-                                  <blockquote class="message">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth.</blockquote>
+                                  <h4 class="heading">Jorge Berrocal</h4>
+                                  <blockquote class="message">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat quisquam, reprehenderit eius! Saepe cupiditate debitis adipisci laudantium alias nihil</blockquote>
                                   <br />
                                   <p class="url">
                                     <span class="fs1" aria-hidden="true" data-icon=""></span>
@@ -179,8 +180,8 @@
                                   <p class="month">May</p>
                                 </div>
                                 <div class="message_wrapper">
-                                  <h4 class="heading">Desmond Davison</h4>
-                                  <blockquote class="message">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth.</blockquote>
+                                  <h4 class="heading">César Aguilera</h4>
+                                  <blockquote class="message">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat quisquam, reprehenderit eius! Saepe cupiditate debitis adipisci laudantium alias nihil</blockquote>
                                   <br />
                                   <p class="url">
                                     <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
@@ -195,8 +196,8 @@
                                   <p class="month">May</p>
                                 </div>
                                 <div class="message_wrapper">
-                                  <h4 class="heading">Brian Michaels</h4>
-                                  <blockquote class="message">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth.</blockquote>
+                                  <h4 class="heading">Jorge Berrocal</h4>
+                                  <blockquote class="message">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat quisquam, reprehenderit eius! Saepe cupiditate debitis adipisci laudantium alias nihil</blockquote>
                                   <br />
                                   <p class="url">
                                     <span class="fs1" aria-hidden="true" data-icon=""></span>
@@ -273,8 +274,7 @@
 
                           </div>
                           <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
-                            <p>xxFood truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui
-                              photo booth letterpress, commodo enim craft beer mlkshk </p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam deleniti ratione, earum dolores nemo, voluptates adipisci consectetur ea atque rerum harum iste magni, cupiditate veritatis repellendus velit porro odio ipsam.</p>
                           </div>
                         </div>
                       </div>

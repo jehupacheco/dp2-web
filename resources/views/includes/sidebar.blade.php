@@ -39,19 +39,19 @@
                     </li>
                     <li><a><i class="fa fa-bus"></i> Vehiculos <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="#">Auto Vendedor</a></li>
-                            <li><a href="#">Auto Jardinero</a></li>
-                            <li><a href="#">Auto Paramédico</a></li>
-                            <li><a href="#">Auto Normal 1</a></li>
-                            <li><a href="#">Auto Normal 2</a></li>
-                            <li><a href="#">Auto Deportista</a></li>
+                            <li><a href="#">Vehículo Vendedor</a></li>
+                            <li><a href="#">Vehículo Jardinero</a></li>
+                            <li><a href="#">Vehículo Cardiopatía</a></li>
+                            <li><a href="#">Vehículo Eco-amigable</a></li>
+                            <li><a href="#">Vehículo Persona Joven</a></li>
+                            <li><a href="#">Vehículo transporte urbano</a></li>
                         </ul>
                     </li>
                     <li><a><i class="fa fa-bar-chart"></i> Reportes <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="#">Reporte 1</a></li>
-                            <li><a href="#">Reporte 2</a></li>
-                            <li><a href="#">Reporte 3</a></li>
+                            <li><a href="#">Reporte de Clientes</a></li>
+                            <li><a href="#">Reporte de Recorridos</a></li>
+                            <li><a href="#">Reporte de Historial de Alertas</a></li>
                         </ul>
                     </li>
                     <li>
