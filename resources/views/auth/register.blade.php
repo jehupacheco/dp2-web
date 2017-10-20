@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <title>Gentellela Alela! | </title>
+    <title>AutómataPucpSystem | </title>
     
     <link href="{{ asset("css/app.min.css") }}" rel="stylesheet">
 
@@ -19,31 +19,31 @@
         <section class="login_content">
 			{!! BootForm::open(['url' => url('/register'), 'method' => 'post']) !!}
 			
-			<h1>Create Account</h1>
+			<h1>Create una cuenta</h1>
 
-			{!! BootForm::text('name', 'Name', old('name'), ['placeholder' => 'Full Name']) !!}
+			{!! BootForm::text('name', 'Nombre', old('name'), ['placeholder' => 'Nombre completo']) !!}
 
 			{!! BootForm::email('email', 'Email', old('email'), ['placeholder' => 'Email']) !!}
 
 			{!! BootForm::password('password', 'Password', ['placeholder' => 'Password']) !!}
 
-			{!! BootForm::password('password_confirmation', 'Password confirmation', ['placeholder' => 'Confirmation']) !!}
+			{!! BootForm::password('password_confirmation', 'Confirma tu Password', ['placeholder' => 'Repite tu password']) !!}
 		
-			{!! BootForm::submit('Register', ['class' => 'btn btn-default']) !!}
+			{!! BootForm::submit('Registrar', ['class' => 'btn btn-default']) !!}
 		   
 			<div class="clearfix"></div>
 			
 			<div class="separator">
-				<p class="change_link">Already a member ?
-					<a href="{{ url('/login') }}" class="to_register"> Log in </a>
+				<p class="change_link">You tienes cuenta?
+					<a href="{{ url('/login') }}" class="to_register"> Ingresa </a>
 				</p>
 				
 				<div class="clearfix"></div>
 				<br />
 				
 				<div>
-					<h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
-					<p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
+					<h1><i class="fa fa-paw"></i> Autómata Pucp</h1>
+					<p>©2017 All Rights Reserved. Autómata Pucp is a Bootstrap 3 template. Privacy and Terms</p>
 				</div>
 			</div>
 			{!! BootForm::close() !!}
