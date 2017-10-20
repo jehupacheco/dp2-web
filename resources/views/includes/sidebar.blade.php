@@ -37,14 +37,15 @@
                             Usuarios
                         </a>
                     </li>
+
                     <li><a><i class="fa fa-bus"></i> Vehiculos <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="#">Vehículo Vendedor</a></li>
-                            <li><a href="#">Vehículo Jardinero</a></li>
-                            <li><a href="#">Vehículo Cardiopatía</a></li>
-                            <li><a href="#">Vehículo Eco-amigable</a></li>
-                            <li><a href="#">Vehículo Persona Joven</a></li>
-                            <li><a href="#">Vehículo transporte urbano</a></li>
+                            <li><a href="{{url('/autos/tipo/3/lista')}}">Vehículo Vendedor</a></li>
+                            <li><a href="{{url('/autos/tipo/1/lista')}}">Vehículo Jardinero</a></li>
+                            <li><a href="{{url('/autos/tipo/2/lista')}}">Vehículo Cardiopatía</a></li>
+                            <li><a href="{{url('/autos/tipo/4/lista')}}">Vehículo Eco-amigable</a></li>
+                            <li><a href="{{url('/autos/tipo/5/lista')}}">Vehículo Persona Joven</a></li>
+                            <li><a href="{{url('/autos/tipo/6/lista')}}">Vehículo transporte urbano</a></li>
                         </ul>
                     </li>
                     <li><a><i class="fa fa-bar-chart"></i> Reportes <span class="fa fa-chevron-down"></span></a>
