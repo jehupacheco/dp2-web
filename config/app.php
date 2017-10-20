@@ -161,8 +161,7 @@ return [
 		Thomaswelton\LaravelGravatar\LaravelGravatarServiceProvider::class,
 		Conner\Tagging\Providers\TaggingServiceProvider::class,
 		Collective\Html\HtmlServiceProvider::class,
-		Watson\BootstrapForm\BootstrapFormServiceProvider::class,
-		Spatie\Permission\PermissionServiceProvider::class,
+		Watson\BootstrapForm\BootstrapFormServiceProvider::class
     ],
 
     /*
