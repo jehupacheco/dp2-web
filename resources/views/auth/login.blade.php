@@ -18,34 +18,35 @@
     <div class="login_wrapper">
         <div class="animate form login_form">
             <section class="login_content">
-				{!! BootForm::open(['url' => url('/login'), 'method' => 'post']) !!}
+                {!! BootForm::open(['url' => url('/login'), 'method' => 'post']) !!}
                     
-				<h1>Login</h1>
-			
-				{!! BootForm::email('email', 'Email', old('email'), ['placeholder' => 'Email', 'afterInput' => '<span>test</span>'] ) !!}
-			
-				{!! BootForm::password('password', 'Password', ['placeholder' => 'Password']) !!}
-				
-				<div>
-					{!! BootForm::submit('Log in', ['class' => 'btn btn-default submit']) !!}
-					<a class="reset_pass" href="{{  url('/password/reset') }}">Lost your password ?</a>
-				</div>
+                <h1>Login</h1>
+            
+                {!! BootForm::email('email', 'Email', old('email'), ['placeholder' => 'Email', 'afterInput' => '<span>test</span>'] ) !!}
+            
+                {!! BootForm::password('password', 'Password', ['placeholder' => 'Password']) !!}
+                
+                <div>
+                    {!! BootForm::submit('Entrar', ['class' => 'btn btn-default submit']) !!}
+                    <a class="reset_pass" href="{{  url('/password/reset') }}">Olvidaste tu contraseña ?</a>
+                </div>
                     
-				<div class="clearfix"></div>
+                <div class="clearfix"></div>
                     
-				<div class="separator">
-					<p class="change_link">New to site?
-						<a href="{{ url('/register') }}" class="to_register"> Create Account </a>
-					</p>
+                <div class="separator">
+                    <p class="change_link">No tienes cuenta?
+                        <a href="{{ url('/register') }}" class="to_register"> Crear una cuenta </a>
+                    </p>
                         
-					<div class="clearfix"></div>
-					<br />
+                    <div class="clearfix"></div>
+                    <br />
                         
-					<div>
-						<p>Copyright AutómataPucp © 2017 - Build by Auto Electrónico Pucp</p>
-					</div>
-				</div>
-				{!! BootForm::close() !!}
+                    <div>
+                        <h1><i class="fa fa-paw"></i> Autómata Pucp</h1>
+                        <p>©2017 All Rights Reserved. Autómata Pucp is a Bootstrap 3 template. Privacy and Terms</p>
+                    </div>
+                </div>
+                {!! BootForm::close() !!}
             </section>
         </div>
     </div>
