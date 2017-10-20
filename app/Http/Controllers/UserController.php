@@ -21,9 +21,9 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function show_profile()
     {
-        //
+        return view('Usuarios.perfil.ver-perfil');
     }
 
     /**
