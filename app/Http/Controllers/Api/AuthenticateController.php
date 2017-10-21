@@ -28,10 +28,4 @@ class AuthenticateController extends Controller
         // all good so return the token
         return response()->json(compact('token'));
     }
-
-    public function refresh() {
-        $token = JWTAuth::getToken();
-
-        return response()->json(compact('token'));
-    } 
 }

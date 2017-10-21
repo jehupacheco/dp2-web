@@ -28,7 +28,7 @@
         "thomaswelton/laravel-gravatar": "~1.0",
         "rtconner/laravel-tagging": "~2.2",
         "laravelcollective/html": "^5.3.0",
-	  	"watson/bootstrap-form": "1.1.*",
+        "watson/bootstrap-form": "1.1.*",
         "tymon/jwt-auth": "0.5.*"
     },
     "require-dev": {
