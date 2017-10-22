@@ -12,18 +12,21 @@ class ClientsSeeder extends Seeder
     public function run()
     {
         DB::table('clients')->insert([
-            'email' => str_random(10).'@gmail.com',
+            'email' => 'test@test.com',
             'password' => bcrypt('secret'),
+            'organization_id' => 1,
+            'name' => 'Test Client 1',
+            'lastname' => 'Test',
+            'phone' => '920146721',
         ]);
 
         DB::table('clients')->insert([
-            'email' => str_random(10).'@gmail.com',
+            'email' => 'test2@test.com',
             'password' => bcrypt('secret'),
-        ]);
-
-        DB::table('clients')->insert([
-            'email' => str_random(10).'@gmail.com',
-            'password' => bcrypt('secret'),
+            'organization_id' => 1,
+            'name' => 'Test Client 2',
+            'lastname' => 'Test',
+            'phone' => '920146728',
         ]);
     }
 }
