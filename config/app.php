@@ -158,10 +158,11 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\BroadcastServiceProvider::class,
 
-		Thomaswelton\LaravelGravatar\LaravelGravatarServiceProvider::class,
-		Conner\Tagging\Providers\TaggingServiceProvider::class,
-		Collective\Html\HtmlServiceProvider::class,
-		Watson\BootstrapForm\BootstrapFormServiceProvider::class
+        Thomaswelton\LaravelGravatar\LaravelGravatarServiceProvider::class,
+        Conner\Tagging\Providers\TaggingServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
+        Watson\BootstrapForm\BootstrapFormServiceProvider::class,
+        Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class
     ],
 
     /*
@@ -207,11 +208,13 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-		'Notification' => Illuminate\Support\Facades\Notification::class,
-		'Gravatar' => Thomaswelton\LaravelGravatar\Facades\Gravatar::class,
-		'Form' => Collective\Html\FormFacade::class,
-		'Html' => Collective\Html\HtmlFacade::class,
-		'BootForm' => Watson\BootstrapForm\Facades\BootstrapForm::class,
+        'Notification' => Illuminate\Support\Facades\Notification::class,
+        'Gravatar' => Thomaswelton\LaravelGravatar\Facades\Gravatar::class,
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
+        'BootForm' => Watson\BootstrapForm\Facades\BootstrapForm::class,
+        'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
+        'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
     ],
 
 ];
