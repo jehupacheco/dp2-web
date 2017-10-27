@@ -83,7 +83,7 @@
                         <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-user">
                           </i> <i class="fa fa-comments-o"></i> </button>
                         <a type="button" class="btn btn-primary btn-xs" href="{{url('/usuario/1/perfil')}}">
-                          <i class="fa fa-user"> </i> Ver Usuario
+                          <i class="fa fa-user"> </i> Ver Vehiculo
                         </a>
                       </div>
                     </div>

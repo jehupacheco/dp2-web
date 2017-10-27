@@ -7,14 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <title>Reestablecer contraseña | </title>
+    <title>AutómataPucpSystem | </title>
     
-    <!-- Bootstrap -->
-    <link href="{{ asset("css/bootstrap.min.css") }}" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="{{ asset("css/font-awesome.min.css") }}" rel="stylesheet">
-    <!-- Custom Theme Style -->
-    <link href="{{ asset("css/gentelella.min.css") }}" rel="stylesheet">
+    <link href="{{ asset("css/app.min.css") }}" rel="stylesheet">
 
 </head>
 
@@ -31,24 +26,24 @@
                         {{ session('status') }}
                     </div>
                 @endif
-					{!! BootForm::open(['url' => url('/password/reset'), 'method' => 'post']) !!}
-                    <h1>Reset Password</h1>
+                    {!! BootForm::open(['url' => url('/password/reset'), 'method' => 'post']) !!}
+                    <h1>Reestablecer contraseña</h1>
                     
                     {!! BootForm::hidden('token', $token) !!}
-	
-					{!! BootForm::email('email', 'Email', old('email'), ['placeholder' => 'Email']) !!}
-	
-					{!! BootForm::password('password', 'Password', ['placeholder' => 'Password']) !!}
-	
-					{!! BootForm::password('password_confirmation', 'Password confirmation', ['placeholder' => 'Confirmation']) !!}
-	
-					{!! BootForm::submit('Send Password Reset Link', ['class' => 'btn btn-default col-md-9']) !!}
-	
-					<div class="clearfix"></div>
-					
+        
+                    {!! BootForm::email('email', 'Email', old('email'), ['placeholder' => 'Email']) !!}
+        
+                    {!! BootForm::password('password', 'Password', ['placeholder' => 'Password']) !!}
+        
+                    {!! BootForm::password('password_confirmation', 'Confirma tu Password', ['placeholder' => 'Repite tu password']) !!}
+        
+                    {!! BootForm::submit('Enviar', ['class' => 'btn btn-default col-md-9']) !!}
+        
+                    <div class="clearfix"></div>
+                    
                     <div class="separator">
-                        <p class="change_link">You have a password ?
-                            <a href="{{ url('/login') }}" class="to_register"> Log in </a>
+                        <p class="change_link">Tienes tu contraseña ?
+                            <a href="{{ url('/login') }}" class="to_register"> Ingresa </a>
                         </p>
                         
                         <div class="clearfix"></div>
@@ -64,5 +59,6 @@
         </div>
     </div>
 </div>
+<script src="{{ asset("js/app.min.js") }}"></script>
 </body>
 </html>
