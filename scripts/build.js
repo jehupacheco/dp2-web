@@ -47,7 +47,15 @@ var stylesheets = [
   '/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css',
   '/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css',
   '/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css',
+  // Added
+  '/production/css/maps/jquery-jvectormap-2.0.3.css',
+  '/vendors/nprogress/nprogress.css',
+  '/vendors/iCheck/skins/flat/green.css',
+  '/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css',
+  '/vendors/bootstrap-daterangepicker/daterangepicker.css',
+  // End - Added
   '/build/css/custom.min.css',
+  
 ];
 
 var stylesout = public + '/css/app.min.css';
@@ -70,6 +78,34 @@ var scripts = [
   '/vendors/datatables.net-responsive/js/dataTables.responsive.min.js',
   '/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js',
   '/vendors/datatables.net-scroller/js/dataTables.scroller.min.js',
+
+  // Added 
+  '/vendors/fastclick/lib/fastclick.js',
+  '/vendors/nprogress/nprogress.js',
+  '/vendors/Chart.js/dist/Chart.min.js',
+
+  '/vendors/bernii/gauge.js/dist/gauge.min.js',
+  '/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js',
+  '/vendors/iCheck/icheck.min.js',
+  '/vendors/skycons/skycons.js',
+
+  '/vendors/Flot/jquery.flot.js',
+  '/vendors/Flot/jquery.flot.pie.js',
+  '/vendors/Flot/jquery.flot.time.js',
+  '/vendors/Flot/jquery.flot.stack.js',
+  '/vendors/Flot/jquery.flot.resize.js',
+
+
+  '/production/js/flot/date.js',
+  '/production/js/flot/jquery.flot.orderBars.js',
+  '/production/js/flot/curvedLines.js',
+  '/production/js/flot/jquery.flot.spline.js',
+
+  '/vendors/moment/min/moment.min.js',
+  '/vendors/jquery-sparkline/dist/jquery.sparkline.min.js',
+  '/production/js/maps/jquery-jvectormap-2.0.3.min.js',
+  // End - Added
+
   '/build/js/custom.min.js',
 ];
 
