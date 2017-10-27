@@ -26,8 +26,11 @@ class AutoController extends Controller
             elseif($tipo_id==4) {
                return view('Autos.auto-ecoamigable.index');
             }
+            elseif($tipo_id==5) {
+               return view('Autos.auto-transporteUrbano1.index');
+            }
             elseif($tipo_id==6) {
-               return view('Autos.auto-transporteUrbano.index');
+               return view('Autos.auto-transporteUrbano2.index');
             }
             else{
                 return view('Autos.auto-jardinero.index');
