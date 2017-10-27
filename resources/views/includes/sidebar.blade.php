@@ -26,7 +26,7 @@
                 <h3>Menú</h3>
                 <ul class="nav side-menu">
                     <li>
-                        <a href="javascript:void(0)">
+                        <a href="{{url('/')}}">
                             <i class="fa fa-dashboard"></i>
                             Dashboard
                         </a>
