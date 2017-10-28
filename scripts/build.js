@@ -83,6 +83,7 @@ var scripts = [
   '/vendors/fastclick/lib/fastclick.js',
   '/vendors/nprogress/nprogress.js',
   '/vendors/Chart.js/dist/Chart.min.js',
+  '/vendors/jquery-sparkline/dist/jquery.sparkline.min.js',
 
   '/vendors/bernii/gauge.js/dist/gauge.min.js',
   '/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js',
@@ -95,17 +96,17 @@ var scripts = [
   '/vendors/Flot/jquery.flot.stack.js',
   '/vendors/Flot/jquery.flot.resize.js',
 
-
-  '/production/js/flot/date.js',
   '/production/js/flot/jquery.flot.orderBars.js',
-  '/production/js/flot/curvedLines.js',
+  '/production/js/flot/date.js',
   '/production/js/flot/jquery.flot.spline.js',
-
-  '/vendors/moment/min/moment.min.js',
-  '/vendors/jquery-sparkline/dist/jquery.sparkline.min.js',
+  '/production/js/flot/curvedLines.js',
   '/production/js/maps/jquery-jvectormap-2.0.3.min.js',
+  '/production/js/moment/moment.min.js',
+  '/production/js/datepicker/daterangepicker.js',
+  '/production/js/maps/jquery-jvectormap-world-mill-en.js',
+  '/production/js/maps/jquery-jvectormap-us-aea-en.js',
+  '/production/js/maps/gdp-data.js',
   // End - Added
-
   '/build/js/custom.min.js',
 ];
 
