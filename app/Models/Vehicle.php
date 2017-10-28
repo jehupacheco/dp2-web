@@ -11,8 +11,8 @@ class Vehicle extends Model
         return $this->belongsTo('App\Models\Organization');
     }
 
-    public function clients()
+    public function rentings()
     {
-        return $this->belongsToMany('App\Models\Client')->withPivot('starts_at', 'finishes_at');
+        return $this->hasMany('App\Models\Renting');
     }
 }

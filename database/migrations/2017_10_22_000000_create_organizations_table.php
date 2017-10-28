@@ -27,6 +27,7 @@ class CreateOrganizationsTable extends Migration
             $table->string('name');
             $table->string('address', 45);
             $table->string('phone', 45);
+            $table->string('slug', 45);
             $table->softDeletes();
             $table->nullableTimestamps();
         });

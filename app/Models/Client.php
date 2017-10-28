@@ -14,8 +14,8 @@ class Client extends Authenticatable
         return $this->belongsTo('App\Models\Organization');
     }
 
-    public function vehicles()
+    public function rentings()
     {
-        return $this->belongsToMany('App\Models\Vehicle')->withPivot('starts_at', 'finishes_at');
+        return $this->hasMany('App\Models\Renting');
     }
 }
