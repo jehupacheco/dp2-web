@@ -1,80 +1,52 @@
 FORMAT: 1A
-HOST: http://polls.apiblueprint.org/
+HOST: http://dp2.iamallama.com/api
 
 # DP2
 
-Polls is a simple API allowing consumers to view polls and vote in them.
+API reference for mobile apps. Uses JWT authentication.
 
-## Questions Collection [/questions]
+## Auth [/login]
 
-### List All Questions [GET]
+### Login [GET]
 
-+ Response 200 (application/json)
+Log a registered client giving email and password. On success, return a valid token
 
-        [
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 2048
-                    }, {
-                        "choice": "Python",
-                        "votes": 1024
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 512
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 256
-                    }
-                ]
-            }
-        ]
-
-### Create a New Question [POST]
-
-You may create your own question using this action. It takes a JSON
-object containing a question and a collection of answers in the
-form of choices.
 
 + Request (application/json)
 
         {
-            "question": "Favourite programming language?",
-            "choices": [
-                "Swift",
-                "Python",
-                "Objective-C",
-                "Ruby"
-            ]
+            "email": "kbrekke@yahoo.com",
+            "password": "secret"
         }
 
-+ Response 201 (application/json)
+
++ Response 200 (application/json)
+
+        {
+            "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6Ly9kcDIuYXBwL2FwaS9sb2dpbiIsImlhdCI6MTUwOTM3ODI4NywiZXhwIjoxNTA5MzgxODg3LCJuYmYiOjE1MDkzNzgyODcsImp0aSI6ImVvZ2Z3dFVvZUpBZDBNT3kifQ.teKhDkjS2B_zQa80WcnD94AXHKwLQQWGU3ReVpwQcVU"
+        }
+        
++ Response 401 (application/json)
+
+        {
+            "error": "invalid_credentials"
+        }
+
+## Token [/refreshToken]
+
+### Refresh [POST]
+
+As tokens may expire, you can refresh it.
+
++ Request (application/json)
+    
+    + Headers
+        
+            Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6Ly9kcDIuYXBwL2FwaS9sb2dpbiIsImlhdCI6MTUwOTM3ODI4NywiZXhwIjoxNTA5MzgxODg3LCJuYmYiOjE1MDkzNzgyODcsImp0aSI6ImVvZ2Z3dFVvZUpBZDBNT3kifQ.teKhDkjS2B_zQa80WcnD94AXHKwLQQWGU3ReVpwQcVU
+
+
++ Response 200 (application/json)
 
     + Headers
-
-            Location: /questions/2
-
-    + Body
-
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 0
-                    }, {
-                        "choice": "Python",
-                        "votes": 0
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 0
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 0
-                    }
-                ]
-            }
+        
+            Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6Ly9kcDIuYXBwL2FwaS9yZWZyZXNoVG9rZW4iLCJpYXQiOjE1MDkzNzgyODcsImV4cCI6MTUwOTM4MjU0NSwibmJmIjoxNTA5Mzc4OTQ1LCJqdGkiOiJ1aVF5TWdnZW42Rzc4dnpRIn0.k5ve1OxPRc_4yi7IfDRa3iCutf69lC7B2epRKRVrSQ0
