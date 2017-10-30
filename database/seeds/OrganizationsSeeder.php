@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Carbon\Carbon;
 
 class OrganizationsSeeder extends Seeder
 {
@@ -11,16 +12,29 @@ class OrganizationsSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('organizations')->insert([
-            'name' => 'Negocio 1',
-            'address' => 'Av. Siempreviva 742',
-            'phone' => '98923689',
-        ]);
+        $names = ['Cardiopatia', 'Jardineria', 'Ventas', 'Eco-amigable', 'Transporte Urbano 1', 'Transporte Urbano 2'];
+        $slugs = ['health', 'garden', 'sales', 'eco', 'transport1', 'transport2'];
 
-        DB::table('organizations')->insert([
-            'name' => 'Negocio 2',
-            'address' => 'Av. Siempreviva 743',
-            'phone' => '98946689',
-        ]);
+        for ($i = 0; $i < count($names); $i++) {
+            $org = factory(App\Models\Organization::class)->create([
+                'name' => $names[$i],
+                'slug' => $slugs[$i],
+            ]);
+
+            // Clients
+            $clients = factory(App\Models\Client::class, 10)->make()
+            ->each(function ($client) use ($org) {
+                $org->clients()->save($client);
+
+                $vehicles = factory(App\Models\Vehicle::class, 4)->make()
+                ->each(function ($vehicle) use ($org, $client) {
+                    $org->vehicles()->save($vehicle);
+                    $renting = factory(App\Models\Renting::class)->make();
+
+                    $vehicle->rentings()->save($renting);
+                    $client->rentings()->save($renting);
+                });
+            });
+        }
     }
 }

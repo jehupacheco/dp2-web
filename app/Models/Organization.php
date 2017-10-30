@@ -10,4 +10,9 @@ class Organization extends Model
     {
         return $this->hasMany('App\Models\Client');
     }
+
+    public function vehicles()
+    {
+        return $this->hasMany('App\Models\Vehicle');
+    }
 }

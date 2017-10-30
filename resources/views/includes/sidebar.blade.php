@@ -40,14 +40,9 @@
 
                     <li><a><i class="fa fa-bus"></i> Vehiculos <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            
-                            <li><a href="{{url('/autos/tipo/1/lista')}}">Vehículo Jardinero</a></li>
-                            <li><a href="{{url('/autos/tipo/3/lista')}}">Vehículo Vendedor</a></li>    
-                            <li><a href="{{url('/autos/tipo/2/lista')}}">Vehículo Cardiopatía</a></li>
-                            <li><a href="{{url('/autos/tipo/4/lista')}}">Vehículo Eco-amigable</a></li>
-                            <li><a href="{{url('/autos/tipo/5/lista')}}">Vehículo Transporte Urbano 1</a></li>
-                            <li><a href="{{url('/autos/tipo/6/lista')}}">Vehículo Transporte Urbano 2</a></li>
-
+                            @foreach($all_organizations as $org)
+                                <li><a href="{{url('/autos/tipo/'.$org->id.'/lista')}}">Vehículo {{$org->name}}</a></li>
+                            @endforeach
                         </ul>
                     </li>
                     <li><a><i class="fa fa-bar-chart"></i> Reportes <span class="fa fa-chevron-down"></span></a>

@@ -30,6 +30,8 @@ class CreateRentingsTable extends Migration
             $table->timestamp('finishes_at');
             $table->timestamp('delivered_at')->nullable();
             $table->timestamp('returned_at')->nullable();
+            $table->softDeletes();
+            $table->nullableTimestamps();
 
             $table->index(["client_id"], 'fk_clients_has_vehicles_clients1_idx');
 

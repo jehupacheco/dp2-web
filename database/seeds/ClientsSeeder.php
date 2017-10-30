@@ -28,5 +28,14 @@ class ClientsSeeder extends Seeder
             'lastname' => 'Test',
             'phone' => '920146728',
         ]);
+
+        DB::table('clients')->insert([
+            'email' => 'test3@test.com',
+            'password' => bcrypt('secret'),
+            'organization_id' => 2,
+            'name' => 'Test Client 3',
+            'lastname' => 'Test',
+            'phone' => '920146789',
+        ]);
     }
 }
