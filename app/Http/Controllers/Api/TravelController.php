@@ -38,11 +38,19 @@ class TravelController extends Controller
         $pastTravels = $client->travels()->where('ended_at', null)->get();
 
         if ($pastTravels->count() > 0) {
-            return response()->json(['error' => 'User has an active travel'], 400);
+            return response()->json(['errors' => [
+                'travel' => [
+                    'User has an active travel'
+                ]
+            ]], 422);
         }
 
         if ($vehicle->organization()->get()->first()->id != $client->organization()->get()->first()->id) {
-            return response()->json(['error' => 'Vehicle doesn\'t belong to the same organization'], 400);
+            return response()->json(['errors' => [
+                'vehicle_id' => [
+                    'Vehicle doesn\'t belong to the same organization'
+                ]
+            ]], 422);
         }
 
         $travel = new Travel;
