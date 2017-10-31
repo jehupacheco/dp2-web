@@ -34,7 +34,7 @@
                     <li>
                         <a href="{{url('/usuarios')}}">
                             <i class="fa fa-user"></i>
-                            Usuarios
+                            Clientes
                         </a>
                     </li>
 
@@ -50,6 +50,12 @@
                             <li><a href="#">Reporte de Clientes</a></li>
                             <li><a href="#">Reporte de Recorridos</a></li>
                             <li><a href="#">Reporte de Historial de Alertas</a></li>
+                        </ul>
+                    </li>
+                    <li><a><i class="fa fa-cog"></i> Seguridad <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="{{url('/seguridad/nuevo_usuario')}}">Crear usuario</a></li>
+                            <li><a href="#">Roles</a></li>
                         </ul>
                     </li>
                     <li>

@@ -15,7 +15,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // View::share('all_organizations', Organization::all());
+        View::share('all_organizations', Organization::all());
     }
 
     /**

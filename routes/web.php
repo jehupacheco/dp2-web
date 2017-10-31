@@ -19,7 +19,7 @@ Route::get('/auto','HomeController@auto');
 
 Route::get('/usuarios','UserController@index');
 Route::get('/usuario/1/perfil','UserController@show_profile');
-
+Route::get('/seguridad/nuevo_usuario','UserController@new_user');
 
 Route::get('/sensores','SensorController@index');
 
@@ -31,8 +31,8 @@ Route::get('/ubicaciones/buscar/usuarios','LocationController@users_result');
 
 Route::get('/ubicaciones/usuario/1/mapa','LocationController@mostrar_mapa');
 
-
 Route::get('/autos/tipo/{tipo_id}/lista','AutoController@mostrar_lista_tipo');
+
 
 Route::get('/estacionamiento','ParkingController@index');
 
