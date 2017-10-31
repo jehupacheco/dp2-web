@@ -134,7 +134,7 @@ user and there can't be several travels active at the same time.
     + Body
 
             {
-                "vehicle_id": 1
+                "vehicle_id": 2
             }
 
 + Response 200 (application/json)
@@ -180,4 +180,55 @@ End an active travel (not travels that have been already ended).
             "deleted_at": null,
             "created_at": "2017-10-30 20:36:40",
             "updated_at": "2017-10-30 20:37:34"
+        }
+        
+## Readings [/readings]
+
+### Store Reading [POST]
+
+Saves a given value as a reading of current client's active travel. Fails is there
+are not active travels. `sensor_id` and `value` are required.
+
++ Request (application/json)
+
+    + Headers
+
+            Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6Ly9kcDIuYXBwL2FwaS9sb2dpbiIsImlhdCI6MTUwOTQ4MTM3NywiZXhwIjoxNTA5NTI0NTc3LCJuYmYiOjE1MDk0ODEzNzcsImp0aSI6IkM3SnpSRGxicjhQeG9TaXAifQ.baL7F9XKDhrDtov24WJcPZfROCKJ_Ut48hapixdMwvM
+        
+    + Body
+    
+            {
+                "sensor_id": 1,
+                "value": 7.5
+            }
+
++ Response 200 (application/json)
+
+        {
+            "value": 7.5,
+            "travel_id": 3,
+            "sensor_id": 1,
+            "updated_at": "2017-10-31 20:27:30",
+            "created_at": "2017-10-31 20:27:30",
+            "id": 2,
+        }
+        
+### Show Reading [GET /readings/{id}]
+
++ Request (application/json)
+
+    + Headers
+    
+            Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6Ly9kcDIuYXBwL2FwaS9sb2dpbiIsImlhdCI6MTUwOTQ4MTM3NywiZXhwIjoxNTA5NTI0NTc3LCJuYmYiOjE1MDk0ODEzNzcsImp0aSI6IkM3SnpSRGxicjhQeG9TaXAifQ.baL7F9XKDhrDtov24WJcPZfROCKJ_Ut48hapixdMwvM
+
++ Response 200 (application/json)
+
+        {
+            "id": 1,
+            "travel_id": 3,
+            "sensor_id": 1,
+            "created_at": "2017-10-31 03:30:57",
+            "value": 7.5,
+            "updated_at": "2017-10-31 03:30:57",
+            "deleted_at": null
         }
