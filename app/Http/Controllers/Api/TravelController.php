@@ -18,7 +18,10 @@ class TravelController extends Controller
      */
     public function index()
     {
-        //
+        $client = JWTAuth::parseToken()->authenticate();
+        $travels = $client->travels()->get();
+
+        return response()->json($travels);
     }
 
     /**
@@ -71,6 +74,13 @@ class TravelController extends Controller
      */
     public function show(Travel $travel)
     {
+        $authClient = JWTAuth::parseToken()->authenticate();
+        $travelClient = $travel->client()->get()->first();
+
+        if ($authClient->id != $travelClient->id) {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
+
         return response()->json($travel);
     }
 
@@ -83,6 +93,13 @@ class TravelController extends Controller
      */
     public function update(Request $request, Travel $travel)
     {
+        $authClient = JWTAuth::parseToken()->authenticate();
+        $travelClient = $travel->client()->get()->first();
+
+        if ($authClient->id != $travelClient->id) {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
+
         if (is_null($travel['ended_at'])) {
             $travel['ended_at'] = Carbon::now();
             $travel->save();
@@ -90,7 +107,7 @@ class TravelController extends Controller
             return response()->json($travel);
         }
 
-        return response()->json(['error' => 'Travel already ended'], 400);
+        return response()->json(['error' => 'Travel already ended'], 422);
     }
 
     /**

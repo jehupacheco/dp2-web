@@ -21,7 +21,7 @@ class ReadingController extends Controller
         $client = JWTAuth::parseToken()->authenticate();
         $readings = $client->readings()->get();
 
-        return response()->json(compact('readings'));
+        return response()->json($readings);
     }
 
     /**
