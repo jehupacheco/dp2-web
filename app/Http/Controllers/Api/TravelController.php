@@ -35,7 +35,7 @@ class TravelController extends Controller
 
         $vehicle = Vehicle::find($request['vehicle_id']);
         $client = JWTAuth::parseToken()->authenticate();
-        $pastTravels = $client->travels()->where('ended_at', null)->get();
+        $pastTravels = $client->activeTravels()->get();
 
         if ($pastTravels->count() > 0) {
             return response()->json(['errors' => [

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Travel;
 use App\Models\Reading;
 use App\Models\Sensor;
+use JWTAuth;
 
 class ReadingController extends Controller
 {
@@ -15,21 +16,12 @@ class ReadingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index()
     {
-        $readings = Travel::find($id)->readings();
+        $client = JWTAuth::parseToken()->authenticate();
+        $readings = $client->readings()->get();
 
         return response()->json(compact('readings'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -38,14 +30,23 @@ class ReadingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($id, Request $request)
+    public function store(Request $request)
     {
         $this->validate($request, [
-            'sensor_id' => 'required|integer',
+            'sensor_id' => 'required|integer|exists:sensors,id',
             'value' => 'required|numeric',
         ]);
 
-        $travel = Travel::find($id);
+        $client = JWTAuth::parseToken()->authenticate();
+        $activeTravels = $client->activeTravels()->get();
+
+        if ($activeTravels->count() == 0) {
+            return response()->json(['errors' => [
+                'travels' => ['There are no active travels']
+            ]], 422);
+        }
+
+        $travel = $activeTravels->first();
         $sensor = Sensor::find($request->input('sensor_id'));
 
         $reading = new Reading;
@@ -55,7 +56,7 @@ class ReadingController extends Controller
 
         $reading->save();
 
-        return response()->json(['status' => 'OK']);
+        return response()->json($reading);
     }
 
     /**
@@ -64,22 +65,9 @@ class ReadingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Reading $reading)
     {
-        $reading = Reading::find($id);
-
-        return response()->json(compact('reading'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return response()->json($reading);
     }
 
     /**

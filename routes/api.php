@@ -7,8 +7,6 @@ Route::namespace('Api')->group(function() {
   Route::middleware(['jwt.auth'])->group(function() {
     Route::apiResource('clients', 'ClientController');
     Route::apiResource('travels', 'TravelController');
-    // Route::get('travels/{travel}/readings', 'ReadingController@index');
-    // Route::post('travels/{travel}/readings', 'ReadingController@store');
-    // Route::get('readings/{reading}', 'ReadingController@show');
+    Route::apiResource('readings', 'ReadingController');
   });
 });

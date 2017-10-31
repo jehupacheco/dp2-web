@@ -25,4 +25,14 @@ class Client extends Authenticatable
     {
         return $this->hasMany('App\Models\Travel');
     }
+
+    public function activeTravels()
+    {
+        return $this->travels()->where('ended_at', null);
+    }
+
+    public function readings()
+    {
+        return $this->hasManyThrough('App\Models\Reading', 'App\Models\Travel');
+    }
 }
