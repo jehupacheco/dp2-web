@@ -106,6 +106,7 @@ var scripts = [
   '/production/js/maps/jquery-jvectormap-world-mill-en.js',
   '/production/js/maps/jquery-jvectormap-us-aea-en.js',
   '/production/js/maps/gdp-data.js',
+  '/vendors/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js',
   // End - Added
   '/build/js/custom.min.js',
 ];

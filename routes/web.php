@@ -17,8 +17,15 @@ Route::get('/', 'HomeController@index');
 Route::get('/auto','HomeController@auto');
 
 
-Route::get('/usuarios','UserController@index');
-Route::get('/usuario/1/perfil','UserController@show_profile');
+Route::get('/clientes','ClientController@index');
+Route::get('/clientes/nuevo','ClientController@create');
+Route::post('/clientes/nuevo','ClientController@store');
+
+Route::get('/clientes/1/perfil','UserController@show_profile');
+
+
+
+
 Route::get('/seguridad/nuevo_usuario','UserController@new_user');
 
 Route::get('/sensores','SensorController@index');

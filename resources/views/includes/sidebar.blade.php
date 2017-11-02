@@ -32,7 +32,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{url('/usuarios')}}">
+                        <a href="{{url('/clientes')}}">
                             <i class="fa fa-user"></i>
                             Clientes
                         </a>
