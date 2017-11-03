@@ -29,6 +29,8 @@ Route::get('/clientes/{cliente_id}/perfil','ClientController@show_profile');
 Route::get('/usuarios/nuevo','UserController@create');
 Route::post('/usuarios/nuevo','UserController@store');
 
+Route::get('/alquileres/index', 'RentingController@index');
+
 
 
 Route::get('/sensores','SensorController@index');
