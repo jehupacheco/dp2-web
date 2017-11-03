@@ -38,3 +38,7 @@ Route::get('/estacionamiento','ParkingController@index');
 Route::get('/reportes/clienteXvehiculo','HomeController@clienteXvehiculo');
 
 Route::get('/reportes/filtrosReportes','HomeController@filtroReporte');
+
+Route::get('/reportes/viajesCliente','HomeController@viajesCliente');
+
+Route::get('/reportes/sensores','HomeController@sensores');

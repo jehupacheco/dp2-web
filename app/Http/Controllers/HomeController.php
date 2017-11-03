@@ -42,9 +42,18 @@ class HomeController extends Controller
         return view('Reportes.vehiculoXusuario');
     }
 
-
     public function filtroReporte()
     {
         return view('Reportes.pantallaDeFiltros');
+    }
+
+    public function viajesCliente()
+    {
+        return view('Reportes.viajesCliente');
+    }
+
+    public function sensores()
+    {
+        return view('Reportes.sensores');
     }
 }
