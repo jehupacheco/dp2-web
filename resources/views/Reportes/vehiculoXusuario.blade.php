@@ -57,7 +57,10 @@ window.__cfRocketOptions = {byc:0,p:1508690442,petok:"42319e3ea318aad72b4aa82446
                 
 
                 <!-- Descripción del viaje -->
-                <div class="col-md-6 col-xs-12">
+                
+                  <div class="row">
+                  
+                  <div class="col-md-6 col-sm-6 col-xs-12">
                   <div class="x_panel">
                     <div class="x_title">
                       <h2>Datos Generales</h2>
@@ -80,11 +83,10 @@ window.__cfRocketOptions = {byc:0,p:1508690442,petok:"42319e3ea318aad72b4aa82446
                       <p>Energía consumida: 50</p>
                     </div>
                   </div>
-
-                  <div class="col-md-9 col-sm-9 col-xs-12"><p>. </p></div>
-                  <div class="col-md-9 col-sm-9 col-xs-12"><p>. </p></div>
+                  </div>
 
                   <!-- Descripción de infracciones -->
+                  <div class="col-md-6 col-sm-6 col-xs-12">
                   <div class="x_panel">
                     <div class="x_title">
                       <h2>Detalles del viaje</h2>
@@ -107,14 +109,16 @@ window.__cfRocketOptions = {byc:0,p:1508690442,petok:"42319e3ea318aad72b4aa82446
                       <p>Hora de fin del viaje: 05:00 pm </p>
                     </div>
                   </div>
-                  
-                  <div class="col-md-9 col-sm-9 col-xs-12"><p>. </p></div>
-                  <div class="col-md-9 col-sm-9 col-xs-12"><p>. </p></div>
+                </div>
+                  </div>
+                  <p>. </p>
+                  <p>. </p>
 
-                  <div class="col-md-9 col-sm-9 col-xs-12">
-                  
+
                   <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
+            
+
+            <div class="col-md-8 col-sm-8 col-xs-12">
               <div class="dashboard_graph">
 
                 <div class="row x_title">
@@ -138,13 +142,7 @@ window.__cfRocketOptions = {byc:0,p:1508690442,petok:"42319e3ea318aad72b4aa82446
               </div>
             </div>
 
-          </div>
-
-                  
-                </div>
-                <div class="col-md-9 col-sm-9 col-xs-12"><p>. </p></div>
-                <div class="col-md-9 col-sm-9 col-xs-12"><p>. </p></div>
-                <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="col-md-4 col-sm-4 col-xs-12">
               <div class="x_panel">
                 <div class="x_title">
                   <h2>Infracciones Cometidas <small></small></h2>
@@ -199,7 +197,14 @@ window.__cfRocketOptions = {byc:0,p:1508690442,petok:"42319e3ea318aad72b4aa82446
               </div>
             </div>
 
+          </div>
+
+                  
                 </div>
+
+                
+
+                
 
                 <div class="clearfix"></div>
 
