@@ -21,7 +21,8 @@ Route::get('/clientes','ClientController@index');
 Route::get('/clientes/nuevo','ClientController@create');
 Route::post('/clientes/nuevo','ClientController@store');
 
-Route::get('/clientes/1/perfil','UserController@show_profile');
+Route::get('/usuarios/1/perfil','UserController@show_profile');
+Route::get('/clientes/{cliente_id}/perfil','ClientController@show_profile');
 
 
 

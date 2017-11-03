@@ -22,9 +22,10 @@ class ClientController extends Controller
 
 
 
-    public function show_profile()
+    public function show_profile($cliente_id)
     {
-        return view('Clientes.perfil.ver-perfil');
+        $cliente = Client::find($cliente_id);
+        return view('Clientes.perfil.ver-perfil',compact('cliente'));
     }
 
 
