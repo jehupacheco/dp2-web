@@ -45,6 +45,7 @@
                         </a>
                         <ul class="nav child_menu">
 <<<<<<< HEAD
+<<<<<<< HEAD
                             <li><a href="{{url('/autos/tipo/3/lista')}}">Vehículo Vendedor</a></li>
                             <li><a href="{{url('/autos/tipo/1/lista')}}">Vehículo Jardinero</a></li>
                             <li><a href="{{url('/autos/tipo/2/lista')}}">Vehículo Cardiopatía</a></li>
@@ -56,6 +57,11 @@
                                 <li><a href="{{url('/autos/tipo/'.$org->id.'/lista')}}">Vehículo {{$org->name}}</a></li>
                             @endforeach
 >>>>>>> development
+=======
+                            @foreach($all_organizations as $org)
+                                <li><a href="{{url('/vehiculos/'.$org->id.'/lista')}}">Vehículo {{$org->name}}</a></li>
+                            @endforeach
+>>>>>>> dc3a469ac0acb29f1d7d32195f2d5d9db7a4ef4c
                         </ul>
                     </li>
                     <li>                        

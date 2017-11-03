@@ -54,6 +54,12 @@ class HomeController extends Controller
         return view('Reportes.pantallaDeFiltros');
     }
 
+    public function asignarauto()
+    {
+        // return view('home');
+        return view('asignarauto');
+    }
+
     public function viajesCliente()
     {
         return view('Reportes.viajesCliente');
