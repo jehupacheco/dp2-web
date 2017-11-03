@@ -90,7 +90,7 @@
                         <div class="col-xs-12 col-sm-6 emphasis">
                           <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-user">
                             </i> <i class="fa fa-comments-o"></i> </button>
-                          <a type="button" class="btn btn-primary btn-xs" href="{{url('/usuario/1/perfil')}}">
+                          <a type="button" class="btn btn-primary btn-xs" href="{{url('/clientes/'.$cliente->id.'/perfil')}}">
                             <i class="fa fa-user"> </i> Ver Usuario
                           </a>
                         </div>

@@ -49,13 +49,13 @@
             </div>
             <div class="x_content">
               <br />
-              <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
-
+              <form id="demo-form2" method="POST" action="{{url('/usuarios/nuevo')}}" data-parsley-validate class="form-horizontal form-label-left">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="form-group">
                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Nombre <span class="required">*</span>
                   </label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input type="text" id="name" required="required" class="form-control col-md-7 col-xs-12">
+                    <input type="text" id="name" name="name" required="required" class="form-control col-md-7 col-xs-12">
                   </div>
                 </div>
                 <div class="form-group">
@@ -69,10 +69,10 @@
                   <label for="organization-id" class="control-label col-md-3 col-sm-3 col-xs-12">Organización</label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
                     <select  id="org_id" name="org_id" class="form-control">
-                      <option>Elige una organizacion</option>
-                      <option>Organizacion1</option>
-                      <option>Organizacion2</option>
-                      <option>Organizacion3</option>
+                      <option>Choose option</option>
+                      @foreach($all_organizations as $org)
+                        <option value="{{$org->id}}">{{$org->name}}</option>   
+                      @endforeach
                     </select>
                   </div>
                 </div>
@@ -84,16 +84,16 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="password-rep" class="control-label col-md-3 col-sm-3 col-xs-12">Repetir contraseña<span class="required">*</span></label>
+                  <label for="password_confirmation" class="control-label col-md-3 col-sm-3 col-xs-12">Repetir contraseña<span class="required">*</span></label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input type="password" id="password-rep" class="form-control col-md-7 col-xs-12" type="text" name="password-rep">
+                    <input type="password" id="password_confirmation" class="form-control col-md-7 col-xs-12" type="text" name="password_confirmation">
                   </div>
                 </div>
                 <div class="ln_solid"></div>
                 <div class="form-group">
                   <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                    <button class="btn btn-primary" type="button">Cancel</button>
-        <button class="btn btn-primary" type="reset">Reset</button>
+                    <a href="{{url('/')}}" class="btn btn-primary" type="button">Cancel</a>
+                    <button class="btn btn-primary" type="reset">Reset</button>
                     <button type="submit" class="btn btn-success">Submit</button>
                   </div>
                 </div>

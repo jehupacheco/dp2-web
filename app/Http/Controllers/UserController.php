@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use DB;
+
 
 class UserController extends Controller
 {
@@ -26,7 +29,7 @@ class UserController extends Controller
         return view('Usuarios\perfil\ver-perfil');
     }
 
-    public function new_user()
+    public function create()
     {
         return view('Seguridad.nuevo_usuario.index');
     }
@@ -38,7 +41,21 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        DB::beginTransaction();
+        try {
+            $user = new User();
+            $user->name = $input['name'];
+            $user->email = $input['email'];
+            $user->password = bcrypt($input['password']);
+            $user->organization_id = $input['org_id'];
+            $user->save();
+        } catch (Exception $e) {
+            DB::rollback();
+            return redirect()->action('UserController@index')->with('stored', 'Se registró el Usuario correctamente.'); 
+        }
+        DB::commit();
+        return redirect()->action('UserController@index')->with('stored', 'Se registró el Usuario correctamente.'); 
     }
 
     /**
