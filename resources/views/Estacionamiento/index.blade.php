@@ -101,8 +101,7 @@
                     <div class="row">
                       <div class="col-sm-12">
                         <div class="temperature"><b>Viernes</b>, 16:30 PM
-                          <span>C</span>
-                          <span><b>F</b>
+                          <span><b>C°</b>
                                           </span>
                         </div>
                       </div>
@@ -211,6 +210,7 @@
 
 		                <div class="col-md-12 text-center">
                       		<h1>660 LUX</h1>
+                          <img src="{{asset('images/luminosidad.png')}}" alt="" class="img-circle img-responsive">
                       </div>
                   	</div>
 
