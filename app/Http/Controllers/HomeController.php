@@ -39,6 +39,11 @@ class HomeController extends Controller
         return view('Vehiculo.index');
     }
 
+    public function asignarauto()
+    {
+        // return view('home');
+        return view('asignarauto');
+    }
 
 
 }

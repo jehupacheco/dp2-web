@@ -142,9 +142,6 @@
                                                   </canvas>
 
                                           </span>
-                          <h5>15
-                                              <i>km/h</i>
-                                          </h5>
                         </div>
                       </div>
                       <div class="col-sm-2">
@@ -152,9 +149,6 @@
                           <h2 class="day">Mar</h2>
                           <h3 class="degrees">18</h3>
                           <canvas height="32" width="32" id="rain"></canvas>
-                          <h5>12
-                                              <i>km/h</i>
-                                          </h5>
                         </div>
                       </div>
                       <div class="col-sm-2">
@@ -162,19 +156,13 @@
                           <h2 class="day">Mie</h2>
                           <h3 class="degrees">17</h3>
                           <canvas height="32" width="32" id="snow"></canvas>
-                          <h5>14
-                                              <i>km/h</i>
-                                          </h5>
-                        </div>
+                          </div>
                       </div>
                       <div class="col-sm-2">
                         <div class="daily-weather">
                           <h2 class="day">Jue</h2>
                           <h3 class="degrees">18</h3>
                           <canvas height="32" width="32" id="sleet"></canvas>
-                          <h5>15
-                                              <i>km/h</i>
-                                          </h5>
                         </div>
                       </div>
                       <div class="col-sm-2">
@@ -182,9 +170,6 @@
                           <h2 class="day">Vie</h2>
                           <h3 class="degrees">16</h3>
                           <canvas height="32" width="32" id="wind"></canvas>
-                          <h5>11
-                                              <i>km/h</i>
-                                          </h5>
                         </div>
                       </div>
                       <div class="col-sm-2">
@@ -192,9 +177,6 @@
                           <h2 class="day">Sab</h2>
                           <h3 class="degrees">18</h3>
                           <canvas height="32" width="32" id="cloudy"></canvas>
-                          <h5>10
-                                              <i>km/h</i>
-                                          </h5>
                         </div>
                       </div>
                       <div class="clearfix"></div>

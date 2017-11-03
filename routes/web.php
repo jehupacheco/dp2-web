@@ -15,7 +15,7 @@ Auth::routes();
 Route::get('/logout', 'Auth\LoginController@logout');
 Route::get('/', 'HomeController@index');
 Route::get('/auto','HomeController@auto');
-
+Route::get('/asignarauto','HomeController@asignarauto');
 
 Route::get('/clientes','ClientController@index');
 Route::get('/clientes/nuevo','ClientController@create');
