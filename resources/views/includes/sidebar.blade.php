@@ -32,7 +32,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{url('/usuarios')}}">
+                        <a href="{{url('/clientes')}}">
                             <i class="fa fa-user"></i>
                             Clientes
                         </a>
@@ -45,7 +45,7 @@
                         </a>
                         <ul class="nav child_menu">
                             @foreach($all_organizations as $org)
-                                <li><a href="{{url('/autos/tipo/'.$org->id.'/lista')}}">Vehículo {{$org->name}}</a></li>
+                                <li><a href="{{url('/vehiculos/'.$org->id.'/lista')}}">Vehículo {{$org->name}}</a></li>
                             @endforeach
                         </ul>
                     </li>

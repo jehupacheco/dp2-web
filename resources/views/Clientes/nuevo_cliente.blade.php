@@ -8,9 +8,34 @@
 @section('main_container')
   <div class="right_col" role="main">
     <div class="">
+
+      <div class="row">
+        @if (session('stored'))
+            <script>$("#modalSuccess").modal("show");</script>
+            
+            <div class="alert alert-success fade in">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>¡Éxito!</strong> {{session('stored')}}
+            </div>
+        @endif
+
+        @if (session('delete'))
+            <script>$("#modalError").modal("show");</script>                        
+        @endif
+      </div>
+      <div class=""> 
+        @if ($errors->any())
+            <ul class="alert alert-danger fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+              @foreach ($errors->all() as $error)
+                <li>{{$error}}</li>
+              @endforeach
+            </ul>
+          @endif
+      </div>
       <div class="page-title">
         <div class="title_left">
-          <h3>Crear Usuario</h3>
+          <h3>Crear Cliente</h3>
         </div>
 
         <div class="title_right">
@@ -29,7 +54,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
           <div class="x_panel">
             <div class="x_title">
-              <h2>Nuevo Usuario </h2>
+              <h2>Nuevo Cliente </h2>
               <ul class="nav navbar-right panel_toolbox">
                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                 </li>
@@ -49,13 +74,20 @@
             </div>
             <div class="x_content">
               <br />
-              <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
-
+              <form id="demo-form2" method="POST" action="{{url('/clientes/nuevo')}}" data-parsley-validate class="form-horizontal form-label-left">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="form-group">
                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Nombre <span class="required">*</span>
                   </label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input type="text" id="name" required="required" class="form-control col-md-7 col-xs-12">
+                    <input type="text" id="name" name="name" required="required" class="form-control col-md-7 col-xs-12">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="lastname">Apellidos <span class="required">*</span>
+                  </label>
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" id="lastname" name="lastname" required="required" class="form-control col-md-7 col-xs-12">
                   </div>
                 </div>
                 <div class="form-group">
@@ -66,17 +98,23 @@
                   </div>
                 </div>
                 <div class="form-group">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="phone"> Teléfono/Celular <span class="required">*</span>
+                  </label>
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" id="phone" name="phone" required="required" class="form-control col-md-7 col-xs-12" data-inputmask="'mask' : '(51) 999999999'">
+                  </div>
+                </div>
+                <div class="form-group">
                   <label for="organization-id" class="control-label col-md-3 col-sm-3 col-xs-12">Organización</label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
                     <select  id="org_id" name="org_id" class="form-control">
-                      <option>Elige una organizacion</option>
-                      <option>Organizacion1</option>
-                      <option>Organizacion2</option>
-                      <option>Organizacion3</option>
+                      <option>Choose option</option>
+                      @foreach($all_organizations as $org)
+                        <option value="{{$org->id}}">{{$org->name}}</option>   
+                      @endforeach
                     </select>
                   </div>
                 </div>
-
                 <div class="form-group">
                   <label for="password" class="control-label col-md-3 col-sm-3 col-xs-12" >Contraseña<span class="required">*</span></label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
@@ -84,16 +122,16 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="password-rep" class="control-label col-md-3 col-sm-3 col-xs-12">Repetir contraseña<span class="required">*</span></label>
+                  <label for="password_confirmation" class="control-label col-md-3 col-sm-3 col-xs-12">Repetir contraseña<span class="required">*</span></label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input type="password" id="password-rep" class="form-control col-md-7 col-xs-12" type="text" name="password-rep">
+                    <input type="password" id="password_confirmation" class="form-control col-md-7 col-xs-12" type="text" name="password_confirmation">
                   </div>
                 </div>
                 <div class="ln_solid"></div>
                 <div class="form-group">
                   <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                    <button class="btn btn-primary" type="button">Cancel</button>
-        <button class="btn btn-primary" type="reset">Reset</button>
+                    <a href="{{url('/clientes')}}" class="btn btn-primary" type="button">Cancel</a>
+                    <button class="btn btn-primary" type="reset">Reset</button>
                     <button type="submit" class="btn btn-success">Submit</button>
                   </div>
                 </div>
@@ -109,3 +147,12 @@
 
     
 @endsection
+@push('scripts')
+<!-- jquery.inputmask -->
+    <script>
+      $(document).ready(function() {
+        $(":input").inputmask();
+      });
+    </script>
+<!-- /jquery.inputmask -->
+@endpush

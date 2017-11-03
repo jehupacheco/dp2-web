@@ -10,7 +10,7 @@
     <div class="">
       <div class="page-title">
         <div class="title_left">
-          <h3>Crear Usuario</h3>
+          <h3>Asignar Vehiculo a Cliente</h3>
         </div>
 
         <div class="title_right">
@@ -29,7 +29,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
           <div class="x_panel">
             <div class="x_title">
-              <h2>Nuevo Usuario </h2>
+              <h2>Asignar horario de Alquiler </h2>
               <ul class="nav navbar-right panel_toolbox">
                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                 </li>
@@ -50,45 +50,37 @@
             <div class="x_content">
               <br />
               <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
-
                 <div class="form-group">
-                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Nombre <span class="required">*</span>
-                  </label>
-                  <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input type="text" id="name" required="required" class="form-control col-md-7 col-xs-12">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email"> Correo <span class="required">*</span>
-                  </label>
-                  <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input type="text" id="email" name="email" required="required" class="form-control col-md-7 col-xs-12">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="organization-id" class="control-label col-md-3 col-sm-3 col-xs-12">Organización</label>
+                  <label for="organization-id" class="control-label col-md-3 col-sm-3 col-xs-12">Cliente</label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
                     <select  id="org_id" name="org_id" class="form-control">
-                      <option>Elige una organizacion</option>
-                      <option>Organizacion1</option>
-                      <option>Organizacion2</option>
-                      <option>Organizacion3</option>
+                      <option>Elige un cliente</option>
+                      <option>Cliente1</option>
+                      <option>Cliente2</option>
+                      <option>Cliente3</option>
                     </select>
                   </div>
                 </div>
-
                 <div class="form-group">
-                  <label for="password" class="control-label col-md-3 col-sm-3 col-xs-12" >Contraseña<span class="required">*</span></label>
+                    <label for="date" class="control-label col-md-3 col-sm-3 col-xs-12" >Fecha<span class="required">*</span></label>
+                      <fieldset>
+                        <div class="control-group col-md-8 col-sm-12 col-xs-12">
+                          <div class="controls">
+                            <div class="input-prepend input-group">
+                              <span class="add-on input-group-addon"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i></span>
+                              <input type="text" name="reservation-time" id="reservation-time" class="form-control" value="01/01/2016 - 01/25/2016" />
+                            </div>
+                          </div>
+                        </div>
+                      </fieldset>
+                  </div>
+                <div class="form-group">
+                  <label for="phone" class="control-label col-md-3 col-sm-3 col-xs-12" >Horas<span class="required">*</span></label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input type="password" id="password" class="form-control col-md-7 col-xs-12" type="text" name="password">
+                    <input type="number" id="phone" name="phone" required="required" class="form-control col-md-7 col-xs-12">
                   </div>
                 </div>
-                <div class="form-group">
-                  <label for="password-rep" class="control-label col-md-3 col-sm-3 col-xs-12">Repetir contraseña<span class="required">*</span></label>
-                  <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input type="password" id="password-rep" class="form-control col-md-7 col-xs-12" type="text" name="password-rep">
-                  </div>
-                </div>
+                 
                 <div class="ln_solid"></div>
                 <div class="form-group">
                   <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
