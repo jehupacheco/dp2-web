@@ -48,7 +48,7 @@ Route::get('/vehiculos/{tipo_id}/lista','AutoController@mostrar_lista_tipo');
 Route::get('/vehiculos/{tipo_id}/nuevo','AutoController@create');
 Route::post('/vehiculos/{tipo_id}/nuevo','AutoController@store');
 
-
+Route::get('/vehiculos/{id}/ubicacion', 'AutoController@ubicacion');
 
 
 Route::get('/estacionamiento','ParkingController@index');

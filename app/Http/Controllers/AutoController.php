@@ -116,4 +116,11 @@ class AutoController extends Controller
     {
         //
     }
+
+    public function ubicacion($id)
+    {
+        $vehicle = Vehicle::find($id);
+
+        return view('Vehiculos.ubicacion');
+    }
 }
