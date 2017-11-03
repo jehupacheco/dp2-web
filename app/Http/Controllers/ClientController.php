@@ -61,7 +61,7 @@ class ClientController extends Controller
             $cliente->lastname = $input['lastname'];
             $cliente->phone = $input['phone'];
             $cliente->email = $input['email'];
-            $cliente->password = $input['password'];
+            $cliente->password = bcrypt($input['password']);
             $cliente->organization_id = $input['org_id'];
             $cliente->save();
         } catch (Exception $e) {
