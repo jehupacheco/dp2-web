@@ -1,6 +1,11 @@
 @extends('layouts.blank')
 
+
+
+@push('stylesheets')
+
 <!-- Bootstrap -->
+<!--<link href=" <link href="{{ asset("css/myFile.min.css") }}" rel="stylesheet">" rel="stylesheet">-->
     <script async="" data-rocketsrc="https://www.google-analytics.com/analytics.js" data-rocketoptimized="true"></script><script type="text/javascript">
 //<![CDATA[
 window.__cfRocketOptions = {byc:0,p:1508690442,petok:"42319e3ea318aad72b4aa824463dfc51ccb9d961-1509668416-1800"};
@@ -8,22 +13,21 @@ window.__cfRocketOptions = {byc:0,p:1508690442,petok:"42319e3ea318aad72b4aa82446
 </script>
 <script type="text/javascript" src="https://ajax.cloudflare.com/cdn-cgi/scripts/78d64697/cloudflare-static/rocket.min.js"></script>
 
-@push('stylesheets')
-    <link href=" <link href="{{ asset("vendors/font-awesome/css/font-awesome.min.css") }}" rel="stylesheet">" rel="stylesheet">
-    <link href=" <link href="{{ asset("vendors/nprogress/nprogress.css") }}" rel="stylesheet">" rel="stylesheet">
-    <link href=" <link href="{{ asset("vendors/iCheck/skins/flat/green.css") }}" rel="stylesheet">" rel="stylesheet">
-    <link href=" <link href="{{ asset("/vendors/google-code-prettify/bin/prettify.min.css") }}" rel="stylesheet">" rel="stylesheet">
-    <link href=" <link href="{{ asset("/vendors/select2/dist/css/select2.min.css") }}" rel="stylesheet">" rel="stylesheet">
-    <link href=" <link href="{{ asset("/vendors/switchery/dist/switchery.min.css") }}" rel="stylesheet">" rel="stylesheet">
-    <link href=" <link href="{{ asset("/vendors/starrr/dist/starrr.css") }}" rel="stylesheet">" rel="stylesheet">
-    <link href=" <link href="{{ asset("/vendors/bootstrap-daterangepicker/daterangepicker.css") }}" rel="stylesheet">" rel="stylesheet">
-    <link href=" <link href="{{ asset("/build/css/custom.min.css") }}" rel="stylesheet">" rel="stylesheet">
+    <link href=" <link href="{{ asset("../vendors/font-awesome/css/font-awesome.min.css") }}" rel="stylesheet">
+    <link href=" <link href="{{ asset("../vendors/nprogress/nprogress.css") }}" rel="stylesheet">
+    <link href=" <link href="{{ asset("../vendors/iCheck/skins/flat/green.css") }}" rel="stylesheet">
+    <link href=" <link href="{{ asset("../vendors/google-code-prettify/bin/prettify.min.css") }}" rel="stylesheet">
+    <link href=" <link href="{{ asset("../vendors/select2/dist/css/select2.min.css") }}" rel="stylesheet">
+    <link href=" <link href="{{ asset("../vendors/switchery/dist/switchery.min.css") }}" rel="stylesheet">
+    <link href=" <link href="{{ asset("../vendors/starrr/dist/starrr.css") }}" rel="stylesheet">
+    <link href=" <link href="{{ asset("../vendors/bootstrap-daterangepicker/daterangepicker.css") }}" rel="stylesheet">
+    <link href=" <link href="{{ asset("../build/css/custom.min.css") }}" rel="stylesheet">
 
     
-    <link href=" <link href="{{ asset("/vendors/bootstrap/dist/css/bootstrap.min.css") }}" rel="stylesheet">" rel="stylesheet">
-    <link href=" <link href="{{ asset("/vendors/nprogress/nprogress.css") }}" rel="stylesheet">" rel="stylesheet">
-    <link href=" <link href="{{ asset("/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css") }}" rel="stylesheet">" rel="stylesheet">
-    <link href=" <link href="{{ asset("/vendors/jqvmap/dist/jqvmap.min.css") }}" rel="stylesheet">" rel="stylesheet">
+    <link href=" <link href="{{ asset("../vendors/bootstrap/dist/css/bootstrap.min.css") }}" rel="stylesheet">
+    <link href=" <link href="{{ asset("../vendors/nprogress/nprogress.css") }}" rel="stylesheet">
+    <link href=" <link href="{{ asset("../vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css") }}" rel="stylesheet">
+    <link href=" <link href="{{ asset("../vendors/jqvmap/dist/jqvmap.min.css") }}" rel="stylesheet">
 
     <!-- Example -->
     <!--<link href=" <link href="{{ asset("css/myFile.min.css") }}" rel="stylesheet">" rel="stylesheet">-->
