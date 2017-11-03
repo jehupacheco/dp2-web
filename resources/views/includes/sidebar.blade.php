@@ -64,7 +64,12 @@
 >>>>>>> dc3a469ac0acb29f1d7d32195f2d5d9db7a4ef4c
                         </ul>
                     </li>
-                    <li>                        
+                    <li>
+                        <!-- <a href="{{url('/alquiler/index')}}"> -->
+                        <a href="{{url('/')}}">
+                            <i class="fa fa-money" aria-hidden="true"></i>
+                            Alquiler
+                        </a>
                     </li>
                     <li><a><i class="fa fa-bar-chart"></i> Reportes <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
@@ -76,7 +81,7 @@
                     </li>
                     <li><a><i class="fa fa-cog"></i> Seguridad <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="{{url('/seguridad/nuevo_usuario')}}">Crear usuario</a></li>
+                            <li><a href="{{url('/usuarios/nuevo')}}">Crear usuario</a></li>
                             <li><a href="#">Roles</a></li>
                         </ul>
                     </li>

@@ -56,10 +56,10 @@
                       <div class="profile_img">
                         <div id="crop-avatar">
                           <!-- Current avatar -->
-                          <img class="img-responsive avatar-view" src="{{asset('images/picture.jpg')}}" alt="Avatar" title="Change the avatar">
+                          <img class="img-responsive avatar-view" src="{{ Gravatar::src($cliente->email) }}" alt="Avatar" title="Change the avatar">
                         </div>
                       </div>
-                      <h3>Samuel Doe</h3>
+                      <h3>{{$cliente->name}} {{$cliente->lastname}}</h3>
 
                       <ul class="list-unstyled user_data">
                         <li><i class="fa fa-map-marker user-profile-icon"></i> San Miguel, Lima, Perú
@@ -113,7 +113,7 @@
 
                       <div class="profile_title">
                         <div class="col-md-6">
-                          <h2>User Activity Report</h2>
+                          <h2>Alquiler de vehículos</h2>
                         </div>
                         <div class="col-md-6">
                           <div id="reportrange" class="pull-right" style="margin-top: 5px; background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #E6E9ED">
