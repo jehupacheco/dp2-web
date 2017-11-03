@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Organization;
 
 class AutoController extends Controller
 {
@@ -14,20 +15,25 @@ class AutoController extends Controller
     public function mostrar_lista_tipo($tipo_id)
     {   
         try {
-            if($tipo_id==1){//Jardinería
+            $org = Organization::find($tipo_id);
+
+            if($org->slug == 'garden'){
                 return view('Autos.auto-jardinero.index');
             }
-            elseif($tipo_id==2){//Eco-amigable
+            elseif($org->slug == 'health'){
                 return view('Autos.auto-cardiopatia.index');
             }
-            elseif($tipo_id==3) {
+            elseif($org->slug == 'sales') {
                return view('Autos.auto-ventas.index');
             }
-            elseif($tipo_id==4) {
+            elseif($org->slug == 'eco') {
                return view('Autos.auto-ecoamigable.index');
             }
-            elseif($tipo_id==6) {
-               return view('Autos.auto-transporteUrbano.index');
+            elseif($org->slug == 'transport1') {
+               return view('Autos.auto-transporteUrbano1.index');
+            }
+            elseif($org->slug == 'transport2') {
+               return view('Autos.auto-transporteUrbano2.index');
             }
             else{
                 return view('Autos.auto-jardinero.index');

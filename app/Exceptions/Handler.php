@@ -44,7 +44,14 @@ class Handler extends ExceptionHandler
 	 */
 	public function render($request, Exception $exception)
 	{
-		if ($exception instanceof Tymon\JWTAuth\Exceptions\TokenExpiredException) {
+		if ($request->is('api/*')) {
+			if ($exception instanceof \Illuminate\Database\Eloquent\ModelNotFoundException) {
+				return response()->json(['error' => 'Model not found'], 404);
+			} else if ($exception instanceof \Illuminate\Validation\ValidationException) {
+				$errors = $exception->getResponse()->getSession()->get('errors')->getBag('default')->toArray();
+				return response()->json(compact('errors'), 422);
+			}
+		} else if ($exception instanceof Tymon\JWTAuth\Exceptions\TokenExpiredException) {
 			return response()->json(['token_expired'], $exception->getStatusCode());
 		} else if ($exception instanceof Tymon\JWTAuth\Exceptions\TokenInvalidException) {
 			return response()->json(['token_invalid'], $exception->getStatusCode());

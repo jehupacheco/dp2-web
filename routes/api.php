@@ -5,6 +5,14 @@ Route::namespace('Api')->group(function() {
   Route::post('refreshToken', function() {})->middleware('jwt.refresh');
 
   Route::middleware(['jwt.auth'])->group(function() {
-    Route::resource('clients', 'ClientController');
+    Route::apiResource('clients', 'ClientController', ['except' => [
+      'index', 'destroy'
+    ]]);
+    Route::apiResource('travels', 'TravelController', ['except' => [
+      'destroy'
+    ]]);
+    Route::apiResource('readings', 'ReadingController', ['except' => [
+      'update', 'destroy'
+    ]]);
   });
 });

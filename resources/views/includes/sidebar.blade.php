@@ -26,15 +26,15 @@
                 <h3>Menú</h3>
                 <ul class="nav side-menu">
                     <li>
-                        <a href="javascript:void(0)">
+                        <a href="{{url('/')}}">
                             <i class="fa fa-dashboard"></i>
                             Dashboard
                         </a>
                     </li>
                     <li>
-                        <a href="{{url('/usuarios')}}">
+                        <a href="{{url('/clientes')}}">
                             <i class="fa fa-user"></i>
-                            Usuarios
+                            Clientes
                         </a>
                     </li>
 
@@ -44,12 +44,18 @@
                             <span class="fa fa-chevron-down"></span>
                         </a>
                         <ul class="nav child_menu">
+<<<<<<< HEAD
                             <li><a href="{{url('/autos/tipo/3/lista')}}">Vehículo Vendedor</a></li>
                             <li><a href="{{url('/autos/tipo/1/lista')}}">Vehículo Jardinero</a></li>
                             <li><a href="{{url('/autos/tipo/2/lista')}}">Vehículo Cardiopatía</a></li>
                             <li><a href="{{url('/autos/tipo/4/lista')}}">Vehículo Eco-amigable</a></li>
                             <li><a href="{{url('/autos/tipo/5/lista')}}">Vehículo Persona Joven</a></li>
                             <li><a href="{{url('/autos/tipo/6/lista')}}">Vehículo transporte urbano</a></li>
+=======
+                            @foreach($all_organizations as $org)
+                                <li><a href="{{url('/autos/tipo/'.$org->id.'/lista')}}">Vehículo {{$org->name}}</a></li>
+                            @endforeach
+>>>>>>> development
                         </ul>
                     </li>
                     <li>                        
@@ -60,6 +66,12 @@
                             <li><a href="{{url('/reportes/filtrosReportes')}}">Reporte de Clientes</a></li>
                             <li><a href="{{url('/reportes/sensores')}}">Reporte de Sensores</a></li>
                             <li><a href="#">Reporte de Historial de Alertas</a></li>
+                        </ul>
+                    </li>
+                    <li><a><i class="fa fa-cog"></i> Seguridad <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="{{url('/seguridad/nuevo_usuario')}}">Crear usuario</a></li>
+                            <li><a href="#">Roles</a></li>
                         </ul>
                     </li>
                     <li>

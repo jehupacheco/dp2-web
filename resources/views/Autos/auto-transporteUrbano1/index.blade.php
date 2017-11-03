@@ -9,10 +9,10 @@
 
     <!-- page content -->
     <div class="right_col" role="main">
-    	<div>
-    		  <div class="page-title">
+      <div>
+          <div class="page-title">
               <div class="title_left">
-                <h3> <small>Usuarios de autos</small></h3>
+                <h3> <small>Vehículos de Transporte Urbano - Tipo 1</small></h3>
               </div>
 
               <div class="title_right">
@@ -27,8 +27,8 @@
               </div>
             </div>
 
-			</div>
-			<div class="clearfix"></div>
+      </div>
+      <div class="clearfix"></div>
 
       <div class="row">
         <div class="col-md-12">
@@ -49,23 +49,22 @@
                     <li><a href="#">Z</a></li>
                   </ul>
                 </div>
-
                 <div class="clearfix"></div>
 
                 <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
                   <div class="well profile_view">
                     <div class="col-sm-12">
-                      <h4 class="brief"><i>Usuario de vehículo</i></h4>
+                      <h4 class="brief"><i>Vehículo para Transporte Urbano tipo 1</i></h4>
                       <div class="left col-xs-7">
-                        <h2>Juan Perez</h2>
-                        <p><strong>Tipo de vehículo: </strong> Vehículo para la jardinería </p>
+                        <h2>Identificador: AT10001</h2>
+                        <p><strong>Usuario: </strong> Juan Perez 1</p>
                         <ul class="list-unstyled">
                           <li><i class="fa fa-building"></i> Dirección: Av.Universitaria 1802, San Miguel</li>
                           <li><i class="fa fa-phone"></i> Teléfono Celular #: 99999999</li>
                         </ul>
                       </div>
                       <div class="right col-xs-5 text-center">
-                        <img src="images/user.png" alt="" class="img-circle img-responsive">
+                        <img src="{{asset('images/autosurban1.png')}}" alt="" class="img-circle img-responsive">
                       </div>
                     </div>
                     <div class="col-xs-12 bottom text-center">
@@ -83,7 +82,7 @@
                         <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-user">
                           </i> <i class="fa fa-comments-o"></i> </button>
                         <a type="button" class="btn btn-primary btn-xs" href="{{url('/usuario/1/perfil')}}">
-                          <i class="fa fa-user"> </i> Ver Usuario
+                          <i class="fa fa-user"> </i> Ver Vehiculo
                         </a>
                       </div>
                     </div>
@@ -93,17 +92,17 @@
                 <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
                   <div class="well profile_view">
                     <div class="col-sm-12">
-                      <h4 class="brief"><i>Usuario de vehículo</i></h4>
+                      <h4 class="brief"><i>Vehículo para Transporte Urbano tipo 1</i></h4>
                       <div class="left col-xs-7">
-                        <h2>Cesar Aguilera</h2>
-                        <p><strong>Tipo de vehículo: </strong> Vehículo para ventas </p>
+                        <h2>Identificador: AT10002</h2>
+                        <p><strong>Usuario: </strong> Juan Perez 2</p>
                         <ul class="list-unstyled">
                           <li><i class="fa fa-building"></i> Dirección: Av.Universitaria 1802, San Miguel</li>
                           <li><i class="fa fa-phone"></i> Phone #: 99999999</li>
                         </ul>
                       </div>
                       <div class="right col-xs-5 text-center">
-                        <img src="images/user.png" alt="" class="img-circle img-responsive">
+                        <img src="{{asset('images/autosurban1.png')}}" alt="" class="img-circle img-responsive">
                       </div>
                     </div>
                     <div class="col-xs-12 bottom text-center">
@@ -121,7 +120,7 @@
                         <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-user">
                           </i> <i class="fa fa-comments-o"></i> </button>
                         <a type="button" class="btn btn-primary btn-xs" href="{{url('/usuario/1/perfil')}}">
-                          <i class="fa fa-user"> </i> Ver Usuario
+                          <i class="fa fa-user"> </i> Ver Vehiculo
                         </a>                      </div>
                     </div>
                   </div>
@@ -130,17 +129,17 @@
                 <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
                   <div class="well profile_view">
                     <div class="col-sm-12">
-                      <h4 class="brief"><i>Usuario de vehículo</i></h4>
+                      <h4 class="brief"><i>Vehículo para Transporte Urbano tipo 1</i></h4>
                       <div class="left col-xs-7">
-                        <h2>Nicole Pearson</h2>
-                        <p><strong>Tipo de vehículo: </strong> Vehículo para ventas </p>
+                        <h2>Identificador: AT10003</h2>
+                        <p><strong>Usuario: </strong> Juan Perez 3</p>
                         <ul class="list-unstyled">
                           <li><i class="fa fa-building"></i> Dirección: Av.Universitaria 1802, San Miguel </li>
                           <li><i class="fa fa-phone"></i> Phone #: 99999999</li>
                         </ul>
                       </div>
                       <div class="right col-xs-5 text-center">
-                        <img src="images/user.png" alt="" class="img-circle img-responsive">
+                        <img src="{{asset('images/autosurban1.png')}}" alt="" class="img-circle img-responsive">
                       </div>
                     </div>
                     <div class="col-xs-12 bottom text-center">
@@ -158,7 +157,7 @@
                         <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-user">
                           </i> <i class="fa fa-comments-o"></i> </button>
                         <a type="button" class="btn btn-primary btn-xs" href="{{url('/usuario/1/perfil')}}">
-                          <i class="fa fa-user"> </i> Ver Usuario
+                          <i class="fa fa-user"> </i> Ver Vehiculo
                         </a>                      </div>
                     </div>
                   </div>
@@ -167,17 +166,17 @@
                 <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
                   <div class="well profile_view">
                     <div class="col-sm-12">
-                      <h4 class="brief"><i>Usuario de vehículo</i></h4>
+                      <h4 class="brief"><i>Vehículo para Transporte Urbano tipo 1</i></h4>
                       <div class="left col-xs-7">
-                        <h2>Nicole Pearson</h2>
-                        <p><strong>Tipo de vehículo: </strong> Vehículo para la jardinería </p>
+                        <h2>Identificador: AT10004</h2>
+                        <p><strong>Usuario: </strong> Juan Perez 4</p>
                         <ul class="list-unstyled">
                           <li><i class="fa fa-building"></i> Dirección: Av.Universitaria 1802, San Miguel </li>
                           <li><i class="fa fa-phone"></i> Phone #: 99999999</li>
                         </ul>
                       </div>
                       <div class="right col-xs-5 text-center">
-                        <img src="images/user.png" alt="" class="img-circle img-responsive">
+                        <img src="{{asset('images/autosurban1.png')}}" alt="" class="img-circle img-responsive">
                       </div>
                     </div>
                     <div class="col-xs-12 bottom text-center">
@@ -195,7 +194,7 @@
                         <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-user">
                           </i> <i class="fa fa-comments-o"></i> </button>
                         <a type="button" class="btn btn-primary btn-xs" href="{{url('/usuario/1/perfil')}}">
-                          <i class="fa fa-user"> </i> Ver Usuario
+                          <i class="fa fa-user"> </i> Ver Vehiculo
                         </a>                      </div>
                     </div>
                   </div>
@@ -204,17 +203,17 @@
                 <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
                   <div class="well profile_view">
                     <div class="col-sm-12">
-                      <h4 class="brief"><i>Usuario de vehículo</i></h4>
+                      <h4 class="brief"><i>Vehículo para Transporte Urbano tipo 1</i></h4>
                       <div class="left col-xs-7">
-                        <h2>Nicole Pearson</h2>
-                        <p><strong>About: </strong> Web Designer / UX / Graphic Artist / Coffee Lover </p>
+                        <h2>Identificador: AT10005</h2>
+                        <p><strong>Usuario: </strong> Juan Perez 5</p>
                         <ul class="list-unstyled">
                           <li><i class="fa fa-building"></i> Dirección: Av.Universitaria 1802, San Miguel </li>
                           <li><i class="fa fa-phone"></i> Phone #: 99999999</li>
                         </ul>
                       </div>
                       <div class="right col-xs-5 text-center">
-                        <img src="images/user.png" alt="" class="img-circle img-responsive">
+                        <img src="{{asset('images/autosurban1.png')}}" alt="" class="img-circle img-responsive">
                       </div>
                     </div>
                     <div class="col-xs-12 bottom text-center">
@@ -232,7 +231,7 @@
                         <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-user">
                           </i> <i class="fa fa-comments-o"></i> </button>
                         <a type="button" class="btn btn-primary btn-xs" href="{{url('/usuario/1/perfil')}}">
-                          <i class="fa fa-user"> </i> Ver Usuario
+                          <i class="fa fa-user"> </i> Ver Vehiculo
                         </a>                      </div>
                     </div>
                   </div>
@@ -241,17 +240,17 @@
                 <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
                   <div class="well profile_view">
                     <div class="col-sm-12">
-                      <h4 class="brief"><i>Usuario de vehículo</i></h4>
+                      <h4 class="brief"><i>Vehículo para Transporte Urbano tipo 1</i></h4>
                       <div class="left col-xs-7">
-                        <h2>Nicole Pearson</h2>
-                        <p><strong>Tipo de vehículo: </strong> Vehículo para ventas </p>
+                        <h2>Identificador: AT10006</h2>
+                        <p><strong>Usuario: </strong> Juan Perez 6</p>
                         <ul class="list-unstyled">
                           <li><i class="fa fa-building"></i> Dirección: Av.Universitaria 1802, San Miguel </li>
                           <li><i class="fa fa-phone"></i> Phone #: 99999999</li>
                         </ul>
                       </div>
                       <div class="right col-xs-5 text-center">
-                        <img src="images/user.png" alt="" class="img-circle img-responsive">
+                        <img src="{{asset('images/autosurban1.png')}}" alt="" class="img-circle img-responsive">
                       </div>
                     </div>
                     <div class="col-xs-12 bottom text-center">
@@ -269,7 +268,7 @@
                         <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-user">
                           </i> <i class="fa fa-comments-o"></i> </button>
                         <a type="button" class="btn btn-primary btn-xs" href="{{url('/usuario/1/perfil')}}">
-                          <i class="fa fa-user"> </i> Ver Usuario
+                          <i class="fa fa-user"> </i> Ver Vehiculo
                         </a>                      </div>
                     </div>
                   </div>
@@ -278,17 +277,17 @@
                 <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
                   <div class="well profile_view">
                     <div class="col-sm-12">
-                      <h4 class="brief"><i>Usuario de vehículo</i></h4>
+                      <h4 class="brief"><i>Vehículo para Transporte Urbano tipo 1</i></h4>
                       <div class="left col-xs-7">
-                        <h2>Nicole Pearson</h2>
-                        <p><strong>Tipo de vehículo: </strong> Vehículo de uso diario </p>
+                        <h2>Identificador: AT10007</h2>
+                        <p><strong>Usuario: </strong> Juan Perez 7</p>
                         <ul class="list-unstyled">
                           <li><i class="fa fa-building"></i> Dirección: Av.Universitaria 1802, San Miguel </li>
                           <li><i class="fa fa-phone"></i> Phone #: 99999999</li>
                         </ul>
                       </div>
                       <div class="right col-xs-5 text-center">
-                        <img src="images/user.png" alt="" class="img-circle img-responsive">
+                        <img src="{{asset('images/autosurban1.png')}}" alt="" class="img-circle img-responsive">
                       </div>
                     </div>
                     <div class="col-xs-12 bottom text-center">
@@ -306,7 +305,7 @@
                         <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-user">
                           </i> <i class="fa fa-comments-o"></i> </button>
                         <a type="button" class="btn btn-primary btn-xs" href="{{url('/usuario/1/perfil')}}">
-                          <i class="fa fa-user"> </i> Ver Usuario
+                          <i class="fa fa-user"> </i> Ver Vehiculo
                         </a>                      </div>
                     </div>
                   </div>
@@ -315,17 +314,17 @@
                 <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
                   <div class="well profile_view">
                     <div class="col-sm-12">
-                      <h4 class="brief"><i>Usuario de vehículo</i></h4>
+                      <h4 class="brief"><i>Vehículo para Transporte Urbano tipo 1</i></h4>
                       <div class="left col-xs-7">
-                        <h2>Nicole Pearson</h2>
-                        <p><strong>Tipo de vehículo: </strong> Vehículo de uso diario </p>
+                        <h2>Identificador: AT10008</h2>
+                        <p><strong>Usuario: </strong> Juan Perez 8</p>
                         <ul class="list-unstyled">
                           <li><i class="fa fa-building"></i> Dirección: Av.Universitaria 1802, San Miguel </li>
                           <li><i class="fa fa-phone"></i> Phone #: 99999999</li>
                         </ul>
                       </div>
                       <div class="right col-xs-5 text-center">
-                        <img src="images/user.png" alt="" class="img-circle img-responsive">
+                        <img src="{{asset('images/autosurban1.png')}}" alt="" class="img-circle img-responsive">
                       </div>
                     </div>
                     <div class="col-xs-12 bottom text-center">
@@ -343,7 +342,7 @@
                         <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-user">
                           </i> <i class="fa fa-comments-o"></i> </button>
                         <a type="button" class="btn btn-primary btn-xs" href="{{url('/usuario/1/perfil')}}">
-                          <i class="fa fa-user"> </i> Ver Usuario
+                          <i class="fa fa-user"> </i> Ver Vehiculo
                         </a>                      </div>
                     </div>
                   </div>
@@ -352,17 +351,17 @@
                 <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
                   <div class="well profile_view">
                     <div class="col-sm-12">
-                      <h4 class="brief"><i>Usuario de vehículo</i></h4>
+                      <h4 class="brief"><i>Vehículo para Transporte Urbano tipo 1</i></h4>
                       <div class="left col-xs-7">
-                        <h2>Nicole Pearson</h2>
-                        <p><strong>Tipo de vehículo: </strong> Vehículo de uso diario </p>
+                        <h2>Identificador: AT10009</h2>
+                        <p><strong>Usuario: </strong> Juan Perez 9</p>
                         <ul class="list-unstyled">
                           <li><i class="fa fa-building"></i> Dirección: Av.Universitaria 1802, San Miguel </li>
                           <li><i class="fa fa-phone"></i> Phone #: 99999999</li>
                         </ul>
                       </div>
                       <div class="right col-xs-5 text-center">
-                        <img src="images/user.png" alt="" class="img-circle img-responsive">
+                        <img src=" {{asset('images/autosurban1.png')}}" alt="" class="img-circle img-responsive">
                       </div>
                     </div>
                     <div class="col-xs-12 bottom text-center">
@@ -380,7 +379,7 @@
                         <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-user">
                           </i> <i class="fa fa-comments-o"></i> </button>
                         <a type="button" class="btn btn-primary btn-xs" href="{{url('/usuario/1/perfil')}}">
-                          <i class="fa fa-user"> </i> Ver Usuario
+                          <i class="fa fa-user"> </i> Ver Vehiculo
                         </a>                      </div>
                     </div>
                   </div>
@@ -390,7 +389,7 @@
           </div>
         </div>
       </div>
-	    </div>
-	</div>
+      </div>
+  </div>
     <!-- /page content -->
 @endsection

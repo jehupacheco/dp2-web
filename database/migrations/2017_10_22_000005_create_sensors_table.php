@@ -26,6 +26,7 @@ class CreateSensorsTable extends Migration
             $table->increments('id');
             $table->string('slug', 45);
             $table->string('unit', 45);
+            $table->string('code', 45);
         });
     }
 

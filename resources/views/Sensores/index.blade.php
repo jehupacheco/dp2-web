@@ -10,395 +10,99 @@
     <!-- page content -->
     <div class="right_col" role="main">
     	<div>
-    		  <div class="page-title">
+    		<div class="page-title">
               <div class="title_left">
-                <h3>Sensores <small>Usuarios de autos</small></h3>
+                <h3>Sensores</h3>
               </div>
+    	
+				<div class="col-md-4 col-sm-4 col-xs-12">
+			              <div class="x_panel">
+			                <div class="x_title">
+			                  <h2>Recent Activities <small>Sessions</small></h2>
+			                  <ul class="nav navbar-right panel_toolbox">
+			                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+			                    </li>
+			                    <li class="dropdown">
+			                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+			                      <ul class="dropdown-menu" role="menu">
+			                        <li><a href="#">Settings 1</a>
+			                        </li>
+			                        <li><a href="#">Settings 2</a>
+			                        </li>
+			                      </ul>
+			                    </li>
+			                    <li><a class="close-link"><i class="fa fa-close"></i></a>
+			                    </li>
+			                  </ul>
+			                  <div class="clearfix"></div>
+			                </div>
+			                <div class="x_content">
+			                  <div class="dashboard-widget-content">
 
-              <div class="title_right">
-                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                  <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Escribe algo...">
-                    <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Buscar</button>
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
+			                    <ul class="list-unstyled timeline widget">
+			                      <li>
+			                        <div class="block">
+			                          <div class="block_content">
+			                            <h2 class="title">
+			                                              <a>Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?</a>
+			                                          </h2>
+			                            <div class="byline">
+			                              <span>13 hours ago</span> by <a>Jane Smith</a>
+			                            </div>
+			                            <p class="excerpt">Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that could fund your project, and if the buyers liked your flick, they’d pay to Fast-forward and… <a>Read&nbsp;More</a>
+			                            </p>
+			                          </div>
+			                        </div>
+			                      </li>
+			                      <li>
+			                        <div class="block">
+			                          <div class="block_content">
+			                            <h2 class="title">
+			                                              <a>Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?</a>
+			                                          </h2>
+			                            <div class="byline">
+			                              <span>13 hours ago</span> by <a>Jane Smith</a>
+			                            </div>
+			                            <p class="excerpt">Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that could fund your project, and if the buyers liked your flick, they’d pay to Fast-forward and… <a>Read&nbsp;More</a>
+			                            </p>
+			                          </div>
+			                        </div>
+			                      </li>
+			                      <li>
+			                        <div class="block">
+			                          <div class="block_content">
+			                            <h2 class="title">
+			                                              <a>Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?</a>
+			                                          </h2>
+			                            <div class="byline">
+			                              <span>13 hours ago</span> by <a>Jane Smith</a>
+			                            </div>
+			                            <p class="excerpt">Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that could fund your project, and if the buyers liked your flick, they’d pay to Fast-forward and… <a>Read&nbsp;More</a>
+			                            </p>
+			                          </div>
+			                        </div>
+			                      </li>
+			                      <li>
+			                        <div class="block">
+			                          <div class="block_content">
+			                            <h2 class="title">
+			                                              <a>Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?</a>
+			                                          </h2>
+			                            <div class="byline">
+			                              <span>13 hours ago</span> by <a>Jane Smith</a>
+			                            </div>
+			                            <p class="excerpt">Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that could fund your project, and if the buyers liked your flick, they’d pay to Fast-forward and… <a>Read&nbsp;More</a>
+			                            </p>
+			                          </div>
+			                        </div>
+			                      </li>
+			                    </ul>
+			                  </div>
+			                </div>
+			              </div>
+			    </div>
 			</div>
-			<div class="clearfix"></div>
-
-            <div class="row">
-              <div class="col-md-12">
-                <div class="x_panel">
-                  <div class="x_content">
-                    <div class="row">
-                      <div class="col-md-12 col-sm-12 col-xs-12 text-center">
-                        <ul class="pagination pagination-split">
-                          <li><a href="#">A</a></li>
-                          <li><a href="#">B</a></li>
-                          <li><a href="#">C</a></li>
-                          <li><a href="#">D</a></li>
-                          <li><a href="#">E</a></li>
-                          <li>...</li>
-                          <li><a href="#">W</a></li>
-                          <li><a href="#">X</a></li>
-                          <li><a href="#">Y</a></li>
-                          <li><a href="#">Z</a></li>
-                        </ul>
-                      </div>
-
-                      <div class="clearfix"></div>
-
-                      <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
-                        <div class="well profile_view">
-                          <div class="col-sm-12">
-                            <h4 class="brief"><i>Usuario de vehículo</i></h4>
-                            <div class="left col-xs-7">
-                              <h2>Juan Perez</h2>
-                              <p><strong>Tipo de vehículo: </strong> Vehículo para la jardinería </p>
-                              <ul class="list-unstyled">
-                                <li><i class="fa fa-building"></i> Dirección: Av.Universitaria 1802, San Miguel</li>
-                                <li><i class="fa fa-phone"></i> Teléfono Celular #: 99999999</li>
-                              </ul>
-                            </div>
-                            <div class="right col-xs-5 text-center">
-                              <img src="images/user.png" alt="" class="img-circle img-responsive">
-                            </div>
-                          </div>
-                          <div class="col-xs-12 bottom text-center">
-                            <div class="col-xs-12 col-sm-6 emphasis">
-                              <p class="ratings">
-                                <a>4.0</a>
-                                <a href="#"><span class="fa fa-star"></span></a>
-                                <a href="#"><span class="fa fa-star"></span></a>
-                                <a href="#"><span class="fa fa-star"></span></a>
-                                <a href="#"><span class="fa fa-star"></span></a>
-                                <a href="#"><span class="fa fa-star-o"></span></a>
-                              </p>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 emphasis">
-                              <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-user">
-                                </i> <i class="fa fa-comments-o"></i> </button>
-                              <button type="button" class="btn btn-primary btn-xs">
-                                <i class="fa fa-user"> </i> Ver Perfil
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
-                        <div class="well profile_view">
-                          <div class="col-sm-12">
-                            <h4 class="brief"><i>Usuario de vehículo</i></h4>
-                            <div class="left col-xs-7">
-                              <h2>Cesar Aguilera</h2>
-                              <p><strong>Tipo de vehículo: </strong> Vehículo para ventas </p>
-                              <ul class="list-unstyled">
-                                <li><i class="fa fa-building"></i> Dirección: Av.Universitaria 1802, San Miguel</li>
-                                <li><i class="fa fa-phone"></i> Phone #: 99999999</li>
-                              </ul>
-                            </div>
-                            <div class="right col-xs-5 text-center">
-                              <img src="images/user.png" alt="" class="img-circle img-responsive">
-                            </div>
-                          </div>
-                          <div class="col-xs-12 bottom text-center">
-                            <div class="col-xs-12 col-sm-6 emphasis">
-                              <p class="ratings">
-                                <a>4.0</a>
-                                <a href="#"><span class="fa fa-star"></span></a>
-                                <a href="#"><span class="fa fa-star"></span></a>
-                                <a href="#"><span class="fa fa-star"></span></a>
-                                <a href="#"><span class="fa fa-star"></span></a>
-                                <a href="#"><span class="fa fa-star-o"></span></a>
-                              </p>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 emphasis">
-                              <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-user">
-                                </i> <i class="fa fa-comments-o"></i> </button>
-                              <button type="button" class="btn btn-primary btn-xs">
-                                <i class="fa fa-user"> </i> Ver Perfil
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
-                        <div class="well profile_view">
-                          <div class="col-sm-12">
-                            <h4 class="brief"><i>Digital Strategist</i></h4>
-                            <div class="left col-xs-7">
-                              <h2>Nicole Pearson</h2>
-                              <p><strong>About: </strong> Web Designer / UI. </p>
-                              <ul class="list-unstyled">
-                                <li><i class="fa fa-building"></i> Dirección: Av.Universitaria 1802, San Miguel </li>
-                                <li><i class="fa fa-phone"></i> Phone #: 99999999</li>
-                              </ul>
-                            </div>
-                            <div class="right col-xs-5 text-center">
-                              <img src="images/user.png" alt="" class="img-circle img-responsive">
-                            </div>
-                          </div>
-                          <div class="col-xs-12 bottom text-center">
-                            <div class="col-xs-12 col-sm-6 emphasis">
-                              <p class="ratings">
-                                <a>4.0</a>
-                                <a href="#"><span class="fa fa-star"></span></a>
-                                <a href="#"><span class="fa fa-star"></span></a>
-                                <a href="#"><span class="fa fa-star"></span></a>
-                                <a href="#"><span class="fa fa-star"></span></a>
-                                <a href="#"><span class="fa fa-star-o"></span></a>
-                              </p>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 emphasis">
-                              <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-user">
-                                </i> <i class="fa fa-comments-o"></i> </button>
-                              <button type="button" class="btn btn-primary btn-xs">
-                                <i class="fa fa-user"> </i> Ver Perfil
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
-                        <div class="well profile_view">
-                          <div class="col-sm-12">
-                            <h4 class="brief"><i>Digital Strategist</i></h4>
-                            <div class="left col-xs-7">
-                              <h2>Nicole Pearson</h2>
-                              <p><strong>About: </strong> Web Designer / UI. </p>
-                              <ul class="list-unstyled">
-                                <li><i class="fa fa-building"></i> Dirección: Av.Universitaria 1802, San Miguel </li>
-                                <li><i class="fa fa-phone"></i> Phone #: 99999999</li>
-                              </ul>
-                            </div>
-                            <div class="right col-xs-5 text-center">
-                              <img src="images/user.png" alt="" class="img-circle img-responsive">
-                            </div>
-                          </div>
-                          <div class="col-xs-12 bottom text-center">
-                            <div class="col-xs-12 col-sm-6 emphasis">
-                              <p class="ratings">
-                                <a>4.0</a>
-                                <a href="#"><span class="fa fa-star"></span></a>
-                                <a href="#"><span class="fa fa-star"></span></a>
-                                <a href="#"><span class="fa fa-star"></span></a>
-                                <a href="#"><span class="fa fa-star"></span></a>
-                                <a href="#"><span class="fa fa-star-o"></span></a>
-                              </p>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 emphasis">
-                              <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-user">
-                                </i> <i class="fa fa-comments-o"></i> </button>
-                              <button type="button" class="btn btn-primary btn-xs">
-                                <i class="fa fa-user"> </i> Ver Perfil
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      
-                      <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
-                        <div class="well profile_view">
-                          <div class="col-sm-12">
-                            <h4 class="brief"><i>Digital Strategist</i></h4>
-                            <div class="left col-xs-7">
-                              <h2>Nicole Pearson</h2>
-                              <p><strong>About: </strong> Web Designer / UX / Graphic Artist / Coffee Lover </p>
-                              <ul class="list-unstyled">
-                                <li><i class="fa fa-building"></i> Dirección: Av.Universitaria 1802, San Miguel </li>
-                                <li><i class="fa fa-phone"></i> Phone #: 99999999</li>
-                              </ul>
-                            </div>
-                            <div class="right col-xs-5 text-center">
-                              <img src="images/user.png" alt="" class="img-circle img-responsive">
-                            </div>
-                          </div>
-                          <div class="col-xs-12 bottom text-center">
-                            <div class="col-xs-12 col-sm-6 emphasis">
-                              <p class="ratings">
-                                <a>4.0</a>
-                                <a href="#"><span class="fa fa-star"></span></a>
-                                <a href="#"><span class="fa fa-star"></span></a>
-                                <a href="#"><span class="fa fa-star"></span></a>
-                                <a href="#"><span class="fa fa-star"></span></a>
-                                <a href="#"><span class="fa fa-star-o"></span></a>
-                              </p>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 emphasis">
-                              <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-user">
-                                </i> <i class="fa fa-comments-o"></i> </button>
-                              <button type="button" class="btn btn-primary btn-xs">
-                                <i class="fa fa-user"> </i> Ver Perfil
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
-                        <div class="well profile_view">
-                          <div class="col-sm-12">
-                            <h4 class="brief"><i>Digital Strategist</i></h4>
-                            <div class="left col-xs-7">
-                              <h2>Nicole Pearson</h2>
-                              <p><strong>About: </strong> Web Designer / UI. </p>
-                              <ul class="list-unstyled">
-                                <li><i class="fa fa-building"></i> Dirección: Av.Universitaria 1802, San Miguel </li>
-                                <li><i class="fa fa-phone"></i> Phone #: 99999999</li>
-                              </ul>
-                            </div>
-                            <div class="right col-xs-5 text-center">
-                              <img src="images/user.png" alt="" class="img-circle img-responsive">
-                            </div>
-                          </div>
-                          <div class="col-xs-12 bottom text-center">
-                            <div class="col-xs-12 col-sm-6 emphasis">
-                              <p class="ratings">
-                                <a>4.0</a>
-                                <a href="#"><span class="fa fa-star"></span></a>
-                                <a href="#"><span class="fa fa-star"></span></a>
-                                <a href="#"><span class="fa fa-star"></span></a>
-                                <a href="#"><span class="fa fa-star"></span></a>
-                                <a href="#"><span class="fa fa-star-o"></span></a>
-                              </p>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 emphasis">
-                              <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-user">
-                                </i> <i class="fa fa-comments-o"></i> </button>
-                              <button type="button" class="btn btn-primary btn-xs">
-                                <i class="fa fa-user"> </i> Ver Perfil
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
-                        <div class="well profile_view">
-                          <div class="col-sm-12">
-                            <h4 class="brief"><i>Digital Strategist</i></h4>
-                            <div class="left col-xs-7">
-                              <h2>Nicole Pearson</h2>
-                              <p><strong>About: </strong> Web Designer / UI. </p>
-                              <ul class="list-unstyled">
-                                <li><i class="fa fa-building"></i> Dirección: Av.Universitaria 1802, San Miguel </li>
-                                <li><i class="fa fa-phone"></i> Phone #: 99999999</li>
-                              </ul>
-                            </div>
-                            <div class="right col-xs-5 text-center">
-                              <img src="images/user.png" alt="" class="img-circle img-responsive">
-                            </div>
-                          </div>
-                          <div class="col-xs-12 bottom text-center">
-                            <div class="col-xs-12 col-sm-6 emphasis">
-                              <p class="ratings">
-                                <a>4.0</a>
-                                <a href="#"><span class="fa fa-star"></span></a>
-                                <a href="#"><span class="fa fa-star"></span></a>
-                                <a href="#"><span class="fa fa-star"></span></a>
-                                <a href="#"><span class="fa fa-star"></span></a>
-                                <a href="#"><span class="fa fa-star-o"></span></a>
-                              </p>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 emphasis">
-                              <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-user">
-                                </i> <i class="fa fa-comments-o"></i> </button>
-                              <button type="button" class="btn btn-primary btn-xs">
-                                <i class="fa fa-user"> </i> Ver Perfil
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
-                        <div class="well profile_view">
-                          <div class="col-sm-12">
-                            <h4 class="brief"><i>Digital Strategist</i></h4>
-                            <div class="left col-xs-7">
-                              <h2>Nicole Pearson</h2>
-                              <p><strong>About: </strong> Web Designer / UI. </p>
-                              <ul class="list-unstyled">
-                                <li><i class="fa fa-building"></i> Dirección: Av.Universitaria 1802, San Miguel </li>
-                                <li><i class="fa fa-phone"></i> Phone #: 99999999</li>
-                              </ul>
-                            </div>
-                            <div class="right col-xs-5 text-center">
-                              <img src="images/user.png" alt="" class="img-circle img-responsive">
-                            </div>
-                          </div>
-                          <div class="col-xs-12 bottom text-center">
-                            <div class="col-xs-12 col-sm-6 emphasis">
-                              <p class="ratings">
-                                <a>4.0</a>
-                                <a href="#"><span class="fa fa-star"></span></a>
-                                <a href="#"><span class="fa fa-star"></span></a>
-                                <a href="#"><span class="fa fa-star"></span></a>
-                                <a href="#"><span class="fa fa-star"></span></a>
-                                <a href="#"><span class="fa fa-star-o"></span></a>
-                              </p>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 emphasis">
-                              <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-user">
-                                </i> <i class="fa fa-comments-o"></i> </button>
-                              <button type="button" class="btn btn-primary btn-xs">
-                                <i class="fa fa-user"> </i> Ver Perfil
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
-                        <div class="well profile_view">
-                          <div class="col-sm-12">
-                            <h4 class="brief"><i>Digital Strategist</i></h4>
-                            <div class="left col-xs-7">
-                              <h2>Nicole Pearson</h2>
-                              <p><strong>About: </strong> Web Designer / UI. </p>
-                              <ul class="list-unstyled">
-                                <li><i class="fa fa-building"></i> Dirección: Av.Universitaria 1802, San Miguel </li>
-                                <li><i class="fa fa-phone"></i> Phone #: 99999999</li>
-                              </ul>
-                            </div>
-                            <div class="right col-xs-5 text-center">
-                              <img src="images/user.png" alt="" class="img-circle img-responsive">
-                            </div>
-                          </div>
-                          <div class="col-xs-12 bottom text-center">
-                            <div class="col-xs-12 col-sm-6 emphasis">
-                              <p class="ratings">
-                                <a>4.0</a>
-                                <a href="#"><span class="fa fa-star"></span></a>
-                                <a href="#"><span class="fa fa-star"></span></a>
-                                <a href="#"><span class="fa fa-star"></span></a>
-                                <a href="#"><span class="fa fa-star"></span></a>
-                                <a href="#"><span class="fa fa-star-o"></span></a>
-                              </p>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 emphasis">
-                              <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-user">
-                                </i> <i class="fa fa-comments-o"></i> </button>
-                              <button type="button" class="btn btn-primary btn-xs">
-                                <i class="fa fa-user"> </i> Ver Perfil
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
 	    </div>
 	</div>
     <!-- /page content -->
-@endsection
+@endsection1

@@ -57,7 +57,7 @@
 
 					<div class="sidebar-widget">
                         <h4>Ángulo de Depresión</h4>
-                        <canvas width="150" height="80" id="chart_gauge_01" class="" style="width: 160px; height: 100px;"></canvas>
+                        <canvas id="chart_gauge_01" class="" style="width: 300px; height: 150px;"></canvas>
                         <div class="goal-wrapper">
                           <span id="gauge-text" class="gauge-value gauge-chart pull-left">0</span>
                           <span class="gauge-value pull-left">°</span>
@@ -240,3 +240,50 @@
 	</div>
 	<!-- /page content -->
 @endsection
+
+@push('scripts')
+<!-- gauge.js -->
+<script>
+  var opts = {
+      lines: 12,
+      angle: 0,
+      lineWidth: 0.4,
+      pointer: {
+          length: 0.75,
+          strokeWidth: 0.042,
+          color: '#1D212A'
+      },
+      limitMax: 'false',
+      colorStart: '#1ABC9C',
+      colorStop: '#1ABC9C',
+      strokeColor: '#F0F3F3',
+      generateGradient: true
+  };
+  var target = document.getElementById('chart_gauge_01'),
+      gauge = new Gauge(target).setOptions(opts);
+
+  gauge.maxValue = 90;
+  gauge.animationSpeed = 32;
+  gauge.set(45);
+  gauge.setTextField(document.getElementById("gauge-text"));
+</script>
+<!-- /gauge.js -->
+<!-- Skycons -->
+<script>
+  var icons = new Skycons({
+      "color": "#73879C"
+    }),
+    list = [
+      "clear-day", "clear-night", "partly-cloudy-day",
+      "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind",
+      "fog"
+    ],
+    i;
+
+  for (i = list.length; i--;)
+    icons.set(list[i], list[i]);
+
+  icons.play();
+</script>
+<!-- /Skycons --
+@endpush
