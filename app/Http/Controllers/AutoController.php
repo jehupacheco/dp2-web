@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Organization;
+use App\Models\Vehicle;
+use DB;
 
 class AutoController extends Controller
 {
@@ -15,29 +17,13 @@ class AutoController extends Controller
     public function mostrar_lista_tipo($tipo_id)
     {   
         try {
-            $org = Organization::find($tipo_id);
 
-            if($org->slug == 'garden'){
-                return view('Autos.auto-jardinero.index');
-            }
-            elseif($org->slug == 'health'){
-                return view('Autos.auto-cardiopatia.index');
-            }
-            elseif($org->slug == 'sales') {
-               return view('Autos.auto-ventas.index');
-            }
-            elseif($org->slug == 'eco') {
-               return view('Autos.auto-ecoamigable.index');
-            }
-            elseif($org->slug == 'transport1') {
-               return view('Autos.auto-transporteUrbano1.index');
-            }
-            elseif($org->slug == 'transport2') {
-               return view('Autos.auto-transporteUrbano2.index');
-            }
-            else{
-                return view('Autos.auto-jardinero.index');
-            }
+
+            $org = Organization::find($tipo_id);
+            
+            $vehiculos = Vehicle::where('organization_id',$tipo_id)->paginate(9);
+            return view('Vehiculos.index',compact('vehiculos','org'));
+           
 
         } catch (Exception $e) {
             return view('Autos.auto-jardinero.index');
@@ -49,9 +35,10 @@ class AutoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($tipo_id)
     {
-        //
+
+        return view('Vehiculos.nuevo_vehiculo',compact('tipo_id'));
     }
 
     /**
@@ -60,9 +47,24 @@ class AutoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,$tipo_id)
     {
-        //
+        $org = Organization::find($tipo_id);
+        $input = $request->all();
+        DB::beginTransaction();
+        try {
+            $vehiculo = new Vehicle();
+            $vehiculo->description = $input['description'];
+            $vehiculo->plate = $input['plate'];
+            $vehiculo->price = $input['price'];
+            $vehiculo->organization_id = $input['org_id'];
+            $vehiculo->save();
+        } catch (Exception $e) {
+            DB::rollback();
+            return redirect()->action('AutoController@mostrar_lista_tipo',['tipo_id'=>$tipo_id])->with('delete', 'No se registró el Vehículo correctamente.'); 
+        }
+        DB::commit();
+        return redirect()->action('AutoController@mostrar_lista_tipo',['tipo_id'=>$tipo_id])->with('stored', 'Se registró el Vehículo del tipo '.$org->name.' correctamente.'); 
     }
 
     /**

@@ -41,7 +41,7 @@
                     <li><a><i class="fa fa-bus"></i> Vehiculos <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             @foreach($all_organizations as $org)
-                                <li><a href="{{url('/autos/tipo/'.$org->id.'/lista')}}">Vehículo {{$org->name}}</a></li>
+                                <li><a href="{{url('/vehiculos/'.$org->id.'/lista')}}">Vehículo {{$org->name}}</a></li>
                             @endforeach
                         </ul>
                     </li>
