@@ -10,6 +10,20 @@
     <!-- page content -->
     <div class="right_col" role="main">
     	<div>
+          <div class="row">
+            @if (session('stored'))
+                <script>$("#modalSuccess").modal("show");</script>
+                
+                <div class="alert alert-success fade in">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>¡Éxito!</strong> {{session('stored')}}
+                </div>
+            @endif
+
+            @if (session('delete'))
+                <script>$("#modalError").modal("show");</script>                        
+            @endif
+          </div>
     		  <div class="page-title">
               <div class="title_left">
                 <h3> <small>Usuarios de autos</small></h3>

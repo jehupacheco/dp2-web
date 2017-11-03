@@ -25,8 +25,10 @@ Route::get('/clientes/1/perfil','UserController@show_profile');
 
 
 
+Route::get('/usuarios/nuevo','UserController@create');
+Route::post('/usuarios/nuevo','UserController@store');
 
-Route::get('/seguridad/nuevo_usuario','UserController@new_user');
+
 
 Route::get('/sensores','SensorController@index');
 
