@@ -1,80 +1,234 @@
 FORMAT: 1A
-HOST: http://polls.apiblueprint.org/
+HOST: http://dp2.iamallama.com/api
 
 # DP2
 
-Polls is a simple API allowing consumers to view polls and vote in them.
+API reference for mobile apps. Uses JWT authentication.
 
-## Questions Collection [/questions]
+## Auth [/login]
 
-### List All Questions [GET]
+### Login [GET]
 
-+ Response 200 (application/json)
+Log a registered client giving email and password. On success, return a valid token
 
-        [
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 2048
-                    }, {
-                        "choice": "Python",
-                        "votes": 1024
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 512
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 256
-                    }
-                ]
-            }
-        ]
-
-### Create a New Question [POST]
-
-You may create your own question using this action. It takes a JSON
-object containing a question and a collection of answers in the
-form of choices.
 
 + Request (application/json)
 
         {
-            "question": "Favourite programming language?",
-            "choices": [
-                "Swift",
-                "Python",
-                "Objective-C",
-                "Ruby"
-            ]
+            "email": "kbrekke@yahoo.com",
+            "password": "secret"
         }
 
-+ Response 201 (application/json)
+
++ Response 200 (application/json)
+
+        {
+            "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6Ly9kcDIuYXBwL2FwaS9sb2dpbiIsImlhdCI6MTUwOTM3ODI4NywiZXhwIjoxNTA5MzgxODg3LCJuYmYiOjE1MDkzNzgyODcsImp0aSI6ImVvZ2Z3dFVvZUpBZDBNT3kifQ.teKhDkjS2B_zQa80WcnD94AXHKwLQQWGU3ReVpwQcVU"
+        }
+        
++ Response 401 (application/json)
+
+        {
+            "error": "invalid_credentials"
+        }
+
+## Token [/refreshToken]
+
+### Refresh [POST]
+
+As tokens may expire, you can refresh it.
+
++ Request (application/json)
+    
+    + Headers
+        
+            Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6Ly9kcDIuYXBwL2FwaS9sb2dpbiIsImlhdCI6MTUwOTM3ODI4NywiZXhwIjoxNTA5MzgxODg3LCJuYmYiOjE1MDkzNzgyODcsImp0aSI6ImVvZ2Z3dFVvZUpBZDBNT3kifQ.teKhDkjS2B_zQa80WcnD94AXHKwLQQWGU3ReVpwQcVU
+
+
++ Response 200 (application/json)
 
     + Headers
+        
+            Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6Ly9kcDIuYXBwL2FwaS9yZWZyZXNoVG9rZW4iLCJpYXQiOjE1MDkzNzgyODcsImV4cCI6MTUwOTM4MjU0NSwibmJmIjoxNTA5Mzc4OTQ1LCJqdGkiOiJ1aVF5TWdnZW42Rzc4dnpRIn0.k5ve1OxPRc_4yi7IfDRa3iCutf69lC7B2epRKRVrSQ0
+            
+## Clients [/clients]
 
-            Location: /questions/2
+### Show Client [GET /clients/{id}]
 
+Get a single client information
+
++ Request (application/json)
+
+    + Parameters
+        + id - Id of client
+
+    + Headers
+        
+            Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6Ly9kcDIuYXBwL2FwaS9sb2dpbiIsImlhdCI6MTUwOTM3ODI4NywiZXhwIjoxNTA5MzgxODg3LCJuYmYiOjE1MDkzNzgyODcsImp0aSI6ImVvZ2Z3dFVvZUpBZDBNT3kifQ.teKhDkjS2B_zQa80WcnD94AXHKwLQQWGU3ReVpwQcVU
+            
++ Response 200 (application/json)
+
+        {
+            "id":1,
+            "email":"kbrekke@yahoo.com",
+            "password":"$2y$10$bfzPtKsNvWUltq5pae34Z.n9kFqFIVVk9Kt9fqL2OUCgfI7UgmPJi",
+            "organization_id":1,
+            "name":"Louie",
+            "lastname":"Buckridge",
+            "phone":"+1.358.826.2459",
+            "rating":5,
+            "deleted_at":null,
+            "created_at":"2017-10-30 15:16:36",
+            "updated_at":"2017-10-30 15:16:36"
+        }
+        
+### Update Client [PUT /clients/{id}]
+
+Update clients basic information. Only this fields can be updated using this method: `email`, `name`,
+`lastname` and `phone`. Retrieves the updated client.
+
++ Request (application/json)
+
+    + Parameters
+        + id - Id of client
+
+    + Headers
+        
+            Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6Ly9kcDIuYXBwL2FwaS9sb2dpbiIsImlhdCI6MTUwOTM3ODI4NywiZXhwIjoxNTA5MzgxODg3LCJuYmYiOjE1MDkzNzgyODcsImp0aSI6ImVvZ2Z3dFVvZUpBZDBNT3kifQ.teKhDkjS2B_zQa80WcnD94AXHKwLQQWGU3ReVpwQcVU
+    
     + Body
 
             {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 0
-                    }, {
-                        "choice": "Python",
-                        "votes": 0
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 0
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 0
-                    }
-                ]
+                "email": "newemail@gmail.com"
             }
+
++ Response 200 (application/json)
+
+        {
+            "id":1,
+            "email":"newemail@gmail.com",
+            "password":"$2y$10$bfzPtKsNvWUltq5pae34Z.n9kFqFIVVk9Kt9fqL2OUCgfI7UgmPJi",
+            "organization_id":1,
+            "name":"Louie",
+            "lastname":"Buckridge",
+            "phone":"+1.358.826.2459",
+            "rating":5,
+            "deleted_at":null,
+            "created_at":"2017-10-30 15:16:36",
+            "updated_at":"2017-10-30 15:16:36"
+        }
+        
+## Travels [/travels]
+
+### Start Travel [POST]
+
+Create a travel. `vehicle_id` is required. The given vehicle should be in the same organization as the current
+user and there can't be several travels active at the same time.
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6Ly9kcDIuYXBwL2FwaS9sb2dpbiIsImlhdCI6MTUwOTM3ODI4NywiZXhwIjoxNTA5MzgxODg3LCJuYmYiOjE1MDkzNzgyODcsImp0aSI6ImVvZ2Z3dFVvZUpBZDBNT3kifQ.teKhDkjS2B_zQa80WcnD94AXHKwLQQWGU3ReVpwQcVU
+    
+    + Body
+
+            {
+                "vehicle_id": 2
+            }
+
++ Response 200 (application/json)
+
+        {
+            "started_at": {
+                "date": "2017-10-30 20:48:28.000000",
+                "timezone_type": 3,
+                "timezone": "UTC"
+            },
+            "client_id": 1,
+            "vehicle_id": 2,
+            "updated_at": "2017-10-30 20:48:28",
+            "created_at": "2017-10-30 20:48:28",
+            "id": 3
+        }
+
+### End travel [PUT /travels/{id}]
+
+End an active travel (not travels that have been already ended). 
+
++ Request (application/json)
+
+    + Parameters
+        + id - Id of travel
+
+    + Headers
+        
+            Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6Ly9kcDIuYXBwL2FwaS9sb2dpbiIsImlhdCI6MTUwOTM3ODI4NywiZXhwIjoxNTA5MzgxODg3LCJuYmYiOjE1MDkzNzgyODcsImp0aSI6ImVvZ2Z3dFVvZUpBZDBNT3kifQ.teKhDkjS2B_zQa80WcnD94AXHKwLQQWGU3ReVpwQcVU
+
++ Response 200 (application/json)
+
+        {
+            "id": 2,
+            "started_at": "2017-10-30 20:36:40",
+            "ended_at": {
+                "date": "2017-10-30 20:37:34.000000",
+                "timezone_type": 3,
+                "timezone": "UTC"
+            },
+            "client_id": 1,
+            "vehicle_id": 10,
+            "deleted_at": null,
+            "created_at": "2017-10-30 20:36:40",
+            "updated_at": "2017-10-30 20:37:34"
+        }
+        
+## Readings [/readings]
+
+### Store Reading [POST]
+
+Saves a given value as a reading of current client's active travel. Fails is there
+are not active travels. `sensor_id` and `value` are required.
+
++ Request (application/json)
+
+    + Headers
+
+            Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6Ly9kcDIuYXBwL2FwaS9sb2dpbiIsImlhdCI6MTUwOTQ4MTM3NywiZXhwIjoxNTA5NTI0NTc3LCJuYmYiOjE1MDk0ODEzNzcsImp0aSI6IkM3SnpSRGxicjhQeG9TaXAifQ.baL7F9XKDhrDtov24WJcPZfROCKJ_Ut48hapixdMwvM
+        
+    + Body
+    
+            {
+                "sensor_id": 1,
+                "value": 7.5
+            }
+
++ Response 200 (application/json)
+
+        {
+            "value": 7.5,
+            "travel_id": 3,
+            "sensor_id": 1,
+            "updated_at": "2017-10-31 20:27:30",
+            "created_at": "2017-10-31 20:27:30",
+            "id": 2,
+        }
+        
+### Show Reading [GET /readings/{id}]
+
++ Request (application/json)
+
+    + Headers
+    
+            Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6Ly9kcDIuYXBwL2FwaS9sb2dpbiIsImlhdCI6MTUwOTQ4MTM3NywiZXhwIjoxNTA5NTI0NTc3LCJuYmYiOjE1MDk0ODEzNzcsImp0aSI6IkM3SnpSRGxicjhQeG9TaXAifQ.baL7F9XKDhrDtov24WJcPZfROCKJ_Ut48hapixdMwvM
+
++ Response 200 (application/json)
+
+        {
+            "id": 1,
+            "travel_id": 3,
+            "sensor_id": 1,
+            "created_at": "2017-10-31 03:30:57",
+            "value": 7.5,
+            "updated_at": "2017-10-31 03:30:57",
+            "deleted_at": null
+        }

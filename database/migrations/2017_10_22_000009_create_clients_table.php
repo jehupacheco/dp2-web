@@ -26,10 +26,11 @@ class CreateClientsTable extends Migration
             $table->increments('id');
             $table->string('email');
             $table->string('password');
-            $table->unsignedInteger('organization_id')->nullable()->default(null);
+            $table->unsignedInteger('organization_id');
             $table->string('name')->nullable()->default(null);
             $table->string('lastname')->nullable()->default(null);
             $table->string('phone', 45)->nullable()->default(null);
+            $table->integer('rating')->default('5');
 
             $table->index(["organization_id"], 'fk_clients_organizations1_idx');
             $table->softDeletes();

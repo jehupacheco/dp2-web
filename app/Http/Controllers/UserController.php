@@ -26,6 +26,10 @@ class UserController extends Controller
         return view('Usuarios\perfil\ver-perfil');
     }
 
+    public function new_user()
+    {
+        return view('Seguridad.nuevo_usuario.index');
+    }
     /**
      * Store a newly created resource in storage.
      *

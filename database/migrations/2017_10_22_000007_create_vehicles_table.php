@@ -28,6 +28,7 @@ class CreateVehiclesTable extends Migration
             $table->unsignedInteger('organization_id');
             $table->string('plate', 45)->nullable()->default(null);
             $table->string('description', 225)->nullable()->default(null);
+            $table->float('price')->default('0');
 
             $table->index(["organization_id"], 'fk_vehicles_organizations1_idx');
             $table->softDeletes();

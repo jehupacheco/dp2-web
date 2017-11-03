@@ -4,17 +4,17 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateClientVehicleTable extends Migration
+class CreateRentingsTable extends Migration
 {
     /**
      * Schema table name to migrate
      * @var string
      */
-    public $set_schema_table = 'client_vehicle';
+    public $set_schema_table = 'rentings';
 
     /**
      * Run the migrations.
-     * @table client_vehicle
+     * @table rentings
      *
      * @return void
      */
@@ -23,10 +23,15 @@ class CreateClientVehicleTable extends Migration
         if (Schema::hasTable($this->set_schema_table)) return;
         Schema::create($this->set_schema_table, function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('client_id');
+            $table->increments('id');
+            $table->unsignedInteger('client_id');
             $table->unsignedInteger('vehicle_id');
             $table->timestamp('starts_at');
             $table->timestamp('finishes_at');
+            $table->timestamp('delivered_at')->nullable();
+            $table->timestamp('returned_at')->nullable();
+            $table->softDeletes();
+            $table->nullableTimestamps();
 
             $table->index(["client_id"], 'fk_clients_has_vehicles_clients1_idx');
 

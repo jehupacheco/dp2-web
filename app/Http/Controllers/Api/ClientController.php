@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Models\Client;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use JWTAuth;
 
 class ClientController extends Controller
 {
@@ -18,16 +19,6 @@ class ClientController extends Controller
         $clients = Client::all();
 
         return response()->json(compact('clients'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -49,18 +40,13 @@ class ClientController extends Controller
      */
     public function show(Client $client)
     {
-        //
-    }
+        $authClient = JWTAuth::parseToken()->authenticate();
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Client  $client
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Client $client)
-    {
-        //
+        if ($client->id != $authClient->id) {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
+
+        return response()->json($client);
     }
 
     /**
@@ -72,7 +58,16 @@ class ClientController extends Controller
      */
     public function update(Request $request, Client $client)
     {
-        //
+        $authClient = JWTAuth::parseToken()->authenticate();
+
+        if ($client->id != $authClient->id) {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
+
+        $client->update($request->all());
+        $client->save();
+
+        return response()->json($client);
     }
 
     /**
