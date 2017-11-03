@@ -101,8 +101,8 @@
                         </p>
                       </div>
                       <div class="col-xs-12 col-sm-6 emphasis">
-                        <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-user">
-                          </i> <i class="fa fa-comments-o"></i> </button>
+                        <a type="button" class="btn btn-success btn-xs" href="{{url('/asignarauto')}}"> <i class="fa fa-user">
+                          </i> <i class="fa fa-comments-o"></i> </a>
                         <a type="button" class="btn btn-primary btn-xs" href="{{url('/auto')}}">
                           <i class="fa fa-user"> </i> Ver Vehiculo
                         </a>
