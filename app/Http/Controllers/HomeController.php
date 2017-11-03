@@ -43,5 +43,8 @@ class HomeController extends Controller
     }
 
 
-
+    public function filtroReporte()
+    {
+        return view('Reportes.pantallaDeFiltros');
+    }
 }

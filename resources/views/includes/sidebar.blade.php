@@ -57,7 +57,7 @@
                     <li><a><i class="fa fa-bar-chart"></i> Reportes <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="{{url('/reportes/clienteXvehiculo')}}">Reporte de Recorridos</a></li>
-                            <li><a href="#">Reporte de Clientes</a></li>
+                            <li><a href="{{url('/reportes/filtrosReportes')}}">Reporte de Clientes</a></li>
                             <li><a href="#">Reporte de Historial de Alertas</a></li>
                         </ul>
                     </li>
