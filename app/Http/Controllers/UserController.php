@@ -23,7 +23,7 @@ class UserController extends Controller
      */
     public function show_profile()
     {
-        return view('Usuarios.perfil.ver-perfil');
+        return view('Usuarios\perfil\ver-perfil');
     }
 
     /**

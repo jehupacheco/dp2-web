@@ -27,10 +27,21 @@ class HomeController extends Controller
         return view('home');
     }
 
+    public function show_profile()
+    {
+        return view('Usuarios.perfil.ver-perfil');
+    }
+
         public function VehiculosPrincipal()
     {
         return view('Vehiculo.index');
     }
+    
+    public function clienteXvehiculo()
+    {
+        return view('Reportes.vehiculoXusuario');
+    }
+
 
 
 }

@@ -12,7 +12,7 @@
                 <img src="{{ Gravatar::src(Auth::user()->email) }}" alt="Avatar of {{ Auth::user()->name }}" class="img-circle profile_img">
             </div>
             <div class="profile_info">
-                <span>Bienvenido,</span>
+                <span>Adios mundo !!!,</span>
                 <h2>{{ Auth::user()->name }}</h2>
             </div>
         </div>
@@ -38,28 +38,37 @@
                         </a>
                     </li>
 
-                    <li><a><i class="fa fa-bus"></i> Vehiculos <span class="fa fa-chevron-down"></span></a>
+                    <li>
+                        <a>
+                            <i class="fa fa-bus"></i> Vehiculos 
+                            <span class="fa fa-chevron-down"></span>
+                        </a>
                         <ul class="nav child_menu">
-
                             <li><a href="{{url('/autos/tipo/3/lista')}}">Vehículo Vendedor</a></li>
                             <li><a href="{{url('/autos/tipo/1/lista')}}">Vehículo Jardinero</a></li>
                             <li><a href="{{url('/autos/tipo/2/lista')}}">Vehículo Cardiopatía</a></li>
                             <li><a href="{{url('/autos/tipo/4/lista')}}">Vehículo Eco-amigable</a></li>
                             <li><a href="{{url('/autos/tipo/5/lista')}}">Vehículo Persona Joven</a></li>
                             <li><a href="{{url('/autos/tipo/6/lista')}}">Vehículo transporte urbano</a></li>
-
                         </ul>
+                    </li>
+                    <li>                        
                     </li>
                     <li><a><i class="fa fa-bar-chart"></i> Reportes <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
+                            <li><a href="{{url('/reportes/clienteXvehiculo')}}">Reporte de Recorridos</a></li>
                             <li><a href="#">Reporte de Clientes</a></li>
-                            <li><a href="#">Reporte de Recorridos</a></li>
                             <li><a href="#">Reporte de Historial de Alertas</a></li>
                         </ul>
                     </li>
                     <li>
                         <a href="{{url('/estacionamiento')}}">
                             <i class="fa fa-car"></i>Estacionamiento
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{url('/autos/tipo/6/lista')}}">
+                            <i class="fa fa-car"></i>Vehículo transporte urbano
                         </a>
                     </li>
                 </ul>

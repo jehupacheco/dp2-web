@@ -35,3 +35,4 @@ Route::get('/autos/tipo/{tipo_id}/lista','AutoController@mostrar_lista_tipo');
 
 Route::get('/estacionamiento','ParkingController@index');
 
+Route::get('/reportes/clienteXvehiculo','HomeController@clienteXvehiculo');

@@ -12,7 +12,7 @@
     	<div>
     		  <div class="page-title">
               <div class="title_left">
-                <h3> <small>Vehículos para Pacientes de Cardiopatía</small></h3>
+                <h3> <small>Vehículos para transporte Urbano</small></h3>
               </div>
 
               <div class="title_right">
@@ -55,7 +55,7 @@
                 <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
                   <div class="well profile_view">
                     <div class="col-sm-12">
-                      <h4 class="brief"><i>Vehículo para paciente de Cardiopatía</i></h4>
+                      <h4 class="brief"><i>Vehículos para transporte Urbano</i></h4>
                       <div class="left col-xs-7">
                         <h2>Identificador: AC00001</h2>
                         <p><strong>Usuario: </strong> Juan Perez </p>
@@ -97,7 +97,49 @@
                 <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
                   <div class="well profile_view">
                     <div class="col-sm-12">
-                      <h4 class="brief"><i>Vehículo para paciente de Cardiopatía</i></h4>
+                      <h4 class="brief"><i>Vehículos para transporte Urbano</i></h4>
+                      <div class="left col-xs-7">
+                        <h2>Identificador: AC00001</h2>
+                        <p><strong>Usuario: </strong> Juan Perez </p>
+                        <ul class="list-unstyled">
+                          <li><i class="fa fa-building"></i> Correo: correo@pucp.pe  </li>
+                          <li><i class="fa fa-phone"></i> Phone #: 99999999</li>
+                        </ul>
+                      </div>
+                      <div class="right col-xs-5 text-center">
+                        <img src="{{asset('images/usuario1.png')}}" alt="" class="img-circle img-responsive">
+                      </div>
+                    </div>
+                    <div class="col-xs-12 bottom text-center">
+                      <div class="col-xs-12 col-sm-6 emphasis">
+                        <p class="ratings">
+                          <a>4.0</a>
+                          <a href="#"><span class="fa fa-star"></span></a>
+                          <a href="#"><span class="fa fa-star"></span></a>
+                          <a href="#"><span class="fa fa-star"></span></a>
+                          <a href="#"><span class="fa fa-star"></span></a>
+                          <a href="#"><span class="fa fa-star-o"></span></a>
+                        </p>
+                      </div>
+                      <div class="col-xs-12 col-sm-6 emphasis">
+                        <a type="button" class="btn btn-primary btn-xs" href="{{url('/usuario/1/perfil')}}">
+                          <i class="fa fa-user"> </i> Ver Usuario
+                        </a>
+                        <a type="button" class="btn btn-primary btn-xs" href="{{url('/usuario/1/perfil')}}">
+                          <i class="fa fa-user"> </i> Ver Vehículo
+                        </a>
+                        <a type="button" class="btn btn-primary btn-xs" href="{{url('/usuario/1/perfil')}}">
+                          <i class="fa fa-user"> </i> Ver Consumo
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
+                  <div class="well profile_view">
+                    <div class="col-sm-12">
+                      <h4 class="brief"><i>Vehículos para transporte Urbano</i></h4>
                       <div class="left col-xs-7">
                         <h2>Identificador: AC00001</h2>
                         <p><strong>Usuario: </strong> Juan Perez </p>
@@ -139,49 +181,7 @@
                 <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
                   <div class="well profile_view">
                     <div class="col-sm-12">
-                      <h4 class="brief"><i>Vehículo para paciente de Cardiopatía</i></h4>
-                      <div class="left col-xs-7">
-                        <h2>Identificador: AC00001</h2>
-                        <p><strong>Usuario: </strong> Juan Perez </p>
-                        <ul class="list-unstyled">
-                          <li><i class="fa fa-building"></i> Correo: correo@pucp.pe  </li>
-                          <li><i class="fa fa-phone"></i> Phone #: 99999999</li>
-                        </ul>
-                      </div>
-                      <div class="right col-xs-5 text-center">
-                        <img src="images/user.png" alt="" class="img-circle img-responsive">
-                      </div>
-                    </div>
-                    <div class="col-xs-12 bottom text-center">
-                      <div class="col-xs-12 col-sm-6 emphasis">
-                        <p class="ratings">
-                          <a>4.0</a>
-                          <a href="#"><span class="fa fa-star"></span></a>
-                          <a href="#"><span class="fa fa-star"></span></a>
-                          <a href="#"><span class="fa fa-star"></span></a>
-                          <a href="#"><span class="fa fa-star"></span></a>
-                          <a href="#"><span class="fa fa-star-o"></span></a>
-                        </p>
-                      </div>
-                      <div class="col-xs-12 col-sm-6 emphasis">
-                        <a type="button" class="btn btn-primary btn-xs" href="{{url('/usuario/1/perfil')}}">
-                          <i class="fa fa-user"> </i> Ver Usuario
-                        </a>
-                        <a type="button" class="btn btn-primary btn-xs" href="{{url('/usuario/1/perfil')}}">
-                          <i class="fa fa-user"> </i> Ver Vehículo
-                        </a>
-                        <a type="button" class="btn btn-primary btn-xs" href="{{url('/usuario/1/perfil')}}">
-                          <i class="fa fa-user"> </i> Ver Consumo
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
-                  <div class="well profile_view">
-                    <div class="col-sm-12">
-                      <h4 class="brief"><i>Vehículo para paciente de Cardiopatía</i></h4>
+                      <h4 class="brief"><i>Vehículos para transporte Urbano</i></h4>
                       <div class="left col-xs-7">
                         <h2>Identificador: AC00001</h2>
                         <p><strong>Usuario: </strong> Juan Perez </p>
@@ -223,7 +223,7 @@
                 <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
                   <div class="well profile_view">
                     <div class="col-sm-12">
-                      <h4 class="brief"><i>Vehículo para paciente de Cardiopatía</i></h4>
+                      <h4 class="brief"><i>Vehículos para transporte Urbano</i></h4>
                       <div class="left col-xs-7">
                         <h2>Identificador: AC00001</h2>
                         <p><strong>Usuario: </strong> Juan Perez </p>
@@ -260,7 +260,7 @@
                 <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
                   <div class="well profile_view">
                     <div class="col-sm-12">
-                      <h4 class="brief"><i>Vehículo para paciente de Cardiopatía</i></h4>
+                      <h4 class="brief"><i>Vehículos para transporte Urbano</i></h4>
                       <div class="left col-xs-7">
                         <h2>Identificador: AC00001</h2>
                         <p><strong>Usuario: </strong> Juan Perez </p>
@@ -297,7 +297,7 @@
                 <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
                   <div class="well profile_view">
                     <div class="col-sm-12">
-                      <h4 class="brief"><i>Vehículo para paciente de Cardiopatía</i></h4>
+                      <h4 class="brief"><i>Vehículos para transporte Urbano</i></h4>
                       <div class="left col-xs-7">
                         <h2>Identificador: AC00001</h2>
                         <p><strong>Usuario: </strong> Juan Perez </p>
@@ -334,7 +334,7 @@
                 <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
                   <div class="well profile_view">
                     <div class="col-sm-12">
-                      <h4 class="brief"><i>Vehículo para paciente de Cardiopatía</i></h4>
+                      <h4 class="brief"><i>Vehículos para transporte Urbano</i></h4>
                       <div class="left col-xs-7">
                         <h2>Identificador: AC00001</h2>
                         <p><strong>Usuario: </strong> Juan Perez </p>
@@ -371,7 +371,7 @@
                 <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
                   <div class="well profile_view">
                     <div class="col-sm-12">
-                      <h4 class="brief"><i>Vehículo para paciente de Cardiopatía</i></h4>
+                      <h4 class="brief"><i>Vehículos para transporte Urbano</i></h4>
                       <div class="left col-xs-7">
                         <h2>Identificador: AC00001</h2>
                         <p><strong>Usuario: </strong> Juan Perez </p>

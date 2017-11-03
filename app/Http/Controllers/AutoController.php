@@ -38,6 +38,11 @@ class AutoController extends Controller
         }
     }
 
+    public function show_profile()
+    {
+        return view('Autos.ver-perfil');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
