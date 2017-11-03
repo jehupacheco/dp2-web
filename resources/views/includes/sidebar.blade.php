@@ -75,11 +75,11 @@
                             <i class="fa fa-car"></i>Estacionamiento
                         </a>
                     </li>
-                    <li>
+                    {{--  <li>
                         <a href="{{url('/autos/tipo/6/lista')}}">
                             <i class="fa fa-car"></i>Vehículo transporte urbano
                         </a>
-                    </li>
+                    </li>  --}}
                 </ul>
             </div>
             <!-- <div class="menu_section">
