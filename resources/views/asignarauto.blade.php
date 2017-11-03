@@ -51,7 +51,7 @@
               <br />
               <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
                 <div class="form-group">
-                  <label for="organization-id" class="control-label col-md-3 col-sm-3 col-xs-12">Cliente</label>
+                  <label for="organization-id" class="control-label col-md-3 col-sm-3 col-xs-12">Cliente<span class="required">*</span></label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
                     <select  id="org_id" name="org_id" class="form-control">
                       <option>Elige un cliente</option>
