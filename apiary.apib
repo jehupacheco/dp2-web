@@ -122,7 +122,7 @@ Update clients basic information. Only this fields can be updated using this met
 
 ### Start Travel [POST]
 
-Create a travel. `vehicle_id` is required. The given vehicle should be in the same organization as the current
+Create a travel. `vehicle_mac` is required. The given vehicle should be in the same organization as the current
 user and there can't be several travels active at the same time.
 
 + Request (application/json)
@@ -134,7 +134,7 @@ user and there can't be several travels active at the same time.
     + Body
 
             {
-                "vehicle_id": 2
+                "vehicle_mac": 17:19:43:F0:20:B8""
             }
 
 + Response 200 (application/json)
