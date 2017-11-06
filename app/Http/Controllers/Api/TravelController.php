@@ -33,10 +33,21 @@ class TravelController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'vehicle_id' => 'required|exists:vehicles,id',
+            'vehicle_mac' => 'required|exists:vehicles,mac',
         ]);
 
-        $vehicle = Vehicle::find($request['vehicle_id']);
+        $vehicle = Vehicle::where('mac', $request['vehicle_mac'])->get()->first();
+        $now = Carbon::now();
+        $currentRentings = $vehicle->rentings()->where('starts_at', '<=', $now)->where('finishes_at', '>=', $now)->get();
+
+        if ($currentRentings->count() == 0 || $currentRentings->first()->vehicle()->get()->first()->id != $vehicle->id) {
+            return response()->json(['errors' => [
+                'vehicle' => [
+                    'User has no access to this vehicle'
+                ]
+            ]], 400);
+        }
+
         $client = JWTAuth::parseToken()->authenticate();
         $pastTravels = $client->activeTravels()->get();
 
@@ -57,9 +68,9 @@ class TravelController extends Controller
         }
 
         $travel = new Travel;
-        $travel['started_at'] = Carbon::now();
+        $travel['started_at'] = $now;
         $travel['client_id'] = $client->id;
-        $travel['vehicle_id'] = $request['vehicle_id'];
+        $travel['vehicle_id'] = $vehicle->id;
 
         $travel->save();
 
