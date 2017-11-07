@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
+use Tymon\JWTAuth\Token;
 
 class AuthenticateController extends Controller
 {
@@ -25,7 +26,9 @@ class AuthenticateController extends Controller
             return response()->json(['error' => 'could_not_create_token'], 500);
         }
 
+        $payload = JWTAuth::decode(new Token($token));
+        $id = $payload['sub'];
         // all good so return the token
-        return response()->json(compact('token'));
+        return response()->json(compact('token', 'id'));
     }
 }
