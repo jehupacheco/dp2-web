@@ -24,9 +24,10 @@
                   <script>$("#modalError").modal("show");</script>                        
               @endif
             </div>
+            
               <div class="page-title">
                   <div class="title_left">
-                    <h3> <small>Nueco alquiler de Vehículo</small></h3>
+                    <h3> <small>Nuevo alquiler de Vehículo</small></h3>
                   </div>
 
                   

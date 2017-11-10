@@ -33,7 +33,14 @@
                 </div>
 
           </div>
-
+          <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12 text-right">
+                  <ul class="pagination pagination-split">
+                    <!-- <li><a href="#">Todos los Clientes</a></li> -->
+                    <li><a href="{{url('/alquileres/nuevo')}}">Nuevo Alquiler <i class="fa fa-plus" aria-hidden="true"></i></a></li>
+                  </ul>
+                </div>
+            </div>
           <div class="clearfix"></div>
           <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
