@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Client;
+use App\Models\Vehicle;
 
 class RentingController extends Controller
 {
@@ -23,7 +25,9 @@ class RentingController extends Controller
      */
     public function create()
     {
-        return view('Alquileres.nuevo_alquiler');
+        $clientes = Client::all();
+        $vehicles = Vehicle::all();
+        return view('Alquileres.nuevo_alquiler',compact('clientes','vehicles'));
     }
 
     /**

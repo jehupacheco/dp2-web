@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Organization;
 
 class Vehicle extends Model
 {
@@ -14,5 +15,12 @@ class Vehicle extends Model
     public function rentings()
     {
         return $this->hasMany('App\Models\Renting');
+    }
+
+    public function getOrgNameById($org_id)
+    {
+        $org = Organization::find($org_id);
+
+        return $org->name; 
     }
 }
