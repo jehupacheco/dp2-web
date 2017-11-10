@@ -129,7 +129,7 @@
                     <div class="form-group">
                       <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-5">
                         <!-- <button type="submit" class="btn btn-success">Buscar</button> -->
-                        <a href="{{url('/ubicaciones/buscar/usuarios')}}" class="btn btn-success">Buscar</a>
+                        <a href="{{url('/')}}" class="btn btn-success">Buscar</a>
                         <a href="{{url('/')}}" class="btn btn-success">Regresar</a>
                       </div>
                     </div>

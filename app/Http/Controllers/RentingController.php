@@ -41,23 +41,34 @@ class RentingController extends Controller
      */
     public function store(Request $request)
     {
+
+
         $input = $request->all();
-        DB::beginTransaction();
-        try {
-            $renting = new Renting();
-            $renting->client_id = $input['client_id'];
-            $renting->vehicle_id = $input['vehicle_id'];
+        if($input['client_id']!="" && $input['vehicle_id']!=""){
+            DB::beginTransaction();
+            try {
+                $renting = new Renting();
+                $renting->client_id = $input['client_id'];
+                $renting->vehicle_id = $input['vehicle_id'];
 
-            $renting->starts_at = $input['start_date'];
-            $renting->finishes_at = $input['end_date'];
+                $renting->starts_at = $input['start_date'];
+                $renting->finishes_at = $input['end_date'];
 
-            $renting->save();
-        } catch (Exception $e) {
-            DB::rollback();
-            return redirect()->action('RentingController@index')->with('stored', 'No se registró el Alquiler.'); 
+                $renting->save();
+
+                $vehicle = Vehicle::find($input['vehicle_id']);
+                $vehicle->mac = strtoupper($input['mac']);
+                $vehicle->save();
+            } catch (Exception $e) {
+                DB::rollback();
+                return redirect()->action('RentingController@index')->with('stored', 'No se registró el Alquiler.'); 
+            }
+            DB::commit();
+            return redirect()->action('RentingController@index')->with('stored', 'Se registró el Alquiler correctamente.'); 
         }
-        DB::commit();
-        return redirect()->action('ClientController@index')->with('stored', 'Se registró el Alquiler correctamente.'); 
+        else{
+            return redirect()->action('RentingController@create')->with('delete', 'Seleccione el cliente y el vehículo asociado'); 
+        }
     }
 
     /**
