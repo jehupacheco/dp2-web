@@ -37,7 +37,19 @@ class ObjectivesController extends Controller
             'sensor_id' => 'required|exists:sensors,id',
         ]);
 
-        dd($request);
+        $client = JWTAuth::parseToken()->authenticate();
+        $objective = new Objective();
+
+        $objective['starts_at'] = $request['start_date'];
+        $objective['ends_at'] = $request['end_date'];
+        $objective['goal'] = $request['goal'];
+        $objective['value'] = 0;
+        $objective['sensor_id'] = $request['sensor_id'];
+        $objective['client_id'] = $client->id;
+
+        $objective->save();
+
+        return response()->json($objective);
     }
 
     /**
