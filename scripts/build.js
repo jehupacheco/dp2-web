@@ -109,6 +109,10 @@ var scripts = [
   '/vendors/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js',
   // End - Added
   '/build/js/custom.min.js',
+  //bootstrap-daterangepicker
+  //'/vendors/moment/min/moment.min.js'
+  //'/production/js/datepicker/daterangepicker.js'
+    
 ];
 
 var scriptsout = public + '/js/app.min.js';
