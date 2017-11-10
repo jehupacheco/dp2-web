@@ -230,7 +230,7 @@
   $(document).ready(function() {
       $('#dtTableRenting').DataTable({
           "language": {
-              "url": "{{asset('admin/json/spanishDataTable.json')}}"
+              "url": "{{asset('json/spanishDataTable.json')}}"
           }
       });
   } );

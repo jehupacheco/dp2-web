@@ -330,14 +330,14 @@ $(document).ready(function(){});
 $(document).ready(function() {
     $('#dtTableClient').DataTable({
         "language": {
-            "url": "{{asset('admin/json/spanishDataTable.json')}}"
+            "url": "{{asset('json/spanishDataTable.json')}}"
         }
     });
 } );
 $(document).ready(function() {
     $('#dtTableVehicle').DataTable({
         "language": {
-            "url": "{{asset('admin/json/spanishDataTable.json')}}"
+            "url": "{{asset('json/spanishDataTable.json')}}"
         }
     });
 } );
