@@ -16,7 +16,7 @@
               </div>
               <div class="clearfix"></div>
     		  <div class="row">
-				<div class="col-md-4 col-sm-4 col-xs-12">
+				<div class="col-md-6 col-sm-6 col-xs-12">
 			              <div class="x_panel">
 			                <div class="x_title">
 			                  <h2>Información de sensores <small>Vehículo</small></h2>
@@ -37,68 +37,23 @@
 			                  </ul>
 			                  <div class="clearfix"></div>
 			                </div>
-			                <div class="x_content">
-			                  <div class="dashboard-widget-content">
-
-			                    <ul class="list-unstyled timeline widget">
-			                      <li>
-			                        <div class="block">
-			                          <div class="block_content">
-			                            <h2 class="title">
-			                                              <a>¡Advertencia! El Auto se quedó sin batería</a>
-			                                          </h2>
-			                            <div class="byline">
-			                              <span>hace 13 horas</span> por <a>Cesar Aguilera</a>
-			                            </div>
-			                            <p class="excerpt">El auto se quedó sin batería y debe ser cargado durante 6 horas continuas sin interrupciones... <a>Leer&nbsp;Más</a>
-			                            </p>
-			                          </div>
-			                        </div>
-			                      </li>
-			                      <li>
-			                        <div class="block">
-			                          <div class="block_content">
-			                            <h2 class="title">
-			                                              <a>¡Cuidado! El auto tuvo un choque frontal</a>
-			                                          </h2>
-			                            <div class="byline">
-			                              <span>Hace 1 día</span> por <a>Juan Perez</a>
-			                            </div>
-			                            <p class="excerpt">El auto tuvo un choque frontal con algún objeto y debe ser llevado a revisión por precaución...<a>Leer&nbsp;Más</a>
-			                            </p>
-			                          </div>
-			                        </div>
-			                      </li>
-			                      <li>
-			                        <div class="block">
-			                          <div class="block_content">
-			                            <h2 class="title">
-			                                              <a>¡Precaución! Peso excedido de la maletera del auto</a>
-			                                          </h2>
-			                            <div class="byline">
-			                              <span>Hace 2 días</span> por <a>Jardinero Felíz</a>
-			                            </div>
-			                            <p class="excerpt">El auto lleva un peso que excedió los límites que puede cargar la maletera. El auto podría tener complicaciones futuras con su funcionamiento por este motivo… <a>Leer&nbsp;Más</a>
-			                            </p>
-			                          </div>
-			                        </div>
-			                      </li>
-			                      <li>
-			                        <div class="block">
-			                          <div class="block_content">
-			                            <h2 class="title">
-			                                              <a>¡Urgente! El auto fue reportado como robado</a>
-			                                          </h2>
-			                            <div class="byline">
-			                              <span>Hace 1 semana</span> por <a>Roberto Hurtado</a>
-			                            </div>
-			                            <p class="excerpt">El auto fue reportado como robado en la dirección Av. Universitaria 1802 San Miguel. Rastrear la ubicación y dar aviso a las autoridades. El auto dejará de funcionar automáticamente… <a>Leer&nbsp;Más</a>
-			                            </p>
-			                          </div>
-			                        </div>
-			                      </li>
-			                    </ul>
-			                  </div>
+			                <div class="text-center">
+			                	<br>
+			                	<i class="fa fa-truck"></i> 250 gramos de 500 permitidos
+			                	<br><br>
+			                	<i class="fa fa-heart"></i> Frecuencia cardiaca
+			                	<br><br>
+			                	<i class="fa fa-road"></i> Cercanía
+			                	<br><br>
+			                	<i class="fa fa-cloud"></i> 25°C de temperatura
+			                	<br><br>
+			                	<i class="fa fa-car"></i> Velocidad de 35 kmh
+			                	<br><br>
+			                	<i class="fa fa-flash"></i> 30% de batería
+			                	<br><br>
+			                	<i class="fa fa-cloud"></i> Humedad de 84%
+			                	<br><br>
+			                	<i class="fa fa-road"></i> Ubicación: -12,0689 Latitud y -77,0802 longitud
 			                </div>
 			              </div>
 			    </div>
