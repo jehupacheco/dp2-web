@@ -39,4 +39,9 @@ class Renting extends Model
     	$client = CLient::find($client_id);
     	return $client->name.' '.$client->lastname;
     }
+
+    public function getCostUnitById($vehicle_id)
+    {
+        
+    }
 }

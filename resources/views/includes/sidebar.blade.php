@@ -14,6 +14,8 @@
             <div class="profile_info">
                 <span>Adios mundo !!!,</span>
                 <h2>{{ Auth::user()->name }}</h2>
+                <?php $date=date('d-m-Y');; ?>
+                <span>{{$date}}</span>
             </div>
         </div>
         <!-- /menu profile quick info -->
