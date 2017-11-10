@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Organization;
 use App\Models\Vehicle;
 use DB;
+use App\Http\Requests\VehicleRequest;
 
 class AutoController extends Controller
 {
@@ -52,7 +53,7 @@ class AutoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,$tipo_id)
+    public function store(VehicleRequest $request,$tipo_id)
     {
         $org = Organization::find($tipo_id);
         $input = $request->all();

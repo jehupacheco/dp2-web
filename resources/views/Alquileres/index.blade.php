@@ -96,12 +96,11 @@
                       <div class="col-md-6 col-sm-6 col-xs-12">
                         <select class="form-control">
                           <option>Elija una opción</option>
-                          <option>Jardinería</option>
-                          <option>Uso diario</option>
-                          <option>Cardiopatía</option>
-                          <option>Ventas</option>
-                          <option>Paramédico</option>
+                          @foreach($all_organizations as $org)
+                            <option value="{{$org->id}}">{{$org->name}}</option>   
+                          @endforeach
                         </select>
+
                       </div>
                     </div>
                     <div class="form-group">
@@ -111,80 +110,18 @@
                       </div>
                       
                     </div>
-                    <div class="form-group">
-                    <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Dni</label>
-                      <div class="col-md-3 col-sm-3 col-xs-12">
-                        <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="middle-name">
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Correo Electronico</label>
-                      <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="middle-name">
-                      </div>
-                    </div>
-
+                
 
                     <div class="form-group">
-                      <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Fecha Inicio:</label>
-                      <div class='col-sm-3'>
-                        <div class="form-group">
-                          <div class='input-group date' id='datetimepicker1'>
-                          <input type='text' class="form-control" />
-                          <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
-                          </span>
-                          </div>
-                        </div>
-                      </div>
-
-                    </div>
-
-                    <div class="form-group">
-                      <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Hora Inicio:</label>
-                      <div class="calendar-time"><div><select class="hourselect "><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12" selected="selected">12</option></select> : <select class="minuteselect"><option value="0" selected="selected">00</option><option value="30">30</option></select> <select class="ampmselect"><option value="AM" selected="selected">AM</option><option value="PM">PM</option></select></div>
-                      
-                      </div>
-                    </div>
-
-
-                    <div class="form-group">
-                      <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Fecha Final:</label>
-                      <div class='col-sm-3'>
-                        <div class="form-group">
-                          <div class='input-group date' id='datetimepicker1'>
-                          <input type='text' class="form-control" />
-                          <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
-                          </span>
-                          </div>
-                        </div>
-                      </div>
-
-                    </div>
-
-                    <div class="form-group">
-                      <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Hora Final:</label>
-                      <div class="calendar-time"><div><select class="hourselect"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12" selected="selected">12</option></select> : <select class="minuteselect"><option value="0" selected="selected">00</option><option value="30">30</option></select> <select class="ampmselect"><option value="AM" selected="selected">AM</option><option value="PM">PM</option></select></div>
-                      </div>
-                    </div>
-
-
-
-                    <div class="form-group">
-                      <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Fecha Final:</label>
-                      
-                    </div>                    
-
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-6">Costo Por Hora </label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-6">Costo Total Mínimo</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" class="form-control" disabled="disabled" placeholder="Disabled Input">
+                          <input type="number" class="form-control" placeholder="S/.">
                         </div>
                     </div>
-
                     <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-6">Costo Total </label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-6">Costo Total Máximo</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" class="form-control" disabled="disabled" placeholder="Disabled Input">
+                          <input type="number" class="form-control" placeholder="S/.">
                         </div>
                     </div>
 
