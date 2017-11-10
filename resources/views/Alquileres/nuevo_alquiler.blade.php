@@ -21,7 +21,8 @@
               @endif
 
               @if (session('delete'))
-                  <script>$("#modalError").modal("show");</script>                        
+                  <script>$("#modalError").modal("show");</script>   
+                  <div class="alert alert-danger fade in"> {{session('delete')}}  </div>               
               @endif
             </div>
               <div class="page-title">
@@ -157,7 +158,7 @@
                     <div class="form-group">
                       <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Placa de auto <span class="required">*</span></label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input id="plate" class="form-control col-md-7 col-xs-12" type="text" name="middle-name" readonly="true">
+                        <input id="plate" class="form-control col-md-7 col-xs-12" required="required" type="text" name="middle-name" readonly="true">
                         <input type="text" id="vehicle_id" name="vehicle_id" style="display: none;">
                       </div>
                       <div class="col-md-3 col-sm-3 col-xs-12">
@@ -224,7 +225,7 @@
                                           <td>{{$vehicle->getOrgNameById($vehicle->organization_id)}}</td>
                                           <td text-center>
                                                 <input type="radio" name="optradioVehicle" alt="{{$vehicle->plate}}"  value="{{$vehicle->id}}">
-                                                <input id="precioVehiculo" type="text" alt="{{$vehicle->price}}" style="display: none;">
+                                                <input id="precioVehiculo{{$vehicle->id}}" type="text" alt="{{$vehicle->price}}" style="display: none;">
                                           </td>
                                           
                                         </tr>
@@ -261,8 +262,8 @@
                     </div> -->
                     <div class="form-group">
                       <label for="reportrange" class="control-label col-md-3 col-sm-3 col-xs-12">Periodo de alquiler</label>
-                      <div class="col-md-3 col-sm-3 col-xs-12">
-                        <div id="reportrange" name="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div id="reportrange" name="reportrange"  style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
                           <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
                           <span>December 30, 2017 - January 28, 2017</span> <b class="caret"></b>
                         </div>
@@ -281,8 +282,17 @@
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-6">Costo Total </label>
                         <div class="col-md-3 col-sm-3 col-xs-12">
-                          <input type="text" class="form-control" readonly="true" placeholder="S/.">
+                          <input id="price_total" type="text" class="form-control" readonly="true" placeholder="S/.">
                         </div>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="mac"> Mac Address <span class="required">*</span>
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" id="mac" name="mac" required="required" class="form-control col-md-7 col-xs-12" data-inputmask="'mask' : '**:**:**:**:**:**'">
+                      </div>
+
                     </div>
 
                     <div class="ln_solid"></div>
@@ -311,6 +321,12 @@
     
 @endsection
 @push('scripts')
+
+<script>
+  $(document).ready(function() {
+    $(":input").inputmask();
+  });
+</script>
 <script>
   function getCliente(){                
       document.getElementById('client_id').value =  $('#dtTableClient input:radio:checked').val();
@@ -320,7 +336,14 @@
   function getVehiculo(){                
       document.getElementById('vehicle_id').value =  $('#dtTableVehicle input:radio:checked').val();
       document.getElementById('plate').value =  $('#dtTableVehicle input:radio:checked').attr("alt");
-      document.getElementById('price_hour').value =  $('#precioVehiculo').attr("alt") + ' Soles';
+      document.getElementById('price_hour').value =  $('#precioVehiculo'+document.getElementById('vehicle_id').value).attr("alt") + ' Soles';
+      var precio = parseFloat($('#price_hour').val());
+
+      var start = moment(document.getElementById('start_date').value);
+      var end  =  moment(document.getElementById('end_date').value);
+      var difference = end.diff(start,'days');
+      var total = precio * difference;
+      document.getElementById('price_total').value = total.toFixed(2) + ' Soles';
     }
 </script>
 
@@ -330,14 +353,14 @@ $(document).ready(function(){});
 $(document).ready(function() {
     $('#dtTableClient').DataTable({
         "language": {
-            "url": "{{asset('admin/json/spanishDataTable.json')}}"
+            "url": "{{asset('json/spanishDataTable.json')}}"
         }
     });
 } );
 $(document).ready(function() {
     $('#dtTableVehicle').DataTable({
         "language": {
-            "url": "{{asset('admin/json/spanishDataTable.json')}}"
+            "url": "{{asset('json/spanishDataTable.json')}}"
         }
     });
 } );
@@ -351,59 +374,58 @@ $(document).ready(function() {
 
         var cb = function(start, end, label) {
           console.log(start.toISOString(), end.toISOString(), label);
-          $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+          $('#reportrange span').html(start.format('MMMM D HH:mm:ss, YYYY') + ' - ' + end.format('MMMM D HH:mm:ss, YYYY'));
         };
 
         var optionSet1 = {
-          startDate: moment().subtract(0, 'days'),
-          endDate: moment(),
-          minDate: '11/11/2017',
+          
+          startDate: moment(),
+          endDate: moment().add(24, 'hours'),
+          minDate: moment(),
           maxDate: '12/31/2018',
           dateLimit: {
             days: 60
           },
           showDropdowns: true,
           showWeekNumbers: true,
-          timePicker: false,
-          timePickerIncrement: 1,
+          timePicker: true,
+          timePickerIncrement: 30,
           timePicker12Hour: true,
           ranges: {
-            'Hoy': [moment(), moment()],
-            'Ayer': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-            'This Month': [moment().startOf('month'), moment().endOf('month')],
-            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+            'Un día': [moment(), moment().add(1, 'days')],
+            'Una semana': [moment(), moment().add(6, 'days')],
+            'Un mes': [moment(), moment().add(1, 'months')],
+            'Un Año': [moment(), moment().add(12, 'months')],
           },
-          opens: 'left',
+          opens: 'right',
           buttonClasses: ['btn btn-default'],
           applyClass: 'btn-small btn-primary',
           cancelClass: 'btn-small',
-          format: 'MM/DD/YYYY',
+          format: 'DD/MM/YYYY',
           separator: ' a ',
           locale: {
-            applyLabel: 'Fijar periodo',
-            cancelLabel: 'Resetear',
+            applyLabel: 'Aplicar',
+            cancelLabel: 'Cancelar',
             fromLabel: 'De',
             toLabel: 'hasta',
-            customRangeLabel: 'Custom',
+            customRangeLabel: 'Seleccionar',
             daysOfWeek: ['Do', 'Lu', 'Ma', 'Mie', 'Jue', 'Vie', 'Sab'],
             monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Setiembre', 'Octubre', 'Noviembre', 'Diciembre'],
             firstDay: 1
           }
         };
-        $('#reportrange span').html(moment().subtract(0, 'days').format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
+        $('#reportrange span').html(moment().format('MMMM D HH:mm:ss, YYYY') + ' - ' + moment().add(24, 'hours').format('MMMM D HH:mm:ss, YYYY'));
         $('#reportrange').daterangepicker(optionSet1, cb);
         $('#reportrange').on('show.daterangepicker', function() {
-          console.log("show event fired");
+          // console.log("show event fired");
         });
         $('#reportrange').on('hide.daterangepicker', function() {
           console.log("hide event fired");
         });
         $('#reportrange').on('apply.daterangepicker', function(ev, picker) {
-          console.log("apply event fired, start/end dates are " + picker.startDate.format('MMMM D, YYYY') + " to " + picker.endDate.format('MMMM D, YYYY'));
-          document.getElementById('start_date').value = picker.startDate.format('YYYY/MM/DD');
-          document.getElementById('end_date').value = picker.startDate.format('YYYY/MM/DD');
+          console.log("apply event fired, start/end dates are " + picker.startDate.format('MMMM D HH:mm:ss, YYYY') + " to " + picker.endDate.format('MMMM D HH:mm:ss, YYYY'));
+          document.getElementById('start_date').value = picker.startDate.format('YYYY/MM/DD HH:mm:ss');
+          document.getElementById('end_date').value = picker.endDate.format('YYYY/MM/DD HH:mm:ss');
 
         });
         $('#reportrange').on('cancel.daterangepicker', function(ev, picker) {
