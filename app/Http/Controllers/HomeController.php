@@ -31,7 +31,7 @@ class HomeController extends Controller
     public function auto()
     {
         // return view('home');
-        return view('home');
+        return view('Vehiculos.ver-vehiculo');
     }
 
     public function show_profile()

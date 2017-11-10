@@ -12,7 +12,7 @@
 		<div>
 			<div class="page-title">
               <div class="title_left">
-                <h3>Página de Inicio</h3>
+                <h3>Información de vehículo</h3>
               </div>
 
               <div class="title_right">
@@ -58,13 +58,13 @@
 			</div>
 			<div class="row">
 				<div class="col-md-4 col-sm-4 col-xs-4 text-center">
-					<label for="">Ver en tiempo real donde se encuentran ubicados los autos asginados al usuario</label>
+					<label for="">Ver en tiempo real donde se encuentra ubicado el vehículo seleccionado</label>
 				</div>
 				<div class="col-md-4 col-sm-4 col-xs-4 text-center">
-					<label for="">Ver la lectura de los sensores generadas por los autos que se encuentran asignados al usuario </label>
+					<label for="">Ver la última lectura de los sensores del vehículo</label>
 				</div>
 				<div class="col-md-4 col-sm-4 col-xs-4 text-center">
-					<label for="">Ver las alertas más importantes generadas por los autos que se encuentran asignados al usuario</label>
+					<label for="">Ver las alertas generadas para el vehículo</label>
 				</div>
 			</div>
 			

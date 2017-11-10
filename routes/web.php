@@ -14,7 +14,7 @@
 Auth::routes();
 Route::get('/logout', 'Auth\LoginController@logout');
 Route::get('/', 'HomeController@index');
-Route::get('/auto','HomeController@auto');
+
 Route::get('/asignarauto','HomeController@asignarauto');
 
 Route::get('/clientes','ClientController@index');
@@ -45,7 +45,7 @@ Route::get('/ubicaciones/usuario/1/mapa','LocationController@mostrar_mapa');
 
 
 
-
+Route::get('/vehiculos/ver','AutoController@ver');
 Route::get('/vehiculos/{tipo_id}/lista','AutoController@mostrar_lista_tipo');
 Route::get('/vehiculos/{tipo_id}/nuevo','AutoController@create');
 Route::post('/vehiculos/{tipo_id}/nuevo','AutoController@store');

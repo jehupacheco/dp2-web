@@ -31,6 +31,12 @@ class AutoController extends Controller
         }
     }
 
+    public function ver()
+    {
+        // return view('home');
+        return view('Vehiculos.ver-vehiculo');
+    }
+    
     public function show_profile()
     {
         return view('Autos.ver-perfil');

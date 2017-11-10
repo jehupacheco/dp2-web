@@ -14,11 +14,12 @@
               <div class="title_left">
                 <h3>Sensores</h3>
               </div>
-    	
+              <div class="clearfix"></div>
+    		  <div class="row">
 				<div class="col-md-4 col-sm-4 col-xs-12">
 			              <div class="x_panel">
 			                <div class="x_title">
-			                  <h2>Recent Activities <small>Sessions</small></h2>
+			                  <h2>Información de sensores <small>Vehículo</small></h2>
 			                  <ul class="nav navbar-right panel_toolbox">
 			                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 			                    </li>
@@ -44,12 +45,12 @@
 			                        <div class="block">
 			                          <div class="block_content">
 			                            <h2 class="title">
-			                                              <a>Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?</a>
+			                                              <a>¡Advertencia! El Auto se quedó sin batería</a>
 			                                          </h2>
 			                            <div class="byline">
-			                              <span>13 hours ago</span> by <a>Jane Smith</a>
+			                              <span>hace 13 horas</span> por <a>Cesar Aguilera</a>
 			                            </div>
-			                            <p class="excerpt">Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that could fund your project, and if the buyers liked your flick, they’d pay to Fast-forward and… <a>Read&nbsp;More</a>
+			                            <p class="excerpt">El auto se quedó sin batería y debe ser cargado durante 6 horas continuas sin interrupciones... <a>Leer&nbsp;Más</a>
 			                            </p>
 			                          </div>
 			                        </div>
@@ -58,12 +59,12 @@
 			                        <div class="block">
 			                          <div class="block_content">
 			                            <h2 class="title">
-			                                              <a>Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?</a>
+			                                              <a>¡Cuidado! El auto tuvo un choque frontal</a>
 			                                          </h2>
 			                            <div class="byline">
-			                              <span>13 hours ago</span> by <a>Jane Smith</a>
+			                              <span>Hace 1 día</span> por <a>Juan Perez</a>
 			                            </div>
-			                            <p class="excerpt">Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that could fund your project, and if the buyers liked your flick, they’d pay to Fast-forward and… <a>Read&nbsp;More</a>
+			                            <p class="excerpt">El auto tuvo un choque frontal con algún objeto y debe ser llevado a revisión por precaución...<a>Leer&nbsp;Más</a>
 			                            </p>
 			                          </div>
 			                        </div>
@@ -72,12 +73,12 @@
 			                        <div class="block">
 			                          <div class="block_content">
 			                            <h2 class="title">
-			                                              <a>Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?</a>
+			                                              <a>¡Precaución! Peso excedido de la maletera del auto</a>
 			                                          </h2>
 			                            <div class="byline">
-			                              <span>13 hours ago</span> by <a>Jane Smith</a>
+			                              <span>Hace 2 días</span> por <a>Jardinero Felíz</a>
 			                            </div>
-			                            <p class="excerpt">Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that could fund your project, and if the buyers liked your flick, they’d pay to Fast-forward and… <a>Read&nbsp;More</a>
+			                            <p class="excerpt">El auto lleva un peso que excedió los límites que puede cargar la maletera. El auto podría tener complicaciones futuras con su funcionamiento por este motivo… <a>Leer&nbsp;Más</a>
 			                            </p>
 			                          </div>
 			                        </div>
@@ -86,12 +87,12 @@
 			                        <div class="block">
 			                          <div class="block_content">
 			                            <h2 class="title">
-			                                              <a>Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?</a>
+			                                              <a>¡Urgente! El auto fue reportado como robado</a>
 			                                          </h2>
 			                            <div class="byline">
-			                              <span>13 hours ago</span> by <a>Jane Smith</a>
+			                              <span>Hace 1 semana</span> por <a>Roberto Hurtado</a>
 			                            </div>
-			                            <p class="excerpt">Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that could fund your project, and if the buyers liked your flick, they’d pay to Fast-forward and… <a>Read&nbsp;More</a>
+			                            <p class="excerpt">El auto fue reportado como robado en la dirección Av. Universitaria 1802 San Miguel. Rastrear la ubicación y dar aviso a las autoridades. El auto dejará de funcionar automáticamente… <a>Leer&nbsp;Más</a>
 			                            </p>
 			                          </div>
 			                        </div>
@@ -101,8 +102,15 @@
 			                </div>
 			              </div>
 			    </div>
+				<div class="col-md-8 col-sm-8 col-xs-12">
+					<div class="row">
+						<div class="col-md-12 col-sm-12 col-xs-12">
+              </div>
+					</div>
+				</div>
+			  </div>
 			</div>
 	    </div>
 	</div>
     <!-- /page content -->
-@endsection1
+@endsection
