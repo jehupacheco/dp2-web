@@ -53,7 +53,7 @@
                         <!-- <a href="{{url('/alquiler/index')}}"> -->
                         <a href="{{url('/alquileres/index')}}">
                             <i class="fa fa-money" aria-hidden="true"></i>
-                            Alquiler
+                            Alquileres
                         </a>
                     </li>
                     <li><a><i class="fa fa-bar-chart"></i> Reportes <span class="fa fa-chevron-down"></span></a>
