@@ -30,7 +30,7 @@ Route::get('/usuarios/nuevo','UserController@create');
 Route::post('/usuarios/nuevo','UserController@store');
 
 Route::get('/alquileres/index', 'RentingController@index');
-
+Route::get('/alquileres/nuevo', 'RentingController@create');
 
 
 Route::get('/sensores','SensorController@index');

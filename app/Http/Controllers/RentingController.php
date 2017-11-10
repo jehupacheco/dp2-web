@@ -23,7 +23,7 @@ class RentingController extends Controller
      */
     public function create()
     {
-        //
+        return view('Alquileres.nuevo_alquiler');
     }
 
     /**
