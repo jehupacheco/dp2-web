@@ -30,8 +30,12 @@ Route::get('/usuarios/nuevo','UserController@create');
 Route::post('/usuarios/nuevo','UserController@store');
 
 Route::get('/alquileres/index', 'RentingController@index');
+Route::post('/alquileres/index/filtrado', 'RentingController@filtrado_alquileres');
+
 Route::get('/alquileres/nuevo', 'RentingController@create');
 Route::post('/alquileres/nuevo', 'RentingController@store');
+Route::get('/alquileres/{renting_id}/destroy', 'RentingController@destroy');
+
 
 Route::get('/sensores/{id}','SensorController@index');
 
