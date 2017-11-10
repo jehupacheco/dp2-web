@@ -69,4 +69,14 @@ class HomeController extends Controller
     {
         return view('Reportes.sensores');
     }
+
+    public function filtroAutos()
+    {
+        return view('Filtros.filtroAutos');
+    }
+
+    public function filtroUsuarios()
+    {
+        return view('Filtros.filtroUsuarios');
+    }
 }

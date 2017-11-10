@@ -74,12 +74,20 @@
                       <div class="col-md-6 col-sm-6 col-xs-12">
                         <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12">
                       </div>
+                      <div class="col-md-3 col-sm-3 col-xs-12">
+                        <!-- <button type="submit" class="btn btn-success">Buscar</button> -->
+                        <a href="{{url('/Filtros/filtroUsuarios')}}" class="btn btn-success">Buscar</a>
+                      </div>
                     </div>
                     
                     <div class="form-group">
                       <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Placa de auto</label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
                         <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="middle-name">
+                      </div>
+                      <div class="col-md-3 col-sm-3 col-xs-12">
+                        <!-- <button type="submit" class="btn btn-success">Buscar</button> -->
+                        <a href="{{url('/Filtros/filtroAutos')}}" class="btn btn-success">Buscar</a>
                       </div>
                     </div>
 
@@ -89,13 +97,46 @@
                         <select class="form-control">
                           <option>Elija una opción</option>
                           <option>Jardinería</option>
-                          <option>Uso diario - jovenes</option>
-                          <option>Uso diario - adultos</option>
+                          <option>Uso diario</option>
+                          <option>Cardiopatía</option>
                           <option>Ventas</option>
                           <option>Paramédico</option>
                         </select>
                       </div>
                     </div>
+                    <div class="form-group">
+                      <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Horas de Alquiler</label>
+                      <div class="col-md-3 col-sm-3 col-xs-12">
+                        <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="middle-name">
+                      </div>
+                      
+                    </div>
+                    <div class="form-group">
+                    <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Dni</label>
+                      <div class="col-md-3 col-sm-3 col-xs-12">
+                        <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="middle-name">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Correo Electronico</label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="middle-name">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-6">Costo Por Hora </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" class="form-control" disabled="disabled" placeholder="Disabled Input">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-6">Costo Total </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" class="form-control" disabled="disabled" placeholder="Disabled Input">
+                        </div>
+                    </div>
+
                     <div class="ln_solid"></div>
                     <div class="form-group">
                       <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-5">
@@ -104,6 +145,8 @@
                         <a href="{{url('/')}}" class="btn btn-success">Regresar</a>
                       </div>
                     </div>
+
+                    
 
                   </form>
                 </div>
