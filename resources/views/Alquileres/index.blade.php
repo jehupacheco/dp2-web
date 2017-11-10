@@ -26,20 +26,27 @@
             </div>
               <div class="page-title">
                   <div class="title_left">
-                    <h3> <small>Alquiler de Vehículos</small></h3>
+                    <h3> <small>Alquileres de Vehículos</small></h3>
                   </div>
 
                   
                 </div>
 
           </div>
-
+          <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12 text-right">
+                  <ul class="pagination pagination-split">
+                    <!-- <li><a href="#">Todos los Clientes</a></li> -->
+                    <li><a href="{{url('/alquileres/nuevo')}}">Nuevo Alquiler <i class="fa fa-plus" aria-hidden="true"></i></a></li>
+                  </ul>
+                </div>
+            </div>
           <div class="clearfix"></div>
           <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
               <div class="x_panel">
                 <div class="x_title">
-                  <h2>Seleccionar auto <small>Filtrado de autos</small></h2>
+                  <h2>Alquileres <small>Filtrado de alquileres</small></h2>
                   <ul class="nav navbar-right panel_toolbox">
                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                     </li>
@@ -62,25 +69,25 @@
                   <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
 
                     <div class="form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Usuario <span class="required">*</span>
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Cliente <span class="required">*</span>
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12">
+                        <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12" readonly="true">
                       </div>
                       <div class="col-md-3 col-sm-3 col-xs-12">
                         <!-- <button type="submit" class="btn btn-success">Buscar</button> -->
-                        <a href="{{url('/Filtros/filtroUsuarios')}}" class="btn btn-success">Buscar</a>
+                        <a href="#" class="btn btn-success"><i class="fa fa-search"></i></a>
                       </div>
                     </div>
                     
                     <div class="form-group">
                       <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Placa de auto</label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="middle-name">
+                        <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="middle-name" readonly="true">
                       </div>
                       <div class="col-md-3 col-sm-3 col-xs-12">
                         <!-- <button type="submit" class="btn btn-success">Buscar</button> -->
-                        <a href="{{url('/Filtros/filtroAutos')}}" class="btn btn-success">Buscar</a>
+                        <a href="#" class="btn btn-success"><i class="fa fa-search"></i></a>
                       </div>
                     </div>
 
@@ -98,7 +105,7 @@
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Horas de Alquiler</label>
+                      <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Fecha de Alquiler</label>
                       <div class="col-md-3 col-sm-3 col-xs-12">
                         <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="middle-name">
                       </div>

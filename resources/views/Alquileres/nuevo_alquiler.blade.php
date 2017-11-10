@@ -26,14 +26,13 @@
             </div>
               <div class="page-title">
                   <div class="title_left">
-                    <h3> <small>Nueco alquiler de Vehículo</small></h3>
+                    <h3> <small>Alquiler de Vehículos</small></h3>
                   </div>
 
                   
                 </div>
 
           </div>
-
           <div class="clearfix"></div>
           <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
@@ -67,12 +66,20 @@
                       <div class="col-md-6 col-sm-6 col-xs-12">
                         <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12">
                       </div>
+                      <div class="col-md-3 col-sm-3 col-xs-12">
+                        <!-- <button type="submit" class="btn btn-success">Buscar</button> -->
+                        <a href="{{url('/Filtros/filtroUsuarios')}}" class="btn btn-success"><i class="fa fa-search"></i></a>
+                      </div>
                     </div>
                     
                     <div class="form-group">
                       <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Placa de auto</label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
                         <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="middle-name">
+                      </div>
+                      <div class="col-md-3 col-sm-3 col-xs-12">
+                        <!-- <button type="submit" class="btn btn-success">Buscar</button> -->
+                        <a href="{{url('/Filtros/filtroAutos')}}" class="btn btn-success"><i class="fa fa-search"></i></a>
                       </div>
                     </div>
 
@@ -81,22 +88,45 @@
                       <div class="col-md-6 col-sm-6 col-xs-12">
                         <select class="form-control">
                           <option>Elija una opción</option>
-                          <option>Jardinería</option>
-                          <option>Uso diario - jovenes</option>
-                          <option>Uso diario - adultos</option>
-                          <option>Ventas</option>
-                          <option>Paramédico</option>
+                          @foreach($all_organizations as $org)
+                            <option value="{{$org->id}}">{{$org->name}}</option>   
+                          @endforeach
                         </select>
+
                       </div>
                     </div>
+                    <div class="form-group">
+                      <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Periodo de alquiler</label>
+                      <div class="col-md-3 col-sm-3 col-xs-12">
+                        <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="middle-name" readonly="true">
+                      </div>
+                      
+                    </div>
+                  
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-6">Costo Por Hora </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" class="form-control" readonly="true" placeholder="S/.">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-6">Costo Total </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" class="form-control" readonly="true" placeholder="S/.">
+                        </div>
+                    </div>
+
                     <div class="ln_solid"></div>
                     <div class="form-group">
                       <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-5">
                         <!-- <button type="submit" class="btn btn-success">Buscar</button> -->
-                        <a href="{{url('/ubicaciones/buscar/usuarios')}}" class="btn btn-success">Buscar</a>
+                        <a href="{{url('/ubicaciones/buscar/usuarios')}}" class="btn btn-success">Aceptar</a>
                         <a href="{{url('/')}}" class="btn btn-success">Regresar</a>
                       </div>
                     </div>
+
+                    
 
                   </form>
                 </div>
