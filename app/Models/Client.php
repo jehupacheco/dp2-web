@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Models\Organization;
 
 class Client extends Authenticatable
 {
@@ -34,5 +35,12 @@ class Client extends Authenticatable
     public function readings()
     {
         return $this->hasManyThrough('App\Models\Reading', 'App\Models\Travel');
+    }
+
+    public function getOrgNameById($org_id)
+    {
+        $org = Organization::find($org_id);
+
+        return $org->name; 
     }
 }
