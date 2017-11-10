@@ -17,7 +17,8 @@ class RentingController extends Controller
      */
     public function index()
     {
-        return view('Alquileres.index');
+        $rentings = Renting::all();
+        return view('Alquileres.index', compact('rentings'));
     }
 
     /**

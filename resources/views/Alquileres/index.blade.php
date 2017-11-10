@@ -106,7 +106,7 @@
                     <div class="form-group">
                       <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Fecha de Alquiler</label>
                       <div class="col-md-3 col-sm-3 col-xs-12">
-                        <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="middle-name">
+                        <input id="middle-name" class="form-control col-md-7 col-xs-12" type="date" name="middle-name">
                       </div>
                       
                     </div>
@@ -141,6 +141,81 @@
               </div>
             </div>
           </div>
+          <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Alquileres <small>Filtrado de alquileres</small></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="#">Settings 1</a>
+                          </li>
+                          <li><a href="#">Settings 2</a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+
+                  <div class="x_content">
+
+                    <p>Seleccionar una fila para ver su detalle</p>
+
+                    <div class="table-responsive">
+                      <table id="dtTableRenting" class="table table-striped jambo_table bulk_action">
+                        <thead>
+                          <tr class="headings">
+                            <th>
+                              <div class="icheckbox_flat-green" style="position: relative;"><input type="checkbox" id="check-all" class="flat" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>
+                            </th>
+                            <th class="column-title" style="display: table-cell;">Placa </th>
+                            <th class="column-title" style="display: table-cell;">Organización </th>
+                            <th class="column-title" style="display: table-cell;">Cliente</th>
+                            <th class="column-title" style="display: table-cell;">Fecha Inicio  </th>
+                            <th class="column-title" style="display: table-cell;">Fecha Fin </th>
+                            <th class="column-title" style="display: table-cell;">Costo Hora </th>
+                            <th class="column-title" style="display: table-cell;">Costo Total</th>
+                            
+                            
+                            <th class="bulk-actions" colspan="7" style="display: none;">
+                              <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt">1 Records Selected</span> ) <i class="fa fa-chevron-down"></i></a>
+                            </th>
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                          @foreach($rentings as $renting)
+                          <tr class="even pointer">
+                            <td class="a-center ">
+                              <div class="icheckbox_flat-green" style="position: relative;"><input type="checkbox" class="flat" name="table_records" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>
+                            </td>
+                            <td class=" ">{{$renting->getPlateById($renting->vehicle_id)}}</td>
+                            <td class=" ">{{$renting->getOrgNameById($renting->vehicle_id)}}</td>
+                            <td class=" ">{{$renting->getClientNameById($renting->client_id)}}</td>
+                            <td class=" ">{{$renting->starts_at}}</td>
+                            <td class=" ">{{$renting->finishes_at}}</td>
+                            <td class="a-right a-right ">S/. 30</td>
+                            <td class="a-right a-right ">S/. 90</td>
+                            </td>
+                          </tr>
+                          @endforeach
+                          
+                        </tbody>
+                      </table>
+                    </div>
+              
+            
+                  </div>
+                </div>
+            </div>
+          </div>
 
         
     </div>
@@ -150,33 +225,18 @@
 
 
 
-
-<!-- jQuery -->
-    <script data-rocketsrc="../vendors/jquery/dist/jquery.min.js" type="text/rocketscript" data-rocketoptimized="true"></script>
-    <!-- Bootstrap -->
-    <script data-rocketsrc="../vendors/bootstrap/dist/js/bootstrap.min.js" type="text/rocketscript" data-rocketoptimized="true"></script>
-    <!-- FastClick -->
-    <script data-rocketsrc="../vendors/fastclick/lib/fastclick.js" type="text/rocketscript" data-rocketoptimized="true"></script>
-    <!-- NProgress -->
-    <script data-rocketsrc="../vendors/nprogress/nprogress.js" type="text/rocketscript" data-rocketoptimized="true"></script>
-    <!-- bootstrap-daterangepicker -->
-    <script data-rocketsrc="../vendors/moment/min/moment.min.js" type="text/rocketscript" data-rocketoptimized="true"></script>
-    <script data-rocketsrc="../vendors/bootstrap-daterangepicker/daterangepicker.js" type="text/rocketscript" data-rocketoptimized="true"></script>
-    <!-- Ion.RangeSlider -->
-    <script data-rocketsrc="../vendors/ion.rangeSlider/js/ion.rangeSlider.min.js" type="text/rocketscript" data-rocketoptimized="true"></script>
-    <!-- Bootstrap Colorpicker -->
-    <script data-rocketsrc="../vendors/mjolnic-bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js" type="text/rocketscript" data-rocketoptimized="true"></script>
-    <!-- jquery.inputmask -->
-    <script data-rocketsrc="../vendors/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js" type="text/rocketscript" data-rocketoptimized="true"></script>
-    <!-- jQuery Knob -->
-    <script data-rocketsrc="../vendors/jquery-knob/dist/jquery.knob.min.js" type="text/rocketscript" data-rocketoptimized="true"></script>
-    <!-- Cropper -->
-    <script data-rocketsrc="../vendors/cropper/dist/cropper.min.js" type="text/rocketscript" data-rocketoptimized="true"></script>
-
-    <!-- Custom Theme Scripts -->
-    <script data-rocketsrc="../build/js/custom.min.js" type="text/rocketscript" data-rocketoptimized="true"></script>
-
 @push('scripts')
+<script>
+  $(document).ready(function() {
+      $('#dtTableRenting').DataTable({
+          "language": {
+              "url": "{{asset('admin/json/spanishDataTable.json')}}"
+          }
+      });
+  } );
+</script>
+
+
 
 <script>
    $(function () {
