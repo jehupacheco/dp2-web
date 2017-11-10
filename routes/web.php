@@ -33,7 +33,7 @@ Route::get('/alquileres/index', 'RentingController@index');
 Route::get('/alquileres/nuevo', 'RentingController@create');
 Route::post('/alquileres/nuevo', 'RentingController@store');
 
-Route::get('/sensores','SensorController@index');
+Route::get('/sensores/{id}','SensorController@index');
 
 Route::get('/alertas','AlertController@index');
 
@@ -45,7 +45,7 @@ Route::get('/ubicaciones/usuario/1/mapa','LocationController@mostrar_mapa');
 
 
 
-Route::get('/vehiculos/ver','AutoController@ver');
+Route::get('/vehiculos/{id}/ver','AutoController@ver');
 Route::get('/vehiculos/{tipo_id}/lista','AutoController@mostrar_lista_tipo');
 Route::get('/vehiculos/{tipo_id}/nuevo','AutoController@create');
 Route::post('/vehiculos/{tipo_id}/nuevo','AutoController@store');

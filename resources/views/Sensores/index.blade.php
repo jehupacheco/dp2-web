@@ -19,7 +19,7 @@
 				<div class="col-md-6 col-sm-6 col-xs-12">
 			              <div class="x_panel">
 			                <div class="x_title">
-			                  <h2>Información de sensores <small>Vehículo</small></h2>
+			                  <h2>Información de sensores <small>Vehículo: {{$vehiculo->plate}}</small></h2>
 			                  <ul class="nav navbar-right panel_toolbox">
 			                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 			                    </li>
@@ -39,21 +39,21 @@
 			                </div>
 			                <div class="text-center">
 			                	<br>
-			                	<i class="fa fa-truck"></i> 250 gramos de 500 permitidos
+			                	 <img src="{{asset('images/weightsensor.png')}}" alt="" class="" height="25" width="25">     500 g
 			                	<br><br>
-			                	<i class="fa fa-heart"></i> Frecuencia cardiaca
+			                	<img src="{{asset('images/corazonsensor.png')}}" alt="" class="" height="25" width="45">    75 lpm 
 			                	<br><br>
-			                	<i class="fa fa-road"></i> Cercanía
+			                	<img src="{{asset('images/nearnesssensor.png')}}" alt="" class="" height="30" width="45">    10 km  
 			                	<br><br>
-			                	<i class="fa fa-cloud"></i> 25°C de temperatura
+			                	<img src="{{asset('images/temperaturesensor.png')}}" alt="" class="" height="35" width="35">   25°C     
 			                	<br><br>
-			                	<i class="fa fa-car"></i> Velocidad de 35 kmh
+			                	<img src="{{asset('images/speedsensor.png')}}" alt="" class="" height="30" width="45">   35 kmh    
 			                	<br><br>
-			                	<i class="fa fa-flash"></i> 30% de batería
+			                	<img src="{{asset('images/baterysensor.png')}}" alt="" class="" height="30" width="45">  99%      
 			                	<br><br>
-			                	<i class="fa fa-cloud"></i> Humedad de 84%
+			                	<img src="{{asset('images/humiditysensor.png')}}" alt="" class="" height="30" width="45">  84%      
 			                	<br><br>
-			                	<i class="fa fa-road"></i> Ubicación: -12,0689 Latitud y -77,0802 longitud
+			                	<img src="{{asset('images/locationsensor.png')}}" alt="" class="" height="30" width="45">lat: -12,0689 Long:-77,0802
 			                </div>
 			              </div>
 			    </div>

@@ -12,7 +12,7 @@
 		<div>
 			<div class="page-title">
               <div class="title_left">
-                <h3>Información de vehículo</h3>
+                <h3>Datos del vehículo <small>(Identificador: {{$vehiculo->plate}})</small></h3>
               </div>
 
               <div class="title_right">
@@ -35,7 +35,7 @@
 					</a>
 				</div>
 				<div class="col-md-4 col-sm-4 col-xs-4">
-					<a href="{{url('/sensores')}}">
+					<a href="{{url('/sensores/'.$vehiculo->id.'')}}">
 						<img src="/img/sensores.png" alt="Avatar of {{ Auth::user()->name }}" class="img-circle profile_img">
 					</a>
 				</div>
