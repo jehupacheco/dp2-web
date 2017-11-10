@@ -116,6 +116,12 @@
                         <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="middle-name">
                       </div>
                     </div>
+                    <div class="controls">
+                                <div class="input-prepend input-group">
+                                  <span class="add-on input-group-addon"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i></span>
+                                  <input type="text" name="reservation-time" id="reservation-time" class="form-control" value="01/01/2016 - 01/25/2016">
+                                </div>
+                              </div>
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-6">Costo Por Hora </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
