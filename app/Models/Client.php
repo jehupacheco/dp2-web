@@ -41,6 +41,11 @@ class Client extends Authenticatable
     {
         $org = Organization::find($org_id);
 
-        return $org->name; 
+        return $org->name;
+    }
+
+    public function objectives()
+    {
+        return $this->hasMany('App\Models\Objective');
     }
 }

@@ -14,5 +14,6 @@ Route::namespace('Api')->group(function() {
     Route::apiResource('readings', 'ReadingController', ['except' => [
       'update', 'destroy'
     ]]);
+    Route::apiResource('objectives', 'ObjectivesController');
   });
 });
