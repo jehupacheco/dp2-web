@@ -58,13 +58,13 @@
                 </div>
                 <div class="x_content">
                   <br />
-                  <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
-
+                  <form id="demo-form2" method="POST" action="{{url('alquileres/nuevo')}}" data-parsley-validate class="form-horizontal form-label-left">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Cliente <span class="required">*</span>
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12" readonly="true">
+                        <input type="text" id="client_name" required="required" class="form-control col-md-7 col-xs-12" readonly="true">
                         <input type="text" id="client_id" name="client_id" style="display: none;">
                       </div>
                       <div class="col-md-3 col-sm-3 col-xs-12">
@@ -132,7 +132,7 @@
                                           <td>{{$cliente->phone}}</td>
                                           <td>{{$cliente->getOrgNameById($cliente->organization_id)}}</td>
                                           <td text-center>
-                                                <input type="radio" name="optradio" alt="{{$cliente->nombre}} {{$cliente->lastname}}" value="{{$cliente->id}}">
+                                                <input type="radio" name="optradio" alt="{{$cliente->name}} {{$cliente->lastname}}" value="{{$cliente->id}}">
                                           </td>
                                           
                                         </tr>
@@ -145,7 +145,7 @@
                               </div>
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Aceptar</button>
+                                <button type="button" class="btn btn-primary" onclick="getCliente()" data-dismiss="modal" value="Confirmar">Aceptar</button>
                               </div>
 
                             </div>
@@ -157,7 +157,7 @@
                     <div class="form-group">
                       <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Placa de auto <span class="required">*</span></label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="middle-name" readonly="true">
+                        <input id="plate" class="form-control col-md-7 col-xs-12" type="text" name="middle-name" readonly="true">
                         <input type="text" id="vehicle_id" name="vehicle_id" style="display: none;">
                       </div>
                       <div class="col-md-3 col-sm-3 col-xs-12">
@@ -223,7 +223,8 @@
                                           <td>{{$vehicle->description}}</td>
                                           <td>{{$vehicle->getOrgNameById($vehicle->organization_id)}}</td>
                                           <td text-center>
-                                                <input type="radio" name="optradioVehicle" alt="{{$vehicle->plate}}" value="{{$vehicle->id}}">
+                                                <input type="radio" name="optradioVehicle" alt="{{$vehicle->plate}}"  value="{{$vehicle->id}}">
+                                                <input id="precioVehiculo" type="text" alt="{{$vehicle->price}}" style="display: none;">
                                           </td>
                                           
                                         </tr>
@@ -237,7 +238,7 @@
                               </div>
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Aceptar</button>
+                                <button type="button" class="btn btn-primary" onclick="getVehiculo()" data-dismiss="modal" value="Confirmar">Aceptar</button>
                               </div>
 
                             </div>
@@ -259,17 +260,21 @@
                       </div>
                     </div> -->
                     <div class="form-group">
-                      <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Periodo de alquiler</label>
+                      <label for="reportrange" class="control-label col-md-3 col-sm-3 col-xs-12">Periodo de alquiler</label>
                       <div class="col-md-3 col-sm-3 col-xs-12">
-                        <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="middle-name" readonly="true">
+                        <div id="reportrange" name="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
+                          <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+                          <span>December 30, 2017 - January 28, 2017</span> <b class="caret"></b>
+                        </div>
                       </div>
-                      
+                      <input id="start_date" name="start_date" type="text" style="display: none;">
+                      <input id="end_date" name="end_date" type="text" style="display: none;">
                     </div>
-                  
+                    
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-6">Costo Por Hora </label>
                         <div class="col-md-3 col-sm-3 col-xs-12">
-                          <input type="text" class="form-control" readonly="true" placeholder="S/.">
+                          <input id="price_hour" type="text" class="form-control" readonly="true" placeholder="S/.">
                         </div>
                     </div>
 
@@ -303,60 +308,22 @@
     <!-- /page content -->
 
 
-    <div id="modalBuscarCliente2" class="modal fade" role="dialog">
-      <div class="modal-dialog modal-lg">
-
-        <!-- Modal content-->     
-        <div class="modal-content">
-        
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">BUSCAR CLIENTE</h4>
-            </div>
-
-            <div class="modal-body">            
-              <div class="container">         
-                <div class="table-responsive">
-                  <div class="container" id="TableContainer">
-                    <div class="text-left">
-                        <font color="black"> 
-                          Ingresar alguno de los siguientes campos:
-                          <ul>
-                          <li>Nombre</li>
-                          <li>Apellido Paterno</li>
-                          <li>Edad</li>
-                          <li>Correo</li>
-                          <li>DNI</li>
-                          <li>Estado</li>
-                          </ul>
-                        </font>                 
-                      </div>
-                      <br>
-                                                    
-                  </div>                
-                </div>    
-              </div>
-            </div> 
-
-            <div class="modal-footer">                      
-              <div class="btn-inline">
-                <div class="btn-group col-sm-4"></div>                            
-                <div class="btn-group ">
-                  <input class="btn btn-primary"  data-dismiss="modal" value="Confirmar">         
-                </div>
-                <div class="btn-group">
-                  <a  data-dismiss="modal" class="btn btn-info">Cancelar</a>
-                </div>
-              </div>
-            </div>
-
-        </div>
-      </div>
-    </div>
-
     
 @endsection
 @push('scripts')
+<script>
+  function getCliente(){                
+      document.getElementById('client_id').value =  $('#dtTableClient input:radio:checked').val();
+      document.getElementById('client_name').value =  $('#dtTableClient input:radio:checked').attr("alt");
+    }
+
+  function getVehiculo(){                
+      document.getElementById('vehicle_id').value =  $('#dtTableVehicle input:radio:checked').val();
+      document.getElementById('plate').value =  $('#dtTableVehicle input:radio:checked').attr("alt");
+      document.getElementById('price_hour').value =  $('#precioVehiculo').attr("alt") + ' Soles';
+    }
+</script>
+
 <script>
 $(document).ready(function(){});
 
@@ -377,5 +344,83 @@ $(document).ready(function() {
 
 </script>
 
+
+<script>
+  <!-- bootstrap-daterangepicker -->
+      $(document).ready(function() {
+
+        var cb = function(start, end, label) {
+          console.log(start.toISOString(), end.toISOString(), label);
+          $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+        };
+
+        var optionSet1 = {
+          startDate: moment().subtract(0, 'days'),
+          endDate: moment(),
+          minDate: '11/11/2017',
+          maxDate: '12/31/2018',
+          dateLimit: {
+            days: 60
+          },
+          showDropdowns: true,
+          showWeekNumbers: true,
+          timePicker: false,
+          timePickerIncrement: 1,
+          timePicker12Hour: true,
+          ranges: {
+            'Hoy': [moment(), moment()],
+            'Ayer': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+            'This Month': [moment().startOf('month'), moment().endOf('month')],
+            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+          },
+          opens: 'left',
+          buttonClasses: ['btn btn-default'],
+          applyClass: 'btn-small btn-primary',
+          cancelClass: 'btn-small',
+          format: 'MM/DD/YYYY',
+          separator: ' a ',
+          locale: {
+            applyLabel: 'Fijar periodo',
+            cancelLabel: 'Resetear',
+            fromLabel: 'De',
+            toLabel: 'hasta',
+            customRangeLabel: 'Custom',
+            daysOfWeek: ['Do', 'Lu', 'Ma', 'Mie', 'Jue', 'Vie', 'Sab'],
+            monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Setiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+            firstDay: 1
+          }
+        };
+        $('#reportrange span').html(moment().subtract(0, 'days').format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
+        $('#reportrange').daterangepicker(optionSet1, cb);
+        $('#reportrange').on('show.daterangepicker', function() {
+          console.log("show event fired");
+        });
+        $('#reportrange').on('hide.daterangepicker', function() {
+          console.log("hide event fired");
+        });
+        $('#reportrange').on('apply.daterangepicker', function(ev, picker) {
+          console.log("apply event fired, start/end dates are " + picker.startDate.format('MMMM D, YYYY') + " to " + picker.endDate.format('MMMM D, YYYY'));
+          document.getElementById('start_date').value = picker.startDate.format('YYYY/MM/DD');
+          document.getElementById('end_date').value = picker.startDate.format('YYYY/MM/DD');
+
+        });
+        $('#reportrange').on('cancel.daterangepicker', function(ev, picker) {
+          console.log("cancel event fired");
+        });
+        $('#options1').click(function() {
+          $('#reportrange').data('daterangepicker').setOptions(optionSet1, cb);
+        });
+        $('#options2').click(function() {
+          $('#reportrange').data('daterangepicker').setOptions(optionSet2, cb);
+        });
+        $('#destroy').click(function() {
+          $('#reportrange').data('daterangepicker').remove();
+        });
+      });
+    <!-- /bootstrap-daterangepicker -->
+
+</script>
 @endpush
 

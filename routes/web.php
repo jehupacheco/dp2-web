@@ -31,7 +31,7 @@ Route::post('/usuarios/nuevo','UserController@store');
 
 Route::get('/alquileres/index', 'RentingController@index');
 Route::get('/alquileres/nuevo', 'RentingController@create');
-
+Route::post('/alquileres/nuevo', 'RentingController@store');
 
 Route::get('/sensores','SensorController@index');
 
