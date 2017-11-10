@@ -123,12 +123,57 @@
                         <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="middle-name">
                       </div>
                     </div>
-                    <div class="controls">
-                                <div class="input-prepend input-group">
-                                  <span class="add-on input-group-addon"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i></span>
-                                  <input type="text" name="reservation-time" id="reservation-time" class="form-control" value="01/01/2016 - 01/25/2016">
-                                </div>
-                              </div>
+
+
+                    <div class="form-group">
+                      <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Fecha Inicio:</label>
+                      <div class='col-sm-3'>
+                        <div class="form-group">
+                          <div class='input-group date' id='datetimepicker1'>
+                          <input type='text' class="form-control" />
+                          <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                          </span>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+
+                    <div class="form-group">
+                      <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Hora Inicio:</label>
+                      <div class="calendar-time"><div><select class="hourselect "><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12" selected="selected">12</option></select> : <select class="minuteselect"><option value="0" selected="selected">00</option><option value="30">30</option></select> <select class="ampmselect"><option value="AM" selected="selected">AM</option><option value="PM">PM</option></select></div>
+                      
+                      </div>
+                    </div>
+
+
+                    <div class="form-group">
+                      <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Fecha Final:</label>
+                      <div class='col-sm-3'>
+                        <div class="form-group">
+                          <div class='input-group date' id='datetimepicker1'>
+                          <input type='text' class="form-control" />
+                          <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                          </span>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+
+                    <div class="form-group">
+                      <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Hora Final:</label>
+                      <div class="calendar-time"><div><select class="hourselect"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12" selected="selected">12</option></select> : <select class="minuteselect"><option value="0" selected="selected">00</option><option value="30">30</option></select> <select class="ampmselect"><option value="AM" selected="selected">AM</option><option value="PM">PM</option></select></div>
+                      </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                      <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Fecha Final:</label>
+                      
+                    </div>                    
+
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-6">Costo Por Hora </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
@@ -168,4 +213,87 @@
 
 
 
+
+<!-- jQuery -->
+    <script data-rocketsrc="../vendors/jquery/dist/jquery.min.js" type="text/rocketscript" data-rocketoptimized="true"></script>
+    <!-- Bootstrap -->
+    <script data-rocketsrc="../vendors/bootstrap/dist/js/bootstrap.min.js" type="text/rocketscript" data-rocketoptimized="true"></script>
+    <!-- FastClick -->
+    <script data-rocketsrc="../vendors/fastclick/lib/fastclick.js" type="text/rocketscript" data-rocketoptimized="true"></script>
+    <!-- NProgress -->
+    <script data-rocketsrc="../vendors/nprogress/nprogress.js" type="text/rocketscript" data-rocketoptimized="true"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script data-rocketsrc="../vendors/moment/min/moment.min.js" type="text/rocketscript" data-rocketoptimized="true"></script>
+    <script data-rocketsrc="../vendors/bootstrap-daterangepicker/daterangepicker.js" type="text/rocketscript" data-rocketoptimized="true"></script>
+    <!-- Ion.RangeSlider -->
+    <script data-rocketsrc="../vendors/ion.rangeSlider/js/ion.rangeSlider.min.js" type="text/rocketscript" data-rocketoptimized="true"></script>
+    <!-- Bootstrap Colorpicker -->
+    <script data-rocketsrc="../vendors/mjolnic-bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js" type="text/rocketscript" data-rocketoptimized="true"></script>
+    <!-- jquery.inputmask -->
+    <script data-rocketsrc="../vendors/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js" type="text/rocketscript" data-rocketoptimized="true"></script>
+    <!-- jQuery Knob -->
+    <script data-rocketsrc="../vendors/jquery-knob/dist/jquery.knob.min.js" type="text/rocketscript" data-rocketoptimized="true"></script>
+    <!-- Cropper -->
+    <script data-rocketsrc="../vendors/cropper/dist/cropper.min.js" type="text/rocketscript" data-rocketoptimized="true"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script data-rocketsrc="../build/js/custom.min.js" type="text/rocketscript" data-rocketoptimized="true"></script>
+<!-- Google Analytics -->
+<script type="text/rocketscript" data-rocketoptimized="true">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-23581568-13', 'auto');
+ga('send', 'pageview');
+
+ $(function () {
+   var bindDatePicker = function() {
+    $(".date").datetimepicker({
+        format:'YYYY-MM-DD',
+      icons: {
+        time: "fa fa-clock-o",
+        date: "fa fa-calendar",
+        up: "fa fa-arrow-up",
+        down: "fa fa-arrow-down"
+      }
+    }).find('input:first').on("blur",function () {
+      // check if the date is correct. We can accept dd-mm-yyyy and yyyy-mm-dd.
+      // update the format if it's yyyy-mm-dd
+      var date = parseDate($(this).val());
+
+      if (! isValidDate(date)) {
+        //create date based on momentjs (we have that)
+        date = moment().format('YYYY-MM-DD');
+      }
+
+      $(this).val(date);
+    });
+  }
+   
+   var isValidDate = function(value, format) {
+    format = format || false;
+    // lets parse the date to the best of our knowledge
+    if (format) {
+      value = parseDate(value);
+    }
+
+    var timestamp = Date.parse(value);
+
+    return isNaN(timestamp) == false;
+   }
+   
+   var parseDate = function(value) {
+    var m = value.match(/^(\d{1,2})(\/|-)?(\d{1,2})(\/|-)?(\d{4})$/);
+    if (m)
+      value = m[5] + '-' + ("00" + m[3]).slice(-2) + '-' + ("00" + m[1]).slice(-2);
+
+    return value;
+   }
+   
+   bindDatePicker();
+ });
+
+</script>
 
