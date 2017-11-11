@@ -10,6 +10,17 @@ use JWTAuth;
 
 class ObjectivesController extends Controller
 {
+    public function transformToSend(Objective $objective)
+    {
+        $objective['start_date'] = (new Carbon($objective['starts_at']))->format('d/m/Y');
+        $objective['end_date'] = (new Carbon($objective['ends_at']))->format('d/m/Y');
+
+        unset($objective['starts_at']);
+        unset($objective['ends_at']);
+
+        return $objective;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -19,6 +30,8 @@ class ObjectivesController extends Controller
     {
         $showPrevious = $request->query('show_previous', 'false');
         $showPrevious = $showPrevious === 'true' ? true : false;
+        $count = (int)$request->query('count', 10);
+        $page = (int)$request->query('page', 1);
 
         $client = JWTAuth::parseToken()->authenticate();
         $rawObjectives = $client->objectives();
@@ -27,9 +40,13 @@ class ObjectivesController extends Controller
             $rawObjectives = $rawObjectives->where('ends_at', '>=', Carbon::now());
         }
 
+        $rawObjectives = $rawObjectives->skip(($page-1)*$count)->take($count);
+
         $objectives = $rawObjectives->get();
 
-        return response()->json($objectives);
+        return response()->json($objectives->map(function($o) {
+            return $this->transformToSend($o);
+        }));
     }
 
     /**
@@ -47,11 +64,28 @@ class ObjectivesController extends Controller
             'sensor_id' => 'required|exists:sensors,id',
         ]);
 
+        // Validate Time Range
+        $start = Carbon::createFromFormat('d/m/Y', $request['start_date'])->setTime(0, 0, 0);
+        $end = Carbon::createFromFormat('d/m/Y', $request['end_date'])->setTime(0, 0, 0);
+        $now = Carbon::now()->setTime(0, 0, 0);
+
+        if ($start->lt($now)) {
+            return response()->json(['errors' => [
+                'start_date' => ['Start date can\'t be lower than current date']
+            ]], 422);
+        }
+
+        if ($end->lt($start)) {
+            return response()->json(['errors' => [
+                'end_date' => ['End date can\'t be lower than start date']
+            ]], 422);
+        }
+
         $client = JWTAuth::parseToken()->authenticate();
         $objective = new Objective();
-
-        $objective['starts_at'] = Carbon::createFromFormat('d/m/Y', $request['start_date']);
-        $objective['ends_at'] = Carbon::createFromFormat('d/m/Y', $request['end_date']);
+        
+        $objective['starts_at'] = $start;
+        $objective['ends_at'] = $end->setTime(23, 59, 59);
         $objective['goal'] = $request['goal'];
         $objective['value'] = 0;
         $objective['sensor_id'] = $request['sensor_id'];
@@ -59,7 +93,7 @@ class ObjectivesController extends Controller
 
         $objective->save();
 
-        return response()->json(Objective::find($objective->id));
+        return response()->json($this->transformToSend(Objective::find($objective->id)));
     }
 
     /**
@@ -70,7 +104,7 @@ class ObjectivesController extends Controller
      */
     public function show(Objective $objective)
     {
-        return response()->json($objective);
+        return response()->json($this->transformToSend($objective));
     }
 
     /**
@@ -82,7 +116,39 @@ class ObjectivesController extends Controller
      */
     public function update(Request $request, Objective $objective)
     {
-        //
+        $this->validate($request, [
+            'end_date' => 'date_format:d/m/Y',
+            'goal' => 'numeric',
+            'sensor_id' => 'exists:sensors,id',
+        ]);
+
+        $allInputs = $request->all();
+
+        if ($request->input('end_date', '')) {
+            $start = new Carbon($objective['starts_at']);
+            $end = Carbon::createFromFormat('d/m/Y', $request['end_date'])->setTime(0, 0, 0);
+            $now = Carbon::now()->setTime(0, 0, 0);
+
+            if ($end->lt($now)) {
+                return response()->json(['errors' => [
+                    'start_date' => ['End date can\'t be lower than current date']
+                ]], 422);
+            }
+
+            if ($end->lt($start)) {
+                return response()->json(['errors' => [
+                    'end_date' => ['End date can\'t be lower than start date']
+                ]], 422);
+            }
+
+            unset($allInputs['end_date']);
+            $allInputs['ends_at'] = $end->setTime(23, 59, 59);
+        }
+
+        $objective->update($allInputs);
+        $objective->save();
+
+        return response()->json($this->transformToSend(Objective::find($objective->id)));
     }
 
     /**
