@@ -16,10 +16,28 @@ class ReadingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $count = (int)$request->query('count', 10);
+        $page = (int)$request->query('page', 1);
+        $sensorId = $request->query('sensor_id', '');
+        $travelId = $request->query('travel_id', '');
+
         $client = JWTAuth::parseToken()->authenticate();
-        $readings = $client->readings()->get();
+
+        $rawReadings = $client->readings()->latest();
+
+        if ($sensorId != '') {
+            $rawReadings = $rawReadings->where('sensor_id', $sensorId);
+        }
+
+        if ($travelId != '') {
+            $rawReadings = $rawReadings->where('travel_id', $travelId);
+        }
+
+        $rawReadings = $rawReadings->skip(($page-1)*$count)->take($count);
+
+        $readings = $rawReadings->get();
 
         return response()->json($readings);
     }

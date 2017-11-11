@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Models\Objective;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use JWTAuth;
 
 class ObjectivesController extends Controller
@@ -14,10 +15,19 @@ class ObjectivesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $showPrevious = $request->query('show_previous', 'false');
+        $showPrevious = $showPrevious === 'true' ? true : false;
+
         $client = JWTAuth::parseToken()->authenticate();
-        $objectives = $client->objectives()->get();
+        $rawObjectives = $client->objectives();
+
+        if (!$showPrevious) {
+            $rawObjectives = $rawObjectives->where('ends_at', '>=', Carbon::now());
+        }
+
+        $objectives = $rawObjectives->get();
 
         return response()->json($objectives);
     }
@@ -40,8 +50,8 @@ class ObjectivesController extends Controller
         $client = JWTAuth::parseToken()->authenticate();
         $objective = new Objective();
 
-        $objective['starts_at'] = $request['start_date'];
-        $objective['ends_at'] = $request['end_date'];
+        $objective['starts_at'] = Carbon::createFromFormat('d/m/Y', $request['start_date']);
+        $objective['ends_at'] = Carbon::createFromFormat('d/m/Y', $request['end_date']);
         $objective['goal'] = $request['goal'];
         $objective['value'] = 0;
         $objective['sensor_id'] = $request['sensor_id'];
@@ -49,7 +59,7 @@ class ObjectivesController extends Controller
 
         $objective->save();
 
-        return response()->json($objective);
+        return response()->json(Objective::find($objective->id));
     }
 
     /**
