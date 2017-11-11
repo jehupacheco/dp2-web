@@ -31,12 +31,12 @@ class AutoController extends Controller
         }
     }
 
-    public function ver()
+    public function ver($id)
     {
-        // return view('home');
-        return view('Vehiculos.ver-vehiculo');
+        $vehiculo = Vehicle::find($id);
+        return view('Vehiculos.ver-vehiculo',compact('vehiculo'));
     }
-    
+
     public function show_profile()
     {
         return view('Autos.ver-perfil');

@@ -38,6 +38,7 @@
                   <ul class="pagination pagination-split">
                     <!-- <li><a href="#">Todos los Clientes</a></li> -->
                     <li><a href="{{url('/alquileres/nuevo')}}">Nuevo Alquiler <i class="fa fa-plus" aria-hidden="true"></i></a></li>
+
                   </ul>
                 </div>
             </div>
@@ -66,35 +67,196 @@
                 </div>
                 <div class="x_content">
                   <br />
-                  <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
-
+                  <form id="demo-form2"  method="POST" action="{{url('alquileres/index/filtrado')}}" data-parsley-validate class="form-horizontal form-label-left">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Cliente <span class="required">*</span>
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12" readonly="true">
+                        <input type="text" id="client_name" required="required" class="form-control col-md-7 col-xs-12" readonly="true">
+                        <input id="client_id" name="client_id" type="text" readonly="true" style="display: none;">
                       </div>
                       <div class="col-md-3 col-sm-3 col-xs-12">
-                        <!-- <button type="submit" class="btn btn-success">Buscar</button> -->
-                        <a href="/Filtros/filtroUsuarios" class="btn btn-success"><i class="fa fa-search"></i></a>
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target=".modalBuscarCliente"><i class="fa fa-search"></i></button>
+
+                        <div class="modal modalBuscarCliente" tabindex="-1" role="dialog" aria-hidden="true">
+                          <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                                </button>
+                                <h4 class="modal-title" id="myModalLabel">Lista de Clientes</h4>
+                              </div>
+                              <div class="modal-body">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="x_panel">
+                                  <div class="x_title">
+                                    <h2>Seleccionar Cliente</small></h2>
+
+                                    <ul class="nav navbar-right panel_toolbox">
+                                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                      </li>
+                                      <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                        <ul class="dropdown-menu" role="menu">
+                                          <li><a href="#">Settings 1</a>
+                                          </li>
+                                          <li><a href="#">Settings 2</a>
+                                          </li>
+                                        </ul>
+                                      </li>
+                                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                      </li>
+                                    </ul>
+                                    <div class="clearfix"></div>
+                                  </div>
+                                  <div class="x_content">
+                                    <p class="text-muted font-13 m-b-30">
+                                      Seleccionar un cliente de la siguiente lista por favor
+                                    </p>
+                                    <table id="dtTableClient" class="table table-striped table-bordered bulk_action">
+                                      <thead>
+                                        <tr>
+                                          <th>Nombre</th>
+                                          <th>Apellido</th>
+                                          <th>Correo</th>
+                                          <th>Teléfono</th>
+                                          <th>Organización</th>
+                                          <th>
+                                           Seleccionar
+                                          </th>
+                                        </tr>
+                                      </thead>
+
+
+                                      <tbody>
+                                        @foreach ($clientes as $cliente)
+                                        <tr>
+                                          <td>{{$cliente->name}}</td>
+                                          <td>{{$cliente->lastname}}</td>
+                                          <td>{{$cliente->email}}</td>
+                                          <td>{{$cliente->phone}}</td>
+                                          <td>{{$cliente->getOrgNameById($cliente->organization_id)}}</td>
+                                          <td text-center>
+                                                <input type="radio" name="optradio" alt="{{$cliente->name}} {{$cliente->lastname}}" value="{{$cliente->id}}">
+                                          </td>
+                                          
+                                        </tr>
+                                        @endforeach
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                </div>
+                              </div>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" onclick="getCliente()" data-dismiss="modal" value="Confirmar">Aceptar</button>
+                              </div>
+
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                     
                     <div class="form-group">
                       <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Placa de auto</label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="middle-name" readonly="true">
+                        <input id="plate" class="form-control col-md-7 col-xs-12" type="text" name="plate" readonly="true">
+                        <input id="vehicle_id" name="vehicle_id" type="text" readonly="true" style="display: none;">
                       </div>
                       <div class="col-md-3 col-sm-3 col-xs-12">
-                        <!-- <button type="submit" class="btn btn-success">Buscar</button> -->
-                        <a href="/Filtros/filtroAutos" class="btn btn-success"><i class="fa fa-search"></i></a>
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target=".modalBuscarVehiculo"><i class="fa fa-search"></i></button>
+    
+                        <div class="modal modalBuscarVehiculo" tabindex="-1" role="dialog" aria-hidden="true">
+                          <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                                </button>
+                                <h4 class="modal-title" id="myModalLabel">Lista de Vehículos</h4>
+                              </div>
+                              <div class="modal-body">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="x_panel">
+                                  <div class="x_title">
+                                    <h2>Seleccionar Vehículo</small></h2>
+
+                                    <ul class="nav navbar-right panel_toolbox">
+                                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                      </li>
+                                      <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                        <ul class="dropdown-menu" role="menu">
+                                          <li><a href="#">Settings 1</a>
+                                          </li>
+                                          <li><a href="#">Settings 2</a>
+                                          </li>
+                                        </ul>
+                                      </li>
+                                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                      </li>
+                                    </ul>
+                                    <div class="clearfix"></div>
+                                  </div>
+                                  <div class="x_content">
+                                    <p class="text-muted font-13 m-b-30">
+                                      Seleccionar un vehículo de la siguiente lista por favor
+                                    </p>
+                                    <table id="dtTableVehicle" class="table table-striped table-bordered bulk_action">
+                                      <thead>
+                                        <tr>
+                                          <th>Placa</th>
+                                          <th>Precio/Hora</th>
+                                          <th>Descripción</th>
+                                          <th>Organización</th>
+                                          <th>
+                                           Seleccionar
+                                          </th>
+                                        </tr>
+                                      </thead>
+
+
+                                      <tbody>
+                                        @foreach ($vehicles as $vehicle)
+                                        @if(!is_null($vehicle->mac))
+                                        <tr>
+                                          <td>{{$vehicle->plate}}</td>
+                                          <td>{{$vehicle->price}}</td>
+                                          <td>{{$vehicle->description}}</td>
+                                          <td>{{$vehicle->getOrgNameById($vehicle->organization_id)}}</td>
+                                          <td text-center>
+                                                <input type="radio" name="optradioVehicle" alt="{{$vehicle->plate}}"  value="{{$vehicle->id}}">
+                                                <input id="precioVehiculo{{$vehicle->id}}" type="text" alt="{{$vehicle->price}}" style="display: none;">
+                                          </td>
+                                          
+                                        </tr>
+                                        @endif
+                                        @endforeach
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                </div>
+                              </div>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" onclick="getVehiculo()" data-dismiss="modal" value="Confirmar">Aceptar</button>
+                              </div>
+
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
 
                     <div class="form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12">Tipo de vehículo</label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <select class="form-control">
+                        <select id="org" name="org" class="form-control">
                           <option>Elija una opción</option>
                           @foreach($all_organizations as $org)
                             <option value="{{$org->id}}">{{$org->name}}</option>   
@@ -129,12 +291,10 @@
                     <div class="form-group">
                       <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-5">
                         <!-- <button type="submit" class="btn btn-success">Buscar</button> -->
-                        <a href="{{url('/')}}" class="btn btn-success">Buscar</a>
+                        <button type="submit"  class="btn btn-success">Buscar</button>
                         <a href="{{url('/')}}" class="btn btn-success">Regresar</a>
                       </div>
                     </div>
-
-                    
 
                   </form>
                 </div>
@@ -182,7 +342,7 @@
                             <th class="column-title" style="display: table-cell;">Fecha Fin </th>
                             <th class="column-title" style="display: table-cell;">Costo Hora </th>
                             <th class="column-title" style="display: table-cell;">Costo Total</th>
-                            
+                            <th class="column-title" style="display: table-cell;">Acciones</th>
                             
                             <th class="bulk-actions" colspan="7" style="display: none;">
                               <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt">1 Records Selected</span> ) <i class="fa fa-chevron-down"></i></a>
@@ -203,7 +363,7 @@
                             <td class=" ">{{$renting->finishes_at}}</td>
                             <td class="a-right a-right ">S/. 30</td>
                             <td class="a-right a-right ">S/. 90</td>
-                            </td>
+                            <td><a href="#" class="btn btn-info btn-xs fa fa-pencil"></a><a href="{{url('alquileres/'.$renting->id.'/destroy')}}" class="btn btn-danger btn-xs fa fa-trash"></a></td>
                           </tr>
                           @endforeach
                           
@@ -227,6 +387,18 @@
 
 @push('scripts')
 <script>
+  function getCliente(){                
+      document.getElementById('client_id').value =  $('#dtTableClient input:radio:checked').val();
+      document.getElementById('client_name').value =  $('#dtTableClient input:radio:checked').attr("alt");
+    }
+
+  function getVehiculo(){                
+      document.getElementById('vehicle_id').value =  $('#dtTableVehicle input:radio:checked').val();
+      document.getElementById('plate').value =  $('#dtTableVehicle input:radio:checked').attr("alt");
+    }
+</script>
+
+<script>
   $(document).ready(function() {
       $('#dtTableRenting').DataTable({
           "language": {
@@ -234,6 +406,20 @@
           }
       });
   } );
+  $(document).ready(function() {
+    $('#dtTableClient').DataTable({
+        "language": {
+            "url": "{{asset('json/spanishDataTable.json')}}"
+        }
+    });
+} );
+$(document).ready(function() {
+    $('#dtTableVehicle').DataTable({
+        "language": {
+            "url": "{{asset('json/spanishDataTable.json')}}"
+        }
+    });
+} );
 </script>
 
 

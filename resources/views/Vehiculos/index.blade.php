@@ -103,7 +103,7 @@
                       <div class="col-xs-12 col-sm-6 emphasis">
                         <a type="button" class="btn btn-success btn-xs" href="{{url('/asignarauto')}}"> <i class="fa fa-user">
                           </i> <i class="fa fa-comments-o"></i> </a>
-                        <a type="button" class="btn btn-primary btn-xs" href="{{url('/vehiculos/ver')}}">
+                        <a type="button" class="btn btn-primary btn-xs" href="{{url('/vehiculos/'.$vehiculo->id.'/ver')}}">
                           <i class="fa fa-user"> </i> Ver Vehiculo
                         </a>
                       </div>

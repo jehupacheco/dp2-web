@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Vehicle;
+use DB;
 
 class SensorController extends Controller
 {
@@ -11,10 +13,10 @@ class SensorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-
-        return view('Sensores.index');
+        $vehiculo = Vehicle::find($id);
+        return view('Sensores.index',compact('vehiculo'));
     }
 
     /**
