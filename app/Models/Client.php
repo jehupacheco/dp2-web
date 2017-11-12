@@ -10,7 +10,7 @@ class Client extends Authenticatable
 {
     use Notifiable;
 
-    protected $fillable = ['email', 'name', 'lastname', 'phone'];
+    protected $fillable = ['email', 'name', 'lastname', 'phone', 'profile_img_url', 'gender', 'height', 'heart_illness', 'heart_frecuency', 'tools'];
 
     public function organization()
     {

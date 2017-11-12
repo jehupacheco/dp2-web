@@ -64,6 +64,15 @@ class ClientController extends Controller
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
+        $this->validate($request, [
+            'email' => 'email',
+            'profile_img_url' => 'url',
+            'gender' => 'in:M,F',
+            'height' => 'numeric',
+            'heart_frecuency' => 'numeric',
+            'tools' => 'json',
+        ]);
+
         $client->update($request->all());
         $client->save();
 
