@@ -18,5 +18,9 @@ Route::namespace('Api')->group(function() {
     Route::apiResource('positions', 'PositionsController', ['except' => [
       'update', 'destroy'
     ]]);
+    Route::apiResource('vehicles', 'VehicleController', ['except' => [
+      'index', 'store', 'update', 'destroy'
+    ]]);
+    Route::get('vehicles/mac/{mac}', 'VehicleController@showByMac');
   });
 });
