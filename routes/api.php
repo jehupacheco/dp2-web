@@ -15,5 +15,8 @@ Route::namespace('Api')->group(function() {
       'update', 'destroy'
     ]]);
     Route::apiResource('objectives', 'ObjectivesController');
+    Route::apiResource('positions', 'PositionsController', ['except' => [
+      'update', 'destroy'
+    ]]);
   });
 });

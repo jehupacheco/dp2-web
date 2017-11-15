@@ -17,6 +17,11 @@ class Vehicle extends Model
         return $this->hasMany('App\Models\Renting');
     }
 
+    public function positions()
+    {
+        return $this->hasMany('App\Models\Position');
+    }
+
     public function getOrgNameById($org_id)
     {
         $org = Organization::find($org_id);
