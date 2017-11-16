@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Token;
+use App\Models\Client;
 
 class AuthenticateController extends Controller
 {
@@ -28,6 +29,12 @@ class AuthenticateController extends Controller
 
         $payload = JWTAuth::decode(new Token($token));
         $id = $payload['sub'];
+
+        $client = Client::find($id);
+
+        if ($client->blocked) {
+            return response()->json(['error' => 'This user has been blocked'], 401);
+        }
         // all good so return the token
         return response()->json(compact('token', 'id'));
     }

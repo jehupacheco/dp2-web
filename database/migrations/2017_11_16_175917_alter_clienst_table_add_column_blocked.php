@@ -14,7 +14,7 @@ class AlterClienstTableAddColumnBlocked extends Migration
     public function up()
     {
         Schema::table('clients', function (Blueprint $table) {
-            $table->boolean('blocked');
+            $table->boolean('blocked')->default(false);
         });
     }
 
