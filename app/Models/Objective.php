@@ -3,10 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Objective extends Model
 {
-    protected $fillable = ['goal', 'sensor_id', 'ends_at'];
+    use SoftDeletes;
+
+    protected $fillable = ['goal', 'sensor_id', 'ends_at', 'description'];
 
     public function client()
     {

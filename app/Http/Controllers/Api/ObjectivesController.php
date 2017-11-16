@@ -62,6 +62,7 @@ class ObjectivesController extends Controller
             'end_date' => 'required|date_format:d/m/Y',
             'goal' => 'required|numeric',
             'sensor_id' => 'required|exists:sensors,id',
+            'description' => 'required',
         ]);
 
         // Validate Time Range
@@ -87,6 +88,7 @@ class ObjectivesController extends Controller
         $objective['starts_at'] = $start;
         $objective['ends_at'] = $end->setTime(23, 59, 59);
         $objective['goal'] = $request['goal'];
+        $objective['description'] = $request['description'];
         $objective['value'] = 0;
         $objective['sensor_id'] = $request['sensor_id'];
         $objective['client_id'] = $client->id;
@@ -159,6 +161,8 @@ class ObjectivesController extends Controller
      */
     public function destroy(Objective $objective)
     {
-        //
+        $objective->delete();
+
+        return response()->json('OK');
     }
 }
