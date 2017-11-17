@@ -156,7 +156,7 @@ class AutoController extends Controller
         $vehicle = Vehicle::find($id);
         $positions = $vehicle->positions()->latest()->limit(100)->get();
 
-        return view('Vehiculos.ubicacion', compact('positions'));
+        return view('Vehiculos.ubicacion', compact('positions', 'vehicle'));
     }
     
 
