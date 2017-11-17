@@ -184,11 +184,5 @@ class AutoController extends Controller
         }
         DB::commit();
         return redirect()->action('AutoController@configuracion'); 
-
-
-
-
-
-
     }
 }
