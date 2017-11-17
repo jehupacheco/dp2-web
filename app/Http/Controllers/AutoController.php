@@ -53,12 +53,38 @@ class AutoController extends Controller
         return view('Vehiculos.nuevo_vehiculo',compact('tipo_id'));
     }
 
+    public function configuracion()
+    {
+        
+        return view('Vehiculos.vehiculos_configuracion');
+    }
+    
+
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    
+
+    public function configuracionPut(VehicleRequest $request)
+    {
+        $input = $request->all();
+        $org = Organization::find($input['org_id']);
+        DB::beginTransaction();
+        try {
+            $org->vel_max = $input['vel_max'];
+            //$org->vel_max = $input['vel_max'];
+            $org->save();
+        } catch (Exception $e) {
+            DB::rollback();
+            return redirect()->action('AutoController@configuracion')->with('delete', 'No se registró el Vehículo correctamente.'); 
+        }
+        DB::commit();
+        return redirect()->action('AutoController@configuracion')->with('stored', 'Se registró el Vehículo del tipo '.$org->name.' correctamente.'); 
+    }
+
     public function store(VehicleRequest $request,$tipo_id)
     {
         $org = Organization::find($tipo_id);
