@@ -42,6 +42,7 @@ class Renting extends Model
 
     public function getCostUnitById($vehicle_id)
     {
-        
+        $vehicle = Vehicle::find($vehicle_id);
+        return $vehicle->price;
     }
 }
