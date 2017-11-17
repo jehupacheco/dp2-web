@@ -13,23 +13,25 @@
 
 Auth::routes();
 Route::get('/logout', 'Auth\LoginController@logout');
-Route::get('/', 'HomeController@index');
+Route::group(['middleware' => ['auth']], function () {
+	Route::get('/', 'HomeController@index');
+	Route::get('/asignarauto','HomeController@asignarauto');
 
-Route::get('/asignarauto','HomeController@asignarauto');
+	Route::get('/clientes','ClientController@index');
+	Route::get('/clientes/nuevo','ClientController@create');
+	Route::post('/clientes/nuevo','ClientController@store');
 
-Route::get('/clientes','ClientController@index');
-Route::get('/clientes/nuevo','ClientController@create');
-Route::post('/clientes/nuevo','ClientController@store');
-
-Route::get('/usuarios/1/perfil','UserController@show_profile');
-Route::get('/clientes/{cliente_id}/perfil','ClientController@show_profile');
+	Route::get('/usuarios/1/perfil','UserController@show_profile');
+	Route::get('/clientes/{cliente_id}/perfil','ClientController@show_profile');
 
 
 
-Route::get('/usuarios/nuevo','UserController@create');
-Route::post('/usuarios/nuevo','UserController@store');
-Route::get('/cambiar/password','UserController@change_password');
-Route::post('/cambiar/password/save','UserController@post_change_password');
+	Route::get('/usuarios/nuevo','UserController@create');
+	Route::post('/usuarios/nuevo','UserController@store');
+	Route::get('/cambiar/password','UserController@change_password');
+	Route::post('/cambiar/password/save','UserController@post_change_password');
+});
+
 
 
 Route::get('/alquileres/index', 'RentingController@index');
