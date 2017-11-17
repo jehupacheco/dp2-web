@@ -176,13 +176,17 @@ class AutoController extends Controller
             $vehicle_available->id_vehicle = $id;
             $vehicle_available->starts_at = $input['start_date'];
             $vehicle_available->finishes_at = $input['end_date'];
+            //$vehicle_available->updated_at = $input['start_date'];
+            //$vehicle_available->created_at = $input['end_date'];
             $vehicle_available->state = "Inhabilitar";
             $vehicle_available->save();
         } catch (Exception $e) {
             DB::rollback();
-            return redirect()->action('AutoController@configuracion'); 
+            return redirect()->action('AutoController@ver',['id'=>$id]); 
+            //return redirect()->action('AutoController@show_profile'); 
         }
         DB::commit();
-        return redirect()->action('AutoController@configuracion'); 
+        return redirect()->action('AutoController@deshabilitar',['id'=>$id]); 
+        //return redirect()->action('AutoController@configuracion');
     }
 }
