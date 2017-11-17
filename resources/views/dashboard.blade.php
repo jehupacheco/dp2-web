@@ -9,6 +9,24 @@
 <!-- page content -->
         <div class="right_col" role="main">
           <!-- top tiles -->
+          <div class="row">
+            @if (session('stored'))
+                <script>$("#modalSuccess").modal("show");</script>
+                
+                <div class="alert alert-success fade in">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>¡Éxito!</strong> {{session('stored')}}
+                </div>
+            @endif
+
+            @if (session('delete'))
+                <script>$("#modalError").modal("show");</script>         
+                <div class="alert alert-danger fade in">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        {{session('delete')}}
+                </div>                        
+            @endif
+          </div>
           <div class="row tile_count">
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-user"></i> Total de Clientes</span>

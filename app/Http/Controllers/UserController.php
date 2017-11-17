@@ -5,7 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use DB;
-
+use Auth;
+use Hash;
+use Session;
+use Redirect;
+use App\Http\Requests\ChangePasswordRequest;
 
 class UserController extends Controller
 {
@@ -64,9 +68,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function change_password()
     {
-        //
+        return view('Seguridad.password.changepassword');
     }
 
     /**
@@ -75,9 +79,27 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function post_change_password(ChangePasswordRequest $request)
     {
-        //
+         try {
+            // $user = Auth::user();
+            if(Hash::check($request['password_current'],Auth::user()->password))
+            {
+                $user=new User;
+                $user->where('email','=',Auth::user()->email)
+                     ->update(['password' => bcrypt($request['password'])]);
+
+                Session::flash('message','Su contraseña ha sido cambiada con éxito');
+                
+                return Redirect::to('/')->with('stored','Su contraseña ha sido cambiada con éxito');
+            }
+            else{
+                // Session::flash('message-error','Contraseña incorrecta');
+                return Redirect::to('cambiar/password')->with('delete','Su contraseña es incorrecta');
+            }
+         } catch (Exception $e) {
+             return Redirect::to('/')->with('delete','Su contraseña no ha sido cambiada con éxito');
+         }
     }
 
     /**
