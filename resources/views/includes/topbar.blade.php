@@ -21,6 +21,7 @@
                                 <span>Settings</span>
                             </a>
                         </li>
+                        <li><a href="{{url('/cambiar/password')}}">Cambiar Contraseña</a></li>
                         <li><a href="javascript:;">Ayuda</a></li>
                         <li><a href="{{ url('/logout') }}"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                     </ul>
