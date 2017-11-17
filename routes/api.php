@@ -22,5 +22,6 @@ Route::namespace('Api')->group(function() {
       'index', 'store', 'update', 'destroy'
     ]]);
     Route::get('vehicles/mac/{mac}', 'VehicleController@showByMac');
+    Route::apiResource('reminders', 'RemindersController');
   });
 });
