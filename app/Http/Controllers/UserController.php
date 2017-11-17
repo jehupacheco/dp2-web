@@ -10,6 +10,7 @@ use Hash;
 use Session;
 use Redirect;
 use App\Http\Requests\ChangePasswordRequest;
+use Carbon\Carbon;
 
 class UserController extends Controller
 {
@@ -88,6 +89,9 @@ class UserController extends Controller
                 $user=new User;
                 $user->where('email','=',Auth::user()->email)
                      ->update(['password' => bcrypt($request['password'])]);
+
+                $user->where('email','=',Auth::user()->email)
+                     ->update(['password_updated_at' => Carbon::now()]);
 
                 Session::flash('message','Su contraseña ha sido cambiada con éxito');
                 
