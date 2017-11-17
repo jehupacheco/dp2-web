@@ -172,15 +172,16 @@ window.__cfRocketOptions = {byc:0,p:1508690442,petok:"42319e3ea318aad72b4aa82446
       Chart.defaults.global.legend = {
         enabled: false
       };
-
+      var inicio= 11
+      var final=17
       // Line chart
       var ctx = document.getElementById("lineChart");
       var lineChart = new Chart(ctx, {
         type: 'line',
         data: {
-          labels: ["11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"],
+          labels: [inicio+":00",(inicio+1)+ ":00", (inicio+2)+ ":00",(inicio+3)+ ":00", (inicio+4)+":00",(inicio+5)+ ":00",(inicio+6)+ ":00"],
           datasets: [{
-            label: "My First dataset",
+            label: "Velocidad",
             backgroundColor: "rgba(38, 185, 154, 0.31)",
             borderColor: "rgba(38, 185, 154, 0.7)",
             pointBorderColor: "rgba(38, 185, 154, 0.7)",
@@ -198,9 +199,9 @@ window.__cfRocketOptions = {byc:0,p:1508690442,petok:"42319e3ea318aad72b4aa82446
       var lineChart = new Chart(ctx, {
         type: 'line',
         data: {
-          labels: ["11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"],
+          labels: [inicio+":00",(inicio+1)+ ":00", (inicio+2)+ ":00",(inicio+3)+ ":00", (inicio+4)+":00",(inicio+5)+ ":00",(inicio+6)+ ":00"],
           datasets: [{
-            label: "My First dataset",
+            label: "Bateria",
             backgroundColor: "rgba(38, 185, 154, 0.31)",
             borderColor: "rgba(38, 185, 154, 0.7)",
             pointBorderColor: "rgba(38, 185, 154, 0.7)",
@@ -217,9 +218,9 @@ window.__cfRocketOptions = {byc:0,p:1508690442,petok:"42319e3ea318aad72b4aa82446
       var lineChart = new Chart(ctx, {
         type: 'line',
         data: {
-          labels: ["11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"],
+          labels: [inicio+":00",(inicio+1)+ ":00", (inicio+2)+ ":00",(inicio+3)+ ":00", (inicio+4)+":00",(inicio+5)+ ":00",(inicio+6)+ ":00"],
           datasets: [{
-            label: "My First dataset",
+            label: "",
             backgroundColor: "rgba(38, 185, 154, 0.31)",
             borderColor: "rgba(38, 185, 154, 0.7)",
             pointBorderColor: "rgba(38, 185, 154, 0.7)",
@@ -236,7 +237,7 @@ window.__cfRocketOptions = {byc:0,p:1508690442,petok:"42319e3ea318aad72b4aa82446
       var lineChart = new Chart(ctx, {
         type: 'line',
         data: {
-          labels: ["11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"],
+          labels: [inicio+":00",(inicio+1)+ ":00", (inicio+2)+ ":00",(inicio+3)+ ":00", (inicio+4)+":00",(inicio+5)+ ":00",(inicio+6)+ ":00"],
           datasets: [{
             label: "My First dataset",
             backgroundColor: "rgba(38, 185, 154, 0.31)",
@@ -256,7 +257,7 @@ window.__cfRocketOptions = {byc:0,p:1508690442,petok:"42319e3ea318aad72b4aa82446
       var mybarChart = new Chart(ctx, {
         type: 'bar',
         data: {
-          labels: ["11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"],
+          labels: [inicio+":00",(inicio+1)+ ":00", (inicio+2)+ ":00",(inicio+3)+ ":00", (inicio+4)+":00",(inicio+5)+ ":00",(inicio+6)+ ":00"],
           datasets: [{
             label: '# of Votes',
             backgroundColor: "#26B99A",

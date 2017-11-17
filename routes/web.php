@@ -79,4 +79,4 @@ Route::get('/reportes/filtrosReportes','HomeController@filtroReporte');
 
 Route::get('/reportes/viajesCliente','HomeController@viajesCliente');
 
-Route::get('/reportes/sensores','HomeController@sensores');
+Route::get('/reportes/sensores/{idCliente}/{idAuto}','HomeController@sensores');
