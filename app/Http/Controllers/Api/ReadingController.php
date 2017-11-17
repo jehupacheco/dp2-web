@@ -85,6 +85,11 @@ class ReadingController extends Controller
      */
     public function show(Reading $reading)
     {
+        $sensor = $reading->sensor()->get()->first();
+
+        $reading['sensor_unit'] = $sensor->unit;
+        $reading['sensor_code'] = $sensor->code;
+
         return response()->json($reading);
     }
 
