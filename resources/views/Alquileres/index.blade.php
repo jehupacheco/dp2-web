@@ -34,14 +34,14 @@
 
           </div>
           <div class="row">
-              <div class="col-md-12 col-sm-12 col-xs-12 text-right">
-                  <ul class="pagination pagination-split">
-                    <!-- <li><a href="#">Todos los Clientes</a></li> -->
-                    <li><a href="{{url('/alquileres/nuevo')}}">Nuevo Alquiler <i class="fa fa-plus" aria-hidden="true"></i></a></li>
+            <div class="col-md-12 col-sm-12 col-xs-12 text-right">
+                <ul class="pagination pagination-split">
+                  <!-- <li><a href="#">Todos los Clientes</a></li> -->
+                  <li><a href="{{url('/alquileres/nuevo')}}">Nuevo Alquiler <i class="fa fa-plus" aria-hidden="true"></i></a></li>
 
-                  </ul>
-                </div>
-            </div>
+                </ul>
+              </div>
+          </div>
           <div class="clearfix"></div>
           <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
@@ -295,7 +295,6 @@
                         <a href="{{url('/')}}" class="btn btn-success">Regresar</a>
                       </div>
                     </div>
-
                   </form>
                 </div>
               </div>
@@ -340,7 +339,7 @@
                             <th class="column-title" style="display: table-cell;">Cliente</th>
                             <th class="column-title" style="display: table-cell;">Fecha Inicio  </th>
                             <th class="column-title" style="display: table-cell;">Fecha Fin </th>
-                            <th class="column-title" style="display: table-cell;">Costo Hora </th>
+                            <th class="column-title" style="display: table-cell;">Costo x Hora </th>
                             <th class="column-title" style="display: table-cell;">Costo Total</th>
                             <th class="column-title" style="display: table-cell;">Acciones</th>
                             
@@ -361,7 +360,7 @@
                             <td class=" ">{{$renting->getClientNameById($renting->client_id)}}</td>
                             <td class=" ">{{$renting->starts_at}}</td>
                             <td class=" ">{{$renting->finishes_at}}</td>
-                            <td class="a-right a-right ">S/. 30</td>
+                            <td class="a-right a-right ">S/. {{$renting->getCostUnitById($renting->vehicle_id)}}</td>
                             <td class="a-right a-right ">S/. 90</td>
                             <td><a href="#" class="btn btn-info btn-xs fa fa-pencil"></a><a href="{{url('alquileres/'.$renting->id.'/destroy')}}" class="btn btn-danger btn-xs fa fa-trash"></a></td>
                           </tr>
@@ -376,8 +375,6 @@
                 </div>
             </div>
           </div>
-
-        
     </div>
     <!-- /page content -->
 @endsection
@@ -386,6 +383,8 @@
 
 
 @push('scripts')
+
+
 <script>
   function getCliente(){                
       document.getElementById('client_id').value =  $('#dtTableClient input:radio:checked').val();
@@ -473,7 +472,7 @@ $(document).ready(function() {
  });
 </script>
 
-@endpush
+
 <!-- Google Analytics -->
 <script type="text/rocketscript" data-rocketoptimized="true">
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -487,4 +486,6 @@ ga('send', 'pageview');
 
 
 </script>
+@endpush
+
 

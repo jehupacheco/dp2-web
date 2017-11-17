@@ -67,6 +67,7 @@
                       <h4 class="brief"><i>Vehículo {{$org->name}}</i></h4>
                       <div class="left col-xs-7">
                         <h2><strong>Identificador:</strong> {{$vehiculo->plate}}</h2>
+                        
                         <p><strong>Descripción: </strong> {{$vehiculo->description}}</p>
                         <ul class="list-unstyled">
                           @if(!is_null($vehiculo->mac))
@@ -128,3 +129,4 @@
   </div>
     <!-- /page content -->
 @endsection
+
