@@ -79,10 +79,10 @@ class AutoController extends Controller
             $org->save();
         } catch (Exception $e) {
             DB::rollback();
-            return redirect()->action('AutoController@configuracion')->with('delete', 'No se registró el Vehículo correctamente.'); 
+            return redirect()->action('AutoController@configuracion')->with('delete', 'Modificación insatisfactoria de parámetros.'); 
         }
         DB::commit();
-        return redirect()->action('AutoController@configuracion')->with('stored', 'Se registró el Vehículo del tipo '.$org->name.' correctamente.'); 
+        return redirect()->action('AutoController@configuracion')->with('stored', 'Los parámetros de la organización '.$org->name.' se MODIFICARON correctamente.'); 
     }
 
     public function store(VehicleRequest $request,$tipo_id)
