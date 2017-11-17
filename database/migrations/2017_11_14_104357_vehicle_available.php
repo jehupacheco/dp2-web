@@ -4,17 +4,18 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOrganizationsTable extends Migration
+class VehicleAvailable extends Migration
 {
+    
     /**
      * Schema table name to migrate
      * @var string
      */
-    public $set_schema_table = 'organizations';
+    public $set_schema_table = 'vehicle_available';
 
     /**
      * Run the migrations.
-     * @table organizations
+     * @table clients
      *
      * @return void
      */
@@ -23,14 +24,15 @@ class CreateOrganizationsTable extends Migration
         if (Schema::hasTable($this->set_schema_table)) return;
         Schema::create($this->set_schema_table, function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('id');
-            $table->string('name');
-            $table->string('address', 45);
-            $table->string('phone', 45);
-            $table->string('slug', 45);
-            $table->float('vel_max');
+            $table->increments('id_available');
+            $table->integer('id_vehicle');
+            $table->string('state')->default('Inhabilitado');
+            $table->timestamp('starts_at');
+            $table->timestamp('finishes_at');
+
             $table->softDeletes();
-            $table->nullableTimestamps();
+
+
         });
     }
 
@@ -43,4 +45,6 @@ class CreateOrganizationsTable extends Migration
      {
        Schema::dropIfExists($this->set_schema_table);
      }
+
+
 }
