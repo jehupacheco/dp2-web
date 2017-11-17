@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Organization;
 use App\Models\Vehicle;
+use App\Models\vehicle_available;
 use DB;
 use App\Http\Requests\VehicleRequest;
 
@@ -53,12 +54,38 @@ class AutoController extends Controller
         return view('Vehiculos.nuevo_vehiculo',compact('tipo_id'));
     }
 
+    public function configuracion()
+    {
+        
+        return view('Vehiculos.vehiculos_configuracion');
+    }
+    
+
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    
+
+    public function configuracionPut(VehicleRequest $request)
+    {
+        $input = $request->all();
+        $org = Organization::find($input['org_id']);
+        DB::beginTransaction();
+        try {
+            $org->vel_max = $input['vel_max'];
+            //$org->vel_max = $input['vel_max'];
+            $org->save();
+        } catch (Exception $e) {
+            DB::rollback();
+            return redirect()->action('AutoController@configuracion')->with('delete', 'Modificación insatisfactoria de parámetros.'); 
+        }
+        DB::commit();
+        return redirect()->action('AutoController@configuracion')->with('stored', 'Los parámetros de la organización '.$org->name.' se MODIFICARON correctamente.'); 
+    }
+
     public function store(VehicleRequest $request,$tipo_id)
     {
         $org = Organization::find($tipo_id);
@@ -129,5 +156,39 @@ class AutoController extends Controller
         $vehicle = Vehicle::find($id);
 
         return view('Vehiculos.ubicacion');
+    }
+    
+
+    public function deshabilitar($id)
+    {
+        $vehicle = Vehicle::find($id);
+
+        return view('Vehiculos.deshabilitar',compact('id'));
+    }
+
+    public function deshabilitarPut(VehicleRequest $request,$id)
+    {
+
+        $input = $request->all();
+        DB::beginTransaction();
+        try {
+            /*$vehiculo = new vehicle_available();
+            $vehiculo->id_vehicle = $id;
+            $vehiculo->starts_at = $input['start_date'];
+            $vehiculo->finishes_at = $input['end_date'];
+            $vehiculo->state = 'Inhabilitar';
+            $vehiculo->save();*/
+        } catch (Exception $e) {
+            DB::rollback();
+            return redirect()->action('AutoController@configuracion'); 
+        }
+        DB::commit();
+        return redirect()->action('AutoController@configuracion'); 
+
+
+
+
+
+
     }
 }
