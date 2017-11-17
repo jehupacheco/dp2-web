@@ -386,6 +386,8 @@
 
 
 @push('scripts')
+
+
 <script>
   function getCliente(){                
       document.getElementById('client_id').value =  $('#dtTableClient input:radio:checked').val();

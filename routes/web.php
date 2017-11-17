@@ -49,6 +49,8 @@ Route::get('/ubicaciones/usuario/1/mapa','LocationController@mostrar_mapa');
 
 Route::get('/vehiculos/Configuracion','AutoController@configuracion');
 
+Route::get('/vehiculos/{id}/deshabilitar','AutoController@deshabilitar');
+
 Route::post('/vehiculos/put/configuracion','AutoController@configuracionPut');
 
 Route::get('/vehiculos/{id}/ver','AutoController@ver');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Organization;
 use App\Models\Vehicle;
+use App\Models\vehicle_available;
 use DB;
 use App\Http\Requests\VehicleRequest;
 
@@ -155,5 +156,39 @@ class AutoController extends Controller
         $vehicle = Vehicle::find($id);
 
         return view('Vehiculos.ubicacion');
+    }
+    
+
+    public function deshabilitar($id)
+    {
+        $vehicle = Vehicle::find($id);
+
+        return view('Vehiculos.deshabilitar',compact('id'));
+    }
+
+    public function deshabilitarPut(VehicleRequest $request,$id)
+    {
+
+        $input = $request->all();
+        DB::beginTransaction();
+        try {
+            /*$vehiculo = new vehicle_available();
+            $vehiculo->id_vehicle = $id;
+            $vehiculo->starts_at = $input['start_date'];
+            $vehiculo->finishes_at = $input['end_date'];
+            $vehiculo->state = 'Inhabilitar';
+            $vehiculo->save();*/
+        } catch (Exception $e) {
+            DB::rollback();
+            return redirect()->action('AutoController@configuracion'); 
+        }
+        DB::commit();
+        return redirect()->action('AutoController@configuracion'); 
+
+
+
+
+
+
     }
 }
