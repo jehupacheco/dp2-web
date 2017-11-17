@@ -28,7 +28,7 @@ class LoginController extends Controller
 	 *
 	 * @var string
 	 */
-	protected $redirectTo = '/';
+	// protected $redirectTo = '/';
 	
 	/**
 	 * Create a new controller instance.
@@ -41,14 +41,15 @@ class LoginController extends Controller
 	}
 
 
-	public function redirectPath()
+	public function redirectTo()
     {
+    	$cadena = 'cambiar/password';
         $fecha_actual = Carbon::now();
         $fecha_last_update =  Carbon::createFromFormat('Y-m-d H:i:s',Auth::user()->password_updated_at);
-       	 
-        
-        if($fecha_actual->diffInDays($fecha_last_update)>=3){
-            return 'cambiar/password';
+       	 $diff=$fecha_actual->diffInDays($fecha_last_update);
+        // dd($diff);
+        if($diff>=3){
+            return $cadena;
         }
         else{
             return '/';
