@@ -178,7 +178,7 @@ window.__cfRocketOptions = {byc:0,p:1508690442,petok:"42319e3ea318aad72b4aa82446
       var lineChart = new Chart(ctx, {
         type: 'line',
         data: {
-          labels: ["January", "February", "March", "April", "May", "June", "July"],
+          labels: ["11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"],
           datasets: [{
             label: "My First dataset",
             backgroundColor: "rgba(38, 185, 154, 0.31)",
@@ -189,16 +189,6 @@ window.__cfRocketOptions = {byc:0,p:1508690442,petok:"42319e3ea318aad72b4aa82446
             pointHoverBorderColor: "rgba(220,220,220,1)",
             pointBorderWidth: 1,
             data: [31, 74, 6, 39, 20, 85, 7]
-          }, {
-            label: "My Second dataset",
-            backgroundColor: "rgba(3, 88, 106, 0.3)",
-            borderColor: "rgba(3, 88, 106, 0.70)",
-            pointBorderColor: "rgba(3, 88, 106, 0.70)",
-            pointBackgroundColor: "rgba(3, 88, 106, 0.70)",
-            pointHoverBackgroundColor: "#fff",
-            pointHoverBorderColor: "rgba(151,187,205,1)",
-            pointBorderWidth: 1,
-            data: [82, 23, 66, 9, 99, 4, 2]
           }]
         },
       });
@@ -208,7 +198,7 @@ window.__cfRocketOptions = {byc:0,p:1508690442,petok:"42319e3ea318aad72b4aa82446
       var lineChart = new Chart(ctx, {
         type: 'line',
         data: {
-          labels: ["January", "February", "March", "April", "May", "June", "July"],
+          labels: ["11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"],
           datasets: [{
             label: "My First dataset",
             backgroundColor: "rgba(38, 185, 154, 0.31)",
@@ -219,16 +209,6 @@ window.__cfRocketOptions = {byc:0,p:1508690442,petok:"42319e3ea318aad72b4aa82446
             pointHoverBorderColor: "rgba(220,220,220,1)",
             pointBorderWidth: 1,
             data: [31, 74, 6, 39, 20, 85, 7]
-          }, {
-            label: "My Second dataset",
-            backgroundColor: "rgba(3, 88, 106, 0.3)",
-            borderColor: "rgba(3, 88, 106, 0.70)",
-            pointBorderColor: "rgba(3, 88, 106, 0.70)",
-            pointBackgroundColor: "rgba(3, 88, 106, 0.70)",
-            pointHoverBackgroundColor: "#fff",
-            pointHoverBorderColor: "rgba(151,187,205,1)",
-            pointBorderWidth: 1,
-            data: [82, 23, 66, 9, 99, 4, 2]
           }]
         },
       });
@@ -237,7 +217,7 @@ window.__cfRocketOptions = {byc:0,p:1508690442,petok:"42319e3ea318aad72b4aa82446
       var lineChart = new Chart(ctx, {
         type: 'line',
         data: {
-          labels: ["January", "February", "March", "April", "May", "June", "July"],
+          labels: ["11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"],
           datasets: [{
             label: "My First dataset",
             backgroundColor: "rgba(38, 185, 154, 0.31)",
@@ -248,16 +228,6 @@ window.__cfRocketOptions = {byc:0,p:1508690442,petok:"42319e3ea318aad72b4aa82446
             pointHoverBorderColor: "rgba(220,220,220,1)",
             pointBorderWidth: 1,
             data: [31, 74, 6, 39, 20, 85, 7]
-          }, {
-            label: "My Second dataset",
-            backgroundColor: "rgba(3, 88, 106, 0.3)",
-            borderColor: "rgba(3, 88, 106, 0.70)",
-            pointBorderColor: "rgba(3, 88, 106, 0.70)",
-            pointBackgroundColor: "rgba(3, 88, 106, 0.70)",
-            pointHoverBackgroundColor: "#fff",
-            pointHoverBorderColor: "rgba(151,187,205,1)",
-            pointBorderWidth: 1,
-            data: [82, 23, 66, 9, 99, 4, 2]
           }]
         },
       });
@@ -266,7 +236,7 @@ window.__cfRocketOptions = {byc:0,p:1508690442,petok:"42319e3ea318aad72b4aa82446
       var lineChart = new Chart(ctx, {
         type: 'line',
         data: {
-          labels: ["January", "February", "March", "April", "May", "June", "July"],
+          labels: ["11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"],
           datasets: [{
             label: "My First dataset",
             backgroundColor: "rgba(38, 185, 154, 0.31)",
@@ -277,40 +247,16 @@ window.__cfRocketOptions = {byc:0,p:1508690442,petok:"42319e3ea318aad72b4aa82446
             pointHoverBorderColor: "rgba(220,220,220,1)",
             pointBorderWidth: 1,
             data: [31, 74, 6, 39, 20, 85, 7]
-          }, {
-            label: "My Second dataset",
-            backgroundColor: "rgba(3, 88, 106, 0.3)",
-            borderColor: "rgba(3, 88, 106, 0.70)",
-            pointBorderColor: "rgba(3, 88, 106, 0.70)",
-            pointBackgroundColor: "rgba(3, 88, 106, 0.70)",
-            pointHoverBackgroundColor: "#fff",
-            pointHoverBorderColor: "rgba(151,187,205,1)",
-            pointBorderWidth: 1,
-            data: [82, 23, 66, 9, 99, 4, 2]
           }]
         },
       });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
       // Bar chart
       var ctx = document.getElementById("mybarChart");
       var mybarChart = new Chart(ctx, {
         type: 'bar',
         data: {
-          labels: ["January", "February", "March", "April", "May", "June", "July"],
+          labels: ["11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"],
           datasets: [{
             label: '# of Votes',
             backgroundColor: "#26B99A",
@@ -429,7 +375,6 @@ window.__cfRocketOptions = {byc:0,p:1508690442,petok:"42319e3ea318aad72b4aa82446
           legend: false
         }
       });
-
       // PolarArea chart
       var ctx = document.getElementById("polarArea");
       var data = {
@@ -465,5 +410,4 @@ window.__cfRocketOptions = {byc:0,p:1508690442,petok:"42319e3ea318aad72b4aa82446
         }
       });
     </script>
-
-    @endpush
+    @endpush|
