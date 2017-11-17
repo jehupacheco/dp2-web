@@ -30,7 +30,7 @@
 			<br><br><br>
 			<div class="row">
 				<div class="col-md-4 col-sm-4 col-xs-4">
-					<a href="{{url('/ubicaciones/buscar_usuario')}}">
+					<a href="{{url('/vehiculos/'.$vehiculo->id.'/ubicacion')}}">
 						<img src="/img/mapa.jpg" alt="Ubicación" class="img-circle profile_img">
 					</a>
 				</div>
@@ -67,7 +67,23 @@
 					<label for="">Ver las alertas generadas para el vehículo</label>
 				</div>
 			</div>
-			
+			<div class="row">
+				<div class="col-md-4 col-sm-4 col-xs-4">
+					<a href="{{url('/vehiculos/'.$vehiculo->id.'/deshabilitar')}}">
+						<img src="/img/deshabilitar.jpg" alt="Ubicación" class="img-circle profile_img">
+					</a>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4 col-sm-4 col-xs-4 text-center">
+					<h3 for="">Inhabilitar</h3>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4 col-sm-4 col-xs-4 text-center">
+					<label for="">Inhabilitar el vehículo para que no se pueda usar</label>
+				</div>
+			</div>
 		</div>
     </div>
     <!-- /page content -->

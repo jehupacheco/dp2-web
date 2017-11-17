@@ -74,10 +74,16 @@
                         </ul>
                     </li>
                     <li>
+                        <a href="{{url('/vehiculos/Configuracion')}}">
+                            <i class="fa fa-asterisk"></i>Configuracion
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{url('/estacionamiento')}}">
                             <i class="fa fa-car"></i>Estacionamiento
                         </a>
                     </li>
+                    
                     {{--  <li>
                         <a href="{{url('/autos/tipo/6/lista')}}">
                             <i class="fa fa-car"></i>Vehículo transporte urbano

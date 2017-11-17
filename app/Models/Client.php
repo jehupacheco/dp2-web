@@ -48,4 +48,9 @@ class Client extends Authenticatable
     {
         return $this->hasMany('App\Models\Objective');
     }
+
+    public function reminders()
+    {
+        return $this->hasMany('App\Models\Reminder');
+    }
 }
