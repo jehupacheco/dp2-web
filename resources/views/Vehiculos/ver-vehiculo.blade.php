@@ -30,7 +30,7 @@
 			<br><br><br>
 			<div class="row">
 				<div class="col-md-4 col-sm-4 col-xs-4">
-					<a href="{{url('/ubicaciones/buscar_usuario')}}">
+					<a href="{{url('/vehiculos/'.$vehiculo->id.'/ubicacion')}}">
 						<img src="/img/mapa.jpg" alt="Ubicación" class="img-circle profile_img">
 					</a>
 				</div>
