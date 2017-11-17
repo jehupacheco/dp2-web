@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('BROADCAST_DRIVER', 'log'),
+    'default' => env('BROADCAST_DRIVER', 'pusher'),
 
     /*
     |--------------------------------------------------------------------------
@@ -30,11 +30,11 @@ return [
 
         'pusher' => [
             'driver' => 'pusher',
-            'key' => env('PUSHER_KEY'),
-            'secret' => env('PUSHER_SECRET'),
-            'app_id' => env('PUSHER_APP_ID'),
+            'key' => '2d1c1a0a61fa77008bb6',
+            'secret' => '41a9b47818ad12f89488',
+            'app_id' => '324781',
             'options' => [
-                //
+                'cluster' => 'mt1',
             ],
         ],
 

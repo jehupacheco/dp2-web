@@ -15,13 +15,25 @@
 
 @push('scripts')
 <script>
+  var vehiclePositions = {!! $positions !!};
+  var center = vehiclePositions.reduce(function(reduct, position) {
+    return {
+      lat: reduct.lat + position.latitude,
+      lng: reduct.lng + position.longitude,
+    };
+  }, { lat: 0, lng: 0});
+
+  center = {
+    lat: center.lat / vehiclePositions.length,
+    lng: center.lng / vehiclePositions.length,
+  };
+
+  console.log(center);
+
   function initMap() {
     // Create a map object and specify the DOM element for display.
     var map = new google.maps.Map(document.getElementById('map'), {
-      center: {
-        lat: -12.046374,
-        lng: -77.042793
-      },
+      center: center,
       zoom: 8
     });
   }

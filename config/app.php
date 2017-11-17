@@ -215,6 +215,7 @@ return [
         'BootForm' => Watson\BootstrapForm\Facades\BootstrapForm::class,
         'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
         'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
+        'Pusher' => Pusher\Pusher::class,
     ],
 
 ];
