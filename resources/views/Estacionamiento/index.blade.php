@@ -50,8 +50,8 @@
                     <p class="text-muted">Modo de Funcionamiento de las persianas</p>
                     <div class="row">
                       <div class="btn-group">
-                        <button class="btn btn-default" type="button">Manual</button>
-                        <button class="btn btn-danger" type="button">Automático</button>
+                        <button id ="buttonManual" class="btn btn-default" type="button">Manual</button>
+                        <button id ="buttonAuto" class="btn btn-danger" type="button">Automático</button>
                       </div>
                     </div>
 
@@ -66,8 +66,8 @@
                       </div>
                       <div class="col-md-12 text-center">
                       	<div class="btn-group">
-                        	<button class="btn btn-default" type="button">-</button>
-                        	<button class="btn btn-default" type="button">+</button>
+                        	<button id="button-" class="btn btn-default" type="button">-</button>
+                        	<button id="button+" class="btn btn-default" type="button">+</button>
                       	</div>
                   	  </div>
 
@@ -125,7 +125,7 @@
                     </div>
                     <div class="col-sm-12">
                       <div class="weather-text pull-right">
-                        <h3 class="degrees">19</h3>
+                        <h3 class="degrees">{{$temperature->value}}</h3>
                       </div>
                     </div>
                     <div class="clearfix"></div>
@@ -209,7 +209,7 @@
 		                </div>
 
 		                <div class="col-md-12 text-center">
-                      		<h1>660 LUX</h1>
+                      		<h1>{{$luminosity->value}} LUX</h1>
                           <hr>
                           <img src="{{asset('images/luminosidad.png')}}" alt="" class="img-circle img-responsive">
                       </div>
@@ -238,8 +238,8 @@
                         <div class="clearfix"></div>
                     </div>
 
-                    <div class="col-md-12 text-center">
-                          <h1>Índice UV: 5</h1>
+z                    <div class="col-md-12 text-center">
+                          <h1>Índice UV: {{$uv->value}}</h1>
                           <hr>
                           <img src="{{asset('images/uv.png')}}" alt="" class="img-responsive">
                       </div>
@@ -257,6 +257,7 @@
 @push('scripts')
 <!-- gauge.js -->
 <script>
+  var value_galge
   var opts = {
       lines: 12,
       angle: 0,
@@ -277,7 +278,8 @@
 
   gauge.maxValue = 90;
   gauge.animationSpeed = 32;
-  gauge.set(45);
+  value_galge= 45;
+  gauge.set(value_galge);
   gauge.setTextField(document.getElementById("gauge-text"));
 </script>
 <!-- /gauge.js -->
@@ -298,5 +300,68 @@
 
   icons.play();
 </script>
-<!-- /Skycons --
+<!-- /Skycons -->
+<script>
+  document.getElementById("buttonManual").onclick = function() {modoManual()};
+  document.getElementById("buttonAuto").onclick = function() {modoAuto()};
+  document.getElementById("button-").onclick = function() {disminuir()};
+  document.getElementById("button+").onclick = function() {aumentar()};
+  function modoManual() {
+    var xhr = new XMLHttpRequest();
+    var url = "url";
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json");
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            var json = JSON.parse(xhr.responseText);
+        }
+    };
+    var data = JSON.stringify({"modo": "manual", "angulo": value_galge});
+    xhr.send(data);
+  }
+  function modoAuto() {
+    var xhr = new XMLHttpRequest();
+    var url = "url";
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json");
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            var json = JSON.parse(xhr.responseText);
+        }
+    };
+    var data = JSON.stringify({"modo": "auto", "angulo": ""});
+    xhr.send(data);
+  }
+  function disminuir() {
+    value_galge=value_galge-5;
+    gauge.set(value_galge);
+    var xhr = new XMLHttpRequest();
+    var url = "url";
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json");
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            var json = JSON.parse(xhr.responseText);
+        }
+    };
+    var data = JSON.stringify({"modo": "manual", "angulo": value_galge});
+    xhr.send(data);
+  }
+  function aumentar() {
+    value_galge=value_galge+5;
+    gauge.set(value_galge); 
+    var xhr = new XMLHttpRequest();
+    var url = "url";
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json");
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            var json = JSON.parse(xhr.responseText);
+        }
+    };
+    var data = JSON.stringify({"modo": "manual", "angulo": value_galge});
+    xhr.send(data);
+  }
+</script>
+
 @endpush

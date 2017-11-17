@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 
 class ParkingController extends Controller
 {
@@ -13,7 +14,31 @@ class ParkingController extends Controller
      */
     public function index()
     {
-        return view('Estacionamiento.index');
+        $angle = DB::table('readings')
+            ->where([
+                ['travel_id','=','5'],
+                ['sensor_id','=','8']
+            ])->latest()
+            ->first();
+        $temperature = DB::table('readings')
+            ->where([
+                ['travel_id','=','5'],
+                ['sensor_id','=','4']
+            ])->latest()
+            ->first();
+        $luminosity = DB::table('readings')
+            ->where([
+                ['travel_id','=','5'],
+                ['sensor_id','=','9']
+            ])->latest()
+            ->first();
+        $uv = DB::table('readings')
+            ->where([
+                ['travel_id','=','5'],
+                ['sensor_id','=','10']
+            ])->latest()
+            ->first();
+        return view('Estacionamiento.index','angle');
     }
 
     /**
