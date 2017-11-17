@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Organization;
 use App\Models\Vehicle;
-use App\Models\vehicle_available;
+use App\vehicle_available;
 use DB;
 use App\Http\Requests\VehicleRequest;
 
@@ -172,12 +172,12 @@ class AutoController extends Controller
         $input = $request->all();
         DB::beginTransaction();
         try {
-            /*$vehiculo = new vehicle_available();
-            $vehiculo->id_vehicle = $id;
-            $vehiculo->starts_at = $input['start_date'];
-            $vehiculo->finishes_at = $input['end_date'];
-            $vehiculo->state = 'Inhabilitar';
-            $vehiculo->save();*/
+            $vehicle_available = new vehicle_available();
+            $vehicle_available->id_vehicle = $id;
+            $vehicle_available->starts_at = $input['start_date'];
+            $vehicle_available->finishes_at = $input['end_date'];
+            $vehicle_available->state = "Inhabilitar";
+            $vehicle_available->save();
         } catch (Exception $e) {
             DB::rollback();
             return redirect()->action('AutoController@configuracion'); 
