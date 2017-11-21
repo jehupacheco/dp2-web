@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Carbon\Carbon;
+use App\Models\Configuration;
+use Auth;
 
 class LoginController extends Controller
 {
@@ -25,7 +28,7 @@ class LoginController extends Controller
 	 *
 	 * @var string
 	 */
-	protected $redirectTo = '/';
+	// protected $redirectTo = '/';
 	
 	/**
 	 * Create a new controller instance.
@@ -36,4 +39,20 @@ class LoginController extends Controller
 	{
 		$this->middleware('guest', ['except' => 'logout']);
 	}
+
+
+	public function redirectTo()
+    {
+    	$cadena = 'cambiar/password';
+        $fecha_actual = Carbon::now();
+        $fecha_last_update =  Carbon::createFromFormat('Y-m-d H:i:s',Auth::user()->password_updated_at);
+       	 $diff=$fecha_actual->diffInDays($fecha_last_update);
+        // dd($diff);
+        if($diff>=3){
+            return $cadena;
+        }
+        else{
+            return '/';
+        }
+    }
 }

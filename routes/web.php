@@ -13,21 +13,26 @@
 
 Auth::routes();
 Route::get('/logout', 'Auth\LoginController@logout');
-Route::get('/', 'HomeController@index');
+Route::group(['middleware' => ['auth']], function () {
+	Route::get('/', 'HomeController@index');
+	Route::get('/asignarauto','HomeController@asignarauto');
 
-Route::get('/asignarauto','HomeController@asignarauto');
+	Route::get('/clientes','ClientController@index');
+	Route::get('/clientes/nuevo','ClientController@create');
+	Route::post('/clientes/nuevo','ClientController@store');
 
-Route::get('/clientes','ClientController@index');
-Route::get('/clientes/nuevo','ClientController@create');
-Route::post('/clientes/nuevo','ClientController@store');
-
-Route::get('/usuarios/1/perfil','UserController@show_profile');
-Route::get('/clientes/{cliente_id}/perfil','ClientController@show_profile');
+	Route::get('/usuarios/1/perfil','UserController@show_profile');
+	Route::get('/clientes/{cliente_id}/perfil','ClientController@show_profile');
 
 
 
-Route::get('/usuarios/nuevo','UserController@create');
-Route::post('/usuarios/nuevo','UserController@store');
+	Route::get('/usuarios/nuevo','UserController@create');
+	Route::post('/usuarios/nuevo','UserController@store');
+	Route::get('/cambiar/password','UserController@change_password');
+	Route::post('/cambiar/password/save','UserController@post_change_password');
+});
+
+
 
 Route::get('/alquileres/index', 'RentingController@index');
 Route::post('/alquileres/index/filtrado', 'RentingController@filtrado_alquileres');
@@ -47,7 +52,12 @@ Route::get('/ubicaciones/buscar/usuarios','LocationController@users_result');
 
 Route::get('/ubicaciones/usuario/1/mapa','LocationController@mostrar_mapa');
 
+Route::get('/vehiculos/Configuracion','AutoController@configuracion');
 
+Route::get('/vehiculos/{id}/deshabilitar','AutoController@deshabilitar');
+Route::post('/vehiculos/{id}/deshabilitarPut','AutoController@deshabilitarPut');
+
+Route::post('/vehiculos/put/configuracion','AutoController@configuracionPut');
 
 Route::get('/vehiculos/{id}/ver','AutoController@ver');
 Route::get('/vehiculos/{tipo_id}/lista','AutoController@mostrar_lista_tipo');

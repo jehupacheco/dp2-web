@@ -16,10 +16,12 @@ class TravelController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $count = (int)$request->query('count', 10);
+        $page = (int)$request->query('page', 1);
         $client = JWTAuth::parseToken()->authenticate();
-        $travels = $client->travels()->get();
+        $travels = $client->travels()->latest()->skip(($page-1)*$count)->take($count)->get();
 
         return response()->json($travels);
     }

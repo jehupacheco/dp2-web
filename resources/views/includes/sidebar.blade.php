@@ -69,14 +69,21 @@
                     <li><a><i class="fa fa-cog"></i> Seguridad <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="{{url('/usuarios/nuevo')}}">Crear usuario</a></li>
+                            <li><a href="{{url('/cambiar/password')}}">Cambiar Contraseña</a></li>
                             <li><a href="#">Roles</a></li>
                         </ul>
+                    </li>
+                    <li>
+                        <a href="{{url('/vehiculos/Configuracion')}}">
+                            <i class="fa fa-asterisk"></i>Configuracion
+                        </a>
                     </li>
                     <li>
                         <a href="{{url('/estacionamiento')}}">
                             <i class="fa fa-car"></i>Estacionamiento
                         </a>
                     </li>
+                    
                     {{--  <li>
                         <a href="{{url('/autos/tipo/6/lista')}}">
                             <i class="fa fa-car"></i>Vehículo transporte urbano

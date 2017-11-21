@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Position;
 use App\Models\Vehicle;
+use App\Events\PositionStored;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -49,6 +50,8 @@ class PositionsController extends Controller
         $position->longitude = $request['longitude'];
 
         $vehicle->positions()->save($position);
+
+        event(new PositionStored($vehicle, $position));
 
         return response()->json(Position::find($position->id));
     }
