@@ -36,6 +36,8 @@ class AuthenticateController extends Controller
             return response()->json(['error' => 'This user has been blocked'], 401);
         }
         // all good so return the token
-        return response()->json(compact('token', 'id'));
+        $organization = $client->organization()->get()->first();
+        $sensors = $organization->sensors()->get();
+        return response()->json(compact('token', 'id', 'organization', 'sensors'));
     }
 }
