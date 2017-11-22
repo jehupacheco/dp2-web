@@ -45,7 +45,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
           <div class="x_panel">
             <div class="x_title">
-              <h2>Nuevo Rol de usuario<i class="fa fa-bus"></i></h2>
+              <h2>Nuevo Rol de Usuario <i class="fa fa-shield"></i></h2>
               <ul class="nav navbar-right panel_toolbox">
                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                 </li>
@@ -65,14 +65,14 @@
             </div>
             <div class="x_content">
               <br />
-              <form id="demo-form2" method="POST" action="{{url('/')}}" data-parsley-validate class="form-horizontal form-label-left">
+              <form id="demo-form2" method="POST" action="{{url('roles/nuevo')}}" data-parsley-validate class="form-horizontal form-label-left">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                 <div class="form-group">
-                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="plate">Nombre de rol <span class="required">*</span>
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="role_name">Nombre de rol <span class="required">*</span>
                   </label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input type="text" id="rol_name" name="rol_name" required="required" class="form-control col-md-7 col-xs-12">
+                    <input type="text" id="role_name" name="role_name" required="required" class="form-control col-md-7 col-xs-12">
                   </div>
                 </div>
                 
@@ -81,7 +81,7 @@
                   <div class="col-md-6 col-sm-6 col-xs-12">
                       <p style="padding: 5px;">
                         @foreach($permissions as $permission)
-                        <input type="checkbox" name="permissions" id="permission{{$permission->id}}" value="{{$permission->id}}" data-parsley-mincheck="2" required class="flat" /> {{$permission->name}}
+                        <input type="checkbox" name="permission{{$permission->id}}" id="permission{{$permission->id}}" value="{{$permission->name}}" data-parsley-mincheck="2" class="flat" /> {{$permission->name}}
                         <br />
                         @endforeach
                       <p>
