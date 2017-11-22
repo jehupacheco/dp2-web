@@ -33,7 +33,9 @@
         "nesbot/carbon": "^1.22",
         "doctrine/dbal": "2.5.*",
         "pusher/pusher-php-server": "~3.0",
-        "spatie/laravel-permission": "^2.7"
+        "spatie/laravel-permission": "^2.7",
+        "guzzlehttp/guzzle": "^6.3",
+        "jenssegers/date": "^3.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

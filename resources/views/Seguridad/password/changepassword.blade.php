@@ -52,7 +52,11 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
           <div class="x_panel">
             <div class="x_title">
+              @if(isset($pass_changed) && $pass_changed== false)
+              <h2>Su contraseña es muy antigua, por favor cambie su contraseña para continuar </h2>
+              @else
               <h2>Cambio de contraseña de usuario </h2>
+              @endif
               <ul class="nav navbar-right panel_toolbox">
                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                 </li>
@@ -97,7 +101,11 @@
                 <div class="form-group">
                   <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                     <button type="submit" class="btn btn-success">Guardar</button>
+                    @if(isset($pass_changed) && $pass_changed== false)
+                    <a href="{{ url('/logout') }}" class="btn btn-primary" type="button">Cancel</a>
+                    @else
                     <a href="{{url('/')}}" class="btn btn-primary" type="button">Cancel</a>
+                    @endif
                   </div>
                 </div>
 

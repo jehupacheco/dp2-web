@@ -75,7 +75,7 @@ class AutoController extends Controller
         $org = Organization::find($input['org_id']);
         DB::beginTransaction();
         try {
-            $org->vel_max = $input['vel_max'];
+            $org->vel_max = $input['max_vel'];
             //$org->vel_max = $input['vel_max'];
             $org->save();
         } catch (Exception $e) {

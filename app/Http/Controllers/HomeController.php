@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use App\Models\Configuration;
+use Auth;
+use Redirect;
 
 class HomeController extends Controller
 {
@@ -25,8 +29,20 @@ class HomeController extends Controller
     public function index()
     {
         // return view('home');
-        
-        return view('dashboard');
+        $current_date = Carbon::now();
+
+        $last_date_of_update =  Carbon::createFromFormat('Y-m-d H:i:s',Auth::user()->password_updated_at);
+        $conf = new Configuration();
+        $num_dias = $conf->getParameter('daystochangepassword');
+       
+        if($current_date->diffInDays($last_date_of_update)>=$num_dias){
+            $pass_changed=false;
+            return view('Seguridad.password.changepassword',compact('pass_changed'));
+        }
+        else{
+            return view('dashboard');
+        }
+
     }
 
     public function auto()

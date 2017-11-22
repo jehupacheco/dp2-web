@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Carbon\Carbon;
-use App\Models\Configuration;
+use Illuminate\Http\Request;
+use App\Models\User;
 use Auth;
+use Session;
 
 class LoginController extends Controller
 {
@@ -23,12 +24,25 @@ class LoginController extends Controller
 	
 	use AuthenticatesUsers;
 	
+	public function authenticated(Request $request,User $user){
+	    $previous_session = $user->session_id;
+
+	    if ($previous_session) {
+	        Session::getHandler()->destroy($previous_session);
+	    }
+
+	    Auth::user()->session_id = \Session::getId();
+
+	    Auth::user()->save();
+	    return redirect()->intended($this->redirectPath());
+	}
+
 	/**
 	 * Where to redirect users after login.
 	 *
 	 * @var string
 	 */
-	protected $redirectTo = '/';
+	// protected $redirectTo = '/';
 	
 	/**
 	 * Create a new controller instance.
@@ -39,19 +53,4 @@ class LoginController extends Controller
 	{
 		$this->middleware('guest', ['except' => 'logout']);
 	}
-
-
-	public function redirectPath()
-    {
-        $fecha_actual = Carbon::now();
-        // $fecha_last_update =  Carbon::createFromFormat('Y-m-d H:i:s',Auth::user()->password_updated_at);
-       	 
-        
-        // if($fecha_actual->diffInDays($fecha_last_update)>=3){
-        //     return 'cambiar/password';
-        // }
-        // else{
-            return '/';
-        // }
-    }
 }

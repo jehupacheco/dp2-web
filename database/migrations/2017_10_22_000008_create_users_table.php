@@ -35,6 +35,7 @@ class CreateUsersTable extends Migration
             $table->unique(["email"], 'users_email_unique');
             $table->softDeletes();
             $table->Timestamp('password_updated_at')->nullable();
+            $table->integer('session_id')->nullable();
             $table->nullableTimestamps();
 
 
