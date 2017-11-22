@@ -34,6 +34,12 @@
                         </a>
                     </li>
                     <li>
+                        <a href="{{route('organizations.index')}}">
+                            <i class="fa fa-building"></i>
+                            Organizaciones
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{url('/clientes')}}">
                             <i class="fa fa-user"></i>
                             Clientes
