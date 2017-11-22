@@ -76,7 +76,7 @@
                         <ul class="nav child_menu">
                             <li><a href="{{url('/usuarios/nuevo')}}">Crear usuario</a></li>
                             <li><a href="{{url('/cambiar/password')}}">Cambiar Contraseña</a></li>
-                            <li><a href="#">Roles</a></li>
+                            <li><a href="{{url('/roles')}}">Roles</a></li>
                         </ul>
                     </li>
                     <li>
