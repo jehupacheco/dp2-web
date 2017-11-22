@@ -88,6 +88,7 @@
                         </ul>
                     </li>
                     @endif
+                    @if(auth()->user()->can('Alquileres'))
                     <li>
                         <!-- <a href="{{url('/alquiler/index')}}"> -->
                         <a href="{{url('/alquileres/index')}}">
@@ -95,6 +96,7 @@
                             Alquileres
                         </a>
                     </li>
+                    @endif
                     @if(auth()->user()->can('Reportes de Recorridos') ||
                         auth()->user()->can('Reportes de Clientes') ||
                         auth()->user()->can('Reportes de Sensores') ||
