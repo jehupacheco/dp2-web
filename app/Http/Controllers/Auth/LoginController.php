@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Carbon\Carbon;
-use App\Models\Configuration;
+use Illuminate\Http\Request;
+use App\Models\User;
 use Auth;
+use Session;
 
 class LoginController extends Controller
 {
@@ -23,6 +24,19 @@ class LoginController extends Controller
 	
 	use AuthenticatesUsers;
 	
+	public function authenticated(Request $request,User $user){
+	    $previous_session = $user->session_id;
+
+	    if ($previous_session) {
+	        Session::getHandler()->destroy($previous_session);
+	    }
+
+	    Auth::user()->session_id = \Session::getId();
+
+	    Auth::user()->save();
+	    return redirect()->intended($this->redirectPath());
+	}
+
 	/**
 	 * Where to redirect users after login.
 	 *
@@ -39,4 +53,6 @@ class LoginController extends Controller
 	{
 		$this->middleware('guest', ['except' => 'logout']);
 	}
+
+
 }
