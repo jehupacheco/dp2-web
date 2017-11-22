@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class RolesController extends Controller
 {
@@ -15,7 +16,7 @@ class RolesController extends Controller
     public function index()
     {
         $roles = Role::all();
-
+        // $permission = Permission::create(['name' => 'Dashboard']);
         return view('Seguridad.roles.index',compact('roles'));
     }
 

@@ -14,7 +14,14 @@
         <h3> <small>Roles de usuario</small></h3>
       </div>
     </div>
-
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+        <ul class="pagination pagination-split">
+          <li><a href="{{url('/roles/nuevo')}}">Nuevo Rol <i class="fa fa-plus" aria-hidden="true"></i></a></li>
+        </ul>
+      </div>
+      <div class="clearfix"></div>
+    </div>
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
           <div class="x_panel">
