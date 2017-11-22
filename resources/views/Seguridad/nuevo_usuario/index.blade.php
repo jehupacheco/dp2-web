@@ -7,6 +7,40 @@
 
 @section('main_container')
   <div class="right_col" role="main">
+    <div class="row">
+            @if(Session::has('message-error'))
+            <div class="alert alert-danger alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              {{Session::get('message-error')}}
+            </div>
+            @endif
+            @if (session('stored'))
+                <script>$("#modalSuccess").modal("show");</script>
+                
+                <div class="alert alert-success fade in">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>¡Éxito!</strong> {{session('stored')}}
+                </div>
+            @endif
+
+            @if (session('delete'))
+                <script>$("#modalError").modal("show");</script>         
+                <div class="alert alert-danger fade in">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        {{session('delete')}}
+                </div>                        
+            @endif
+            <div class=""> 
+              @if ($errors->any())
+                  <ul class="alert alert-danger fade in">
+                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    @foreach ($errors->all() as $error)
+                      <li>{{$error}}</li>
+                    @endforeach
+                  </ul>
+                @endif
+            </div>
+          </div>
     <div class="">
       <div class="page-title">
         <div class="title_left">
@@ -66,25 +100,35 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="organization-id" class="control-label col-md-3 col-sm-3 col-xs-12">Organización</label>
+                  <label for="organization-id" class="control-label col-md-3 col-sm-3 col-xs-12">Organización <span class="required">*</span></label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
                     <select  id="org_id" name="org_id" class="form-control">
-                      <option>Choose option</option>
+                      <option value="-1">Elegir opción...</option>
                       @foreach($all_organizations as $org)
                         <option value="{{$org->id}}">{{$org->name}}</option>   
                       @endforeach
                     </select>
                   </div>
                 </div>
-
                 <div class="form-group">
-                  <label for="password" class="control-label col-md-3 col-sm-3 col-xs-12" >Contraseña<span class="required">*</span></label>
+                  <label for="role_name" class="control-label col-md-3 col-sm-3 col-xs-12">Rol <span class="required">*</span></label>
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                    <select  id="role_name" name="role_name" class="form-control">
+                      <option value="ninguno">Elegir opción...</option>
+                      @foreach($roles as $role)
+                        <option value="{{$role->name}}">{{$role->name}}</option>   
+                      @endforeach
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="password" class="control-label col-md-3 col-sm-3 col-xs-12" >Contraseña <span class="required">*</span></label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
                     <input type="password" id="password" class="form-control col-md-7 col-xs-12" type="text" name="password">
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="password_confirmation" class="control-label col-md-3 col-sm-3 col-xs-12">Repetir contraseña<span class="required">*</span></label>
+                  <label for="password_confirmation" class="control-label col-md-3 col-sm-3 col-xs-12">Repetir contraseña <span class="required">*</span></label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
                     <input type="password" id="password_confirmation" class="form-control col-md-7 col-xs-12" type="text" name="password_confirmation">
                   </div>
@@ -92,9 +136,9 @@
                 <div class="ln_solid"></div>
                 <div class="form-group">
                   <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                    <a href="{{url('/')}}" class="btn btn-primary" type="button">Cancel</a>
-                    <button class="btn btn-primary" type="reset">Reset</button>
-                    <button type="submit" class="btn btn-success">Submit</button>
+                    <a href="{{url('/')}}" class="btn btn-primary" type="button">Cancelar</a>
+                    <button class="btn btn-primary" type="reset">Resetear</button>
+                    <button type="submit" class="btn btn-success">Registrar</button>
                   </div>
                 </div>
 
