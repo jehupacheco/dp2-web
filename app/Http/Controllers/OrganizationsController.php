@@ -82,6 +82,7 @@ class OrganizationsController extends Controller
             'sensors' => 'array',
         ]);
 
+        $request['is_parking'] = $request['is_parking'] === 'true';
         $organization->update($request->all());
         $organization->sensors()->sync($request['sensors']);
 

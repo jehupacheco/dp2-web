@@ -87,8 +87,8 @@
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
                         <select id="is_parking" name="is_parking" class="form-control col-md-7 col-xs-12">
-                          <option {{!$organization['is-parking'] ? 'selected': ''}} value="false">Auto</option>
-                          <option {{$organization['is-parking'] ? 'selected': ''}} value="true">Estacionamiento</option>
+                          <option {{!$organization['is_parking'] ? 'selected': ''}} value="false">Auto</option>
+                          <option {{$organization['is_parking'] ? 'selected': ''}} value="true">Estacionamiento</option>
                         </select> 
                       </div>
                     </div>
