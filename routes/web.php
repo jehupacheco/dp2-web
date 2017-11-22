@@ -32,6 +32,10 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::post('/cambiar/password/save','UserController@post_change_password');
 
 	Route::resource('organizations', 'OrganizationsController');
+
+
+	Route::get('/roles','RolesController@index');
+
 });
 
 

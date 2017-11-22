@@ -8,7 +8,13 @@
 @section('main_container')
 
     <!-- page content -->
-<div class="right_col" role="main">
+    <div class="right_col" role="main">
+      <div class="page-title">
+      <div class="title_left">
+        <h3> <small>Roles de usuario</small></h3>
+      </div>
+    </div>
+
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
           <div class="x_panel">
@@ -53,7 +59,7 @@
                     </thead>
 
                     <tbody>
-
+                      @foreach($roles as $role)
                       <tr class="even pointer">
                         <td class="a-center ">
                           <div class="icheckbox_flat-green" style="position: relative;"><input type="checkbox" class="flat" name="table_records" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>
@@ -62,7 +68,7 @@
                         <td class=" ">sss</td>
                         <td><a href="#" class="btn btn-info btn-xs fa fa-pencil"></a><a href="{{url('/')}}" class="btn btn-danger btn-xs fa fa-trash"></a></td>
                       </tr>
-
+                      @endforeach
                       
                     </tbody>
                   </table>
