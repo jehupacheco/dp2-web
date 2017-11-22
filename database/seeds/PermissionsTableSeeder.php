@@ -34,7 +34,42 @@ class PermissionsTableSeeder extends Seeder
         ]);
 
         DB::table('permissions')->insert([
-           'name' => 'Vehículos', 
+           'name' => 'Vehículos para pacientes de Cardiopatía', 
+            'guard_name' => 'web', 
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+
+        DB::table('permissions')->insert([
+           'name' => 'Vehículos para la Jardinería', 
+            'guard_name' => 'web', 
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+
+        DB::table('permissions')->insert([
+           'name' => 'Vehículos para Ventas', 
+            'guard_name' => 'web', 
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+
+        DB::table('permissions')->insert([
+           'name' => 'Vehículos Eco-amigables', 
+            'guard_name' => 'web', 
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+
+        DB::table('permissions')->insert([
+           'name' => 'Vehículos para Trasporte Urbano 1', 
+            'guard_name' => 'web', 
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+
+        DB::table('permissions')->insert([
+           'name' => 'Vehículos para Trasporte Urbano 2', 
             'guard_name' => 'web', 
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
@@ -48,28 +83,28 @@ class PermissionsTableSeeder extends Seeder
         ]);
 
         DB::table('permissions')->insert([
-           'name' => 'Reportes-Recorridos', 
+           'name' => 'Reportes de Recorridos', 
             'guard_name' => 'web', 
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
 
         DB::table('permissions')->insert([
-           'name' => 'Reportes-Clientes', 
+           'name' => 'Reportes de Clientes', 
             'guard_name' => 'web', 
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
 
         DB::table('permissions')->insert([
-           'name' => 'Reportes-Sensores', 
+           'name' => 'Reportes de Sensores', 
             'guard_name' => 'web', 
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
 
         DB::table('permissions')->insert([
-           'name' => 'Reportes-Historial-Alertas', 
+           'name' => 'Reportes de Historial de Alertas', 
             'guard_name' => 'web', 
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),

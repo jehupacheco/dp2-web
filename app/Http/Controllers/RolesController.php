@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use DB;
+use Auth;
 
 class RolesController extends Controller
 {
@@ -39,7 +41,29 @@ class RolesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        try {
+            DB::beginTransaction();
+
+            $input = $request->all();
+
+            $role = Role::create(['name' => $input['role_name']]);
+            $permisos = Permission::all();
+
+            foreach ($permisos as $permiso) {
+                if(isset($input['permission'.$permiso->id]))
+                    $role->givePermissionTo($permiso->name);
+            }  
+        } catch (Exception $e) {
+            DB::rollback();
+            return redirect()->action('RolesController@index')->with('deleted', 'No se registró el rol.');
+        }
+        DB::commit();
+        return redirect()->action('HomeController@index')->with('stored', 'Se registró el rol correctamente.');
+
+        // // $role = Role::findByName('Administrador General');
+        // $user = Auth::user();
+        // $user->assignRole('Administrador General');
     }
 
     /**
