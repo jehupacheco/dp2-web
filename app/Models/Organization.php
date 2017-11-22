@@ -15,4 +15,9 @@ class Organization extends Model
     {
         return $this->hasMany('App\Models\Vehicle');
     }
+
+    public function sensors()
+    {
+        return $this->belongsToMany('App\Models\Sensor');
+    }
 }
