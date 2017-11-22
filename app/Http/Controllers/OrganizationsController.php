@@ -61,8 +61,10 @@ class OrganizationsController extends Controller
     public function edit(Organization $organization)
     {
         $sensors = Sensor::all();
-
-        return view('organizations.edit', compact('organization', 'sensors'));
+        $orgSensors = $organization->sensors()->get()->map(function ($sensor) {
+            return $sensor->id;
+        });
+        return view('organizations.edit', compact('organization', 'sensors', 'orgSensors'));
     }
 
     /**
@@ -74,7 +76,17 @@ class OrganizationsController extends Controller
      */
     public function update(Request $request, Organization $organization)
     {
-        dd($request->all());
+        $this->validate($request, [
+            'name' => 'required',
+            'is_parking' => 'in:true,false',
+            'sensors' => 'array',
+        ]);
+
+        $request['is_parking'] = $request['is_parking'] === 'true';
+        $organization->update($request->all());
+        $organization->sensors()->sync($request['sensors']);
+
+        return redirect()->route('organizations.edit', $organization->id);
     }
 
     /**

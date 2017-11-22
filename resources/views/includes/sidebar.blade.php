@@ -36,7 +36,7 @@
                     <li>
                         <a href="{{route('organizations.index')}}">
                             <i class="fa fa-building"></i>
-                            Organizations
+                            Organizaciones
                         </a>
                     </li>
                     <li>

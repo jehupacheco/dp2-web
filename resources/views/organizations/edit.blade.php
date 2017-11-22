@@ -25,11 +25,21 @@
                   <div class="alert alert-danger fade in"> {{session('delete')}}  </div>               
               @endif
             </div>
-              <div class="page-title">
-                  <div class="title_left">
-                    <h3>Editar Organización</h3>
-                  </div>
+            <div class=""> 
+              @if ($errors->any())
+                  <ul class="alert alert-danger fade in">
+                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    @foreach ($errors->all() as $error)
+                      <li>{{$error}}</li>
+                    @endforeach
+                  </ul>
+              @endif
+            </div>
+            <div class="page-title">
+              <div class="title_left">
+                <h3>Editar Organización</h3>
               </div>
+            </div>
           </div>
           <div class="clearfix"></div>
           <div class="row">
@@ -71,14 +81,14 @@
                       </div>
                     </div>
                     <div class="form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="is-parking">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="is_parking">
                         Tipo
                         <span class="required">*</span>
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <select id="is-parking" name="is-parking" class="form-control col-md-7 col-xs-12">
-                          <option {{!$organization['is-parking'] ? 'selected': ''}} value="false">Auto</option>
-                          <option {{$organization['is-parking'] ? 'selected': ''}} value="true">Estacionamiento</option>
+                        <select id="is_parking" name="is_parking" class="form-control col-md-7 col-xs-12">
+                          <option {{!$organization['is_parking'] ? 'selected': ''}} value="false">Auto</option>
+                          <option {{$organization['is_parking'] ? 'selected': ''}} value="true">Estacionamiento</option>
                         </select> 
                       </div>
                     </div>
@@ -88,9 +98,11 @@
                         <span class="required">*</span>
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <select id="sensors[]" name="sensors[]" class="form-control col-md-7 col-xs-12" multiple="multiple">
+                        <select id="sensors" name="sensors[]" class="form-control col-md-7 col-xs-12" multiple="multiple">
                           @foreach($sensors as $sensor)
-                            <option value="{{$sensor->id}}">{{$sensor->description}}</option>
+                            <option value="{{$sensor->id}}" {{$orgSensors->contains($sensor->id) ? 'selected' : ''}}>
+                              {{$sensor->description}}
+                            </option>
                           @endforeach
                         </select> 
                       </div>
@@ -117,7 +129,7 @@
 @endsection
 @push('scripts')
 <script>
-  $('#sensors[]').select2();
+  $('#sensors').select2();
 </script>
 @endpush
 
