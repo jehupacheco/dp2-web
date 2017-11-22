@@ -97,10 +97,12 @@
                         </a>
                     </li>
                     @endif
-                    @if(auth()->user()->can('Reportes de Recorridos') ||
-                        auth()->user()->can('Reportes de Clientes') ||
-                        auth()->user()->can('Reportes de Sensores') ||
-                        auth()->user()->can('Reportes de Historial de Alertas'))
+
+
+                    @if(auth()->user()->hasAnyPermission(['Reportes de Recorridos', 
+                                                 'Reportes de Clientes', 
+                                                 'Reportes de Sensores',
+                                                 'Reportes de Historial de Alertas']))
                     <li><a><i class="fa fa-bar-chart"></i> Reportes <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             @if(auth()->user()->can('Reportes de Recorridos'))
