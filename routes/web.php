@@ -35,7 +35,7 @@ Route::group(['middleware' => ['auth']], function () {
 
 
 	Route::get('/roles','RolesController@index');
-
+	Route::get('/roles/nuevo','RolesController@create');
 });
 
 

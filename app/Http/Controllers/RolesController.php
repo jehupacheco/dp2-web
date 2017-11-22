@@ -27,7 +27,8 @@ class RolesController extends Controller
      */
     public function create()
     {
-        //
+        $permissions = Permission::all();
+        return view('Seguridad.roles.nuevo',compact('permissions'));
     }
 
     /**
