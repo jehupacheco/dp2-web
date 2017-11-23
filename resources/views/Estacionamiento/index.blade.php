@@ -100,9 +100,7 @@
                   <div class="x_content">
                     <div class="row">
                       <div class="col-sm-12">
-                        <div class="temperature"><b>Viernes</b>, 16:30 PM
-                          <span><b>C°</b>
-                                          </span>
+                        <div class="temperature"> {{$temperature->created_at}}
                         </div>
                       </div>
                     </div>
@@ -209,7 +207,7 @@
 		                </div>
 
 		                <div class="col-md-12 text-center">
-                      		<h1>{{$luminosity->value}} LUX</h1>
+                      		<h1> {{$luminosity->value}} LUX</h1>
                           <hr>
                           <img src="{{asset('images/luminosidad.png')}}" alt="" class="img-circle img-responsive">
                       </div>
@@ -278,7 +276,7 @@ z                    <div class="col-md-12 text-center">
 
   gauge.maxValue = 90;
   gauge.animationSpeed = 32;
-  value_galge= 45;
+  value_galge= 5;
   gauge.set(value_galge);
   gauge.setTextField(document.getElementById("gauge-text"));
 </script>
@@ -308,7 +306,7 @@ z                    <div class="col-md-12 text-center">
   document.getElementById("button+").onclick = function() {aumentar()};
   function modoManual() {
     var xhr = new XMLHttpRequest();
-    var url = "url";
+    var url = "http://10.100.210.232/prueba.php";
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.onreadystatechange = function () {
@@ -316,12 +314,12 @@ z                    <div class="col-md-12 text-center">
             var json = JSON.parse(xhr.responseText);
         }
     };
-    var data = JSON.stringify({"modo": "manual", "angulo": value_galge});
+    var data = JSON.stringify({"modo": "manual", "angulo": "4" });
     xhr.send(data);
   }
   function modoAuto() {
     var xhr = new XMLHttpRequest();
-    var url = "url";
+    var url = "http://10.100.210.232/prueba.php";
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.onreadystatechange = function () {
@@ -336,7 +334,7 @@ z                    <div class="col-md-12 text-center">
     value_galge=value_galge-5;
     gauge.set(value_galge);
     var xhr = new XMLHttpRequest();
-    var url = "url";
+    var url = "http://10.100.210.232/prueba.php";
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.onreadystatechange = function () {
@@ -351,7 +349,7 @@ z                    <div class="col-md-12 text-center">
     value_galge=value_galge+5;
     gauge.set(value_galge); 
     var xhr = new XMLHttpRequest();
-    var url = "url";
+    var url = "http://10.100.210.232/prueba.php";
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.onreadystatechange = function () {

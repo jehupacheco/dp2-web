@@ -17,25 +17,25 @@ class ParkingController extends Controller
         try{
             $angle = DB::table('readings')
                 ->where([
-                    ['travel_id','=','5'],
-                    ['sensor_id','=','8']
+                    ['travel_id','=','1'],
+                    ['sensor_id','=','11']
                 ])->latest()
                 ->first();
             $temperature = DB::table('readings')
                 ->where([
-                    ['travel_id','=','5'],
+                    ['travel_id','=','1'],
                     ['sensor_id','=','4']
                 ])->latest()
                 ->first();
             $luminosity = DB::table('readings')
                 ->where([
-                    ['travel_id','=','5'],
+                    ['travel_id','=','1'],
                     ['sensor_id','=','9']
                 ])->latest()
                 ->first();
             $uv = DB::table('readings')
                 ->where([
-                    ['travel_id','=','5'],
+                    ['travel_id','=','1'],
                     ['sensor_id','=','10']
                 ])->latest()
                 ->first();
