@@ -9,8 +9,8 @@ use App\Models\Configuration;
 use App\Models\Vehicle;
 use App\Models\Sensor;
 use Auth;
-use Charts;
 use Redirect;
+use DB;
 
 class HomeController extends Controller
 {
@@ -89,19 +89,34 @@ class HomeController extends Controller
     {
         $vehicles= Vehicle::all();
         $sensors= Sensor::all();
-        
-        return view('Reportes.sensores', compact('vehicles','sensors'));
+        $sensorselected= Sensor::find('1');
+        $readinglist = DB::table('readings')
+            ->select(DB::raw("DATE_FORMAT(updated_at,'%Y-%m-%d') as dia"), DB::raw('value as value'), DB::raw('sensor_id as sensor_id'))
+            ->get();
+
+        return view('Reportes.sensores', compact('vehicles','sensors','readinglist','sensorselected'));
     }
 
     public function filtrado_sensores(Request $request)
     {
         $vehicles= Vehicle::all();
         $sensors= Sensor::all();
+
         $input = $request->all();
+        $sensorselected = Sensor::find($input['sensor_id']);
         //$input['vehicle_id']
-        //$input['fechaInicial']
+        //$input['fechaInicial']        
         //$input['fechaFin']
-        return view('Reportes.sensores', compact('vehicles','sensors'));
+        //$input['sensor_id'];
+        if($input['sensor_id']!=""){
+            $readinglist = DB::table('readings')
+                ->select(DB::raw("DATE_FORMAT(updated_at,'%Y-%m-%d') as dia"), DB::raw('value as value'), DB::raw('sensor_id as sensor_id'))
+                ->where([
+                    ['sensor_id','=', $input['sensor_id']]
+                ])
+                ->get();
+        }
+        return view('Reportes.sensores', compact('vehicles','sensors','readinglist','sensorselected'));
     }
 
     public function filtroAutos()

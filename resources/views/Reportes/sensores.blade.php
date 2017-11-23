@@ -220,7 +220,7 @@ window.__cfRocketOptions = {byc:0,p:1508690442,petok:"42319e3ea318aad72b4aa82446
                 <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Sensor de <small>.</small></h2>
+                    <h2>Sensor de {{$sensorselected->description}}<small>.</small></h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -354,13 +354,19 @@ ga('send', 'pageview');
       Chart.defaults.global.legend = {
         enabled: false
       };
-
+      var readinglist = <?php echo json_encode($readinglist); ?>;
       // Line chart
+      //console.log(readinglist);
+      var labels = [],data=[];
+      for (var i = 0; i < readinglist.length; i++) {
+          labels.push(readinglist[i].dia);
+          data.push(readinglist[i].value);
+      }
       var ctx = document.getElementById("lineChart");
       var lineChart = new Chart(ctx, {
         type: 'line',
         data: {
-          labels: ["January", "February", "March", "April", "May", "June", "July"],
+          labels: labels,
           datasets: [{
             label: "My First dataset",
             backgroundColor: "rgba(38, 185, 154, 0.31)",
@@ -370,7 +376,7 @@ ga('send', 'pageview');
             pointHoverBackgroundColor: "#fff",
             pointHoverBorderColor: "rgba(220,220,220,1)",
             pointBorderWidth: 1,
-            data: [31, 74, 6, 39, 20, 85, 7]
+            data: data
           }]
         },
       });
