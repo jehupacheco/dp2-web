@@ -25,7 +25,7 @@ $factory->define(App\Models\Vehicle::class, function (Faker\Generator $faker) {
     return [
         'mac' => $faker->macAddress,
         'organization_id' => rand(1,6),
-        'plate' => str_random(3).'-'.str_random(3),
+        'plate' => strtoupper(str_random(3)).'-'.strtoupper(str_random(3)),
         'description' => $faker->text,
         'price' => rand(30,50),
     ];
