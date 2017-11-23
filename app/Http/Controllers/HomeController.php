@@ -92,6 +92,9 @@ class HomeController extends Controller
         $sensorselected= Sensor::find('1');
         $readinglist = DB::table('readings')
             ->select(DB::raw("DATE_FORMAT(updated_at,'%Y-%m-%d') as dia"), DB::raw('value as value'), DB::raw('sensor_id as sensor_id'))
+            ->where([
+                    ['sensor_id','=', '1']
+                ])
             ->get();
 
         return view('Reportes.sensores', compact('vehicles','sensors','readinglist','sensorselected'));
