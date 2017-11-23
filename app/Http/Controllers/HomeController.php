@@ -6,7 +6,10 @@ use App\Http\Requests;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Models\Configuration;
+use App\Models\Vehicle;
+use App\Models\Sensor;
 use Auth;
+use Charts;
 use Redirect;
 
 class HomeController extends Controller
@@ -84,7 +87,21 @@ class HomeController extends Controller
 
     public function sensores()
     {
-        return view('Reportes.sensores');
+        $vehicles= Vehicle::all();
+        $sensors= Sensor::all();
+        
+        return view('Reportes.sensores', compact('vehicles','sensors'));
+    }
+
+    public function filtrado_sensores(Request $request)
+    {
+        $vehicles= Vehicle::all();
+        $sensors= Sensor::all();
+        $input = $request->all();
+        //$input['vehicle_id']
+        //$input['fechaInicial']
+        //$input['fechaFin']
+        return view('Reportes.sensores', compact('vehicles','sensors'));
     }
 
     public function filtroAutos()
