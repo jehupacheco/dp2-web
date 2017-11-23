@@ -22,17 +22,18 @@ class RedirectIfAuthenticated
     {
         $fecha_actual = Carbon::now();
         
+        
         if (Auth::guard($guard)->check()) {
-            $fecha_last_update =  Carbon::createFromFormat('Y-m-d H:i:s',Auth::user()->password_updated_at);
-            $conf = new Configuration();
+            //$fecha_last_update =  Carbon::createFromFormat('Y-m-d H:i:s',Auth::user()->password_updated_at);
+            //$conf = new Configuration();
             // $num_dias = $conf->getParameter('daystochangepassword');
            
-            if($fecha_actual->diffInDays($fecha_last_update)>=3){
-                return redirect('cambiar/password');
-            }
-            else{
+            //if($fecha_actual->diffInDays($fecha_last_update)>=3){
+              //  return redirect('cambiar/password');
+            //}
+            //else{
                 return redirect('/');
-            }
+            //}
             
         }
 
