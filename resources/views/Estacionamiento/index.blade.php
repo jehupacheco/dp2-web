@@ -100,7 +100,11 @@
                   <div class="x_content">
                     <div class="row">
                       <div class="col-sm-12">
+<<<<<<< HEAD
                         <div class="temperature"> {{$temperature->created_at}}
+=======
+                        <div class="temperature"><b>{{$today}}</b>
+>>>>>>> development
                         </div>
                       </div>
                     </div>
@@ -115,15 +119,18 @@
                       </div>
                       <div class="col-sm-8">
                         <div class="weather-text">
-                          <h2>Lima
-                                              <br><i>------</i>
-                                          </h2>
+                          <h2>{{$clima_de_hoy->name}}, Perú
+                          </h2>
                         </div>
                       </div>
                     </div>
                     <div class="col-sm-12">
                       <div class="weather-text pull-right">
+<<<<<<< HEAD
                         <h3 class="degrees">{{$temperature->value}}</h3>
+=======
+                        <h3 class="degrees">{{$clima_de_hoy->main->temp}}<b>C°</b></h3>
+>>>>>>> development
                       </div>
                     </div>
                     <div class="clearfix"></div>

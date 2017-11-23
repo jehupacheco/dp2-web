@@ -53,6 +53,7 @@ var stylesheets = [
   '/vendors/iCheck/skins/flat/green.css',
   '/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css',
   '/vendors/bootstrap-daterangepicker/daterangepicker.css',
+  '/vendors/select2/dist/css/select2.min.css',
   // End - Added
   '/build/css/custom.min.css',
   
@@ -107,6 +108,7 @@ var scripts = [
   '/production/js/maps/jquery-jvectormap-us-aea-en.js',
   '/production/js/maps/gdp-data.js',
   '/vendors/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js',
+  '/vendors/select2/dist/js/select2.full.min.js',
   // End - Added
   '/build/js/custom.min.js',
   //bootstrap-daterangepicker

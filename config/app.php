@@ -65,7 +65,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'es',
 
     /*
     |--------------------------------------------------------------------------
@@ -164,6 +164,7 @@ return [
         Watson\BootstrapForm\BootstrapFormServiceProvider::class,
         Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
+        'Jenssegers\Date\DateServiceProvider',
     ],
 
     /*
@@ -216,6 +217,8 @@ return [
         'BootForm' => Watson\BootstrapForm\Facades\BootstrapForm::class,
         'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
         'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
+        'Pusher' => Pusher\Pusher::class,
+        'Date' => Jenssegers\Date\Date::class,
     ],
 
 ];

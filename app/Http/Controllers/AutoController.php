@@ -75,7 +75,7 @@ class AutoController extends Controller
         $org = Organization::find($input['org_id']);
         DB::beginTransaction();
         try {
-            $org->vel_max = $input['vel_max'];
+            $org->vel_max = $input['max_vel'];
             //$org->vel_max = $input['vel_max'];
             $org->save();
         } catch (Exception $e) {
@@ -154,8 +154,9 @@ class AutoController extends Controller
     public function ubicacion($id)
     {
         $vehicle = Vehicle::find($id);
+        $positions = $vehicle->positions()->latest()->limit(100)->get();
 
-        return view('Vehiculos.ubicacion');
+        return view('Vehiculos.ubicacion', compact('positions', 'vehicle'));
     }
     
 

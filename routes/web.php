@@ -30,7 +30,16 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::post('/usuarios/nuevo','UserController@store');
 	Route::get('/cambiar/password','UserController@change_password');
 	Route::post('/cambiar/password/save','UserController@post_change_password');
+
+	Route::resource('organizations', 'OrganizationsController');
+
+
+	Route::get('/roles','RolesController@index');
+	Route::get('/roles/nuevo','RolesController@create');
+	Route::post('/roles/nuevo','RolesController@store');
 });
+
+
 
 
 
@@ -52,22 +61,30 @@ Route::get('/ubicaciones/buscar/usuarios','LocationController@users_result');
 
 Route::get('/ubicaciones/usuario/1/mapa','LocationController@mostrar_mapa');
 
-Route::get('/vehiculos/Configuracion','AutoController@configuracion');
-
-Route::get('/vehiculos/{id}/deshabilitar','AutoController@deshabilitar');
-Route::post('/vehiculos/{id}/deshabilitarPut','AutoController@deshabilitarPut');
-
-Route::post('/vehiculos/put/configuracion','AutoController@configuracionPut');
-
-Route::get('/vehiculos/{id}/ver','AutoController@ver');
-Route::get('/vehiculos/{tipo_id}/lista','AutoController@mostrar_lista_tipo');
-Route::get('/vehiculos/{tipo_id}/nuevo','AutoController@create');
-Route::post('/vehiculos/{tipo_id}/nuevo','AutoController@store');
-
-Route::get('/vehiculos/{id}/ubicacion', 'AutoController@ubicacion');
 
 
-Route::get('/estacionamiento','ParkingController@index');
+
+Route::group(['middleware' => ['permission:Vehículos para pacientes de Cardiopatía|Vehículos para la Jardinería|Vehículos para Ventas|Vehículos Eco-amigables|Vehículos para Trasporte Urbano 1|Vehículos para Trasporte Urbano 2']], function () {
+	Route::get('/vehiculos/Configuracion','AutoController@configuracion');
+
+	Route::get('/vehiculos/{id}/deshabilitar','AutoController@deshabilitar');
+	Route::post('/vehiculos/{id}/deshabilitarPut','AutoController@deshabilitarPut');
+
+	Route::post('/vehiculos/put/configuracion','AutoController@configuracionPut');
+
+	Route::get('/vehiculos/{id}/ver','AutoController@ver');
+	Route::get('/vehiculos/{tipo_id}/lista','AutoController@mostrar_lista_tipo');
+	Route::get('/vehiculos/{tipo_id}/nuevo','AutoController@create');
+	Route::post('/vehiculos/{tipo_id}/nuevo','AutoController@store');
+
+	Route::get('/vehiculos/{id}/ubicacion', 'AutoController@ubicacion');
+});
+
+
+
+Route::group(['middleware' => ['permission:Estacionamiento']], function () {
+    Route::get('/estacionamiento','ParkingController@index');
+});
 
 Route::get('/reportes/clienteXvehiculo','HomeController@clienteXvehiculo');
 
