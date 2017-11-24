@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Models\Organization;
+use Carbon\Carbon;
 
 class Client extends Authenticatable
 {
@@ -52,5 +53,10 @@ class Client extends Authenticatable
     public function reminders()
     {
         return $this->hasMany('App\Models\Reminder');
+    }
+
+    public function currentObjectives()
+    {
+        return $this->objectives()->where('ends_at', '>=', Carbon::now());
     }
 }

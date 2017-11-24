@@ -74,6 +74,14 @@ class ReadingController extends Controller
 
         $reading->save();
 
+        $client->currentObjectives()->get()->each(function ($obj) use ($reading) {
+            if ($obj['sensor_id'] == $reading['sensor_id']) {
+                $obj->readings()->attach($reading->id);
+                $obj->value += $reading->value;
+                $obj->save();
+            }
+        });
+
         return response()->json($reading);
     }
 
