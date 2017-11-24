@@ -76,7 +76,7 @@
                               {{$organization->phone}}
                             </td>
                             <td>
-                              {{$organization['is-parking'] ? 'Estacionamiento' : 'Auto' }}
+                              {{$organization['is_parking'] ? 'Estacionamiento' : 'Auto' }}
                             </td>
                             <td>
                               <a href="{{route('organizations.edit', $organization->id)}}" class="btn btn-info btn-xs fa fa-pencil"></a>

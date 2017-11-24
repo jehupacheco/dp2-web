@@ -27,6 +27,14 @@ class Renting extends Model
         return $org->name; 
     }
 
+    public function getOrgId()
+    {
+        $vehicle_id = $this->vehicle_id;
+        $vehicle = Vehicle::find($vehicle_id);
+
+        return $vehicle->organization_id;
+
+    }
 
     public function getPlateById($vehicle_id)
     {

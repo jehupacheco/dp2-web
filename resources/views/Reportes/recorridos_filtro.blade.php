@@ -21,30 +21,32 @@
               @endif
 
               @if (session('delete'))
-                  <script>$("#modalError").modal("show");</script>   
-                  <div class="alert alert-danger fade in"> {{session('delete')}}  </div>               
+                  <script>$("#modalError").modal("show");</script>                        
               @endif
             </div>
               <div class="page-title">
                   <div class="title_left">
-                    <h3> <small>Alquiler de Vehículos</small></h3>
+                    <h3> <small>Viajes de Vehículos</small></h3>
                   </div>
 
                   
                 </div>
 
           </div>
+          <div class="row">
+            
+          </div>
           <div class="clearfix"></div>
           <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
               <div class="x_panel">
                 <div class="x_title">
-                  <h2>Nuevo Alquiler <small>Registro de nuevo alquiler de vehículo</small></h2>
+                  <h2>Filtros <small>Filtrado de alquileres</small></h2>
                   <ul class="nav navbar-right panel_toolbox">
                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                     </li>
                     <li class="dropdown">
-                      <button type="button" class="btn"><i class="fa fa-wrench"></i></button>
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
                       <ul class="dropdown-menu" role="menu">
                         <li><a href="#">Settings 1</a>
                         </li>
@@ -59,18 +61,16 @@
                 </div>
                 <div class="x_content">
                   <br />
-                  <form id="demo-form2" method="POST" action="{{url('alquileres/nuevo')}}" data-parsley-validate class="form-horizontal form-label-left">
+                  <form id="demo-form2"  method="POST" action="{{url('/reportes/recorrido/filtro/filtrado')}}" data-parsley-validate class="form-horizontal form-label-left">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Cliente <span class="required">*</span>
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
                         <input type="text" id="client_name" required="required" class="form-control col-md-7 col-xs-12" readonly="true">
-                        <input type="text" id="client_id" name="client_id" style="display: none;">
+                        <input id="client_id" name="client_id" type="text" readonly="true" style="display: none;">
                       </div>
                       <div class="col-md-3 col-sm-3 col-xs-12">
-                        <!-- <button type="submit" class="btn btn-success">Buscar</button> -->
-                        
                         <button type="button" class="btn btn-success" data-toggle="modal" data-target=".modalBuscarCliente"><i class="fa fa-search"></i></button>
 
                         <div class="modal modalBuscarCliente" tabindex="-1" role="dialog" aria-hidden="true">
@@ -156,13 +156,12 @@
                     </div>
                     
                     <div class="form-group">
-                      <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Placa de auto <span class="required">*</span></label>
+                      <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Placa de auto</label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input id="plate" class="form-control col-md-7 col-xs-12" required="required" type="text" name="middle-name" readonly="true">
-                        <input type="text" id="vehicle_id" name="vehicle_id" style="display: none;">
+                        <input id="plate" class="form-control col-md-7 col-xs-12" type="text" name="plate" readonly="true">
+                        <input id="vehicle_id" name="vehicle_id" type="text" readonly="true" style="display: none;">
                       </div>
                       <div class="col-md-3 col-sm-3 col-xs-12">
-                        <!-- <button type="submit" class="btn btn-success">Buscar</button> -->
                         <button type="button" class="btn btn-success" data-toggle="modal" data-target=".modalBuscarVehiculo"><i class="fa fa-search"></i></button>
     
                         <div class="modal modalBuscarVehiculo" tabindex="-1" role="dialog" aria-hidden="true">
@@ -217,7 +216,7 @@
 
                                       <tbody>
                                         @foreach ($vehicles as $vehicle)
-                                        @if(is_null($vehicle->mac))
+                                        @if(!is_null($vehicle->mac))
                                         <tr>
                                           <td>{{$vehicle->plate}}</td>
                                           <td>{{$vehicle->price}}</td>
@@ -248,85 +247,99 @@
                       </div>
                     </div>
 
-                    <!-- <div class="form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12">Tipo de vehículo</label>
-                      <div class="col-md-6 col-sm-6 col-xs-12">
-                        <select class="form-control">
-                          <option>Elija una opción</option>
-                          @foreach($all_organizations as $org)
-                            <option value="{{$org->id}}">{{$org->name}}</option>   
-                          @endforeach
-                        </select>
-
-                      </div>
-                    </div> -->
-                    <div class="form-group">
-                      <label for="reportrange" class="control-label col-md-3 col-sm-3 col-xs-12">Periodo de alquiler</label>
-                      <div class="col-md-6 col-sm-6 col-xs-12">
-                        <div id="reportrange" name="reportrange"  style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
-                          <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
-                          <span>December 30, 2017 - January 28, 2017</span> <b class="caret"></b>
-                        </div>
-                      </div>
-                      <input id="start_date" name="start_date" type="text" style="display: none;">
-                      <input id="end_date" name="end_date" type="text" style="display: none;">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-6">Costo Por Hora </label>
-                        <div class="col-md-3 col-sm-3 col-xs-12">
-                          <input id="price_hour" type="text" class="form-control" readonly="true" placeholder="S/.">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-6">Costo Total </label>
-                        <div class="col-md-3 col-sm-3 col-xs-12">
-                          <input id="price_total" type="text" class="form-control" readonly="true" placeholder="S/.">
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="mac"> Mac Address <span class="required">*</span>
-                      </label>
-                      <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" id="mac" name="mac" required="required" class="form-control col-md-7 col-xs-12" data-inputmask="'mask' : '**:**:**:**:**:**'">
-                      </div>
-
-                    </div>
-
                     <div class="ln_solid"></div>
                     <div class="form-group">
                       <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-5">
                         <!-- <button type="submit" class="btn btn-success">Buscar</button> -->
-                        <button href="" type="submit" class="btn btn-success">Aceptar</button>
-                        <a href="{{url('/alquileres/index')}}" class="btn btn-success">Regresar</a>
+                        <button type="submit"  class="btn btn-success">Buscar</button>
+                        <a href="{{url('/')}}" class="btn btn-success">Regresar</a>
                       </div>
                     </div>
-
-                    
-
                   </form>
-
                 </div>
               </div>
             </div>
           </div>
+          <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Viajes <small>Filtrado de viajes</small></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="#">Settings 1</a>
+                          </li>
+                          <li><a href="#">Settings 2</a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
 
-        
+                  <div class="x_content">
+
+                    <p>Seleccionar una fila para ver su detalle</p>
+
+                    <div class="table-responsive">
+                      <table id="dtTableRenting" class="table table-striped jambo_table bulk_action">
+                        <thead>
+                          <tr class="headings">
+                            <th>
+                              <div class="icheckbox_flat-green" style="position: relative;"><input type="checkbox" id="check-all" class="flat" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>
+                            </th>
+                            <th class="column-title" style="display: table-cell;">Cliente </th>
+                            <th class="column-title" style="display: table-cell;">Vehículo(placa) </th>
+                            <th class="column-title" style="display: table-cell;">Fecha de Inicio</th>
+                            <th class="column-title" style="display: table-cell;">Fecha Final  </th>
+                            <th class="column-title" style="display: table-cell;">Ver</th>
+                            
+                            <th class="bulk-actions" colspan="7" style="display: none;">
+                              <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt">1 Records Selected</span> ) <i class="fa fa-chevron-down"></i></a>
+                            </th>
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                          @foreach($travel as $travelPoint)
+                          <tr class="even pointer">
+                            <td class="a-center ">
+                              <div class="icheckbox_flat-green" style="position: relative;"><input type="checkbox" class="flat" name="table_records" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>
+                            </td>
+                            <td class=" ">{{$travelPoint->getClientNameById($travelPoint->client_id)}}</td>
+                            <td class=" ">{{$travelPoint->getVehiclePlacaById($travelPoint->vehicle_id)}}</td>
+                            <td class=" ">{{$travelPoint->started_at}}</td>
+                            <td class=" ">{{$travelPoint->ended_at}}</td>
+                            <td>
+                              <a href="{{url('/reportes/'.$travelPoint->id.'/'.$travelPoint->vehicle_id.'/clienteXvehiculo')}}" class="btn btn-info btn-xs fa fa-search"></a>
+                              
+                            </td>
+                          </tr>
+                          @endforeach
+                          
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
     </div>
     <!-- /page content -->
-
-
-    
 @endsection
+
+
+
+
 @push('scripts')
 
-<script>
-  $(document).ready(function() {
-    $(":input").inputmask();
-  });
-</script>
+
 <script>
   function getCliente(){                
       document.getElementById('client_id').value =  $('#dtTableClient input:radio:checked').val();
@@ -336,21 +349,18 @@
   function getVehiculo(){                
       document.getElementById('vehicle_id').value =  $('#dtTableVehicle input:radio:checked').val();
       document.getElementById('plate').value =  $('#dtTableVehicle input:radio:checked').attr("alt");
-      document.getElementById('price_hour').value =  $('#precioVehiculo'+document.getElementById('vehicle_id').value).attr("alt") + ' Soles';
-      var precio = parseFloat($('#price_hour').val());
-
-      var start = moment(document.getElementById('start_date').value);
-      var end  =  moment(document.getElementById('end_date').value);
-      var difference = end.diff(start,'days');
-      var total = precio * difference;
-      document.getElementById('price_total').value = total.toFixed(2) + ' Soles';
     }
 </script>
 
 <script>
-$(document).ready(function(){});
-
-$(document).ready(function() {
+  $(document).ready(function() {
+      $('#dtTableRenting').DataTable({
+          "language": {
+              "url": "{{asset('json/spanishDataTable.json')}}"
+          }
+      });
+  } );
+  $(document).ready(function() {
     $('#dtTableClient').DataTable({
         "language": {
             "url": "{{asset('json/spanishDataTable.json')}}"
@@ -364,85 +374,73 @@ $(document).ready(function() {
         }
     });
 } );
-
 </script>
+
 
 
 <script>
-  <!-- bootstrap-daterangepicker -->
-      $(document).ready(function() {
+   $(function () {
+   var bindDatePicker = function() {
+    $(".date").datetimepicker({
+        format:'YYYY-MM-DD',
+      icons: {
+        time: "fa fa-clock-o",
+        date: "fa fa-calendar",
+        up: "fa fa-arrow-up",
+        down: "fa fa-arrow-down"
+      }
+    }).find('input:first').on("blur",function () {
+      // check if the date is correct. We can accept dd-mm-yyyy and yyyy-mm-dd.
+      // update the format if it's yyyy-mm-dd
+      var date = parseDate($(this).val());
 
-        var cb = function(start, end, label) {
-          console.log(start.toISOString(), end.toISOString(), label);
-          $('#reportrange span').html(start.format('MMMM D HH:mm:ss, YYYY') + ' - ' + end.format('MMMM D HH:mm:ss, YYYY'));
-        };
+      if (! isValidDate(date)) {
+        //create date based on momentjs (we have that)
+        date = moment().format('YYYY-MM-DD');
+      }
 
-        var optionSet1 = {
-          
-          startDate: moment(),
-          endDate: moment().add(24, 'hours'),
-          minDate: moment(),
-          maxDate: '12/31/2018',
-          dateLimit: {
-            days: 60
-          },
-          showDropdowns: true,
-          showWeekNumbers: true,
-          timePicker: true,
-          timePickerIncrement: 10,
-          timePicker12Hour: true,
-          ranges: {
-            'Un día': [moment(), moment().add(1, 'days')],
-            'Una semana': [moment(), moment().add(6, 'days')],
-            'Un mes': [moment(), moment().add(1, 'months')],
-            'Un Año': [moment(), moment().add(12, 'months')],
-          },
-          opens: 'right',
-          buttonClasses: ['btn btn-default'],
-          applyClass: 'btn-small btn-primary',
-          cancelClass: 'btn-small',
-          format: 'DD/MM/YYYY',
-          separator: ' a ',
-          locale: {
-            applyLabel: 'Aplicar',
-            cancelLabel: 'Cancelar',
-            fromLabel: 'De',
-            toLabel: 'hasta',
-            customRangeLabel: 'Seleccionar',
-            daysOfWeek: ['Do', 'Lu', 'Ma', 'Mie', 'Jue', 'Vie', 'Sab'],
-            monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Setiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-            firstDay: 1
-          }
-        };
-        $('#reportrange span').html(moment().format('MMMM D HH:mm:ss, YYYY') + ' - ' + moment().add(24, 'hours').format('MMMM D HH:mm:ss, YYYY'));
-        $('#reportrange').daterangepicker(optionSet1, cb);
-        $('#reportrange').on('show.daterangepicker', function() {
-          // console.log("show event fired");
-        });
-        $('#reportrange').on('hide.daterangepicker', function() {
-          console.log("hide event fired");
-        });
-        $('#reportrange').on('apply.daterangepicker', function(ev, picker) {
-          console.log("apply event fired, start/end dates are " + picker.startDate.format('MMMM D HH:mm:ss, YYYY') + " to " + picker.endDate.format('MMMM D HH:mm:ss, YYYY'));
-          document.getElementById('start_date').value = picker.startDate.format('YYYY/MM/DD HH:mm:ss');
-          document.getElementById('end_date').value = picker.endDate.format('YYYY/MM/DD HH:mm:ss');
+      $(this).val(date);
+    });
+  }
+   
+   var isValidDate = function(value, format) {
+    format = format || false;
+    // lets parse the date to the best of our knowledge
+    if (format) {
+      value = parseDate(value);
+    }
 
-        });
-        $('#reportrange').on('cancel.daterangepicker', function(ev, picker) {
-          console.log("cancel event fired");
-        });
-        $('#options1').click(function() {
-          $('#reportrange').data('daterangepicker').setOptions(optionSet1, cb);
-        });
-        $('#options2').click(function() {
-          $('#reportrange').data('daterangepicker').setOptions(optionSet2, cb);
-        });
-        $('#destroy').click(function() {
-          $('#reportrange').data('daterangepicker').remove();
-        });
-      });
-    <!-- /bootstrap-daterangepicker -->
+    var timestamp = Date.parse(value);
+
+    return isNaN(timestamp) == false;
+   }
+   
+   var parseDate = function(value) {
+    var m = value.match(/^(\d{1,2})(\/|-)?(\d{1,2})(\/|-)?(\d{4})$/);
+    if (m)
+      value = m[5] + '-' + ("00" + m[3]).slice(-2) + '-' + ("00" + m[1]).slice(-2);
+
+    return value;
+   }
+   
+   bindDatePicker();
+ });
+</script>
+
+
+<!-- Google Analytics -->
+<script type="text/rocketscript" data-rocketoptimized="true">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-23581568-13', 'auto');
+ga('send', 'pageview');
+
+
 
 </script>
 @endpush
+
 

@@ -102,7 +102,7 @@
                 <div class="form-group">
                   <label for="organization-id" class="control-label col-md-3 col-sm-3 col-xs-12">Organización</label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
-                    <select  id="org_id" name="org_id" class="form-control">
+                    <select  id="org_id" name="org_id" class="form-control" disabled>
 <!--                       <option>Choose option</option> -->
                       @foreach($all_organizations as $org)
                         @if($org->id == $tipo_id)
@@ -119,9 +119,9 @@
                 <div class="ln_solid"></div>
                 <div class="form-group">
                   <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                    <a href="{{url('/vehiculos/'.$tipo_id.'/lista')}}" class="btn btn-primary" type="button">Cancel</a>
-                    <button class="btn btn-primary" type="reset">Reset</button>
-                    <button type="submit" class="btn btn-success">Submit</button>
+                    <a href="{{url('/vehiculos/'.$tipo_id.'/lista')}}" class="btn btn-primary" type="button">Cancelar</a>
+                    <button class="btn btn-primary" type="reset">Resetear</button>
+                    <button type="submit" class="btn btn-success">Registrar</button>
                   </div>
                 </div>
 

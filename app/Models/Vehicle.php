@@ -28,4 +28,14 @@ class Vehicle extends Model
 
         return $org->name; 
     }
+
+    public function travels()
+    {
+        return $this->hasMany('App\Models\Travel');
+    }
+
+    public function activeTravels()
+    {
+        return $this->travels()->where('ended_at', null);
+    }
 }

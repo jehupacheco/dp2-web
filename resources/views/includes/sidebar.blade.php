@@ -52,18 +52,25 @@
                         </a>
                     </li>
                     @endcan
-                    @if(auth()->user()->can('Vehículos para pacientes de Cardiopatía') ||
-                        auth()->user()->can('Vehículos para la Jardinería') ||
-                        auth()->user()->can('Vehículos para Ventas') ||
-                        auth()->user()->can('Vehículos Eco-amigables') ||
-                        auth()->user()->can('Vehículos para Trasporte Urbano 1') ||
-                        auth()->user()->can('Vehículos para Trasporte Urbano 2'))
+                    @if(auth()->user()->can('Vehículos - Todas las Organizaciones'))
                     <li>
                         <a>
                             <i class="fa fa-bus"></i> Vehiculos 
                             <span class="fa fa-chevron-down"></span>
                         </a>
                         <ul class="nav child_menu">
+                            @foreach($all_organizations as $org)
+                                <li><a href="{{url('/vehiculos/'.$org->id.'/lista')}}">Vehículo {{$org->name}}</a></li>
+                            @endforeach
+                        </ul>
+                    </li>
+                    @elseif(auth()->user()->hasAnyPermission(['Vehículos para pacientes de Cardiopatía', 
+                                                 'Vehículos para la Jardinería', 
+                                                 'Vehículos para Ventas',
+                                                 'Vehículos Eco-amigables',
+                                                 'Vehículos para Trasporte Urbano 1',
+                                                 'Vehículos para Trasporte Urbano 2']))
+
                             @foreach($all_organizations as $org)
                                 @if($org->name == "Cardiopatia" && auth()->user()->can('Vehículos para pacientes de Cardiopatía'))
                                 <li><a href="{{url('/vehiculos/'.$org->id.'/lista')}}">Vehículo {{$org->name}}</a></li>
@@ -83,11 +90,19 @@
                                 @if($org->name == "Transporte Urbano 1" && auth()->user()->can('Vehículos para Trasporte Urbano 2'))
                                 <li><a href="{{url('/vehiculos/'.$org->id.'/lista')}}">Vehículo {{$org->name}}</a></li>
                                 @endif
-
                             @endforeach
-                        </ul>
+
+                    @elseif(auth()->user()->can('Vehículos - Solo su Organización'))
+                    <li>
+                        <a href="{{url('/vehiculos/'.auth()->user()->organization_id.'/lista')}}">
+                            <i class="fa fa-bus"></i> Vehiculos 
+                        </a>
                     </li>
                     @endif
+
+
+
+
                     @if(auth()->user()->can('Alquileres'))
                     <li>
                         <!-- <a href="{{url('/alquiler/index')}}"> -->
@@ -106,7 +121,7 @@
                     <li><a><i class="fa fa-bar-chart"></i> Reportes <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             @if(auth()->user()->can('Reportes de Recorridos'))
-                            <li><a href="{{url('/reportes/clienteXvehiculo')}}">Reporte de Recorridos</a></li>
+                            <li><a href="{{url('/reportes/recorrido/filtro')}}">Reporte de Recorridos</a></li>
                             @endif
                             @if(auth()->user()->can('Reportes de Clientes'))
                             <li><a href="{{url('/reportes/filtrosReportes')}}">Reporte de Clientes</a></li>

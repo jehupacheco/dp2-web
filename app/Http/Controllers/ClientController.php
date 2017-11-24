@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Client;
 use DB;
 use App\Http\Requests\ClientRequest;
+use Auth;
 
 class ClientController extends Controller
 {
@@ -16,8 +17,19 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $clientes = Client::paginate(9);
-        return view('Clientes.index',compact('clientes'));
+
+        try {
+            $user = Auth::user();
+            if($user->hasRole('Administrador General')){
+                $clientes = Client::paginate(9);
+            }
+            else{
+                 $clientes = Client::where('organization_id','=', $user->organization_id)->paginate(9);
+            }
+            return view('Clientes.index',compact('clientes'));
+        } catch (Exception $e) {
+            return view('errors.500');
+        }
     }
 
 

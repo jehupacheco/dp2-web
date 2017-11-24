@@ -47,7 +47,7 @@ class TravelController extends Controller
                 'vehicle' => [
                     'User has no access to this vehicle'
                 ]
-            ]], 400);
+            ]], 403);
         }
 
         $client = JWTAuth::parseToken()->authenticate();

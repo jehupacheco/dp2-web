@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AlterVehicleAvailableTableAddUpdatedAtColumn extends Migration
+class AlterTravelsTableMakeStartedAtNullable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class AlterVehicleAvailableTableAddUpdatedAtColumn extends Migration
      */
     public function up()
     {
-        Schema::table('vehicle_available', function (Blueprint $table) {
-            $table->timestamp('updated_at');
-            $table->timestamp('created_at');
+        Schema::table('travels', function (Blueprint $table) {
+            $table->dropColumn(['started_at']);
         });
     }
 
@@ -26,8 +25,8 @@ class AlterVehicleAvailableTableAddUpdatedAtColumn extends Migration
      */
     public function down()
     {
-        Schema::table('vehicle_available', function (Blueprint $table) {
-            $table->dropColumn(['updated_at', 'created_at']);
+        Schema::table('travels', function (Blueprint $table) {
+            $table->timestamp('started_at');
         });
     }
 }

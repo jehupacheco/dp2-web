@@ -20,4 +20,9 @@ class Objective extends Model
     {
         return $this->belongsTo('App\Models\Sensor');
     }
+
+    public function readings()
+    {
+        return $this->belongsToMany('App\Models\Reading');
+    }
 }
