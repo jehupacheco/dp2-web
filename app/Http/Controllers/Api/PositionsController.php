@@ -7,6 +7,8 @@ use App\Models\Vehicle;
 use App\Events\PositionStored;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
+use JWTAuth;
 
 class PositionsController extends Controller
 {
@@ -49,9 +51,24 @@ class PositionsController extends Controller
         $position->latitude = $request['latitude'];
         $position->longitude = $request['longitude'];
 
+        $previousPosition = $vehicle->positions()->latest()->limit(1)->get()->first();
+
         $vehicle->positions()->save($position);
 
         event(new PositionStored($vehicle, $position));
+
+        $travel = $vehicle->activeTravels()->get()->first();
+
+        if ($travel && $previousPosition) {
+            $travelStart = new Carbon($travel['started_at']);
+            $positionCreated = new Carbon($previousPosition['created_at']);
+
+            if ($travelStart->lte($positionCreated)) {
+                $travel['total_distance'] += $position->getDistance($previousPosition);
+                $travel['started_at'] = $travelStart;
+                $travel->save();
+            }
+        }
 
         return response()->json(Position::find($position->id));
     }
