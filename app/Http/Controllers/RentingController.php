@@ -233,9 +233,43 @@ class RentingController extends Controller
         return view('Alquileres.entregasydevoluciones.seleccionado',compact('clientes','vehicles','rentings'),compact('renting')); 
     }
 
-    public function store_entdev()
+    public function store_entdev(Request $request, $renting_id)
     {
-        
+        $input = $request->all();
+        try {
+            $renting = Renting::find($renting_id);
+
+            if($input['option_selected']!="ninguno"){
+                if($input['option_selected']=="Entrega")
+                {
+                    if(isset($input['delivered_returned_onTime'])){
+                        $renting->delivered_at = $renting->starts_at;
+
+                    }
+                    else{
+                        $renting->delivered_at = Carbon::now();
+                    }
+
+                }
+                elseif($input['option_selected']=="Devolución"){
+                    if(isset($input['delivered_returned_onTime'])){
+                        $renting->returned_at = $renting->finishes_at;
+
+                    }
+                    else{
+                        $renting->returned_at = Carbon::now();
+                    }
+                }
+                $renting->save();
+
+                return redirect()->action('RentingController@index')->with('stored', 'La Entrega/Devolución fue registrada correctamente.');
+            }
+            else{
+                return redirect()->action('RentingController@create_selected_entdev',['renting_id' => $renting_id])->with('delete', 'Usted debe seleccionar una opción Entrega/Devolución.'); 
+            }
+        } catch (Exception $e) {
+            return redirect()->action('RentingController@create_selected_entdev',['renting_id' => $renting_id])->with('delete', 'Ocurrió un error inesperado, por favor intentelo de nuevo.');
+        }
     }
 
 

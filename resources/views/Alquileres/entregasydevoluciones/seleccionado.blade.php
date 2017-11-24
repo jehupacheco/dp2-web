@@ -168,7 +168,7 @@
                       <label for="option_selected" class="control-label col-md-3 col-sm-3 col-xs-6">Entrega/Devolución <span class="required">*</span></label>
                       <div class="col-md-3 col-sm-3 col-xs-12">
                         <select  id="option_selected" name="option_selected" class="form-control">
-                          <option value="-1">Elegir opción...</option>
+                          <option value="ninguno">Elegir opción...</option>
                           @if(is_null($renting->delivered_at))
                           <option value="Entrega">Entrega</option>   
                           @endif
@@ -180,10 +180,10 @@
                     </div>
                     
                     <div class="form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="permisos">El vehículo retorno a tiempo</label>
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="permisos">El vehículo fue entregado/retornado a tiempo</label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
                           <p style="padding: 5px;">
-                            <input type="checkbox" name="returned_late" id="returned_late" value="returned_late" data-parsley-mincheck="2" class="flat" /> Sí
+                            <input type="checkbox" name="delivered_returned_onTime" id="delivered_returned_onTime" value="delivered_returned_onTime" data-parsley-mincheck="2" class="flat" /> Sí
                             <br />
                           <p>
                       </div>
