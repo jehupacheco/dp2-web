@@ -8,6 +8,7 @@ use App\Models\Vehicle;
 use App\vehicle_available;
 use DB;
 use App\Http\Requests\VehicleRequest;
+use Auth;
 
 class AutoController extends Controller
 {
@@ -19,14 +20,17 @@ class AutoController extends Controller
     public function mostrar_lista_tipo($tipo_id)
     {   
         try {
-
-
-            $org = Organization::find($tipo_id);
-            
-            $vehiculos = Vehicle::where('organization_id',$tipo_id)->paginate(9);
-            return view('Vehiculos.index',compact('vehiculos','org'));
-           
-
+            $user = Auth::user();
+            if($this->verify_if_has_permission($user,$tipo_id)){
+                $org = Organization::find($tipo_id);
+                
+                $vehiculos = Vehicle::where('organization_id',$tipo_id)->paginate(9);
+                return view('Vehiculos.index',compact('vehiculos','org'));
+            }
+            else{
+                return redirect()->action('HomeController@index')->with('delete', 'Usted no tiene permiso para realizar esta acción.');
+         
+            }
         } catch (Exception $e) {
             return view('Autos.auto-jardinero.index');
         }
@@ -189,5 +193,53 @@ class AutoController extends Controller
         DB::commit();
         return redirect()->action('AutoController@deshabilitar',['id'=>$id]); 
         //return redirect()->action('AutoController@configuracion');
+    }
+
+
+    public function verify_if_has_permission($user,$tipo_id){
+        if($user->hasPermissionTo('Vehículos - Todas las Organizaciones')){
+                return true;
+            }
+            elseif($user->hasPermissionTo('Vehículos - Solo su Organización')){
+                if($tipo_id==$user->organization_id){
+                   return true;
+                }      
+                else{
+                    return false;
+                }             
+            }
+            elseif($user->hasAnyPermission(['Vehículos para pacientes de Cardiopatía', 
+                                            'Vehículos para la Jardinería',
+                                            'Vehículos para Ventas',
+                                            'Vehículos Eco-amigables',
+                                            'Vehículos para Trasporte Urbano 1',
+                                            'Vehículos para Trasporte Urbano 2'])){
+                    $org = Organization::find($tipo_id);
+                    $str_permission = '';
+                    switch ($org->name) {
+                        case 'health':
+                            $str_permission = 'Vehículos para pacientes de Cardiopatía';
+                        case 'garden':
+                            $str_permission = 'Vehículos para la Jardinería';
+                        case 'sales':
+                            $str_permission = 'Vehículos para Ventas';
+                        case 'eco':
+                            $str_permission = 'Vehículos Eco-amigables';
+                        case 'transport1':
+                            $str_permission = 'Vehículos para Trasporte Urbano 1';
+                        case 'transport2':
+                            $str_permission = 'Vehículos para Trasporte Urbano 2';
+                        default:
+                            $str_permission = 'Vehículos para la Jardinería';
+                    }   
+
+                    if($user->hasPermissionTo($str_permission)){
+                        return true;
+                    }   
+                    else{
+                        return false;
+                    }
+
+            }
     }
 }

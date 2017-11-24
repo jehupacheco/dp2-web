@@ -165,6 +165,7 @@ class HomeController extends Controller
                 ->get();
         }
         return view('Reportes.sensores', compact('vehicles','sensors','readinglist','sensorselected'));
+
     }
 
     public function filtrado_sensores_reporte_postMet(Request $request)
@@ -187,6 +188,7 @@ class HomeController extends Controller
                 ->get();
         }
         return view('Reportes.clienteXVehiculo', compact('sensors','vehicles','reading','sensorselected'));
+
     }
 
     public function filtroAutos()
