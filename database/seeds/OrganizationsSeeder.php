@@ -36,5 +36,30 @@ class OrganizationsSeeder extends Seeder
                 });
             });
         }
+
+        $org = factory(App\Models\Organization::class)->create([
+            'name' => 'Estacionamiento',
+            'slug' => 'parking',
+            'is_parking' => true,
+        ]);
+
+        $clients = factory(App\Models\Client::class, 10)->make()
+        ->each(function ($client) use ($org) {
+            $faker = Faker\Factory::create();
+            $org->clients()->save($client);
+
+            $vehicles = factory(App\Models\Vehicle::class, 4)->make([
+                'mac' => $faker->ipv4,
+                'plate' => '',
+                'price' => 0,
+            ])
+            ->each(function ($vehicle) use ($org, $client) {
+                $org->vehicles()->save($vehicle);
+                $renting = factory(App\Models\Renting::class)->make();
+
+                $vehicle->rentings()->save($renting);
+                $client->rentings()->save($renting);
+            });
+        });
     }
 }

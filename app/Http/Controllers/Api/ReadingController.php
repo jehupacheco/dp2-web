@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Travel;
 use App\Models\Reading;
 use App\Models\Sensor;
+use App\Models\Vehicle;
+use Carbon\Carbon;
 use JWTAuth;
 
 class ReadingController extends Controller
@@ -83,6 +85,52 @@ class ReadingController extends Controller
         });
 
         return response()->json($reading);
+    }
+
+    public function storeParkingReading(Request $request) {
+        $this->validate($request, [
+            'sensor_id' => 'required|integer|exists:sensors,id',
+            'value' => 'required|numeric',
+        ]);
+
+        $client = JWTAuth::parseToken()->authenticate();
+        // $ip = $request->ip();
+        $ip = '183.88.218.23';
+
+        $vehicle = Vehicle::where('mac', $ip)->get()->first();
+
+        if ($vehicle) {
+            $now = Carbon::now();
+            $travel = new Travel;
+            $travel['started_at'] = $now;
+            $travel['ended_at'] = $now;
+            $travel['client_id'] = $client->id;
+            $travel['vehicle_id'] = $vehicle->id;
+
+            $travel->save();
+
+            $sensor = Sensor::find($request->input('sensor_id'));
+
+            $reading = new Reading;
+            $reading->value = $request->input('value');
+            $reading->travel()->associate($travel);
+            $reading->sensor()->associate($sensor);
+
+            $reading->save();
+            $readingToSend = Reading::find($reading->id);
+
+            return response()->json([
+                'id' => $readingToSend->id,
+                'sensor_id' => $readingToSend['sensor_id'],
+                'value' => $readingToSend['value'],
+                'created_at' => $readingToSend['created_at']->toDateTimeString(),
+            ]);
+
+        } else {
+            return response()->json(['errors' => [
+                'parking' => ['There is no parking matchin origin IP'],
+            ]], 422);
+        }
     }
 
     /**

@@ -14,6 +14,7 @@ Route::namespace('Api')->group(function() {
     Route::apiResource('readings', 'ReadingController', ['except' => [
       'update', 'destroy'
     ]]);
+    Route::post('readings/parking', 'ReadingController@storeParkingReading');
     Route::apiResource('objectives', 'ObjectivesController');
     Route::apiResource('positions', 'PositionsController', ['except' => [
       'update', 'destroy'
