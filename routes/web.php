@@ -34,9 +34,16 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::resource('organizations', 'OrganizationsController');
 
 
+});
+
+Route::group(['middleware' => ['permission:Seguridad']], function () {
+
 	Route::get('/roles','RolesController@index');
 	Route::get('/roles/nuevo','RolesController@create');
 	Route::post('/roles/nuevo','RolesController@store');
+
+	Route::get('/roles/{role_id}/edit','RolesController@edit');
+	Route::post('/roles/{role_id}/edit','RolesController@post_edit');
 });
 
 
