@@ -70,12 +70,13 @@
                         
                         <p><strong>Descripción: </strong> {{$vehiculo->description}}</p>
                         <ul class="list-unstyled">
-                          @if(!is_null($vehiculo->mac))
-                          <li style="color:#743030;"><strong>Estado:</strong>Alquilado</li>
                           <li><strong># Dirección Mac:</strong> {{$vehiculo->mac}}</li>
+                          @if($vehiculo->is_rented())
+                          <li style="color:#743030;"><strong>Estado:</strong>Alquilado</li>                         
                           @else
                           <li style="color:green;"><strong>Estado:</strong>Disponible</li>
                           @endif
+                          
                         </ul>
                       </div>
                       <div class="right col-xs-5 text-center">

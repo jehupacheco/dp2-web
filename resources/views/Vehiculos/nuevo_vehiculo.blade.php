@@ -98,20 +98,28 @@
                     <input type="number" step="0.1" id="price" name="price" required="required" class="form-control col-md-7 col-xs-12">
                   </div>
                 </div>
-  
+                
+                <div class="form-group">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="mac"> Mac Address <span class="required">*</span>
+                  </label>
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" id="mac" name="mac" required="required" class="form-control col-md-7 col-xs-12" data-inputmask="'mask' : '**:**:**:**:**:**'">
+                  </div>
+
+                </div>
+
                 <div class="form-group">
                   <label for="organization-id" class="control-label col-md-3 col-sm-3 col-xs-12">Organización</label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
-                    <select  id="org_id" name="org_id" class="form-control" disabled>
+                    
 <!--                       <option>Choose option</option> -->
                       @foreach($all_organizations as $org)
                         @if($org->id == $tipo_id)
-                        <option value="{{$org->id}}" selected="selected">{{$org->name}}</option>
-                        @else
-                        <option value="{{$org->id}}">{{$org->name}}</option>   
+                          <input type="text" step="0.1" id="org_id" name="org_id" required="required" class="form-control col-md-7 col-xs-12" readonly="true" value="{{$org->name}}">
+                          <input type="text" step="0.1" id="org_id" name="org_id" required="required" class="form-control col-md-7 col-xs-12" readonly="true" value="{{$org->id}}" style="display: none;">  
                         @endif
                       @endforeach
-                    </select>
+                    
                   </div>
                 </div>
                 

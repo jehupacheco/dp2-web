@@ -42,7 +42,7 @@ class RentingController extends Controller
     public function create()
     {
         $user = Auth::user();
-        $this->update_list_of_vehicles($user); //Actualizamos la lista de los vehículos, para saber si ya estan disponibles
+        // $this->update_list_of_vehicles($user); //Actualizamos la lista de los vehículos, para saber si ya estan disponibles
         if($user->hasRole('Administrador General')){
             $clientes = Client::all();
             $vehicles = Vehicle::all();
@@ -51,6 +51,11 @@ class RentingController extends Controller
             $clientes = Client::where('organization_id','=', $user->organization_id)->get();
             $vehicles = Vehicle::where('organization_id',$user->organization_id)->get();
         }
+
+        $vehicles = $vehicles->filter(function($vehicle)
+          {
+             return !$vehicle->is_rented();
+           });
         
         return view('Alquileres.nuevo_alquiler',compact('clientes','vehicles'));
     }
@@ -78,9 +83,9 @@ class RentingController extends Controller
 
                 $renting->save();
 
-                $vehicle = Vehicle::find($input['vehicle_id']);
-                $vehicle->mac = strtoupper($input['mac']);
-                $vehicle->save();
+                // $vehicle = Vehicle::find($input['vehicle_id']);
+                // $vehicle->mac = strtoupper($input['mac']);
+                // $vehicle->save();
             } catch (Exception $e) {
                 DB::rollback();
                 return redirect()->action('RentingController@index')->with('stored', 'No se registró el Alquiler.'); 
