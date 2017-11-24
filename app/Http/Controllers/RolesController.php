@@ -83,9 +83,17 @@ class RolesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($role_id)
     {
-        //
+        try {
+            $permissions = Permission::all();
+            $role = Role::find($role_id);
+            return view('Seguridad.roles.edit',compact('permissions','role'));
+        } catch (Exception $e) {
+            $roles = Role::all();
+            // $permission = Permission::create(['name' => 'Dashboard']);
+            return view('Seguridad.roles.index',compact('roles'));
+        }
     }
 
     /**
@@ -95,9 +103,33 @@ class RolesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function post_edit(Request $request, $role_id)
     {
-        //
+        try {
+            DB::beginTransaction();
+
+            $input = $request->all();
+
+            $role = Role::find($role_id);
+            $permisos = Permission::all();
+
+            foreach ($permisos as $permiso) {
+                if(isset($input['permission'.$permiso->id])){
+                    if(!$role->hasPermissionTo($permiso->name)){
+                        $role->givePermissionTo($permiso->name);
+                    }          
+                }
+                else{
+                    if($role->hasPermissionTo($permiso->name))
+                        $role->revokePermissionTo($permiso->name);
+                }
+            }  
+        } catch (Exception $e) {
+            DB::rollback();
+            return redirect()->action('RolesController@index')->with('deleted', 'No se actualizó el rol.');
+        }
+        DB::commit();
+        return redirect()->action('HomeController@index')->with('stored', 'Se actualizó el rol correctamente.');
     }
 
     /**
