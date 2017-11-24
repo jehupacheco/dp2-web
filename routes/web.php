@@ -64,7 +64,7 @@ Route::get('/ubicaciones/usuario/1/mapa','LocationController@mostrar_mapa');
 
 
 
-Route::group(['middleware' => ['permission:Vehículos para pacientes de Cardiopatía|Vehículos para la Jardinería|Vehículos para Ventas|Vehículos Eco-amigables|Vehículos para Trasporte Urbano 1|Vehículos para Trasporte Urbano 2']], function () {
+Route::group(['middleware' => ['permission:Vehículos - Solo su Organización|Vehículos - Todas las Organizaciones|Vehículos para pacientes de Cardiopatía|Vehículos para la Jardinería|Vehículos para Ventas|Vehículos Eco-amigables|Vehículos para Trasporte Urbano 1|Vehículos para Trasporte Urbano 2']], function () {
 	Route::get('/vehiculos/Configuracion','AutoController@configuracion');
 
 	Route::get('/vehiculos/{id}/deshabilitar','AutoController@deshabilitar');
