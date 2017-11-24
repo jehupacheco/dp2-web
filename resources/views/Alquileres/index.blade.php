@@ -38,7 +38,7 @@
                 <ul class="pagination pagination-split">
                   <!-- <li><a href="#">Todos los Clientes</a></li> -->
                   <li><a href="{{url('/alquileres/nuevo')}}">Nuevo Alquiler <i class="fa fa-plus" aria-hidden="true"></i></a></li>
-
+                  <li><a href="{{url('/alquileres/entrega-devolucion/nuevo')}}">Entrega/Devolución <i class="fa fa-car" aria-hidden="true"></i></a></li>
                 </ul>
               </div>
           </div>
@@ -361,7 +361,7 @@
                             <td class=" ">{{$renting->starts_at}}</td>
                             <td class=" ">{{$renting->finishes_at}}</td>
                             <td class="a-right a-right ">S/. {{$renting->getCostUnitById($renting->vehicle_id)}}</td>
-                            <td class="a-right a-right ">S/. 90</td>
+                            <td class="a-right a-right ">S/. {{$renting->getTotalCost()}}</td>
                             <td><a href="#" class="btn btn-info btn-xs fa fa-pencil"></a><a href="{{url('alquileres/'.$renting->id.'/destroy')}}" class="btn btn-danger btn-xs fa fa-trash"></a></td>
                           </tr>
                           @endforeach

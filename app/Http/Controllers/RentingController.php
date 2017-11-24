@@ -185,6 +185,60 @@ class RentingController extends Controller
 
     }
 
+
+
+    public function create_entdev()
+    {
+        $user = Auth::user();
+        // $this->update_list_of_vehicles($user);
+
+        $rentings = Renting::where('delivered_at','=',null)->orWhere('returned_at')->get();
+        if($user->hasRole('Administrador General')){
+            $clientes = Client::all();
+            $vehicles = Vehicle::all();
+        }
+        else{
+            $rentings = $rentings->filter(function($renting) use ($user)
+            {
+                return $renting->getOrgId() == $user->organization_id;
+            });
+            $clientes = Client::where('organization_id','=', $user->organization_id)->get();
+            $vehicles = Vehicle::where('organization_id',$user->organization_id)->get();
+        }
+
+        return view('Alquileres.entregasydevoluciones.index',compact('clientes','vehicles','rentings')); 
+    }
+
+    public function create_selected_entdev($renting_id)
+    {
+        $user = Auth::user();
+        // $this->update_list_of_vehicles($user);
+
+        $rentings = Renting::where('delivered_at','=',null)->orWhere('returned_at')->get();
+        if($user->hasRole('Administrador General')){
+            $clientes = Client::all();
+            $vehicles = Vehicle::all();
+        }
+        else{
+            $rentings = $rentings->filter(function($renting) use ($user)
+            {
+                return $renting->getOrgId() == $user->organization_id;
+            });
+            $clientes = Client::where('organization_id','=', $user->organization_id)->get();
+            $vehicles = Vehicle::where('organization_id',$user->organization_id)->get();
+        }
+
+        $renting = Renting::find($renting_id);
+
+        return view('Alquileres.entregasydevoluciones.seleccionado',compact('clientes','vehicles','rentings'),compact('renting')); 
+    }
+
+    public function store_entdev()
+    {
+        
+    }
+
+
     public function update_list_of_vehicles($user)
     {
         $now = Carbon::now();
@@ -203,4 +257,6 @@ class RentingController extends Controller
             $vehicle->save();
         }
     }
+
+
 }
