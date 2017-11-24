@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Carbon\Carbon;
 
 class CreateUsersTable extends Migration
 {
@@ -34,7 +35,7 @@ class CreateUsersTable extends Migration
 
             $table->unique(["email"], 'users_email_unique');
             $table->softDeletes();
-            $table->Timestamp('password_updated_at')->nullable();
+            $table->Timestamp('password_updated_at')->nullable()->default(Carbon::now());
             $table->integer('session_id')->nullable();
             $table->nullableTimestamps();
 
