@@ -100,6 +100,7 @@ class AutoController extends Controller
             $vehiculo->description = $input['description'];
             $vehiculo->plate = $input['plate'];
             $vehiculo->price = $input['price'];
+            $vehiculo->mac = strtoupper($input['mac']);
             $vehiculo->organization_id = $input['org_id'];
             $vehiculo->save();
         } catch (Exception $e) {
