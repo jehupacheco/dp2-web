@@ -7,6 +7,8 @@ use App\Models\Client;
 use App\Models\Vehicle;
 use App\Models\Renting;
 use DB;
+use Auth;
+use Carbon\Carbon;
 
 class RentingController extends Controller
 {
@@ -17,7 +19,16 @@ class RentingController extends Controller
      */
     public function index()
     {
+        
+        $user = Auth::user();
         $rentings = Renting::all();
+        if(!$user->hasRole('Administrador General')){
+              $rentings = $rentings->filter(function($renting) use ($user)
+              {
+                 return $renting->getOrgId() == $user->organization_id;
+               });
+        }
+
         $clientes= Client::all();
         $vehicles= Vehicle::all();
         return view('Alquileres.index', compact('rentings','clientes','vehicles'));
@@ -30,8 +41,17 @@ class RentingController extends Controller
      */
     public function create()
     {
-        $clientes = Client::all();
-        $vehicles = Vehicle::all();
+        $user = Auth::user();
+        $this->update_list_of_vehicles($user); //Actualizamos la lista de los vehículos, para saber si ya estan disponibles
+        if($user->hasRole('Administrador General')){
+            $clientes = Client::all();
+            $vehicles = Vehicle::all();
+        }
+        else{
+            $clientes = Client::where('organization_id','=', $user->organization_id)->get();
+            $vehicles = Vehicle::where('organization_id',$user->organization_id)->get();
+        }
+        
         return view('Alquileres.nuevo_alquiler',compact('clientes','vehicles'));
     }
 
@@ -163,5 +183,24 @@ class RentingController extends Controller
         DB::commit();
         return redirect()->action('RentingController@index')->with('stored', 'Se ha eliminado el alquiler correctamente.'); 
 
+    }
+
+    public function update_list_of_vehicles($user)
+    {
+        $now = Carbon::now();
+        $rentings = Renting::where('returned_at','<=',$now)->get();
+        if(!$user->hasRole('Administrador General')){
+              $rentings = $rentings->filter(function($renting) use ($user)
+              {
+                 return $renting->getOrgId() == $user->organization_id;
+               });
+        }
+
+        foreach ($rentings as $renting) {
+            $vehicle = Vehicle::find($renting->vehicle_id);
+            $vehicle->mac = null;
+
+            $vehicle->save();
+        }
     }
 }

@@ -43,12 +43,16 @@ Route::group(['middleware' => ['auth']], function () {
 
 
 
-Route::get('/alquileres/index', 'RentingController@index');
-Route::post('/alquileres/index/filtrado', 'RentingController@filtrado_alquileres');
 
-Route::get('/alquileres/nuevo', 'RentingController@create');
-Route::post('/alquileres/nuevo', 'RentingController@store');
-Route::get('/alquileres/{renting_id}/destroy', 'RentingController@destroy');
+Route::group(['middleware' => ['permission:Alquileres']], function () {
+	Route::get('/alquileres/index', 'RentingController@index');
+	Route::post('/alquileres/index/filtrado', 'RentingController@filtrado_alquileres');
+
+	Route::get('/alquileres/nuevo', 'RentingController@create');
+	Route::post('/alquileres/nuevo', 'RentingController@store');
+	Route::get('/alquileres/{renting_id}/destroy', 'RentingController@destroy');
+});
+
 
 
 Route::get('/sensores/{id}','SensorController@index');

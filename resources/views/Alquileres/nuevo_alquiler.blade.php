@@ -389,7 +389,7 @@ $(document).ready(function() {
           showDropdowns: true,
           showWeekNumbers: true,
           timePicker: true,
-          timePickerIncrement: 30,
+          timePickerIncrement: 10,
           timePicker12Hour: true,
           ranges: {
             'Un día': [moment(), moment().add(1, 'days')],
