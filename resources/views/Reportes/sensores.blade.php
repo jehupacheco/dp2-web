@@ -217,7 +217,7 @@ window.__cfRocketOptions = {byc:0,p:1508690442,petok:"42319e3ea318aad72b4aa82446
                 
 
                 <!-- Descripción del viaje -->
-                <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
                     <h2>Sensor de {{$sensorselected->description}}<small>.</small></h2>
@@ -355,6 +355,7 @@ ga('send', 'pageview');
         enabled: false
       };
       var readinglist = <?php echo json_encode($readinglist); ?>;
+      var sensor = <?php echo json_encode($sensorselected); ?>;
       // Line chart
       //console.log(readinglist);
       var labels = [],data=[];
@@ -368,7 +369,7 @@ ga('send', 'pageview');
         data: {
           labels: labels,
           datasets: [{
-            label: "My First dataset",
+            label: sensor.description,
             backgroundColor: "rgba(38, 185, 154, 0.31)",
             borderColor: "rgba(38, 185, 154, 0.7)",
             pointBorderColor: "rgba(38, 185, 154, 0.7)",
