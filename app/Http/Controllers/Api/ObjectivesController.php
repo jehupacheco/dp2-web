@@ -29,6 +29,7 @@ class ObjectivesController extends Controller
     public function index(Request $request)
     {
         $showPrevious = $request->query('show_previous', 'false');
+        $finished = $request->query('finished', '');
         $showPrevious = $showPrevious === 'true' ? true : false;
         $count = (int)$request->query('count', 10);
         $page = (int)$request->query('page', 1);
@@ -38,6 +39,16 @@ class ObjectivesController extends Controller
 
         if (!$showPrevious) {
             $rawObjectives = $rawObjectives->where('ends_at', '>=', Carbon::now());
+        }
+
+        if ($finished != '') {
+            $showFinished = $finished === 'true' ? true : false;
+
+            if ($showFinished) {
+                $rawObjectives = $rawObjectives->whereColumn('goal', '<=', 'value');
+            } else {
+                $rawObjectives = $rawObjectives->whereColumn('goal', '>', 'value');
+            }
         }
 
         $rawObjectives = $rawObjectives->skip(($page-1)*$count)->take($count);
