@@ -20,4 +20,16 @@ class Travel extends Model
     {
         return $this->belongsTo('App\Models\Vehicle');
     }
+
+    public function getClientNameById($client_id)
+    {
+        $client = CLient::find($client_id);
+        return $client->name.' '.$client->lastname;
+    }
+
+    public function getVehiclePlacaById($vehicle_id)
+    {
+        $vehicle = Vehicle::find($vehicle_id);
+        return $vehicle->mac;
+    }
 }

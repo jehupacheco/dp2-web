@@ -40,10 +40,6 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 
-
-
-
-
 Route::group(['middleware' => ['permission:Alquileres']], function () {
 	Route::get('/alquileres/index', 'RentingController@index');
 	Route::post('/alquileres/index/filtrado', 'RentingController@filtrado_alquileres');
@@ -52,6 +48,10 @@ Route::group(['middleware' => ['permission:Alquileres']], function () {
 	Route::post('/alquileres/nuevo', 'RentingController@store');
 	Route::get('/alquileres/{renting_id}/destroy', 'RentingController@destroy');
 });
+
+
+Route::get('/reportes/recorrido/filtro', 'HomeController@reporte_recorrido_filtro');
+Route::post('/reportes/recorrido/filtro/filtrado', 'HomeController@reporte_recorrido_filtrado');
 
 
 
@@ -90,7 +90,7 @@ Route::group(['middleware' => ['permission:Estacionamiento']], function () {
     Route::get('/estacionamiento','ParkingController@index');
 });
 
-Route::get('/reportes/clienteXvehiculo','HomeController@clienteXvehiculo');
+Route::get('/reportes/{id_viaje}/{id_vehiculo}/clienteXvehiculo','HomeController@clienteXvehiculo');
 
 Route::get('/Filtros/filtroAutos','HomeController@filtroAutos');
 

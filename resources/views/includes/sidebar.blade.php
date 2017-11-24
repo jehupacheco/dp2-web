@@ -121,7 +121,7 @@
                     <li><a><i class="fa fa-bar-chart"></i> Reportes <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             @if(auth()->user()->can('Reportes de Recorridos'))
-                            <li><a href="{{url('/reportes/clienteXvehiculo')}}">Reporte de Recorridos</a></li>
+                            <li><a href="{{url('/reportes/recorrido/filtro')}}">Reporte de Recorridos</a></li>
                             @endif
                             @if(auth()->user()->can('Reportes de Clientes'))
                             <li><a href="{{url('/reportes/filtrosReportes')}}">Reporte de Clientes</a></li>
