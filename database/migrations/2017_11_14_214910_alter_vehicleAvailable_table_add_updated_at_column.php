@@ -27,7 +27,7 @@ class AlterVehicleAvailableTableAddUpdatedAtColumn extends Migration
     public function down()
     {
         Schema::table('vehicle_available', function (Blueprint $table) {
-            $table->dropColumn(['max_vel']);
+            $table->dropColumn(['updated_at', 'created_at']);
         });
     }
 }

@@ -50,8 +50,8 @@
                     <p class="text-muted">Modo de Funcionamiento de las persianas</p>
                     <div class="row">
                       <div class="btn-group">
-                        <button class="btn btn-default" type="button">Manual</button>
-                        <button class="btn btn-danger" type="button">Automático</button>
+                        <button id ="buttonManual" class="btn btn-default" type="button">Manual</button>
+                        <button id ="buttonAuto" class="btn btn-danger" type="button">Automático</button>
                       </div>
                     </div>
 
@@ -66,8 +66,8 @@
                       </div>
                       <div class="col-md-12 text-center">
                       	<div class="btn-group">
-                        	<button class="btn btn-default" type="button">-</button>
-                        	<button class="btn btn-default" type="button">+</button>
+                        	<button id="button-" class="btn btn-default" type="button">-</button>
+                        	<button id="button+" class="btn btn-default" type="button">+</button>
                       	</div>
                   	  </div>
 
@@ -295,5 +295,69 @@
 
   icons.play();
 </script>
-<!-- /Skycons --
+<!-- /Skycons -->
+<script>
+  document.getElementById("buttonManual").onclick = function() {modoManual()};
+  document.getElementById("buttonAuto").onclick = function() {modoAuto()};
+  document.getElementById("button-").onclick = function() {disminuir()};
+  document.getElementById("button+").onclick = function() {aumentar()};
+  function modoManual() {
+    var xhr = new XMLHttpRequest();
+    var url = "http://10.100.210.232/prueba.php";
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json");
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            var json = JSON.parse(xhr.responseText);
+        }
+    };
+    var data = JSON.stringify({"modo": "manual", "angulo": "4" });
+    xhr.send(data);
+  }
+  function modoAuto() {
+    var xhr = new XMLHttpRequest();
+    var url = "http://10.100.210.232/prueba.php";
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json");
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            var json = JSON.parse(xhr.responseText);
+        }
+    };
+    var data = JSON.stringify({"modo": "auto", "angulo": ""});
+    xhr.send(data);
+  }
+  function disminuir() {
+    value_galge=value_galge-5;
+    gauge.set(value_galge);
+    var xhr = new XMLHttpRequest();
+    var url = "http://10.100.210.232/prueba.php";
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json");
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            var json = JSON.parse(xhr.responseText);
+        }
+    };
+    var data = JSON.stringify({"modo": "manual", "angulo": value_galge});
+    xhr.send(data);
+  }
+  function aumentar() {
+    value_galge=value_galge+5;
+    gauge.set(value_galge); 
+    var xhr = new XMLHttpRequest();
+    var url = "http://10.100.210.232/prueba.php";
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json");
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            var json = JSON.parse(xhr.responseText);
+        }
+    };
+    var data = JSON.stringify({"modo": "manual", "angulo": value_galge});
+    xhr.send(data);
+  }
+</script>
+
+
 @endpush

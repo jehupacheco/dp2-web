@@ -95,6 +95,14 @@ class UsersSeeder extends Seeder
             'permission_id' => 17,
             'role_id' => 1, 
         ]);
+        DB::table('role_has_permissions')->insert([
+            'permission_id' => 18,
+            'role_id' => 1, 
+        ]);
+        DB::table('role_has_permissions')->insert([
+            'permission_id' => 19,
+            'role_id' => 1, 
+        ]);
 
         DB::table('model_has_roles')->insert([
             'role_id' => 1,

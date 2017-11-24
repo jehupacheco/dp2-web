@@ -34,6 +34,20 @@ class PermissionsTableSeeder extends Seeder
         ]);
 
         DB::table('permissions')->insert([
+           'name' => 'Vehículos - Solo su Organización', 
+            'guard_name' => 'web', 
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+
+        DB::table('permissions')->insert([
+           'name' => 'Vehículos - Todas las Organizaciones', 
+            'guard_name' => 'web', 
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+
+        DB::table('permissions')->insert([
            'name' => 'Vehículos para pacientes de Cardiopatía', 
             'guard_name' => 'web', 
             'created_at' => Carbon::now(),
