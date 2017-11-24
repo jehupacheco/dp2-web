@@ -206,7 +206,9 @@
 		                </div>
 
 		                <div class="col-md-12 text-center">
+                          @if(!is_null($luminosity))
                       		<h1>{{$luminosity->value}} LUX</h1>
+                          @endif
                           <hr>
                           <img src="{{asset('images/luminosidad.png')}}" alt="" class="img-circle img-responsive">
                       </div>
@@ -234,9 +236,11 @@
                         </ul>
                         <div class="clearfix"></div>
                     </div>
-
+                    
                     <div class="col-md-12 text-center">
+                          @if(!is_null($uv))
                           <h1>Índice UV: {{$uv->value}}</h1>
+                          @endif
                           <hr>
                           <img src="{{asset('images/uv.png')}}" alt="" class="img-responsive">
                       </div>
@@ -269,7 +273,9 @@
                     </div>
 
                     <div class="col-md-12 text-center">
+                          @if(!is_null($temperature))
                           <h1>T: {{$temperature->value}} °C</h1>
+                          @endif
                           <hr>
                           <img src="{{asset('images/temperature.png')}}" alt="" class="img-responsive">
                       </div>
@@ -300,7 +306,9 @@
                     </div>
 
                     <div class="col-md-12 text-center">
+                          @if(!is_null($humidity))
                           <h1> {{$humidity->value}} %</h1>
+                          @endif
                           <hr>
                           <img src="{{asset('images/humidity.png')}}" alt="" class="img-responsive">
                       </div>
