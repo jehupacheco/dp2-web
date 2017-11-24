@@ -83,13 +83,32 @@
                 </div>
                   </div>
                   <p>. </p>
-                  <p>. </p>
 
 
                   <div class="row">
-            
-                    
+                    <div class="x_panel">
             <div class="col-md-12 col-sm-8 col-xs-12">
+
+              <form id="demo-form2"  method="POST" action="{{url('reportes/recorridos/postMet')}}" data-parsley-validate class="form-horizontal form-label-left">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <div class="form-group">
+                  <div class="col-md-6 col-sm-3 col-xs-12">
+                    <select id="sensor_id" name="sensor_id" class="form-control">
+                      <option>Elija una opción</option>                      
+                      @foreach($sensors as $sensor)
+                        @if ($sensor->slug!="infraction")
+                        <option value="{{$sensor->id}}">{{$sensor->description}}</option>   
+                        @endif
+                      @endforeach
+                    </select>
+                    <button type="submit"  class="btn btn-success">Buscar</button>
+                  </div>
+                  
+                
+
+                </div>
+            <div class="col-md-12 col-sm-8 col-xs-12">
+            
               <div class="x_panel">
               <div class="dashboard_graph">
 
@@ -97,8 +116,9 @@
                   <div class="col-md-6">
                     <h3>Datos Sensados</h3>
                   </div>
+
                   <div class="form-group">
-                      <label for="reportrange" class="control-label col-md-6 col-sm-3 col-xs-12">Periodo de alquiler</label>
+                      
                       <div class="col-md-6 col-sm-6 col-xs-6">
                         <div id="reportrange" name="reportrange"  style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
                           <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
@@ -122,6 +142,9 @@
               </div>
             </div>
           </div>
+        </form>
+        </div>
+      </div>
 
             <div class="col-md-4 col-sm-4 col-xs-12">
               <div class="x_panel">
@@ -278,26 +301,21 @@
     <script>
       $(document).ready(function() {
         var data1 = [
-          [gd(2012, 1, 1), 17],
-          [gd(2012, 1, 2), 74],
-          [gd(2012, 1, 3), 6],
-          [gd(2012, 1, 4), 39],
-          [gd(2012, 1, 5), 20],
-          [gd(2012, 1, 6), 85],
-          [gd(2012, 1, 7), 7]
         ];
 
 
 
         var data2 = [
-          [gd(2012, 1, 1), 82],
-          [gd(2012, 1, 2), 23],
-          [gd(2012, 1, 3), 66],
-          [gd(2012, 1, 4), 9],
-          [gd(2012, 1, 5), 119],
-          [gd(2012, 1, 6), 6],
-          [gd(2012, 1, 7), 9]
+          
         ];
+
+        var aux;
+        var readinglist = <?php echo json_encode($reading); ?>;
+
+        for (var i = 0; i < readinglist.length; i++) {
+          aux= [gd(2012,1,i+1),readinglist[i].value];
+          data1.push(aux);
+      }
         $("#canvas_dahs").length && $.plot($("#canvas_dahs"), [
           data1, data2
         ], {

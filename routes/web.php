@@ -102,3 +102,5 @@ Route::get('/reportes/viajesCliente','HomeController@viajesCliente');
 
 Route::get('/reportes/sensores','HomeController@sensores');
 Route::post('/reportes/sensores/filtrado', 'HomeController@filtrado_sensores');
+
+Route::post('reportes/recorridos/postMet', 'HomeController@filtrado_sensores_reporte_postMet');
