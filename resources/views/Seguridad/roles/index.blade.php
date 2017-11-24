@@ -73,7 +73,7 @@
                         </td>
                         <td class=" ">{{$role->name}}</td>
                         <td class=" ">{{$role->permissions->count()}}</td>
-                        <td><a href="#" class="btn btn-info btn-xs fa fa-pencil"></a><a href="{{url('/')}}" class="btn btn-danger btn-xs fa fa-trash"></a></td>
+                        <td><a href="{{url('/roles/'.$role->id.'/edit')}}" class="btn btn-info btn-xs fa fa-pencil"></a><a href="#" class="btn btn-danger btn-xs fa fa-trash"></a></td>
                       </tr>
                       @endforeach
                       
