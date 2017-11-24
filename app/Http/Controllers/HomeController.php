@@ -8,6 +8,10 @@ use Carbon\Carbon;
 use App\Models\Configuration;
 use App\Models\Vehicle;
 use App\Models\Sensor;
+use App\Models\Reading;
+use App\Models\Renting;
+use App\Models\Client;
+use App\Models\Travel;
 use Auth;
 use Charts;
 use Redirect;
@@ -64,9 +68,49 @@ class HomeController extends Controller
         return view('Vehiculo.index');
     }
     
-    public function clienteXvehiculo()
+    public function clienteXvehiculo($id_travel,$id_vehiculo)
     {
-        return view('Reportes.vehiculoXusuario');
+        //Auth::user()->email
+        $vehicle= Vehicle::where('id','=',$id_vehiculo);
+        //$reading= Reading::all();
+        $reading= Reading::where('travel_id','=',$id_travel)->paginate(9);
+        return view('Reportes.clienteXVehiculo', compact('vehicle','reading'));
+    }
+
+    public function reporte_recorrido_filtro()
+    {
+        $travel = Travel::all();
+        $clientes= Client::all();
+        $vehicles= Vehicle::all();
+        $renting = Renting::all();
+        return view('Reportes.recorridos_filtro', compact('renting','travel','clientes','vehicles'));
+    }
+
+    public function reporte_recorrido_filtrado(Request $request)
+    {
+        
+        $clientes= Client::all();
+        $vehicles= Vehicle::all();
+        $travel = Travel::all();
+
+        $input = $request->all();
+
+        if( $input['client_id'] !="" && $input['vehicle_id']!="")
+        {
+            $travel= Travel::where('vehicle_id','=',$input['vehicle_id'])->where('client_id','=',$input['client_id'])->get();
+        }
+        elseif($input['client_id'] !="")
+        {
+            $travel= Travel::where('client_id','=',$input['client_id'])->get();
+        }
+        elseif ($input['vehicle_id']!="") {
+            $travel= Travel::where('vehicle_id','=',$input['vehicle_id'])->get();
+        }
+
+        
+        return view('Reportes.recorridos_filtro', compact('travel','clientes','vehicles'));
+        
+        // return redirect()->action('RentingController@index',['rentings'=>$rentings,'clientes'=>$clientes,'vehicles'=>$vehicles])->with('stored', 'Se ha filtrado los alquileres correctamente');
     }
 
     public function filtroReporte()
