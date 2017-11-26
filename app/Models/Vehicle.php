@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Organization;
+use App\Models\Renting;
 
 class Vehicle extends Model
 {
@@ -37,5 +38,17 @@ class Vehicle extends Model
     public function activeTravels()
     {
         return $this->travels()->where('ended_at', null);
+    }
+
+    public function is_rented()
+    {
+        $cantidad = Renting::where('vehicle_id','=', $this->id)->where('returned_at','=',null)->count();
+        
+        if($cantidad>0)
+            return true;
+        else
+            return false;
+
+
     }
 }
