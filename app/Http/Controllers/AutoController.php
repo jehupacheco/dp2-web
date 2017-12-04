@@ -128,9 +128,13 @@ class AutoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function showedit($id)
     {
-        //
+        
+        $vehicle = Vehicle::find($id);
+        $tipo_id = $vehicle->organization_id;
+        return view('Vehiculos.edit_vehicle', compact('vehicle','tipo_id'));
+
     }
 
     /**
@@ -142,7 +146,25 @@ class AutoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $input = $request->all();
+        $vehicle = Vehicle::find($id);
+        try {
+            $vehicle->plate = $input['plate'];
+            $vehicle->description = $input['description'];
+            $vehicle->price = $input['price'];
+            $vehicle->mac = $input['mac'];
+
+            $vehicle->save();
+
+            $tipo_id = $vehicle->organization_id;
+            $org = Organization::find($tipo_id);
+            return redirect()->action('AutoController@mostrar_lista_tipo',['tipo_id'=>$tipo_id])->with('stored', 'Se actualizó el Vehículo del tipo '.$org->name.' , con identificador'.$vehicle->plate.', de manera correcta.'); 
+        } catch (Exception $e) {
+
+            $tipo_id = $vehicle->organization_id;
+            $org = Organization::find($tipo_id);
+            return redirect()->action('AutoController@mostrar_lista_tipo',['tipo_id'=>$tipo_id])->with('stored', 'No se pudo actualizar el Vehículo del tipo '.$org->name.' de manera correcta.'); 
+        }
     }
 
     /**
