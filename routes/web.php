@@ -95,6 +95,10 @@ Route::group(['middleware' => ['permission:Vehículos - Solo su Organización|Ve
 	Route::post('/vehiculos/{tipo_id}/nuevo','AutoController@store');
 
 	Route::get('/vehiculos/{id}/ubicacion', 'AutoController@ubicacion');
+
+
+	Route::get('/vehiculos/{id}/edit', 'AutoController@showedit');
+	Route::post('/vehiculos/{id}/edit', 'AutoController@update');
 });
 
 
