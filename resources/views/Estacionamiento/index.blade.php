@@ -206,7 +206,9 @@
 		                </div>
 
 		                <div class="col-md-12 text-center">
-                      		<h1>660 LUX</h1>
+                          @if(!is_null($luminosity))
+                      		<h1>{{$luminosity->value}} LUX</h1>
+                          @endif
                           <hr>
                           <img src="{{asset('images/luminosidad.png')}}" alt="" class="img-circle img-responsive">
                       </div>
@@ -234,9 +236,11 @@
                         </ul>
                         <div class="clearfix"></div>
                     </div>
-
+                    
                     <div class="col-md-12 text-center">
-                          <h1>Índice UV: 5</h1>
+                          @if(!is_null($uv))
+                          <h1>Índice UV: {{$uv->value}}</h1>
+                          @endif
                           <hr>
                           <img src="{{asset('images/uv.png')}}" alt="" class="img-responsive">
                       </div>
@@ -245,6 +249,72 @@
                 </div>
                             
 
+                </div>
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                  <div class="x_panel">
+                      <div class="x_title">
+                        <h2>Temperatura Interna </h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                          <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                          </li>
+                          <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                            <ul class="dropdown-menu" role="menu">
+                              <li><a href="#">Settings 1</a>
+                              </li>
+                              <li><a href="#">Settings 2</a>
+                              </li>
+                            </ul>
+                          </li>
+                          <li><a class="close-link"><i class="fa fa-close"></i></a>
+                          </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+
+                    <div class="col-md-12 text-center">
+                          @if(!is_null($temperature))
+                          <h1>T: {{$temperature->value}} °C</h1>
+                          @endif
+                          <hr>
+                          <img src="{{asset('images/temperature.png')}}" alt="" class="img-responsive">
+                      </div>
+                    </div>
+
+                </div>
+
+              <div class="col-md-4 col-sm-6 col-xs-12">
+                  <div class="x_panel">
+                      <div class="x_title">
+                        <h2>Humedad </h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                          <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                          </li>
+                          <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                            <ul class="dropdown-menu" role="menu">
+                              <li><a href="#">Settings 1</a>
+                              </li>
+                              <li><a href="#">Settings 2</a>
+                              </li>
+                            </ul>
+                          </li>
+                          <li><a class="close-link"><i class="fa fa-close"></i></a>
+                          </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+
+                    <div class="col-md-12 text-center">
+                          @if(!is_null($humidity))
+                          <h1> {{$humidity->value}} %</h1>
+                          @endif
+                          <hr>
+                          <img src="{{asset('images/humidity.png')}}" alt="" class="img-responsive">
+                      </div>
+                    </div>
+
+                </div>
 			</div>
 	    </div>
 	</div>

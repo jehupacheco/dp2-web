@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use Carbon\Carbon;
 use Datetime;
+use DB;
 use Jenssegers\Date\Date;
 
 class ParkingController extends Controller
@@ -32,9 +33,39 @@ class ParkingController extends Controller
         Date::setLocale('es');
         $today = Date::now()->format('l j F Y H:i:s');
 
+        $angle = DB::table('readings')
+            ->where([
+                ['travel_id','=','4'],
+                ['sensor_id','=','11']
+            ])->latest()
+            ->first();
+        $temperature = DB::table('readings')
+            ->where([
+                ['travel_id','=','4'],
+                ['sensor_id','=','4']
+            ])->latest()
+            ->first();
+        $luminosity = DB::table('readings')
+            ->where([
+                ['travel_id','=','4'],
+                ['sensor_id','=','9']
+            ])->latest()
+            ->first();
+        $uv = DB::table('readings')
+            ->where([
+                ['travel_id','=','4'],
+                ['sensor_id','=','10']
+            ])->latest()
+            ->first();
+        $humidity = DB::table('readings')
+            ->where([
+                ['travel_id','=','4'],
+                ['sensor_id','=','7']
+            ])->latest()
+            ->first();
         // dd($today);
 
-        return view('Estacionamiento.index', compact('clima_de_hoy','today'));
+        return view('Estacionamiento.index', compact('clima_de_hoy','today','temperature','luminosity','uv','angle','humidity'));
     }
 
     /**
