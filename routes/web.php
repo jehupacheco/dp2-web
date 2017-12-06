@@ -17,12 +17,8 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('/', 'HomeController@index');
 	Route::get('/asignarauto','HomeController@asignarauto');
 
-	Route::get('/clientes','ClientController@index');
-	Route::get('/clientes/nuevo','ClientController@create');
-	Route::post('/clientes/nuevo','ClientController@store');
 
 	Route::get('/usuarios/1/perfil','UserController@show_profile');
-	Route::get('/clientes/{cliente_id}/perfil','ClientController@show_profile');
 
 
 
@@ -34,6 +30,17 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::resource('organizations', 'OrganizationsController');
 
 
+});
+
+Route::group(['middleware' => ['permission:Clientes']], function () {
+	Route::get('/clientes','ClientController@index');
+	Route::get('/clientes/nuevo','ClientController@create');
+	Route::post('/clientes/nuevo','ClientController@store');
+
+	Route::get('/clientes/{cliente_id}/perfil','ClientController@show_profile');
+
+	Route::get('/clientes/{cliente_id}/edit','ClientController@showedit');
+	Route::post('/clientes/{cliente_id}/edit','ClientController@update');
 });
 
 Route::group(['middleware' => ['permission:Seguridad']], function () {

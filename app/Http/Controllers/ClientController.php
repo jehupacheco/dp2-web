@@ -93,7 +93,7 @@ class ClientController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -102,9 +102,11 @@ class ClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function showedit($id)
     {
-        //
+        $client = Client::find($id);
+
+        return view('Clientes.edit_client',compact('client'));
     }
 
     /**
@@ -116,7 +118,21 @@ class ClientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $input = $request->all();
+        $client = Client::find($id);
+        try {
+            $client->name = $input['name'];
+            $client->lastname = $input['lastname'];
+            $client->email = $input['email'];
+            $client->phone = $input['phone'];
+
+            $client->save();
+
+            return redirect()->action('ClientController@index')->with('stored', 'Se actualizó el Cliente de manera correcta.'); 
+        } catch (Exception $e) {
+
+            return redirect()->action('ClientController@index')->with('eliminate', 'No se actualizó el Cliente de manera correcta.'); 
+        }
     }
 
     /**

@@ -35,7 +35,7 @@
       </div>
       <div class="page-title">
         <div class="title_left">
-          <h3>Crear Cliente</h3>
+          <h3>Actualizar datos del Cliente</h3>
         </div>
 
         <div class="title_right">
@@ -54,7 +54,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
           <div class="x_panel">
             <div class="x_title">
-              <h2>Nuevo Cliente </h2>
+              <h2>Editar Cliente </h2>
               <ul class="nav navbar-right panel_toolbox">
                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                 </li>
@@ -74,64 +74,42 @@
             </div>
             <div class="x_content">
               <br />
-              <form id="demo-form2" method="POST" action="{{url('/clientes/nuevo')}}" data-parsley-validate class="form-horizontal form-label-left">
+              <form id="demo-form2" method="POST" action="{{url('/clientes/'.$client->id.'/edit')}}" data-parsley-validate class="form-horizontal form-label-left">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="form-group">
                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Nombre <span class="required">*</span>
                   </label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input type="text" id="name" name="name" required="required" class="form-control col-md-7 col-xs-12">
+                    <input type="text" id="name" name="name" required="required" class="form-control col-md-7 col-xs-12" value="{{$client->name}}">
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="lastname">Apellidos <span class="required">*</span>
                   </label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input type="text" id="lastname" name="lastname" required="required" class="form-control col-md-7 col-xs-12">
+                    <input type="text" id="lastname" name="lastname" required="required" class="form-control col-md-7 col-xs-12" value="{{$client->lastname}}">
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email"> Correo <span class="required">*</span>
                   </label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input type="text" id="email" name="email" required="required" class="form-control col-md-7 col-xs-12">
+                    <input type="text" id="email" name="email" required="required" class="form-control col-md-7 col-xs-12" value="{{$client->email}}">
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="phone"> Teléfono/Celular <span class="required">*</span>
                   </label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input type="text" id="phone" name="phone" required="required" class="form-control col-md-7 col-xs-12" data-inputmask="'mask' : '(51) 999999999'">
+                    <input type="text" id="phone" name="phone" value="{{$client->phone}}" required="required" class="form-control col-md-7 col-xs-12" data-inputmask="'mask' : '(51) 999999999'">
                   </div>
                 </div>
-                <div class="form-group">
-                  <label for="organization-id" class="control-label col-md-3 col-sm-3 col-xs-12">Organización</label>
-                  <div class="col-md-6 col-sm-6 col-xs-12">
-                    <select  id="org_id" name="org_id" class="form-control">
-                      <option>Choose option</option>
-                      @foreach($all_organizations as $org)
-                        <option value="{{$org->id}}">{{$org->name}}</option>   
-                      @endforeach
-                    </select>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="password" class="control-label col-md-3 col-sm-3 col-xs-12" >Contraseña<span class="required">*</span></label>
-                  <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input type="password" id="password" class="form-control col-md-7 col-xs-12" type="text" name="password">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="password_confirmation" class="control-label col-md-3 col-sm-3 col-xs-12">Repetir contraseña<span class="required">*</span></label>
-                  <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input type="password" id="password_confirmation" class="form-control col-md-7 col-xs-12" type="text" name="password_confirmation">
-                  </div>
-                </div>
+                
                 <div class="ln_solid"></div>
                 <div class="form-group">
                   <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                    <a href="{{url('/clientes')}}" class="btn btn-primary" type="button">Cancelar</a>
-                    <button class="btn btn-primary" type="reset">Resetear</button>
+                    <a href="{{url('/clientes')}}" class="btn btn-primary" type="button">Cancel</a>
+                    <button class="btn btn-primary" type="reset">Reset</button>
                     <button type="submit" class="btn btn-success">Guardar</button>
                   </div>
                 </div>

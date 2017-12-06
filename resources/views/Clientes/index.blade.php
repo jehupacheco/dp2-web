@@ -64,7 +64,14 @@
                   <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
                     <div class="well profile_view">
                       <div class="col-sm-12">
-                        <h4 class="brief"><i>Cliente de vehículo</i></h4>
+                        <div class="col-xs-11 col-sm-11 col-ms-11">
+                          <h4 class="brief"><i>Cliente de vehículo</i></h4>
+                        </div>
+                        <div class="col-xs-1 col-sm-1 col-md-1 text-right" style="padding-right: 0px !important;">
+                          <a type="button" class="btn btn-xs boton-edit" style="background-color: #d9dcde;" href="{{url('/clientes/'.$cliente->id.'/edit')}}">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                          </a>
+                        </div>
                         <div class="left col-xs-7">
                           <h2>{{$cliente->name}} {{$cliente->lastname}}</h2>
                           <p><strong>Tipo de vehículo: </strong> Vehículo {{$cliente->organization->name}} </p>
