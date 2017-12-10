@@ -324,6 +324,10 @@
 @push('scripts')
 <!-- gauge.js -->
 <script>
+  var anglejson = <?php echo json_encode($angle); ?>;
+  var value_galge = anglejson.value;
+  var indexAngle = 2;
+  var angles=[0,20,40,60,90]
   var opts = {
       lines: 12,
       angle: 0,
@@ -344,12 +348,8 @@
 
   gauge.maxValue = 90;
   gauge.animationSpeed = 32;
-  gauge.set(45);
+  gauge.set(value_galge);
   gauge.setTextField(document.getElementById("gauge-text"));
-</script>
-<!-- /gauge.js -->
-<!-- Skycons -->
-<script>
   var icons = new Skycons({
       "color": "#73879C"
     }),
@@ -359,21 +359,19 @@
       "fog"
     ],
     i;
-
   for (i = list.length; i--;)
     icons.set(list[i], list[i]);
 
   icons.play();
-</script>
-<!-- /Skycons -->
-<script>
+
+  var urljson = <?php echo json_encode($url); ?>;
+  var url = urljson.address;
   document.getElementById("buttonManual").onclick = function() {modoManual()};
   document.getElementById("buttonAuto").onclick = function() {modoAuto()};
   document.getElementById("button-").onclick = function() {disminuir()};
   document.getElementById("button+").onclick = function() {aumentar()};
   function modoManual() {
     var xhr = new XMLHttpRequest();
-    var url = "http://10.100.210.232/prueba.php";
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.onreadystatechange = function () {
@@ -381,12 +379,11 @@
             var json = JSON.parse(xhr.responseText);
         }
     };
-    var data = JSON.stringify({"modo": "manual", "angulo": "4" });
+    var data = JSON.stringify({"modo": "manual", "angulo": value_galge });
     xhr.send(data);
   }
   function modoAuto() {
     var xhr = new XMLHttpRequest();
-    var url = "http://10.100.210.232/prueba.php";
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.onreadystatechange = function () {
@@ -398,34 +395,40 @@
     xhr.send(data);
   }
   function disminuir() {
-    value_galge=value_galge-5;
-    gauge.set(value_galge);
-    var xhr = new XMLHttpRequest();
-    var url = "http://10.100.210.232/prueba.php";
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-type", "application/json");
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            var json = JSON.parse(xhr.responseText);
-        }
-    };
-    var data = JSON.stringify({"modo": "manual", "angulo": value_galge});
-    xhr.send(data);
+    console.log(indexAngle);
+    if(indexAngle>0){
+      indexAngle = indexAngle-1;
+      value_galge = angles[indexAngle];
+      gauge.set(value_galge);
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", url, true);
+      xhr.setRequestHeader("Content-type", "application/json");
+      xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+              var json = JSON.parse(xhr.responseText);
+          }
+      };
+      var data = JSON.stringify({"modo": "manual", "angulo": value_galge});
+      xhr.send(data);
+    }
   }
   function aumentar() {
-    value_galge=value_galge+5;
-    gauge.set(value_galge); 
-    var xhr = new XMLHttpRequest();
-    var url = "http://10.100.210.232/prueba.php";
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-type", "application/json");
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            var json = JSON.parse(xhr.responseText);
-        }
-    };
-    var data = JSON.stringify({"modo": "manual", "angulo": value_galge});
-    xhr.send(data);
+    console.log(indexAngle);
+    if(indexAngle<4){
+      indexAngle = indexAngle+1;
+      value_galge=angles[indexAngle];
+      gauge.set(value_galge); 
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", url, true);
+      xhr.setRequestHeader("Content-type", "application/json");
+      xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+              var json = JSON.parse(xhr.responseText);
+          }
+      };
+      var data = JSON.stringify({"modo": "manual", "angulo": value_galge});
+      xhr.send(data);
+    }
   }
 </script>
 
