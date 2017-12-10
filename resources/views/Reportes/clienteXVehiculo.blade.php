@@ -75,9 +75,10 @@
                     <div class="x_content">
                       <p>Total de infracciones cometidas: </p>
                       <p>Fecha de inicio del viaje: </p>
-                      
+                      <p>{{$travel->started_at}}</p>
                       <p>Hora de inicio del viaje:  </p>
                       <p>Fecha de fin del viaje:  </p>
+                      <p>{{$travel->ended_at}}</p>
                       <p>Hora de fin del viaje: </p>
                     </div>
                   </div>
