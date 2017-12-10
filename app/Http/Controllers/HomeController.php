@@ -76,7 +76,7 @@ class HomeController extends Controller
         $vehicle= Vehicle::where('id','=',$id_vehiculo);
         //$reading= Reading::all();
         $reading= Reading::where('travel_id','=',$id_travel)->get();
-        $travel = Travel::where('id','=',$id_travel)->get();
+        $travel = Travel::find($id_travel);
 
         
 
