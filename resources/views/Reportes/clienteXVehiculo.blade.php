@@ -67,17 +67,19 @@
                         </li>
                         <li><a class="close-link"><i class="fa fa-close"></i></a>
                         </li>
-                      </ul>
+                      </ul> 
 
                       <div class="clearfix"></div>
 
                     </div>
                     <div class="x_content">
-                      <p>Total de infracciones cometidas: 5</p>
-                      <p>Fecha de inicio del viaje: 12/05/2017 </p>
-                      <p>Hora de inicio del viaje: 07:00 pm </p>
-                      <p>Fecha de fin del viaje: 13/05/2017 </p>
-                      <p>Hora de fin del viaje: 05:00 pm </p>
+                      <p>Total de infracciones cometidas: </p>
+                      <p>Fecha de inicio del viaje: </p>
+                      <p>{{$travel->started_at}}</p>
+                      <p>Hora de inicio del viaje:  </p>
+                      <p>Fecha de fin del viaje:  </p>
+                      <p>{{$travel->ended_at}}</p>
+                      <p>Hora de fin del viaje: </p>
                     </div>
                   </div>
                 </div>
@@ -88,6 +90,27 @@
 
                   <div class="row">
             
+            <div class="x_panel">
+            <div class="col-md-12 col-sm-8 col-xs-12">
+
+              <form id="demo-form2"  method="POST" action="{{url('reportes/recorridos/postMet')}}" data-parsley-validate class="form-horizontal form-label-left">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <div class="form-group">
+                  <div class="col-md-6 col-sm-3 col-xs-12">
+                    <select id="sensor_id" name="sensor_id" class="form-control">
+                      <option>Elija una opción</option>                      
+                      @foreach($sensors as $sensor)
+                        @if ($sensor->slug!="infraction")
+                        <option value="{{$sensor->id}}">{{$sensor->description}}</option>   
+                        @endif
+                      @endforeach
+                    </select>
+                    <button type="submit"  class="btn btn-success">Buscar</button>
+                  </div>
+                  
+                
+
+                </div>
                     
             <div class="col-md-12 col-sm-8 col-xs-12">
               <div class="x_panel">

@@ -7,6 +7,7 @@ use GuzzleHttp\Client;
 use Carbon\Carbon;
 use Datetime;
 use DB;
+use App\Models\Organization;
 use Jenssegers\Date\Date;
 
 class ParkingController extends Controller
@@ -64,8 +65,13 @@ class ParkingController extends Controller
             ])->latest()
             ->first();
         // dd($today);
-
-        return view('Estacionamiento.index', compact('clima_de_hoy','today','temperature','luminosity','uv','angle','humidity'));
+        $url = DB::table('organizations')
+            ->where([
+                ['id','=','7']
+            ])->latest()
+            ->first();
+        //$url = Organization::find('7');
+        return view('Estacionamiento.index', compact('clima_de_hoy','today','temperature','luminosity','uv','angle','humidity','url'));
     }
 
     /**
