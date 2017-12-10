@@ -76,9 +76,11 @@ class HomeController extends Controller
         $vehicle= Vehicle::where('id','=',$id_vehiculo);
         //$reading= Reading::all();
         $reading= Reading::where('travel_id','=',$id_travel)->get();
-        $travel = Travel::where('vehicle_id','=',$id_travel)->get();
+        $travel = Travel::where('id','=',$id_travel)->get();
 
-        return view('Reportes.clienteXVehiculo', compact('sensors','vehicle','reading','travel'));
+        
+
+        return view('Reportes.clienteXVehiculo', compact('sensors','vehicle','reading'),compact('travel'));
     }
 
     public function reporte_recorrido_filtro()
