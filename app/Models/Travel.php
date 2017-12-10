@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Travel extends Model
 {
+    protected $fillable = ['started_at'];
+
     public function readings()
     {
         return $this->hasMany('App\Models\Reading');
