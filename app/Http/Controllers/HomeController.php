@@ -80,7 +80,9 @@ class HomeController extends Controller
         $travel = Travel::find($id_travel);
         $papeletas= DB::table('readings')->where('travel_id','=',$id_travel)->where('sensor_id','=',11)->get();
         $num_papeletas = DB::table('readings')
+
                 ->select(DB::raw("count(sensor_id) as total"))->where('travel_id','=',$id_travel)->where('sensor_id','=',11)->get();
+
         $input = $request->all();
         
         $sensorselected = Sensor::find(1);
