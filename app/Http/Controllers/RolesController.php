@@ -59,7 +59,7 @@ class RolesController extends Controller
             return redirect()->action('RolesController@index')->with('deleted', 'No se registró el rol.');
         }
         DB::commit();
-        return redirect()->action('HomeController@index')->with('stored', 'Se registró el rol correctamente.');
+        return redirect()->action('RolesController@index')->with('stored', 'Se registró el rol correctamente.');
 
         // // $role = Role::findByName('Administrador General');
         // $user = Auth::user();
@@ -112,7 +112,7 @@ class RolesController extends Controller
 
             $role = Role::find($role_id);
             $permisos = Permission::all();
-
+            
             foreach ($permisos as $permiso) {
                 if(isset($input['permission'.$permiso->id])){
                     if(!$role->hasPermissionTo($permiso->name)){
@@ -129,7 +129,7 @@ class RolesController extends Controller
             return redirect()->action('RolesController@index')->with('deleted', 'No se actualizó el rol.');
         }
         DB::commit();
-        return redirect()->action('HomeController@index')->with('stored', 'Se actualizó el rol correctamente.');
+        return redirect()->action('RolesController@index')->with('stored', 'Se actualizó el rol correctamente.');
     }
 
     /**

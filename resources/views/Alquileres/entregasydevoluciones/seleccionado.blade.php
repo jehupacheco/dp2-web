@@ -172,7 +172,7 @@
                           @if(is_null($renting->delivered_at))
                           <option value="Entrega">Entrega</option>   
                           @endif
-                          @if(is_null($renting->returned_at))
+                          @if(is_null($renting->returned_at) && !is_null($renting->delivered_at))
                           <option value="Devolución">Devolución</option>  
                           @endif 
                         </select>

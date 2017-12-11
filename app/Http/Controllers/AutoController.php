@@ -226,7 +226,46 @@ class AutoController extends Controller
             elseif($user->hasPermissionTo('Vehículos - Solo su Organización')){
                 if($tipo_id==$user->organization_id){
                    return true;
-                }      
+                }   
+                elseif($user->hasAnyPermission(['Vehículos para pacientes de Cardiopatía', 
+                                            'Vehículos para la Jardinería',
+                                            'Vehículos para Ventas',
+                                            'Vehículos Eco-amigables',
+                                            'Vehículos para Trasporte Urbano 1',
+                                            'Vehículos para Trasporte Urbano 2'])){
+                        $org = Organization::find($tipo_id);
+                        $str_permission = '';
+                        switch ($org->slug) {
+                            case 'health':
+                                $str_permission = 'Vehículos para pacientes de Cardiopatía';
+                                break;
+                            case 'garden':
+                                $str_permission = 'Vehículos para la Jardinería';
+                                break;
+                            case 'sales':
+                                $str_permission = 'Vehículos para Ventas';
+                                break;
+                            case 'eco':
+                                $str_permission = 'Vehículos Eco-amigables';
+                                break;
+                            case 'transport1':
+                                $str_permission = 'Vehículos para Trasporte Urbano 1';
+                                break;
+                            case 'transport2':
+                                $str_permission = 'Vehículos para Trasporte Urbano 2';
+                                break;
+                            default:
+                                $str_permission = 'Vehículos para la Jardinería';
+                        }   
+
+                        if($user->hasPermissionTo($str_permission)){
+                            return true;
+                        }   
+                        else{
+                            return false;
+                        }
+
+                }   
                 else{
                     return false;
                 }             
@@ -239,23 +278,28 @@ class AutoController extends Controller
                                             'Vehículos para Trasporte Urbano 2'])){
                     $org = Organization::find($tipo_id);
                     $str_permission = '';
-                    switch ($org->name) {
+                    switch ($org->slug) {
                         case 'health':
                             $str_permission = 'Vehículos para pacientes de Cardiopatía';
+                            break;
                         case 'garden':
                             $str_permission = 'Vehículos para la Jardinería';
+                            break;
                         case 'sales':
                             $str_permission = 'Vehículos para Ventas';
+                            break;
                         case 'eco':
                             $str_permission = 'Vehículos Eco-amigables';
+                            break;
                         case 'transport1':
                             $str_permission = 'Vehículos para Trasporte Urbano 1';
+                            break;
                         case 'transport2':
                             $str_permission = 'Vehículos para Trasporte Urbano 2';
+                            break;
                         default:
                             $str_permission = 'Vehículos para la Jardinería';
                     }   
-
                     if($user->hasPermissionTo($str_permission)){
                         return true;
                     }   
@@ -264,5 +308,7 @@ class AutoController extends Controller
                     }
 
             }
+            else
+                return false;
     }
 }
