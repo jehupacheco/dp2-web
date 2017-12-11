@@ -1,13 +1,5 @@
 @extends('layouts.blank')
 
-<!-- Bootstrap -->
-    <script async="" data-rocketsrc="https://www.google-analytics.com/analytics.js" data-rocketoptimized="true"></script><script type="text/javascript">
-//<![CDATA[
-window.__cfRocketOptions = {byc:0,p:1508690442,petok:"42319e3ea318aad72b4aa824463dfc51ccb9d961-1509668416-1800"};
-//]]>
-</script>
-<script type="text/javascript" src="https://ajax.cloudflare.com/cdn-cgi/scripts/78d64697/cloudflare-static/rocket.min.js"></script>
-
 @push('stylesheets')
     <link href=" <link href="{{ asset("vendors/font-awesome/css/font-awesome.min.css") }}" rel="stylesheet">
     <link href=" <link href="{{ asset("vendors/nprogress/nprogress.css") }}" rel="stylesheet">
@@ -54,7 +46,7 @@ window.__cfRocketOptions = {byc:0,p:1508690442,petok:"42319e3ea318aad72b4aa82446
         <div class="col-md-12 col-sm-12 col-xs-12">
           <div class="x_panel">
             <div class="x_title">
-              <h2>Reportes <small>Filtrado por vehiculo</small></h2>
+              <h2>Reportes <small>Filtrado por viajes</small></h2>
               <ul class="nav navbar-right panel_toolbox">
                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                 </li>
@@ -77,28 +69,28 @@ window.__cfRocketOptions = {byc:0,p:1508690442,petok:"42319e3ea318aad72b4aa82446
               <form id="demo-form2"  method="POST" action="{{url('reportes/sensores/filtrado')}}" data-parsley-validate class="form-horizontal form-label-left">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="form-group">
-                  <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Placa de auto</label>
+                  <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Viaje</label>
                   <div class="col-md-3 col-sm-3 col-xs-12">
-                    <input id="plate" class="form-control col-md-3 col-xs-12" type="text" name="plate" readonly="true">
-                    <input id="vehicle_id" name="vehicle_id" type="text" readonly="true" style="display: none;">
+                    <input id="travel_name" class="form-control col-md-3 col-xs-12" type="text" name="travel_name" readonly="true">
+                    <input id="travel_id" name="travel_id" type="text" readonly="true" style="display: none;">
                   </div>
                   <div class="col-md-3 col-sm-3 col-xs-12">
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target=".modalBuscarVehiculo"><i class="fa fa-search"></i></button>
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target=".modalBuscarViaje"><i class="fa fa-search"></i></button>
 
-                    <div class="modal modalBuscarVehiculo" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal modalBuscarViaje" tabindex="-1" role="dialog" aria-hidden="true">
                       <div class="modal-dialog modal-lg">
                         <div class="modal-content">
 
                           <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
                             </button>
-                            <h4 class="modal-title" id="myModalLabel">Lista de Vehículos</h4>
+                            <h4 class="modal-title" id="myModalLabel">Lista de viajes</h4>
                           </div>
                           <div class="modal-body">
                             <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="x_panel">
                               <div class="x_title">
-                                <h2>Seleccionar Vehículo</small></h2>
+                                <h2>Seleccionar Viaje</small></h2>
 
                                 <ul class="nav navbar-right panel_toolbox">
                                   <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -119,15 +111,15 @@ window.__cfRocketOptions = {byc:0,p:1508690442,petok:"42319e3ea318aad72b4aa82446
                               </div>
                               <div class="x_content">
                                 <p class="text-muted font-13 m-b-30">
-                                  Seleccionar un vehículo de la siguiente lista por favor
+                                  Seleccionar un viaje de la siguiente lista por favor
                                 </p>
-                                <table id="dtTableVehicle" class="table table-striped table-bordered bulk_action">
+                                <table id="dtTableTravel" class="table table-striped table-bordered bulk_action">
                                   <thead>
                                     <tr>
-                                      <th>Placa</th>
-                                      <th>Precio/Hora</th>
-                                      <th>Descripción</th>
-                                      <th>Organización</th>
+                                      <th>Id</th>
+                                      <th>Cliente</th>
+                                      <th>Vehiculo</th>
+                                      <th>Distancia Total</th>
                                       <th>
                                        Seleccionar
                                       </th>
@@ -136,16 +128,15 @@ window.__cfRocketOptions = {byc:0,p:1508690442,petok:"42319e3ea318aad72b4aa82446
 
 
                                   <tbody>
-                                    @foreach ($vehicles as $vehicle)
-                                    @if(!is_null($vehicle->mac))
+                                    @foreach ($travels as $travel)
+                                    @if(!is_null($travel->id))
                                     <tr>
-                                      <td>{{$vehicle->plate}}</td>
-                                      <td>{{$vehicle->price}}</td>
-                                      <td>{{$vehicle->description}}</td>
-                                      <td>{{$vehicle->getOrgNameById($vehicle->organization_id)}}</td>
+                                      <td>{{$travel->id}}</td>
+                                      <td>{{$travel->getClientNameById($travel->client_id)}}</td>
+                                      <td>{{$travel->getVehiclePlacaById($travel->vehicle_id)}}</td>
+                                      <td>{{$travel->total_distance}}</td>
                                       <td text-center>
-                                            <input type="radio" name="optradioVehicle" alt="{{$vehicle->plate}}"  value="{{$vehicle->id}}">
-                                            <input id="precioVehiculo{{$vehicle->id}}" type="text" alt="{{$vehicle->price}}" style="display: none;">
+                                            <input type="radio" name="optradioTravel" alt="Viaje {{$travel->id}}"  value="{{$travel->id}}">
                                       </td>
                                       
                                     </tr>
@@ -159,7 +150,7 @@ window.__cfRocketOptions = {byc:0,p:1508690442,petok:"42319e3ea318aad72b4aa82446
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" onclick="getVehiculo()" data-dismiss="modal" value="Confirmar">Aceptar</button>
+                            <button type="button" class="btn btn-primary" onclick="getTravel()" data-dismiss="modal" value="Confirmar">Aceptar</button>
                           </div>
 
                         </div>
@@ -254,100 +245,20 @@ window.__cfRocketOptions = {byc:0,p:1508690442,petok:"42319e3ea318aad72b4aa82446
 @push('scripts')
 <script>
 
-  function getVehiculo(){                
-      document.getElementById('vehicle_id').value =  $('#dtTableVehicle input:radio:checked').val();
-      document.getElementById('plate').value =  $('#dtTableVehicle input:radio:checked').attr("alt");
+  function getTravel(){                
+      document.getElementById('travel_id').value =  $('#dtTableTravel input:radio:checked').val();
+      document.getElementById('travel_name').value =  $('#dtTableTravel input:radio:checked').attr("alt");
     }
 </script>
 
 <script>
-  $(document).ready(function() {
-      $('#dtTableRenting').DataTable({
-          "language": {
-              "url": "{{asset('json/spanishDataTable.json')}}"
-          }
-      });
-  } );
-  $(document).ready(function() {
-    $('#dtTableClient').DataTable({
-        "language": {
-            "url": "{{asset('json/spanishDataTable.json')}}"
-        }
-    });
-} );
 $(document).ready(function() {
-    $('#dtTableVehicle').DataTable({
+    $('#dtTableTravel').DataTable({
         "language": {
             "url": "{{asset('json/spanishDataTable.json')}}"
         }
     });
 } );
-</script>
-
-
-
-<script>
-   $(function () {
-   var bindDatePicker = function() {
-    $(".date").datetimepicker({
-        format:'YYYY-MM-DD',
-      icons: {
-        time: "fa fa-clock-o",
-        date: "fa fa-calendar",
-        up: "fa fa-arrow-up",
-        down: "fa fa-arrow-down"
-      }
-    }).find('input:first').on("blur",function () {
-      // check if the date is correct. We can accept dd-mm-yyyy and yyyy-mm-dd.
-      // update the format if it's yyyy-mm-dd
-      var date = parseDate($(this).val());
-
-      if (! isValidDate(date)) {
-        //create date based on momentjs (we have that)
-        date = moment().format('YYYY-MM-DD');
-      }
-
-      $(this).val(date);
-    });
-  }
-   
-   var isValidDate = function(value, format) {
-    format = format || false;
-    // lets parse the date to the best of our knowledge
-    if (format) {
-      value = parseDate(value);
-    }
-
-    var timestamp = Date.parse(value);
-
-    return isNaN(timestamp) == false;
-   }
-   
-   var parseDate = function(value) {
-    var m = value.match(/^(\d{1,2})(\/|-)?(\d{1,2})(\/|-)?(\d{4})$/);
-    if (m)
-      value = m[5] + '-' + ("00" + m[3]).slice(-2) + '-' + ("00" + m[1]).slice(-2);
-
-    return value;
-   }
-   
-   bindDatePicker();
- });
-</script>
-
-
-<!-- Google Analytics -->
-<script type="text/rocketscript" data-rocketoptimized="true">
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-23581568-13', 'auto');
-ga('send', 'pageview');
-
-
-
 </script>
 
 <script>

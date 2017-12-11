@@ -172,10 +172,11 @@ class HomeController extends Controller
         return view('Reportes.viajesCliente');
     }
 
-    public function sensores()
+public function sensores()
     {
         $vehicles= Vehicle::all();
         $sensors= Sensor::all();
+        $travels = Travel::all();
         $sensorselected= Sensor::find('1');
         $readinglist = DB::table('readings')
             ->select(DB::raw("DATE_FORMAT(updated_at,'%Y-%m-%d') as dia"), DB::raw('value as value'), DB::raw('sensor_id as sensor_id'))
@@ -183,31 +184,41 @@ class HomeController extends Controller
                     ['sensor_id','=', '1']
                 ])
             ->get();
-
-        return view('Reportes.sensores', compact('vehicles','sensors','readinglist','sensorselected'));
+        return view('Reportes.sensores', compact('vehicles','sensors','readinglist','sensorselected','travels'));
     }
 
     public function filtrado_sensores(Request $request)
     {
         $vehicles= Vehicle::all();
         $sensors= Sensor::all();
-
+        $travels = Travel::all();
         $input = $request->all();
-        $sensorselected = Sensor::find($input['sensor_id']);
-        //$input['vehicle_id']
+        //$input['travel_id']
         //$input['fechaInicial']        
         //$input['fechaFin']
         //$input['sensor_id'];
-        if($input['sensor_id']!=""){
+        if($input['sensor_id']!="" && $input['travel_id']!=""){
+            $sensorselected = Sensor::find($input['sensor_id']);
             $readinglist = DB::table('readings')
                 ->select(DB::raw("DATE_FORMAT(updated_at,'%Y-%m-%d') as dia"), DB::raw('value as value'), DB::raw('sensor_id as sensor_id'))
                 ->where([
-                    ['sensor_id','=', $input['sensor_id']]
+                    ['sensor_id','=', $input['sensor_id']],
+                    ['travel_id','=', $input['travel_id']]
                 ])
                 ->get();
         }
-        return view('Reportes.sensores', compact('vehicles','sensors','readinglist','sensorselected'));
+        else{
+            $sensorselected= Sensor::find('1');
+            $readinglist = DB::table('readings')
+                ->select(DB::raw("DATE_FORMAT(updated_at,'%Y-%m-%d') as dia"), DB::raw('value as value'), DB::raw('sensor_id as sensor_id'))
+                ->where([
+                    ['sensor_id','=', '1']
+                    ])
+                ->get();
+        }
+        return view('Reportes.sensores', compact('vehicles','sensors','readinglist','sensorselected','travels'));
     }
+
 
     public function filtrado_sensores_reporte_postMet(Request $request)
     {
