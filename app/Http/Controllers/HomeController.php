@@ -73,32 +73,42 @@ class HomeController extends Controller
     {
         //Auth::user()->email
         $sensors=Sensor::all();
-        $vehicle= Vehicle::where('id','=',$id_vehiculo);
+        $vehicle= Vehicle::find($id_vehiculo);
         //$reading= Reading::all();
         $reading= Reading::where('travel_id','=',$id_travel)->get();
         $readinglist= Reading::where('travel_id','=',$id_travel)->where('sensor_id','=',1);
         $travel = Travel::find($id_travel);
         $papeletas= DB::table('readings')->where('travel_id','=',$id_travel)->where('sensor_id','=',11)->get();
         $num_papeletas = DB::table('readings')
-                ->select(DB::raw("count(*) as total"))->where('travel_id','=',$id_travel)->where('sensor_id','=',11)->get();
+
+                ->select(DB::raw("count(sensor_id) as total"))->where('travel_id','=',$id_travel)->where('sensor_id','=',11)->get();
 
         $input = $request->all();
         
         $sensorselected = Sensor::find(1);
 
-        return view('Reportes.clienteXVehiculo', compact('sensors','vehicle','reading','readinglist','sensorselected','papeletas','num_papeletas'),compact('travel'));
+        $inicio=Carbon::parse($travel->ended_at);
+        $fin=Carbon::parse($travel->started_at);
+
+        
+
+        $horas_alquiler = $fin->diffInHours($inicio)*$vehicle->price;
+
+        
+        return view('Reportes.clienteXVehiculo', compact('sensors','vehicle','reading','readinglist','sensorselected','papeletas','num_papeletas','horas_alquiler'),compact('travel'));
     }
 
-    public function clienteXvehiculoPostMet(Request $request,$id_travel)
+    public function clienteXvehiculoPostMet(Request $request,$id_travel,$id_vehiculo)
     {
         
         $input = $request->all();
         $vehicles= Vehicle::all();
+        $vehicle= Vehicle::find($id_vehiculo);
         $sensors= Sensor::all();
         $travel = Travel::find($id_travel);
         $papeletas= DB::table('readings')->where('travel_id','=',$id_travel)->where('sensor_id','=',11)->get();
         $num_papeletas = DB::table('readings')
-                ->select(DB::raw("count(*) as total"))->where('travel_id','=',$id_travel)->where('sensor_id','=',11)->get();
+                ->select(DB::raw("count(sensor_id) as total"))->where('travel_id','=',$id_travel)->where('sensor_id','=',11)->get();
         
         $sensorselected = Sensor::find($input['sensor_id']);
         //$input['vehicle_id']
@@ -114,7 +124,14 @@ class HomeController extends Controller
                 ->where('travel_id','=',$id_travel)
                 ->get();
         }
-        return view('Reportes.clienteXVehiculo', compact('sensors','vehicles','reading','sensorselected','readinglist','travel','papeletas','num_papeletas'));
+
+        $inicio=Carbon::parse($travel->ended_at);
+        $fin=Carbon::parse($travel->started_at);
+
+
+        $horas_alquiler = $fin->diffInHours($inicio)*$vehicle->price;
+
+        return view('Reportes.clienteXVehiculo', compact('sensors','vehicles','vehicle','reading','sensorselected','readinglist','travel','papeletas','num_papeletas','horas_alquiler'));
 
 
 

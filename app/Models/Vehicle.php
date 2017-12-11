@@ -8,6 +8,9 @@ use App\Models\Renting;
 
 class Vehicle extends Model
 {
+
+    protected $fillable = ['price'];
+
     public function organization()
     {
         return $this->belongsTo('App\Models\Organization');
