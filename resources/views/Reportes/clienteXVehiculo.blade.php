@@ -47,7 +47,7 @@
 
                     </div>
                     <div class="x_content">
-                      <p>Kilómetros recorridos: 5km</p>
+                      <p>Kilómetros recorridos: {{$travel->total_distance}}</p>
                       <p>Costo Total: S/. 120.00</p>
                       <p>Costo por hora: S/50.00</p>
                       <p>Velocidad Promedio: 50 km/h</p>
@@ -76,14 +76,13 @@
 
                       
 
-                      <p>Total de infracciones cometidas: </p>
-                      
+                      <p>Total de infracciones cometidas: {{$num_papeletas[0]->total}}</p>
 
                       <p>Fecha de inicio del viaje: </p>
-                      <p>{{$travel->started_at}}</p>
+                      <p>. {{$travel->started_at}}</p>
 
                       <p>Fecha de fin del viaje:  </p>
-                      <p>{{$travel->ended_at}}</p>
+                      <p>. {{$travel->ended_at}}</p>
 
                     </div>
                   </div>

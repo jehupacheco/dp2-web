@@ -76,20 +76,16 @@ class HomeController extends Controller
         $vehicle= Vehicle::where('id','=',$id_vehiculo);
         //$reading= Reading::all();
         $reading= Reading::where('travel_id','=',$id_travel)->get();
-<<<<<<< HEAD
         $readinglist= Reading::where('travel_id','=',$id_travel)->where('sensor_id','=',1);
         $travel = Travel::find($id_travel);
         $papeletas= DB::table('readings')->where('travel_id','=',$id_travel)->where('sensor_id','=',11)->get();
         $num_papeletas = DB::table('readings')
-                ->select(DB::raw("count(*) as total"))->where('travel_id','=',$id_travel)->where('sensor_id','=',11)->get();
-=======
-        $travel = Travel::find($id_travel);
->>>>>>> origin
-
+                ->select(DB::raw("count(sensor_id) as total"))->where('travel_id','=',$id_travel)->where('sensor_id','=',11)->get();
         $input = $request->all();
         
         $sensorselected = Sensor::find(1);
-
+        
+        
         return view('Reportes.clienteXVehiculo', compact('sensors','vehicle','reading','readinglist','sensorselected','papeletas','num_papeletas'),compact('travel'));
     }
 
@@ -102,7 +98,7 @@ class HomeController extends Controller
         $travel = Travel::find($id_travel);
         $papeletas= DB::table('readings')->where('travel_id','=',$id_travel)->where('sensor_id','=',11)->get();
         $num_papeletas = DB::table('readings')
-                ->select(DB::raw("count(*) as total"))->where('travel_id','=',$id_travel)->where('sensor_id','=',11)->get();
+                ->select(DB::raw("count(sensor_id) as total"))->where('travel_id','=',$id_travel)->where('sensor_id','=',11)->get();
         
         $sensorselected = Sensor::find($input['sensor_id']);
         //$input['vehicle_id']
