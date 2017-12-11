@@ -48,8 +48,8 @@
                     </div>
                     <div class="x_content">
                       <p>Kilómetros recorridos: {{$travel->total_distance}}</p>
-                      <p>Costo Total: S/. 120.00</p>
-                      <p>Costo por hora: S/50.00</p>
+                      <p>Costo Total: S/. {{$horas_alquiler}}</p>
+                      <p>Costo por hora: S/. {{$vehicle->price}} </p>
                       <p>Velocidad Promedio: 50 km/h</p>
                       <p>Energía consumida: 50</p>
                     </div>
@@ -97,7 +97,7 @@
             <div class="x_panel">
             <div class="col-md-12 col-sm-8 col-xs-12">
 
-              <form id="demo-form2"  method="POST" action="{{url('/reportes/'.$travel->id.'/clienteXvehiculoPostMet')}}" data-parsley-validate class="form-horizontal form-label-left">
+              <form id="demo-form2"  method="POST" action="{{url('/reportes/'.$travel->id.'/vehiculo/'.$vehicle->id.'/clienteXvehiculoPostMet')}}" data-parsley-validate class="form-horizontal form-label-left">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="form-group">
                   <div class="col-md-6 col-sm-3 col-xs-12">
