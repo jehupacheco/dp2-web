@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Organization;
 use DB;
 use Auth;
 use Hash;
@@ -39,7 +40,16 @@ class UserController extends Controller
     public function create()
     {
         $roles = Role::all();
-        return view('Seguridad.nuevo_usuario.index',compact('roles'));
+
+
+        $user = Auth::user();
+        if(!$user->hasRole('Administrador General')){
+            $roles = $user->roles;
+        }
+        $id_organizations = $user->getOrganizationsList();
+        $organizations=Organization::wherein('id',$id_organizations)->get();
+
+        return view('Seguridad.nuevo_usuario.index',compact('roles','organizations'));
     }
     /**
      * Store a newly created resource in storage.

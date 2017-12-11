@@ -22,11 +22,23 @@ class RentingController extends Controller
         
         $user = Auth::user();
         $rentings = Renting::all();
-        if(!$user->hasRole('Administrador General')){
-              $rentings = $rentings->filter(function($renting) use ($user)
-              {
-                 return $renting->getOrgId() == $user->organization_id;
-               });
+        $rentings = $rentings->filter(function($renting)
+        {
+            return $renting->getOrgId() != 7;
+        });
+
+
+        if(!$user->can('Vehículos - Todas las Organizaciones')){
+            $id_organizations = $user->getOrganizationsList();
+            $rentings = $rentings->filter(function($renting) use ($id_organizations)
+            {
+                foreach ($id_organizations as $id_org) {
+                    if($renting->getOrgId()==$id_org) return true;
+                }
+                return false;
+            });
+            
+           
         }
 
         $clientes= Client::all();
@@ -43,19 +55,20 @@ class RentingController extends Controller
     {
         $user = Auth::user();
         // $this->update_list_of_vehicles($user); //Actualizamos la lista de los vehículos, para saber si ya estan disponibles
-        if($user->hasRole('Administrador General')){
+        if($user->can('Vehículos - Todas las Organizaciones')){
             $clientes = Client::all();
-            $vehicles = Vehicle::all();
+            $vehicles = Vehicle::where('organization_id','!=',7)->get();
         }
         else{
-            $clientes = Client::where('organization_id','=', $user->organization_id)->get();
-            $vehicles = Vehicle::where('organization_id',$user->organization_id)->get();
+            $id_organizations = $user->getOrganizationsList();
+            $clientes = Client::wherein('organization_id', $id_organizations)->get();
+            $vehicles = Vehicle::wherein('organization_id',$id_organizations)->where('organization_id','!=',7)->get();
         }
 
         $vehicles = $vehicles->filter(function($vehicle)
-          {
-             return !$vehicle->is_rented();
-           });
+        {
+            return !$vehicle->is_rented();
+        });
         
         return view('Alquileres.nuevo_alquiler',compact('clientes','vehicles'));
     }
@@ -198,14 +211,18 @@ class RentingController extends Controller
         // $this->update_list_of_vehicles($user);
 
         $rentings = Renting::where('delivered_at','=',null)->orWhere('returned_at')->get();
-        if($user->hasRole('Administrador General')){
+        if($user->can('Vehículos - Todas las Organizaciones')){
             $clientes = Client::all();
             $vehicles = Vehicle::all();
         }
         else{
-            $rentings = $rentings->filter(function($renting) use ($user)
+            $id_organizations = $user->getOrganizationsList();
+            $rentings = $rentings->filter(function($renting) use ($id_organizations)
             {
-                return $renting->getOrgId() == $user->organization_id;
+                foreach ($id_organizations as $id_org) {
+                    if($renting->getOrgId()==$id_org) return true;
+                }
+                return false;
             });
             $clientes = Client::where('organization_id','=', $user->organization_id)->get();
             $vehicles = Vehicle::where('organization_id',$user->organization_id)->get();

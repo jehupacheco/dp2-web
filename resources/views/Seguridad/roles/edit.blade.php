@@ -46,33 +46,18 @@
           <div class="x_panel">
             <div class="x_title">
               <h2>Nuevo Rol de Usuario <i class="fa fa-shield"></i></h2>
-              <ul class="nav navbar-right panel_toolbox">
-                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                </li>
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Settings 1</a>
-                    </li>
-                    <li><a href="#">Settings 2</a>
-                    </li>
-                  </ul>
-                </li>
-                <li><a class="close-link"><i class="fa fa-close"></i></a>
-                </li>
-              </ul>
               <div class="clearfix"></div>
             </div>
             <div class="x_content">
               <br />
-              <form id="demo-form2" method="POST" action="{{url('roles/'.$role->id.'/edit')}}" data-parsley-validate class="form-horizontal form-label-left">
+              <form id="myform" method="POST" action="{{url('roles/'.$role->id.'/edit')}}" data-parsley-validate class="form-horizontal form-label-left">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                 <div class="form-group">
                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="role_name">Nombre de rol <span class="required">*</span>
                   </label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input type="text" id="role_name" name="role_name" required="required" class="form-control col-md-7 col-xs-12" readonly="true" value="{{$role->name}}">
+                    <input type="text" id="role_name" name="role_name" required="required" class="form-control col-md-7 col-xs-12" value="{{$role->name}}">
                   </div>
                 </div>
                 
@@ -122,4 +107,65 @@
       });
     </script>
 <!-- /jquery.inputmask -->
+    <script>
+      $(document).ready(function(){
+        if($('#permission5').attr('checked')){
+          $('#permission4').iCheck('check');
+          $('#permission4').iCheck('disable');
+          $('#permission6').iCheck('check');
+          $('#permission6').iCheck('disable');
+          $('#permission7').iCheck('check');
+          $('#permission7').iCheck('disable');
+          $('#permission8').iCheck('check');
+          $('#permission8').iCheck('disable');
+          $('#permission9').iCheck('check');
+          $('#permission9').iCheck('disable');
+          $('#permission10').iCheck('check');
+          $('#permission10').iCheck('disable');
+          $('#permission11').iCheck('check');
+          $('#permission11').iCheck('disable');
+        }
+      });
+
+      $(document).ready(function(){
+        $('#permission5').on('ifChecked', function(event){
+          $('#permission4').iCheck('check');
+          $('#permission4').iCheck('disable');
+          $('#permission6').iCheck('check');
+          $('#permission6').iCheck('disable');
+          $('#permission7').iCheck('check');
+          $('#permission7').iCheck('disable');
+          $('#permission8').iCheck('check');
+          $('#permission8').iCheck('disable');
+          $('#permission9').iCheck('check');
+          $('#permission9').iCheck('disable');
+          $('#permission10').iCheck('check');
+          $('#permission10').iCheck('disable');
+          $('#permission11').iCheck('check');
+          $('#permission11').iCheck('disable');
+         });
+
+        $('#permission5').on('ifUnchecked', function(event){
+          $('#permission4').iCheck('enable');
+          $('#permission4').iCheck('uncheck');
+          $('#permission6').iCheck('enable');
+          $('#permission6').iCheck('uncheck');
+          $('#permission7').iCheck('enable');
+          $('#permission7').iCheck('uncheck');
+          $('#permission8').iCheck('enable');
+          $('#permission8').iCheck('uncheck');
+          $('#permission9').iCheck('enable');
+          $('#permission9').iCheck('uncheck');
+          $('#permission10').iCheck('enable');
+          $('#permission10').iCheck('uncheck');
+          $('#permission11').iCheck('enable');
+          $('#permission11').iCheck('uncheck');
+        });
+      });
+
+      $('#myform').submit(function() {
+          $("input:checkbox").prop('disabled', false);
+          return true; // return false to cancel form action
+      });
+    </script>
 @endpush

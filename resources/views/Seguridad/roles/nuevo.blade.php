@@ -65,7 +65,7 @@
             </div>
             <div class="x_content">
               <br />
-              <form id="demo-form2" method="POST" action="{{url('roles/nuevo')}}" data-parsley-validate class="form-horizontal form-label-left">
+              <form id="myform" method="POST" action="{{url('roles/nuevo')}}" data-parsley-validate class="form-horizontal form-label-left">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                 <div class="form-group">
@@ -81,7 +81,11 @@
                   <div class="col-md-6 col-sm-6 col-xs-12">
                       <p style="padding: 5px;">
                         @foreach($permissions as $permission)
+                        @if($permission->name=="Vehículos - Todas las Organizaciones")
+                        <input type="checkbox" name="permission{{$permission->id}}" id="permission{{$permission->id}}" value="{{$permission->name}}" data-parsley-mincheck="2" class="flat" onclick="TodasMarcadas()" /> {{$permission->name}}
+                        @else
                         <input type="checkbox" name="permission{{$permission->id}}" id="permission{{$permission->id}}" value="{{$permission->name}}" data-parsley-mincheck="2" class="flat" /> {{$permission->name}}
+                        @endif
                         <br />
                         @endforeach
                       <p>
@@ -110,11 +114,49 @@
     
 @endsection
 @push('scripts')
-<!-- jquery.inputmask -->
+
     <script>
-      $(document).ready(function() {
-        $(":input").inputmask();
+
+      $(document).ready(function(){
+        $('#permission5').on('ifChecked', function(event){
+          $('#permission4').iCheck('check');
+          $('#permission4').iCheck('disable');
+          $('#permission6').iCheck('check');
+          $('#permission6').iCheck('disable');
+          $('#permission7').iCheck('check');
+          $('#permission7').iCheck('disable');
+          $('#permission8').iCheck('check');
+          $('#permission8').iCheck('disable');
+          $('#permission9').iCheck('check');
+          $('#permission9').iCheck('disable');
+          $('#permission10').iCheck('check');
+          $('#permission10').iCheck('disable');
+          $('#permission11').iCheck('check');
+          $('#permission11').iCheck('disable');
+         });
+
+        $('#permission5').on('ifUnchecked', function(event){
+          $('#permission4').iCheck('enable');
+          $('#permission4').iCheck('uncheck');
+          $('#permission6').iCheck('enable');
+          $('#permission6').iCheck('uncheck');
+          $('#permission7').iCheck('enable');
+          $('#permission7').iCheck('uncheck');
+          $('#permission8').iCheck('enable');
+          $('#permission8').iCheck('uncheck');
+          $('#permission9').iCheck('enable');
+          $('#permission9').iCheck('uncheck');
+          $('#permission10').iCheck('enable');
+          $('#permission10').iCheck('uncheck');
+          $('#permission11').iCheck('enable');
+          $('#permission11').iCheck('uncheck');
+        });
+      });
+
+
+      $('#myform').submit(function() {
+          $("input:checkbox").prop('disabled', false);
+          return true; // return false to cancel form action
       });
     </script>
-<!-- /jquery.inputmask -->
 @endpush
