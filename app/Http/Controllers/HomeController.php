@@ -69,18 +69,55 @@ class HomeController extends Controller
         return view('Vehiculo.index');
     }
     
-    public function clienteXvehiculo($id_travel,$id_vehiculo)
+    public function clienteXvehiculo(Request $request,$id_travel,$id_vehiculo)
     {
         //Auth::user()->email
         $sensors=Sensor::all();
         $vehicle= Vehicle::where('id','=',$id_vehiculo);
         //$reading= Reading::all();
         $reading= Reading::where('travel_id','=',$id_travel)->get();
+        $readinglist= Reading::where('travel_id','=',$id_travel)->where('sensor_id','=',1);
         $travel = Travel::find($id_travel);
+        $papeletas= DB::table('readings')->where('travel_id','=',$id_travel)->where('sensor_id','=',11)->get();
+        $num_papeletas = DB::table('readings')
+                ->select(DB::raw("count(*) as total"))->where('travel_id','=',$id_travel)->where('sensor_id','=',11)->get();
 
+        $input = $request->all();
         
+        $sensorselected = Sensor::find(1);
 
-        return view('Reportes.clienteXVehiculo', compact('sensors','vehicle','reading'),compact('travel'));
+        return view('Reportes.clienteXVehiculo', compact('sensors','vehicle','reading','readinglist','sensorselected','papeletas','num_papeletas'),compact('travel'));
+    }
+
+    public function clienteXvehiculoPostMet(Request $request,$id_travel)
+    {
+        
+        $input = $request->all();
+        $vehicles= Vehicle::all();
+        $sensors= Sensor::all();
+        $travel = Travel::find($id_travel);
+        $papeletas= DB::table('readings')->where('travel_id','=',$id_travel)->where('sensor_id','=',11)->get();
+        $num_papeletas = DB::table('readings')
+                ->select(DB::raw("count(*) as total"))->where('travel_id','=',$id_travel)->where('sensor_id','=',11)->get();
+        
+        $sensorselected = Sensor::find($input['sensor_id']);
+        //$input['vehicle_id']
+        //$input['fechaInicial']        
+        //$input['fechaFin']
+        //$input['sensor_id'];
+        if($input['sensor_id']!=""){
+            $readinglist = DB::table('readings')
+                ->select(DB::raw("DATE_FORMAT(created_at,'%Y-%m-%d') as dia"), DB::raw('value as value'), DB::raw('sensor_id as sensor_id'))
+                ->where([
+                    ['sensor_id','=', $input['sensor_id']]
+                ])
+                ->where('travel_id','=',$id_travel)
+                ->get();
+        }
+        return view('Reportes.clienteXVehiculo', compact('sensors','vehicles','reading','sensorselected','readinglist','travel','papeletas','num_papeletas'));
+
+
+
     }
 
     public function reporte_recorrido_filtro()
