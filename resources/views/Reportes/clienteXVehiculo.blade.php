@@ -73,13 +73,18 @@
 
                     </div>
                     <div class="x_content">
+
+                      
+
                       <p>Total de infracciones cometidas: </p>
+                      
+
                       <p>Fecha de inicio del viaje: </p>
                       <p>{{$travel->started_at}}</p>
-                      <p>Hora de inicio del viaje:  </p>
+
                       <p>Fecha de fin del viaje:  </p>
                       <p>{{$travel->ended_at}}</p>
-                      <p>Hora de fin del viaje: </p>
+
                     </div>
                   </div>
                 </div>
@@ -93,15 +98,15 @@
             <div class="x_panel">
             <div class="col-md-12 col-sm-8 col-xs-12">
 
-              <form id="demo-form2"  method="POST" action="{{url('reportes/recorridos/postMet')}}" data-parsley-validate class="form-horizontal form-label-left">
+              <form id="demo-form2"  method="POST" action="{{url('/reportes/'.$travel->id.'/clienteXvehiculoPostMet')}}" data-parsley-validate class="form-horizontal form-label-left">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="form-group">
                   <div class="col-md-6 col-sm-3 col-xs-12">
                     <select id="sensor_id" name="sensor_id" class="form-control">
-                      <option>Elija una opción</option>                      
+                      <option>Elija una opción</option>
                       @foreach($sensors as $sensor)
                         @if ($sensor->slug!="infraction")
-                        <option value="{{$sensor->id}}">{{$sensor->description}}</option>   
+                        <option value="{{$sensor->id}}">{{$sensor->description}}</option>
                         @endif
                       @endforeach
                     </select>
@@ -114,36 +119,24 @@
                     
             <div class="col-md-12 col-sm-8 col-xs-12">
               <div class="x_panel">
-              <div class="dashboard_graph">
-
-                <div class="row x_title">
-                  <div class="col-md-6">
-                    <h3>Datos Sensados</h3>
+                  <div class="x_title">
+                    <h2>Sensor de {{$sensorselected->description}}<small>.</small></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        
+                      </li>
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
                   </div>
-                  <div class="form-group">
-                      <label for="reportrange" class="control-label col-md-6 col-sm-3 col-xs-12">Periodo de alquiler</label>
-                      <div class="col-md-6 col-sm-6 col-xs-6">
-                        <div id="reportrange" name="reportrange"  style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
-                          <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
-                          <span>December 30, 2017 - January 28, 2017</span> <b class="caret"></b>
-                        </div>
-                      </div>
-                      <input id="start_date" name="start_date" type="text" style="display: none;">
-                      <input id="end_date" name="end_date" type="text" style="display: none;">
-                    </div>
-                </div>
-
-                <div class="col-md-12 col-sm-9 col-xs-12">
-                  <div id="placeholder33" style="height: 260px; display: none" class="demo-placeholder"></div>
-                  <div style="width: 100%;">
-                    <div id="canvas_dahs" class="demo-placeholder" style="width: 100%; height:270px;"></div>
+                  <div class="x_content"><iframe class="chartjs-hidden-iframe" style="width: 100%; display: block; border: 0px; height: 0px; margin: 0px; position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px;"></iframe>
+                    <canvas id="lineChart" style="width: 636px; height: 318px;" width="636" height="318"></canvas>
                   </div>
                 </div>
-                
-
-                <div class="clearfix"></div>
-              </div>
-            </div>
           </div>
 
             <div class="col-md-4 col-sm-4 col-xs-12">
@@ -166,7 +159,7 @@
 
                     <ul class="list-unstyled timeline widget">
                       
-                      @foreach ($reading as $infraccion)
+                      @foreach ($papeletas as $infraccion)
                       
                         @if($infraccion->sensor_id == 11)
                         <li>
@@ -374,5 +367,39 @@
       });
     </script>
     <!-- /Flot -->
+
+    <script>
+      Chart.defaults.global.legend = {
+        enabled: false
+      };
+      var readinglist = <?php echo json_encode($readinglist); ?>;
+      var sensor = <?php echo json_encode($sensorselected); ?>;
+      // Line chart
+      //console.log(readinglist);
+      var labels = [],data=[];
+      for (var i = 0; i < readinglist.length; i++) {
+          labels.push(readinglist[i].dia);
+          data.push(readinglist[i].value);
+      }
+      var ctx = document.getElementById("lineChart");
+      var lineChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: sensor.description,
+            backgroundColor: "rgba(38, 185, 154, 0.31)",
+            borderColor: "rgba(38, 185, 154, 0.7)",
+            pointBorderColor: "rgba(38, 185, 154, 0.7)",
+            pointBackgroundColor: "rgba(38, 185, 154, 0.7)",
+            pointHoverBackgroundColor: "#fff",
+            pointHoverBorderColor: "rgba(220,220,220,1)",
+            pointBorderWidth: 1,
+            data: data
+          }]
+        },
+      });
+
+    </script>
 
     @endpush

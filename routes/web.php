@@ -115,6 +115,7 @@ Route::group(['middleware' => ['permission:Estacionamiento']], function () {
 });
 
 Route::get('/reportes/{id_viaje}/{id_vehiculo}/clienteXvehiculo','HomeController@clienteXvehiculo');
+Route::post('/reportes/{travel_id}/clienteXvehiculoPostMet','HomeController@clienteXvehiculoPostMet');
 
 Route::get('/Filtros/filtroAutos','HomeController@filtroAutos');
 
