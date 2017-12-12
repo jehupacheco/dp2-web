@@ -177,28 +177,6 @@ class HomeController extends Controller
         // return redirect()->action('RentingController@index',['rentings'=>$rentings,'clientes'=>$clientes,'vehicles'=>$vehicles])->with('stored', 'Se ha filtrado los alquileres correctamente');
     }
 
-    public function filtroReporte()
-    {
-
-        $clientes= Client::all();
-        $rentings = Renting::all();
-        return view('Reportes.pantallaDeFiltros', compact('rentings','clientes'));
-    }
-
-    public function filtroReporteClientes(Request $request)
-    {
-        $input = $request->all();
-        $clientes= Client::all();
-        $vehicles= Vehicle::all();
-        if($input['client_id'] !=""){
-            $rentings = Renting::where('client_id','=',$input['client_id'])->get();
-        }
-        else{
-            $rentings = Renting::all();
-        }
-        
-        return view('Reportes.pantallaDeFiltros', compact('rentings','clientes','vehicles'));
-    }
 
     public function asignarauto()
     {

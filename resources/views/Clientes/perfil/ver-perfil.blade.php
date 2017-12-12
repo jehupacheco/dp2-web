@@ -34,21 +34,7 @@
                 <div class="x_panel">
                   <div class="x_title">
                     <h2>Reporte de usuario <small>reporte de actividad</small></h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                        <ul class="dropdown-menu" role="menu">
-                          <li><a href="#">Settings 1</a>
-                          </li>
-                          <li><a href="#">Settings 2</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li><a class="close-link"><i class="fa fa-close"></i></a>
-                      </li>
-                    </ul>
+                    
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
@@ -56,37 +42,43 @@
                       <div class="profile_img">
                         <div id="crop-avatar">
                           <!-- Current avatar -->
-                          <img class="img-responsive avatar-view" src="{{ Gravatar::src($cliente->email) }}" alt="Avatar" title="Change the avatar">
+                          <img class="img-responsive avatar-view" src="{{ $cliente->profile_img_url }}" alt="Avatar" title="Change the avatar" style="height: 150px;">
                         </div>
                       </div>
                       <h3>{{$cliente->name}} {{$cliente->lastname}}</h3>
 
                       <ul class="list-unstyled user_data">
-                        <li><i class="fa fa-map-marker user-profile-icon"></i> San Miguel, Lima, Perú
-                        </li>
+                        
 
                         <li>
-                          <i class="fa fa-briefcase user-profile-icon"></i> Jardinero
+                          <i class="fa fa-briefcase user-profile-icon"></i> {{$cliente->getOrgName()}}
                         </li>
 
                         <li class="m-top-xs">
-                          <i class="fa fa-external-link user-profile-icon"></i>
-                          <a href="http://www.kimlabs.com/profile/" target="_blank">www.kimlabs.com</a>
+                          <i class="fa fa-envelope-o" aria-hidden="true"></i> {{$cliente->email}}
                         </li>
+                        
+                        <li><i class="fa fa-phone" aria-hidden="true"></i> {{$cliente->phone}}
+                        </li>
+
+                        <li>
+                          <p class="ratings">
+                            <a>{{$cliente->rating}}.0</a>
+                            @for ($i = 0; $i < $cliente->rating; $i++)
+                                <a href="#"><span class="fa fa-star"></span></a>
+                            @endfor
+
+                          </p>
+                        </li>
+                        
                       </ul>
 
-                      <a class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Edit Profile</a>
+                      <a class="btn btn-success" href="{{url('/clientes/'.$cliente->id.'/edit')}}"><i class="fa fa-edit m-right-xs"></i>Editar Perfil</a>
                       <br />
 
                       <!-- start skills -->
                       <h4>Reporte de actividad del usuario</h4>
                       <ul class="list-unstyled user_data">
-                        <li>
-                          <p>Batería</p>
-                          <div class="progress progress_sm">
-                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="50"></div>
-                          </div>
-                        </li>
                         <li>
                           <p>Recorrido en la semana</p>
                           <div class="progress progress_sm">
