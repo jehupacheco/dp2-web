@@ -10,7 +10,15 @@
     <title>AutómataPucpSystem | </title>
     
     <link href="{{ asset("css/app.min.css") }}" rel="stylesheet">
-
+<!--     <style type="text/css">
+        .login{
+            background: url("images/auto.png") no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+    </style> -->
 </head>
 
 <body class="login">
@@ -34,16 +42,16 @@
                 <div class="clearfix"></div>
                     
                 <div class="separator">
-                    <p class="change_link">No tienes cuenta?
+                    <!-- <p class="change_link">No tienes cuenta?
                         <a href="{{ url('/register') }}" class="to_register"> Crear una cuenta </a>
-                    </p>
+                    </p> -->
                         
                     <div class="clearfix"></div>
                     <br />
                         
                     <div>
-                        <h1><i class="fa fa-paw"></i> Autómata Pucp</h1>
-                        <p>©2017 All Rights Reserved. Autómata Pucp is a Bootstrap 3 template. Privacy and Terms</p>
+                        <h1><i class="fa fa-bus"></i> Autómata Pucp</h1>
+                        <p>©2017 Todos los derechos reservados. AutómataPucp System fue construido por el grupo AutómataPucp. Privacy and Terms</p>
                     </div>
                 </div>
                 {!! BootForm::close() !!}
