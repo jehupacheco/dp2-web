@@ -92,7 +92,9 @@ Route::group(['middleware' => ['permission:Vehículos - Solo su Organización|Ve
 
 
 	Route::get('/vehiculos/{id}/deshabilitar','AutoController@deshabilitar');
-	Route::post('/vehiculos/{id}/deshabilitarPut','AutoController@deshabilitarPut');
+	Route::post('/vehiculos/deshabilitarPut','AutoController@deshabilitarPut');
+	Route::get('/deshabilitar/{id_available}/destroyPut','AutoController@destroyPutAvailability');
+	
 
 	Route::post('/vehiculos/put/configuracion','AutoController@configuracionPut');
 
@@ -120,7 +122,7 @@ Route::group(['middleware' => ['permission:Estacionamiento']], function () {
 
 
 Route::get('/reportes/{id_viaje}/{id_vehiculo}/clienteXvehiculo','HomeController@clienteXvehiculo');
-Route::post('/reportes/{travel_id}/vehiculo/{vehiculo_id}/clienteXvehiculoPostMet','HomeController@clienteXvehiculoPostMet');
+Route::post('/reportes/{travel_id}/vehiculo/{id_vehiculo}/clienteXvehiculoPostMet','HomeController@clienteXvehiculoPostMet');
 
 Route::get('/Filtros/filtroAutos','HomeController@filtroAutos');
 

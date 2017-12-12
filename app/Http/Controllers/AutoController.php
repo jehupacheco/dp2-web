@@ -191,18 +191,43 @@ class AutoController extends Controller
     public function deshabilitar($id)
     {
         $vehicle = Vehicle::find($id);
-
-        return view('Vehiculos.deshabilitar',compact('id'));
+        //$vehicle_available = vehicle_available::all();
+        $vehicle_available = vehicle_available::where('id_vehicle','=',$id)->get();
+        //dd($vehicle_available);
+        return view('Vehiculos.deshabilitar',compact('id','vehicle_available'));
     }
 
-    public function deshabilitarPut(VehicleRequest $request,$id)
+
+    public function destroyPutAvailability($id_available)
+    {
+        try {
+            DB::beginTransaction();
+            //dd($id_available);
+            $available = vehicle_available::find($id_available);
+            //dd($available);
+            $placa = $available->id_vehicle;
+            //dd($placa);
+            $available->delete();
+            
+        } catch (Exception $e) {
+            DB::rollback();
+                
+            return redirect()->action('AutoController@deshabilitar',['id' => $placa])->with('stored', 'No se eliminó el período de inactividad del vehículo.');
+        }
+        DB::commit();
+        return redirect()->action('AutoController@deshabilitar',['id' => $placa])->with('stored', 'Se ha eliminado el período de inactividad correctamente para el vehículo.'); 
+
+    }
+
+    public function deshabilitarPut(VehicleRequest $request)
     {
 
         $input = $request->all();
+
         DB::beginTransaction();
         try {
             $vehicle_available = new vehicle_available();
-            $vehicle_available->id_vehicle = $id;
+            $vehicle_available->id_vehicle = $input['vehicle_id'];
             $vehicle_available->starts_at = $input['start_date'];
             $vehicle_available->finishes_at = $input['end_date'];
             //$vehicle_available->updated_at = $input['start_date'];
@@ -211,12 +236,12 @@ class AutoController extends Controller
             $vehicle_available->save();
         } catch (Exception $e) {
             DB::rollback();
-            return redirect()->action('AutoController@ver',['id'=>$id]); 
+            return redirect()->action('AutoController@ver',['id'=>$input['vehicle_id']]); 
             //return redirect()->action('AutoController@show_profile'); 
         }
         DB::commit();
-        return redirect()->action('AutoController@deshabilitar',['id'=>$id]); 
-        //return redirect()->action('AutoController@configuracion');
+        //return view('Vehiculos.deshabilitar',compact('id'));
+        return redirect()->action('AutoController@deshabilitar',['id' => $input['vehicle_id']])->with('stored', 'El vehículo '.$input['vehicle_id'].' se DESHABILITÓ satisfactoriamente.'); 
     }
 
 
