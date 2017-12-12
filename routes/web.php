@@ -113,6 +113,7 @@ Route::group(['middleware' => ['permission:Vehículos - Solo su Organización|Ve
 
 Route::group(['middleware' => ['permission:Configuración']], function () {
 	Route::get('/configuracion','ConfigurationController@index');
+	Route::post('/configuracion/actualizar','ConfigurationController@store');
 });
 
 Route::group(['middleware' => ['permission:Estacionamiento']], function () {

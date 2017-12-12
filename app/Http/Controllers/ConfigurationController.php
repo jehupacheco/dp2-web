@@ -3,6 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Configuration;
+use App\Models\Organization;
+use DB;
+use Auth;
+use Hash;
+use Session;
+use Redirect;
 
 class ConfigurationController extends Controller
 {
@@ -13,9 +20,14 @@ class ConfigurationController extends Controller
      */
     public function index()
     {
+        $user = Auth::user();
 
-        
-        return view('Configurations.index');
+        $config = new Configuration();
+        $id_organizations = $user->getOrganizationsList();
+        $organizations=Organization::wherein('id',$id_organizations)->get();
+
+
+        return view('Configurations.index',compact('organizations','config'));
     }
 
     /**
@@ -36,7 +48,14 @@ class ConfigurationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+
+        $config = Configuration::where('organization_id','=',$input['org_id'])->where('type','=',$input['type'])->update(['value'=>$input['value'].'']);
+        
+
+        return redirect()->action('ConfigurationController@index')->with('stored', 'Se actualizó el parámetro correctamente.');
+        
+
     }
 
     /**
