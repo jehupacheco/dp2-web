@@ -38,6 +38,13 @@ class Client extends Authenticatable
         return $this->hasManyThrough('App\Models\Reading', 'App\Models\Travel');
     }
 
+    public function getOrgName()
+    {
+        $org = Organization::find($this->organization_id);
+
+        return $org->name;
+    }
+
     public function getOrgNameById($org_id)
     {
         $org = Organization::find($org_id);
