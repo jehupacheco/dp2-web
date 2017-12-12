@@ -211,7 +211,12 @@ class RentingController extends Controller
         // $this->update_list_of_vehicles($user);
         $id_organizations = $user->getOrganizationsList();
 
-        $rentings = Renting::where('delivered_at','=',null)->orWhere('returned_at')->get();
+        $rentings = Renting::where('delivered_at','=',null)->orWhere('returned_at','=',null)->get();
+        $rentings = $rentings->filter(function($renting)
+        {
+            return $renting->getOrgId()!=7;
+        });
+
         $rentingsAll = Renting::all();
         $rentingsAll = $rentingsAll->filter(function($renting) use ($id_organizations)
         {
@@ -220,6 +225,7 @@ class RentingController extends Controller
             }
             return false;
         });
+
         if($user->can('Vehículos - Todas las Organizaciones')){
             $clientes = Client::all();
             $vehicles = Vehicle::all();
