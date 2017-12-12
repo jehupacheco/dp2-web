@@ -2,6 +2,13 @@
 
 @push('stylesheets')
     <!-- Example -->
+    <style>
+      .vehicle-description {
+        height: 150px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    </style>
     <!--<link href=" <link href="{{ asset("css/myFile.min.css") }}" rel="stylesheet">" rel="stylesheet">-->
 @endpush
 
@@ -27,7 +34,9 @@
           <div class="page-title">
               <div class="title_left">
                 
-                @if($org->name=="Eco-amigable")
+                @if($org->is_parking)
+                <h3> <small>Estacionamientos de {{$org->name}}s</small></h3>
+                @elseif($org->name=="Eco-amigable")
                 <h3> <small>Vehículos {{$org->name}}s</small></h3>
                 @else
                 <h3> <small>Vehículos para {{$org->name}}</small></h3>
@@ -58,9 +67,6 @@
                   <ul class="pagination pagination-split">
                     <li><a href="{{url('/vehiculos/'.$org->id.'/nuevo')}}">Nuevo Vehículo <i class="fa fa-plus" aria-hidden="true"></i></a></li>
                     <li><a href="" data-toggle="modal" data-target="#myModal">Configurar Parámetros <i class="fa fa-pencil" aria-hidden="true"></i></a></li>
-                  
-                  
-
                   </ul>
                 </div>
                 <div class="clearfix"></div>
@@ -69,7 +75,11 @@
                   <div class="well profile_view">
                     <div class="col-sm-12">
                       <div class="col-xs-11 col-sm-11 col-ms-11">
+                        @if($org->is_parking)
+                        <h4 class="brief"><i>Estacionamiento #{{$vehiculo->id}}</i></h4>
+                        @else
                         <h4 class="brief"><i>Vehículo {{$org->name}}</i></h4>
+                        @endif
                       </div>
                       <div class="col-xs-1 col-sm-1 col-md-1 text-right" style="padding-right: 0px !important;">
                         <a type="button" class="btn btn-xs boton-edit" style="background-color: #d9dcde;" href="{{url('/vehiculos/'.$vehiculo->id.'/edit')}}">
@@ -77,11 +87,12 @@
                         </a>
                       </div>
                       <div class="left col-xs-7">
+                        @if(!$org->is_parking)
                         <h2><strong>Identificador:</strong> {{$vehiculo->plate}}</h2>
-                        
-                        <p><strong>Descripción: </strong> {{$vehiculo->description}}</p>
+                        @endif
+                        <p class="vehicle-description"><strong>Descripción: </strong> {{$vehiculo->description}}</p>
                         <ul class="list-unstyled">
-                          <li><strong># Dirección Mac:</strong> {{$vehiculo->mac}}</li>
+                          <li><strong># Dirección {{$org->is_parking ? 'IP' :'MAC'}}:</strong> {{$vehiculo->mac}}</li>
                           @if($vehiculo->is_rented())
                           <li style="color:#743030;"><strong>Estado:</strong>Alquilado</li>                         
                           @else
@@ -103,21 +114,27 @@
                           <img src="{{asset('images/autosurban1.png')}}" alt="" class="img-circle img-responsive">
                         @elseif($org->slug == 'transport2') 
                           <img src="{{asset('images/autosurban2.png')}}" alt="" class="img-circle img-responsive">
+                        @else
+                          <img src="{{asset('images/parkingcar.jpg')}}" alt="" class="img-circle img-responsive">
                         @endif
-                        
+
                       </div>
                     </div>
                     <div class="col-xs-12 bottom text-center">
                       <div class="col-xs-12 col-sm-6 emphasis">
                         <p class="ratings">
+                          @if(!$org->is_parking)
                           <a> Precio/hora: {{$vehiculo->price}} soles</a>
+                          @endif
                         </p>
                       </div>
                       <div class="col-xs-12 col-sm-6 emphasis">
+                        @if(!$org->is_parking)
                         <a type="button" class="btn btn-success btn-xs" href="{{url('/asignarauto')}}"> <i class="fa fa-user">
                           </i> <i class="fa fa-comments-o"></i> </a>
-                        <a type="button" class="btn btn-primary btn-xs" href="{{url('/vehiculos/'.$vehiculo->id.'/ver')}}">
-                          <i class="fa fa-automobile"> </i> Ver Vehiculo
+                        @endif
+                        <a type="button" class="btn btn-primary btn-xs" href="{{$org->is_parking ? url('/estacionamiento/'.$vehiculo->id) : url('/vehiculos/'.$vehiculo->id.'/ver')}}">
+                          <i class="fa fa-automobile"> </i> Ver {{$org->is_parking ? 'Estacionamiento' : 'Vehiculo'}}
                         </a>
                       </div>
                     </div>
