@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Vehicle;
 use App\Models\Reading;
-use App\Models\travel;
+use App\Models\Travel;
 use DB;
 
 class SensorController extends Controller
