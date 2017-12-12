@@ -55,12 +55,12 @@
                     @if(auth()->user()->can('Vehículos - Todas las Organizaciones'))
                     <li>
                         <a>
-                            <i class="fa fa-bus"></i> Vehiculos 
+                            <i class="fa fa-bus"></i> Vehículos 
                             <span class="fa fa-chevron-down"></span>
                         </a>
                         <ul class="nav child_menu">
                             @foreach($all_organizations as $org)
-                                @if($org->name != "Estacionamiento")
+                                @if(!$org->is_parking)
                                 <li><a href="{{url('/vehiculos/'.$org->id.'/lista')}}">Vehículo {{$org->name}}</a></li>
                                 @endif
                             @endforeach
@@ -161,9 +161,17 @@
                     @endif
                     @if(auth()->user()->can('Estacionamiento'))
                     <li>
-                        <a href="{{url('/estacionamiento')}}">
-                            <i class="fa fa-car"></i>Estacionamiento
+                        <a>
+                            <i class="fa fa-car"></i> Estacionamientos 
+                            <span class="fa fa-chevron-down"></span>
                         </a>
+                        <ul class="nav child_menu">
+                            @foreach($all_organizations as $org)
+                                @if($org->is_parking)
+                                <li><a href="{{url('/estacionamientos/'.$org->id.'/lista')}}">Estacionamientos - {{$org->name}}</a></li>
+                                @endif
+                            @endforeach
+                        </ul>
                     </li>
                     @endif
                     {{--  <li>

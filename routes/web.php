@@ -111,7 +111,13 @@ Route::group(['middleware' => ['permission:Vehículos - Solo su Organización|Ve
 
 
 Route::group(['middleware' => ['permission:Estacionamiento']], function () {
-    Route::get('/estacionamiento','ParkingController@index');
+		// Route::get('/estacionamiento','ParkingController@index');
+		Route::get('/estacionamientos/{tipo_id}/lista','ParkingController@index');
+		Route::get('/estacionamientos/{vehicle}/ver', 'ParkingController@show');
+		Route::get('/estacionamientos/{tipo_id}/nuevo','ParkingController@create');
+		Route::post('/estacionamientos/{tipo_id}/nuevo','ParkingController@store');
+		Route::get('/estacionamientos/{vehicle}/edit', 'ParkingController@edit');
+		Route::post('/estacionamientos/{vehicle}/edit', 'ParkingController@update');
 });
 
 Route::get('/reportes/{id_viaje}/{id_vehiculo}/clienteXvehiculo','HomeController@clienteXvehiculo');
