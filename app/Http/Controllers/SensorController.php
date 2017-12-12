@@ -20,7 +20,12 @@ class SensorController extends Controller
     {
         $vehiculo = Vehicle::find($id);
         $org = Organization::find($vehiculo->organization_id);
-        
+        $sensors = DB::table('organization_sensor')
+            ->select(DB::raw('sensor_id as sensor_id'))
+            ->where([
+                    ['organization_id','=', $org->id]
+                ])
+            ->get();
         $travel = Travel::where('vehicle_id','=',$vehiculo->id)->orderBy('created_at','desc')->first();
         $sensorPeso = null;
         $sensoRitmoCardio = null;
@@ -30,14 +35,14 @@ class SensorController extends Controller
         $sensorBateria = null;
         $sensorHumedad = null;
         if ($travel != null) {
-            # code...
-            $sensorPeso = Reading::where('travel_id','=',$travel->id)->where('code','=','F01')->first();
-            $sensoRitmoCardio = Reading::where('travel_id','=',$travel->id)->where('code','=','F02')->first();
-            $sensorProximidad = Reading::where('travel_id','=',$travel->id)->where('code','=','F03')->first();
-            $sensorTemperatura = Reading::where('travel_id','=',$travel->id)->where('code','=','F04')->first();
-            $sensorVelocidad = Reading::where('travel_id','=',$travel->id)->where('code','=','F05')->first();
-            $sensorBateria = Reading::where('travel_id','=',$travel->id)->where('code','=','F06')->first();
-            $sensorHumedad = Reading::where('travel_id','=',$travel->id)->where('code','=','F07')->first();
+            
+            $sensorPeso = Reading::where('travel_id','=',$travel->id)->where('sensor_id','=','1')->orderBy('created_at','desc')->first();
+            $sensoRitmoCardio = Reading::where('travel_id','=',$travel->id)->where('sensor_id','=','2')->orderBy('created_at','desc')->first();
+            $sensorProximidad = Reading::where('travel_id','=',$travel->id)->where('sensor_id','=','3')->orderBy('created_at','desc')->first();
+            $sensorTemperatura = Reading::where('travel_id','=',$travel->id)->where('sensor_id','=','4')->orderBy('created_at','desc')->first();
+            $sensorVelocidad = Reading::where('travel_id','=',$travel->id)->where('sensor_id','=','5')->orderBy('created_at','desc')->first();
+            $sensorBateria = Reading::where('travel_id','=',$travel->id)->where('sensor_id','=','6')->orderBy('created_at','desc')->first();
+            $sensorHumedad = Reading::where('travel_id','=',$travel->id)->where('sensor_id','=','7')->orderBy('created_at','desc')->first();
         }
         //return view('Sensores.index',compact('vehiculo'));
         return view('Sensores.index',compact('vehiculo','sensorPeso','sensoRitmoCardio','sensorProximidad','sensorTemperatura',          'sensorVelocidad','sensorBateria','sensorHumedad'));
