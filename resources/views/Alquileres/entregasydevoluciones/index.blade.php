@@ -77,6 +77,71 @@
                       </table>
                     </div>
                   </div>
+
+                </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Entregas/Devoluciones <i class="fa fa-exchange" aria-hidden="true"></i> <small>Información de Entregas/Devoluciones de Vehículos</small></h2>
+                    <div class="clearfix"></div>
+                  </div>
+
+                  <div class="x_content">
+
+                    <p>Seleccionar un alquiler</p>
+
+                    <div class="table-responsive">
+                      <table id="dtTableInOut" class="table table-striped jambo_table bulk_action">
+                        <thead>
+                          <tr class="headings">
+                            <th class="column-title" style="display: table-cell;">Placa </th>
+                            <th class="column-title" style="display: table-cell;">Organización </th>
+                            <th class="column-title" style="display: table-cell;">Cliente</th>
+                            <th class="column-title" style="display: table-cell;">Se entregó</th>
+                            <th class="column-title" style="display: table-cell;">Se devolvió </th>
+                            <th class="column-title" style="display: table-cell;"><i class="fa fa-calendar" aria-hidden="true"></i> Entrega </th>
+                            <th class="column-title" style="display: table-cell;"><i class="fa fa-calendar" aria-hidden="true"></i> Devolución</th>
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                          @foreach($rentingsAll as $renting)
+                          <tr class="even pointer">
+                            <td class=" ">{{$renting->getPlateById($renting->vehicle_id)}}</td>
+                            <td class=" ">{{$renting->getOrgNameById($renting->vehicle_id)}}</td>
+                            <td class=" ">{{$renting->getClientNameById($renting->client_id)}}</td>
+                            @if(!is_null($renting->delivered_at))
+                            <td class=" ">&nbsp;&nbsp;&nbsp;<i class="fa fa-check fa-lg" style="color: #49ea49;"></i></td> 
+                            @else
+                            <td class=" ">&nbsp;&nbsp;&nbsp;<i class="fa fa-minus-circle fa-lg" aria-hidden="true"></i></td>
+                            @endif
+                            @if(!is_null($renting->returned_at))
+                            <td class=" ">&nbsp;&nbsp;&nbsp;<i class="fa fa-check fa-lg" style="color: #49ea49;"></i></td>
+                            @else
+                            <td class=" ">&nbsp;&nbsp;&nbsp;<i class="fa fa-minus-circle fa-lg" aria-hidden="true"></i></td>
+                            @endif
+                            @if(!is_null($renting->delivered_at))
+                            <td class=" ">{{$renting->delivered_at}}</td>
+                            @else
+                            <td class=" ">---</td>
+                            @endif
+                            @if(!is_null($renting->returned_at))
+                            <td class=" ">{{$renting->returned_at}}</td>
+                            @else
+                            <td class=" ">---</td>
+                            @endif
+                          </tr>
+                          @endforeach
+                          
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  
                 </div>
             </div>
           </div>
@@ -90,25 +155,7 @@
     $(":input").inputmask();
   });
 </script>
-<script>
-  function getCliente(){                
-      document.getElementById('client_id').value =  $('#dtTableClient input:radio:checked').val();
-      document.getElementById('client_name').value =  $('#dtTableClient input:radio:checked').attr("alt");
-    }
 
-  function getVehiculo(){                
-      document.getElementById('vehicle_id').value =  $('#dtTableVehicle input:radio:checked').val();
-      document.getElementById('plate').value =  $('#dtTableVehicle input:radio:checked').attr("alt");
-      document.getElementById('price_hour').value =  $('#precioVehiculo'+document.getElementById('vehicle_id').value).attr("alt") + ' Soles';
-      var precio = parseFloat($('#price_hour').val());
-
-      var start = moment(document.getElementById('start_date').value);
-      var end  =  moment(document.getElementById('end_date').value);
-      var difference = end.diff(start,'days');
-      var total = precio * difference;
-      document.getElementById('price_total').value = total.toFixed(2) + ' Soles';
-    }
-</script>
 
 <script>
 $(document).ready(function(){});
@@ -121,7 +168,7 @@ $(document).ready(function() {
     });
 } );
 $(document).ready(function() {
-    $('#dtTableVehicle').DataTable({
+    $('#dtTableInOut').DataTable({
         "language": {
             "url": "{{asset('json/spanishDataTable.json')}}"
         }

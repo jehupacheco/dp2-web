@@ -209,14 +209,23 @@ class RentingController extends Controller
     {
         $user = Auth::user();
         // $this->update_list_of_vehicles($user);
+        $id_organizations = $user->getOrganizationsList();
 
         $rentings = Renting::where('delivered_at','=',null)->orWhere('returned_at')->get();
+        $rentingsAll = Renting::all();
+        $rentingsAll = $rentingsAll->filter(function($renting) use ($id_organizations)
+        {
+            foreach ($id_organizations as $id_org) {
+                if($renting->getOrgId()==$id_org) return true;
+            }
+            return false;
+        });
         if($user->can('Vehículos - Todas las Organizaciones')){
             $clientes = Client::all();
             $vehicles = Vehicle::all();
         }
         else{
-            $id_organizations = $user->getOrganizationsList();
+            
             $rentings = $rentings->filter(function($renting) use ($id_organizations)
             {
                 foreach ($id_organizations as $id_org) {
@@ -224,11 +233,9 @@ class RentingController extends Controller
                 }
                 return false;
             });
-            $clientes = Client::where('organization_id','=', $user->organization_id)->get();
-            $vehicles = Vehicle::where('organization_id',$user->organization_id)->get();
         }
 
-        return view('Alquileres.entregasydevoluciones.index',compact('clientes','vehicles','rentings')); 
+        return view('Alquileres.entregasydevoluciones.index',compact('rentings','rentingsAll')); 
     }
 
     public function create_selected_entdev($renting_id)
