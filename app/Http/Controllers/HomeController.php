@@ -12,6 +12,7 @@ use App\Models\Reading;
 use App\Models\Renting;
 use App\Models\Client;
 use App\Models\Travel;
+use App\Models\Position;
 use App\Models\Organization;
 use Auth;
 use Redirect;
@@ -73,11 +74,13 @@ class HomeController extends Controller
     {
         //Auth::user()->email
         $sensors=Sensor::all();
+
         $vehicle= Vehicle::find($id_vehiculo);
         //$reading= Reading::all();
         $reading= Reading::where('travel_id','=',$id_travel)->get();
         $readinglist= Reading::where('travel_id','=',$id_travel)->where('sensor_id','=',1);
         $travel = Travel::find($id_travel);
+        $positions = Position::where('vehicle_id','=',$id_vehiculo)->where('created_at','>=',$travel->started_at)->where('created_at','<=',$travel->ended_at)->get();
         $papeletas= DB::table('readings')->where('travel_id','=',$id_travel)->where('sensor_id','=',11)->get();
         $num_papeletas = DB::table('readings')
 
@@ -95,7 +98,7 @@ class HomeController extends Controller
         $horas_alquiler = $fin->diffInHours($inicio)*$vehicle->price;
 
         
-        return view('Reportes.clienteXVehiculo', compact('sensors','vehicle','reading','readinglist','sensorselected','papeletas','num_papeletas','horas_alquiler'),compact('travel'));
+        return view('Reportes.clienteXVehiculo', compact('sensors','vehicle','reading','readinglist','sensorselected','papeletas','num_papeletas','horas_alquiler','positions'),compact('travel'));
     }
 
     public function clienteXvehiculoPostMet(Request $request,$id_travel,$id_vehiculo)
@@ -106,6 +109,9 @@ class HomeController extends Controller
         $vehicle= Vehicle::find($id_vehiculo);
         $sensors= Sensor::all();
         $travel = Travel::find($id_travel);
+
+        $positions = Position::where('vehicle_id','=',$id_vehiculo)->where('created_at','>=',$travel->started_at)->where('created_at','<=',$travel->ended_at)->get();
+
         $papeletas= DB::table('readings')->where('travel_id','=',$id_travel)->where('sensor_id','=',11)->get();
         $num_papeletas = DB::table('readings')
                 ->select(DB::raw("count(sensor_id) as total"))->where('travel_id','=',$id_travel)->where('sensor_id','=',11)->get();
@@ -115,7 +121,8 @@ class HomeController extends Controller
         //$input['fechaInicial']        
         //$input['fechaFin']
         //$input['sensor_id'];
-        if($input['sensor_id']!=""){
+        //dd($input);
+        if($input['sensor_id']!="" && $input['sensor_id']!="Elija una opción"){
             $readinglist = DB::table('readings')
                 ->select(DB::raw("DATE_FORMAT(created_at,'%Y-%m-%d') as dia"), DB::raw('value as value'), DB::raw('sensor_id as sensor_id'))
                 ->where([
@@ -131,7 +138,7 @@ class HomeController extends Controller
 
         $horas_alquiler = $fin->diffInHours($inicio)*$vehicle->price;
 
-        return view('Reportes.clienteXVehiculo', compact('sensors','vehicles','vehicle','reading','sensorselected','readinglist','travel','papeletas','num_papeletas','horas_alquiler'));
+        return view('Reportes.clienteXVehiculo', compact('sensors','vehicles','vehicle','reading','sensorselected','readinglist','travel','papeletas','num_papeletas','horas_alquiler','positions'));
 
 
 
