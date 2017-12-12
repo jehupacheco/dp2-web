@@ -24,4 +24,9 @@ class Configuration extends Model
         return (int)$conf->value; 
     }
 
+    public function getParameterByOrgIdAndType($org_id,$type){
+        $conf = Configuration::where('organization_id','=',$org_id)->where('type','=',$type)->value('value');
+        return $conf;
+    }
+
 }

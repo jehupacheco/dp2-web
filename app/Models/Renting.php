@@ -63,8 +63,11 @@ class Renting extends Model
         // $now = Carbon::now();
         $start_date = Carbon::createFromFormat('Y-m-d H:i:s',$this->starts_at);
         if($this->returned_at !=null){//Aún no se ha devuelto el vehículo
-            $end_date = Carbon::createFromFormat('Y-m-d H:i:s',$this->returned_at);
-        } 
+            if($this->returned_at>$this->finishes_at)
+                $end_date = Carbon::createFromFormat('Y-m-d H:i:s',$this->returned_at);
+            else
+                $end_date = Carbon::createFromFormat('Y-m-d H:i:s',$this->finishes_at);
+        }
         else{
             $end_date = Carbon::createFromFormat('Y-m-d H:i:s',$this->finishes_at);
         }

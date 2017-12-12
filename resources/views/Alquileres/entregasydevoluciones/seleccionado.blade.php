@@ -167,15 +167,12 @@
                    <div class="form-group">
                       <label for="option_selected" class="control-label col-md-3 col-sm-3 col-xs-6">Entrega/Devolución <span class="required">*</span></label>
                       <div class="col-md-3 col-sm-3 col-xs-12">
-                        <select  id="option_selected" name="option_selected" class="form-control">
-                          <option value="ninguno">Elegir opción...</option>
-                          @if(is_null($renting->delivered_at))
-                          <option value="Entrega">Entrega</option>   
-                          @endif
-                          @if(is_null($renting->returned_at) && !is_null($renting->delivered_at))
-                          <option value="Devolución">Devolución</option>  
-                          @endif 
-                        </select>
+                        @if(is_null($renting->delivered_at))
+                        <input id="option_selected" name="option_selected" type="text" class="form-control" readonly="true"  value="Entrega">
+                        @endif
+                        @if(is_null($renting->returned_at) && !is_null($renting->delivered_at))
+                        <input id="option_selected" name="option_selected" type="text" class="form-control" readonly="true"  value="Devolución">
+                        @endif 
                       </div>
                     </div>
                     

@@ -65,11 +65,8 @@
               <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12 text-center">
                   <ul class="pagination pagination-split">
-                    <li>
-                      <a href="{{url('/vehiculos/'.$org->id.'/nuevo')}}">
-                        Nuevo {{$org->is_parking ? 'Estacionamiento' : 'Vehículo'}} <i class="fa fa-plus" aria-hidden="true"></i>
-                      </a>
-                    </li>
+                    <li><a href="{{url('/vehiculos/'.$org->id.'/nuevo')}}">Nuevo Vehículo <i class="fa fa-plus" aria-hidden="true"></i></a></li>
+                    <li><a href="" data-toggle="modal" data-target="#myModal">Configurar Parámetros <i class="fa fa-pencil" aria-hidden="true"></i></a></li>
                   </ul>
                 </div>
                 <div class="clearfix"></div>
@@ -160,5 +157,54 @@
       </div>
   </div>
     <!-- /page content -->
+
+<!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Configuración de la Velocidad Máxima</h4>
+          </div>
+            <form method="POST" action="{{url('/vehiculos/put/configuracion')}}" class="form-horizontal form-border">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <br>
+                <div class="form-group required">
+                    <label for="nombre" class="control-label col-md-3">Velocidad Máxima: </label>
+                    <div class=" input-group col-md-8">
+                        <input type="number" step='0.01' id="max_vel" name="max_vel" required="required" class="form-control col-md-7 col-xs-12" value="{{$org->vel_max}}">
+                    </div> 
+                </div>  
+                <div class="form-group required">
+                    <label for="nombre" class="control-label col-md-3">Organización: </label>
+                    <div class=" input-group col-md-8">
+                        <input type="text"  class="form-control col-md-7 col-xs-12" value="{{$org->name}}" readonly="true">
+                        <input type="hidden" id="org_id" name="org_id" class="form-control col-md-7 col-xs-12" value="{{$org->id}}">
+                    </div> 
+                </div>                             
+                <div class="btn-inline modal-footer">
+                    <!-- <div class="btn-group col-sm-4"></div> -->
+                    
+                    <div class="btn-group col-md-offset-4 col-md-2">
+                        <input class="btn btn-primary" type="submit" value="Guardar">
+                    </div>
+                    <div class="btn-group col-md-2">
+                        <a  data-dismiss="modal" class="btn btn-info">Cancelar</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+      </div>
+    </div>
 @endsection
 
+@push('scripts')
+<script>
+  $('#myModal').on('show.bs.modal', function(e) {
+            $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+        });
+</script>
+@endpush

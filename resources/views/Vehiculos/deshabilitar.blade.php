@@ -35,7 +35,7 @@
       </div>
       <div class="page-title">
         <div class="title_left">
-          <h3>Configurar negocio</h3>
+          <h3>Deshabilitar Vehículo</h3>
         </div>
 
         <div class="title_right">
@@ -54,7 +54,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
           <div class="x_panel">
             <div class="x_title">
-              <h2>Parámetros Generales <i class="fa fa-bus"></i></h2>
+              <h2>Vehículo <i class="fa fa-bus"></i></h2>
               <ul class="nav navbar-right panel_toolbox">
                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                 </li>
@@ -74,14 +74,14 @@
             </div>
             <div class="x_content">
               <br />
-              <form id="demo-form2" method="POST" action="{{url('/vehiculos/{$id}/deshabilitarPut')}}" data-parsley-validate class="form-horizontal form-label-left">
+              <form id="demo-form2" method="POST" action="{{url('/vehiculos/deshabilitarPut')}}" data-parsley-validate class="form-horizontal form-label-left">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                 <div class="form-group">
                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="plate">Placa vehículo <span class="required">*</span>
                   </label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input type="text" id="vel_max" name="vel_max" required="required" class="form-control col-md-7 col-xs-12" readonly="true" value = {{$id}}>
+                    <input type="text" id="vehicle_id" name="vehicle_id" required="required" class="form-control col-md-7 col-xs-12" readonly="true" value = {{$id}}>
                   </div>
                 </div>
                 
@@ -112,6 +112,54 @@
               </form>
             </div>
           </div>
+
+          <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Alquileres <small>Filtrado de alquileres</small></h2>
+                    <div class="clearfix"></div>
+                  </div>
+
+                  <div class="x_content">
+
+                    <p>Seleccionar una fila para ver su detalle</p>
+
+                    <div class="table-responsive">
+                      <table id="dtTableRenting" class="table table-striped jambo_table bulk_action">
+                        <thead>
+                          <tr class="headings">
+                            <!-- <th>
+                              <div class="icheckbox_flat-green" style="position: relative;"><input type="checkbox" id="check-all" class="flat" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>
+                            </th> -->
+                            <th class="column-title" style="display: table-cell;">Placa </th>
+                            <th class="column-title" style="display: table-cell;">Inicio  </th>
+                            <th class="column-title" style="display: table-cell;">Fin</th>
+                            <th class="column-title" style="display: table-cell;">Acciones</th>
+                            
+                            <th class="bulk-actions" colspan="7" style="display: none;">
+                              <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt">1 Records Selected</span> ) <i class="fa fa-chevron-down"></i></a>
+                            </th>
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                          @foreach($vehicle_available as $vehicle_availableUnit)
+                          <tr class="even pointer">
+                            <!-- <td class="a-center ">
+                              <div class="icheckbox_flat-green" style="position: relative;"><input type="checkbox" class="flat" name="table_records" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>
+                            </td> -->
+                            <td class=" ">{{$vehicle_availableUnit->id_vehicle}}</td>
+                            <td class=" ">{{$vehicle_availableUnit->starts_at}}</td>
+                            <td class=" ">{{$vehicle_availableUnit->finishes_at}}</td>
+                            <td><a href="{{url('/deshabilitar/'.$vehicle_availableUnit->id.'/destroyPut')}}" class="btn btn-danger btn-xs fa fa-trash"></a></td>
+                          </tr>
+                          @endforeach
+                          
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+
         </div>
       </div>
     </div>

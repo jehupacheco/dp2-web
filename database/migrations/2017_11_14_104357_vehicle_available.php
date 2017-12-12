@@ -24,7 +24,7 @@ class VehicleAvailable extends Migration
         if (Schema::hasTable($this->set_schema_table)) return;
         Schema::create($this->set_schema_table, function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('id_available');
+            $table->increments('id');
             $table->integer('id_vehicle');
             $table->string('state')->default('Inhabilitado');
             $table->timestamp('starts_at');

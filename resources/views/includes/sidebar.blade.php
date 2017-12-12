@@ -1,7 +1,7 @@
 <div class="col-md-3 left_col">
     <div class="left_col scroll-view">
         <div class="navbar nav_title" style="border: 0;">
-            <a href="{{ url('/') }}" class="site_title"><i class="fa fa-paw"></i> <span>AutómataPucpSystem</span></a>
+            <a href="{{ url('/') }}" class="site_title"><i class="fa fa-home"></i> <span>AutómataPucpSystem</span></a>
         </div>
         
         <div class="clearfix"></div>
@@ -144,7 +144,7 @@
                     </li>
                     @endif
                     @if(auth()->user()->can('Seguridad'))
-                    <li><a><i class="fa fa-cog"></i> Seguridad <span class="fa fa-chevron-down"></span></a>
+                    <li><a><i class="fa fa-shield"></i> Seguridad <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="{{url('/usuarios/nuevo')}}">Crear usuario</a></li>
                             <li><a href="{{url('/cambiar/password')}}">Cambiar Contraseña</a></li>
@@ -154,8 +154,8 @@
                     @endif
                     @if(auth()->user()->can('Configuración'))
                     <li>
-                        <a href="{{url('/vehiculos/Configuracion')}}">
-                            <i class="fa fa-asterisk"></i>Configuracion
+                        <a href="{{url('/configuracion')}}">
+                            <i class="fa fa-cog"></i>Configuracion
                         </a>
                     </li>
                     @endif

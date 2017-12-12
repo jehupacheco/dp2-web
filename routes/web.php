@@ -89,10 +89,12 @@ Route::get('/ubicaciones/usuario/1/mapa','LocationController@mostrar_mapa');
 
 
 Route::group(['middleware' => ['permission:Vehículos - Solo su Organización|Vehículos - Todas las Organizaciones|Vehículos para pacientes de Cardiopatía|Vehículos para la Jardinería|Vehículos para Ventas|Vehículos Eco-amigables|Vehículos para Trasporte Urbano 1|Vehículos para Trasporte Urbano 2']], function () {
-	Route::get('/vehiculos/Configuracion','AutoController@configuracion');
+
 
 	Route::get('/vehiculos/{id}/deshabilitar','AutoController@deshabilitar');
-	Route::post('/vehiculos/{id}/deshabilitarPut','AutoController@deshabilitarPut');
+	Route::post('/vehiculos/deshabilitarPut','AutoController@deshabilitarPut');
+	Route::get('/deshabilitar/{id_available}/destroyPut','AutoController@destroyPutAvailability');
+	
 
 	Route::post('/vehiculos/put/configuracion','AutoController@configuracionPut');
 
@@ -109,6 +111,10 @@ Route::group(['middleware' => ['permission:Vehículos - Solo su Organización|Ve
 });
 
 
+Route::group(['middleware' => ['permission:Configuración']], function () {
+	Route::get('/configuracion','ConfigurationController@index');
+	Route::post('/configuracion/actualizar','ConfigurationController@store');
+});
 
 Route::group(['middleware' => ['permission:Estacionamiento']], function () {
 		// Route::get('/estacionamiento','ParkingController@index');
@@ -120,15 +126,19 @@ Route::group(['middleware' => ['permission:Estacionamiento']], function () {
 		Route::post('/estacionamientos/{vehicle}/edit', 'ParkingController@update');
 });
 
+
+
 Route::get('/reportes/{id_viaje}/{id_vehiculo}/clienteXvehiculo','HomeController@clienteXvehiculo');
-Route::post('/reportes/{travel_id}/vehiculo/{vehiculo_id}/clienteXvehiculoPostMet','HomeController@clienteXvehiculoPostMet');
+Route::post('/reportes/{travel_id}/vehiculo/{id_vehiculo}/clienteXvehiculoPostMet','HomeController@clienteXvehiculoPostMet');
 
 Route::get('/Filtros/filtroAutos','HomeController@filtroAutos');
 
 Route::get('/Filtros/filtroUsuarios','HomeController@filtroUsuarios');
 
-Route::get('/reportes/filtrosReportes','HomeController@filtroReporte');
-
+Route::group(['middleware' => ['permission:Reportes de Clientes']], function () {
+	Route::get('/reportes/filtrosReportes','ReportController@filtroReporte');
+	Route::post('/reportes/filtrosReportes/Clientes','ReportController@filtroReporteClientes');
+});
 Route::get('/reportes/viajesCliente','HomeController@viajesCliente');
 
 Route::get('/reportes/sensores','HomeController@sensores');
