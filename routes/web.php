@@ -89,7 +89,7 @@ Route::get('/ubicaciones/usuario/1/mapa','LocationController@mostrar_mapa');
 
 
 Route::group(['middleware' => ['permission:Vehículos - Solo su Organización|Vehículos - Todas las Organizaciones|Vehículos para pacientes de Cardiopatía|Vehículos para la Jardinería|Vehículos para Ventas|Vehículos Eco-amigables|Vehículos para Trasporte Urbano 1|Vehículos para Trasporte Urbano 2']], function () {
-	Route::get('/vehiculos/Configuracion','AutoController@configuracion');
+
 
 	Route::get('/vehiculos/{id}/deshabilitar','AutoController@deshabilitar');
 	Route::post('/vehiculos/{id}/deshabilitarPut','AutoController@deshabilitarPut');
@@ -109,10 +109,15 @@ Route::group(['middleware' => ['permission:Vehículos - Solo su Organización|Ve
 });
 
 
+Route::group(['middleware' => ['permission:Configuración']], function () {
+	Route::get('/configuracion','ConfigurationController@index');
+});
 
 Route::group(['middleware' => ['permission:Estacionamiento']], function () {
     Route::get('/estacionamiento','ParkingController@index');
 });
+
+
 
 Route::get('/reportes/{id_viaje}/{id_vehiculo}/clienteXvehiculo','HomeController@clienteXvehiculo');
 Route::post('/reportes/{travel_id}/vehiculo/{vehiculo_id}/clienteXvehiculoPostMet','HomeController@clienteXvehiculoPostMet');

@@ -153,6 +153,7 @@ class AutoController extends Controller
             $vehicle->description = $input['description'];
             $vehicle->price = $input['price'];
             $vehicle->mac = $input['mac'];
+            $vehicle->max_weight = $input['max_weight'];
 
             $vehicle->save();
 
