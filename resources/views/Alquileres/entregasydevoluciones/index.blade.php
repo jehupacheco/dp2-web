@@ -81,7 +81,9 @@
                 </div>
             </div>
           </div>
-
+          <br>
+          <div class="ln_solid"></div>
+          <br>
           <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
               <div class="x_panel">
@@ -91,8 +93,9 @@
                   </div>
 
                   <div class="x_content">
-
-                    <p>Seleccionar un alquiler</p>
+                    <div class="text-center">
+                      <img src="{{asset('images/check_in_check_out_logo.jpg')}}" alt="">
+                    </div>
 
                     <div class="table-responsive">
                       <table id="dtTableInOut" class="table table-striped jambo_table bulk_action">
