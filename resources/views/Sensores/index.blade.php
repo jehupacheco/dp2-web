@@ -38,22 +38,35 @@
 			                  <div class="clearfix"></div>
 			                </div>
 			                <div class="text-center">
+			                	@if(!is_null($sensorPeso))
 			                	<br>
-			                	 <img src="{{asset('images/weightsensor.png')}}" alt="" class="" height="25" width="25">     500 g
+			                	 <img src="{{asset('images/weightsensor.png')}}" alt="" class="" height="25" width="25">     {{$sensorPeso->value}} g
 			                	<br><br>
-			                	<img src="{{asset('images/corazonsensor.png')}}" alt="" class="" height="25" width="45">    75 lpm 
+			                	@endif
+			                	@if(!is_null($sensoRitmoCardio))
+			                	<img src="{{asset('images/corazonsensor.png')}}" alt="" class="" height="25" width="45">    {{$sensoRitmoCardio->value}} lpm 
 			                	<br><br>
-			                	<img src="{{asset('images/nearnesssensor.png')}}" alt="" class="" height="30" width="45">    10 km  
+			                	@endif
+			                	@if(!is_null($sensorProximidad))
+			                	<img src="{{asset('images/nearnesssensor.png')}}" alt="" class="" height="30" width="45">    {{$sensorProximidad->value}} km  
 			                	<br><br>
-			                	<img src="{{asset('images/temperaturesensor.png')}}" alt="" class="" height="35" width="35">   25°C     
+			                	@endif
+			                	@if(!is_null($sensorTemperatura))
+			                	<img src="{{asset('images/temperaturesensor.png')}}" alt="" class="" height="35" width="35">   {{$sensorTemperatura->value}} °C     
 			                	<br><br>
-			                	<img src="{{asset('images/speedsensor.png')}}" alt="" class="" height="30" width="45">   35 kmh    
+			                	@endif
+			                	@if(!is_null($sensorVelocidad))
+			                	<img src="{{asset('images/speedsensor.png')}}" alt="" class="" height="30" width="45">   {{$sensorVelocidad->value}} kmh
 			                	<br><br>
-			                	<img src="{{asset('images/baterysensor.png')}}" alt="" class="" height="30" width="45">  99%      
+			                	@endif
+			                	@if(!is_null($sensorBateria))
+			                	<img src="{{asset('images/baterysensor.png')}}" alt="" class="" height="30" width="45">  {{$sensorBateria->value}} %      
 			                	<br><br>
-			                	<img src="{{asset('images/humiditysensor.png')}}" alt="" class="" height="30" width="45">  84%      
+			                	@endif
+			                	@if(!is_null($sensorHumedad))
+			                	<img src="{{asset('images/humiditysensor.png')}}" alt="" class="" height="30" width="45">  {{$sensorHumedad->value}} %
 			                	<br><br>
-			                	<img src="{{asset('images/locationsensor.png')}}" alt="" class="" height="30" width="45">lat: -12,0689 Long:-77,0802
+			                	@endif
 			                </div>
 			              </div>
 			    </div>

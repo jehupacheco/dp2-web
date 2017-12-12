@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Vehicle;
+use App\Models\Reading;
+use App\Models\travel;
 use DB;
 
 class SensorController extends Controller
@@ -16,7 +18,16 @@ class SensorController extends Controller
     public function index($id)
     {
         $vehiculo = Vehicle::find($id);
-        return view('Sensores.index',compact('vehiculo'));
+        $travel = Travel::where('vehicle_id','=',$id)->get();
+        $sensorPeso = Reading::where('travel_id','=',$travel->id)->where('code','=','F01')->get();
+        $sensoRitmoCardio = Reading::where('travel_id','=',$travel->id)->where('code','=','F02')->get();
+        $sensorProximidad = Reading::where('travel_id','=',$travel->id)->where('code','=','F03')->get();
+        $sensorTemperatura = Reading::where('travel_id','=',$travel->id)->where('code','=','F04')->get();
+        $sensorVelocidad = Reading::where('travel_id','=',$travel->id)->where('code','=','F05')->get();
+        $sensorBateria = Reading::where('travel_id','=',$travel->id)->where('code','=','F06')->get();
+        $sensorHumedad = Reading::where('travel_id','=',$travel->id)->where('code','=','F07')->get();
+        //return view('Sensores.index',compact('vehiculo'));
+        return view('Sensores.index',compact('vehiculo','sensorPeso','sensoRitmoCardio','sensorProximidad','sensorTemperatura',          'sensorVelocidad','sensorBateria','sensorHumedad'));
     }
 
     /**
