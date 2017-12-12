@@ -18,7 +18,6 @@ class SensorController extends Controller
     public function index($id)
     {
         $vehiculo = Vehicle::find($id);
-        dd($vehiculo);
         $travel = Travel::where('vehicle_id','=',$vehiculo->id)->first();
         $sensorPeso = Reading::where('travel_id','=',$travel->id)->where('code','=','F01')->first();
         $sensoRitmoCardio = Reading::where('travel_id','=',$travel->id)->where('code','=','F02')->first();
