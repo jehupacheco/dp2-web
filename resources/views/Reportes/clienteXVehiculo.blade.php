@@ -50,8 +50,6 @@
                       <p>Kilómetros recorridos: {{$travel->total_distance}}</p>
                       <p>Costo Total: S/. {{$horas_alquiler}}</p>
                       <p>Costo por hora: S/. {{$vehicle->price}} </p>
-                      <p>Velocidad Promedio: 50 km/h</p>
-                      <p>Energía consumida: 50</p>
                     </div>
                   </div>
                   </div>

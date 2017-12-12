@@ -121,7 +121,8 @@ class HomeController extends Controller
         //$input['fechaInicial']        
         //$input['fechaFin']
         //$input['sensor_id'];
-        if($input['sensor_id']!=""){
+        //dd($input);
+        if($input['sensor_id']!="" && $input['sensor_id']!="Elija una opción"){
             $readinglist = DB::table('readings')
                 ->select(DB::raw("DATE_FORMAT(created_at,'%Y-%m-%d') as dia"), DB::raw('value as value'), DB::raw('sensor_id as sensor_id'))
                 ->where([
