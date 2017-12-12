@@ -140,8 +140,6 @@ class HomeController extends Controller
 
         return view('Reportes.clienteXVehiculo', compact('sensors','vehicles','vehicle','reading','sensorselected','readinglist','travel','papeletas','num_papeletas','horas_alquiler','positions'));
 
-
-
     }
 
     public function reporte_recorrido_filtro()
@@ -158,7 +156,6 @@ class HomeController extends Controller
         
         $clientes= Client::all();
         $vehicles= Vehicle::all();
-        $travel = Travel::all();
 
         $input = $request->all();
 
@@ -182,7 +179,25 @@ class HomeController extends Controller
 
     public function filtroReporte()
     {
-        return view('Reportes.pantallaDeFiltros');
+
+        $clientes= Client::all();
+        $rentings = Renting::all();
+        return view('Reportes.pantallaDeFiltros', compact('rentings','clientes'));
+    }
+
+    public function filtroReporteClientes(Request $request)
+    {
+        $input = $request->all();
+        $clientes= Client::all();
+        $vehicles= Vehicle::all();
+        if($input['client_id'] !=""){
+            $rentings = Renting::where('client_id','=',$input['client_id'])->get();
+        }
+        else{
+            $rentings = Renting::all();
+        }
+        
+        return view('Reportes.pantallaDeFiltros', compact('rentings','clientes','vehicles'));
     }
 
     public function asignarauto()

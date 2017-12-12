@@ -130,6 +130,7 @@ Route::get('/Filtros/filtroAutos','HomeController@filtroAutos');
 Route::get('/Filtros/filtroUsuarios','HomeController@filtroUsuarios');
 
 Route::get('/reportes/filtrosReportes','HomeController@filtroReporte');
+Route::post('/reportes/filtrosReportes/Clientes','HomeController@filtroReporteClientes');
 
 Route::get('/reportes/viajesCliente','HomeController@viajesCliente');
 
