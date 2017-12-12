@@ -80,5 +80,12 @@ class SensorsSeeder extends Seeder
             'code' => 'F11',
             'description' => 'Angulo'
         ]);
+
+        DB::table('sensors')->insert([
+            'slug' => 'infractions',
+            'unit' => '',
+            'code' => 'F12',
+            'description' => 'Infracciones'
+        ]);
     }
 }
