@@ -74,11 +74,11 @@
             </div>
             <div class="x_content">
               <br />
-              <form id="demo-form2" method="POST" action="{{url('/vehiculos/put/configuracion')}}" data-parsley-validate class="form-horizontal form-label-left">
+              <form id="demo-form2" method="POST" action="{{url('/configuracion/actualizar')}}" data-parsley-validate class="form-horizontal form-label-left">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                 <div class="form-group">
-                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="plate">velocidad máxima <span class="required">*</span>
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="plate">Valor <span class="required">*</span>
                   </label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
                     <input type="text" id="vel_max" name="vel_max" required="required" class="form-control col-md-7 col-xs-12">
@@ -89,7 +89,7 @@
                   <label for="organization-id" class="control-label col-md-3 col-sm-3 col-xs-12">Organización</label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
                     <select  id="org_id" name="org_id" class="form-control">
-<!--                       <option>Choose option</option> -->
+
                       @foreach($all_organizations as $org)
                         @if($org->id == 1)
                         <option value="{{$org->id}}" selected="selected">{{$org->name}}</option>
