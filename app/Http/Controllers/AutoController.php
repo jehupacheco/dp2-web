@@ -203,11 +203,11 @@ class AutoController extends Controller
         try {
             DB::beginTransaction();
             //dd($id_available);
-            $available = vehicle_available::find($id_available);
+            $available = vehicle_available::where('id_available','=',$id_available)->first();
             //dd($available);
             $placa = $available->id_vehicle;
-            //dd($placa);
-            $available->delete();
+            //dd($available);
+            $available = vehicle_available::where('id_available','=',$id_available)->delete();
             
         } catch (Exception $e) {
             DB::rollback();

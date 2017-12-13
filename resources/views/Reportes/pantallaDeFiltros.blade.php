@@ -123,6 +123,20 @@
                       </div>
                     </div>
 
+                    <div class="form-group">
+                      <label for="fechaInicial" class="control-label col-md-3 col-sm-3 col-xs-12">Fecha de Inicio</label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input id="fechaInicial" class="form-control col-md-7 col-xs-12" type="date" name="fechaInicial">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="fechaFin" class="control-label col-md-3 col-sm-3 col-xs-12">Fecha Final</label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input id="fechaFin" class="form-control col-md-7 col-xs-12" type="date" name="fechaFin">
+                      </div>                  
+                    </div>
+            
+
                     <div class="ln_solid"></div>
                     <div class="form-group">
                       <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-5">

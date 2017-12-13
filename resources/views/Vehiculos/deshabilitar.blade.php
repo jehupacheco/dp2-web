@@ -150,7 +150,7 @@
                             <td class=" ">{{$vehicle_availableUnit->id_vehicle}}</td>
                             <td class=" ">{{$vehicle_availableUnit->starts_at}}</td>
                             <td class=" ">{{$vehicle_availableUnit->finishes_at}}</td>
-                            <td><a href="{{url('/deshabilitar/'.$vehicle_availableUnit->id.'/destroyPut')}}" class="btn btn-danger btn-xs fa fa-trash"></a></td>
+                            <td><a href="{{url('/deshabilitar/'.$vehicle_availableUnit->id_available.'/destroyPut')}}" class="btn btn-danger btn-xs fa fa-trash"></a></td>
                           </tr>
                           @endforeach
                           
