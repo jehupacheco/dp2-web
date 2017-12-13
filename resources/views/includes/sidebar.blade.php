@@ -12,7 +12,6 @@
                 <img src="{{ Gravatar::src(Auth::user()->email) }}" alt="Avatar of {{ Auth::user()->name }}" class="img-circle profile_img">
             </div>
             <div class="profile_info">
-                <span>Adios mundo !!!,</span>
                 <h2>{{ Auth::user()->name }}</h2>
                 <?php $date=date('d-m-Y');; ?>
                 <span>{{$date}}</span>
