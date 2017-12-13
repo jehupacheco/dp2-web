@@ -15,16 +15,7 @@
                 <h3>Perfil de Usuario</h3>
               </div>
 
-              <div class="title_right">
-                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                  <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for...">
-                    <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Go!</button>
-                    </span>
-                  </div>
-                </div>
-              </div>
+
             </div>
             
             <div class="clearfix"></div>
@@ -110,7 +101,7 @@
                         <div class="col-md-6">
                           <div id="reportrange" class="pull-right" style="margin-top: 5px; background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #E6E9ED">
                             <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
-                            <span>December 30, 2014 - January 28, 2015</span> <b class="caret"></b>
+                            <span>Noviembre 01, 2017 - Noviembre 30, 2017</span>
                           </div>
                         </div>
                       </div>
@@ -279,3 +270,69 @@
         </div>
         <!-- /page content -->
 @endsection
+@push('scripts')
+    <script>
+      $(function() {
+        Morris.Bar({
+          element: 'graph_bar',
+          data: [
+            { "period": "Jan", "Hours worked": 80 }, 
+            { "period": "Feb", "Hours worked": 125 }, 
+            { "period": "Mar", "Hours worked": 176 }, 
+            { "period": "Apr", "Hours worked": 224 }, 
+            { "period": "May", "Hours worked": 265 }, 
+            { "period": "Jun", "Hours worked": 314 }, 
+            { "period": "Jul", "Hours worked": 347 }, 
+            { "period": "Aug", "Hours worked": 287 }, 
+            { "period": "Sep", "Hours worked": 240 }, 
+            { "period": "Oct", "Hours worked": 211 }
+          ],
+          xkey: 'period',
+          hideHover: 'auto',
+          barColors: ['#26B99A', '#34495E', '#ACADAC', '#3498DB'],
+          ykeys: ['Hours worked', 'sorned'],
+          labels: ['Hours worked', 'SORN'],
+          xLabelAngle: 60,
+          resize: true
+        });
+
+        $MENU_TOGGLE.on('click', function() {
+          $(window).resize();
+        });
+      });
+    </script>
+
+    <script>
+      Chart.defaults.global.legend = {
+        enabled: false
+      };
+      var readinglist = <?php echo json_encode($readinglist); ?>;
+      var sensor = <?php echo json_encode($sensorselected); ?>;
+      // Line chart
+      //console.log(readinglist);
+      var labels = [],data=[];
+      for (var i = 0; i < readinglist.length; i++) {
+          labels.push(readinglist[i].dia);
+          data.push(readinglist[i].value);
+      }
+      var ctx = document.getElementById("lineChart");
+      var lineChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: sensor.description,
+            backgroundColor: "rgba(38, 185, 154, 0.31)",
+            borderColor: "rgba(38, 185, 154, 0.7)",
+            pointBorderColor: "rgba(38, 185, 154, 0.7)",
+            pointBackgroundColor: "rgba(38, 185, 154, 0.7)",
+            pointHoverBackgroundColor: "#fff",
+            pointHoverBorderColor: "rgba(220,220,220,1)",
+            pointBorderWidth: 1,
+            data: data
+          }]
+        },
+      });
+
+    </script>
+@endpush
