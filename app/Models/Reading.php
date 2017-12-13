@@ -24,8 +24,8 @@ class Reading extends Model
     {
     	$travel = Travel::find($id_travel);
     	$id_vehicle=$travel->vehicle_id;
-        $vehicle = vehicle::find($id_vehicle);
-        $organization = organization::find($vehicle->organization_id);
+        $vehicle = Vehicle::find($id_vehicle);
+        $organization = Organization::find($vehicle->organization_id);
         return $organization->name;
     }
 }
