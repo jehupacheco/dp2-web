@@ -65,6 +65,7 @@
               <div class="clearfix"></div>
             </div>
             <div class="x_content">
+              <p>Elegir un tipo de sensor y un viaje relacionado para mostrar los datos obtenidos</p>
               <br />
               <form id="demo-form2"  method="POST" action="{{url('reportes/sensores/filtrado')}}" data-parsley-validate class="form-horizontal form-label-left">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
