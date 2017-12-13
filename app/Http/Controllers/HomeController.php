@@ -156,6 +156,47 @@ class HomeController extends Controller
 
     }
 
+    public function infracciones()
+    {
+        
+        
+        $travels = Travel::all();
+        $readings = Reading::where('sensor_id','=','12')->get();
+        //$readings = Reading::all();
+        //dd($readings);
+
+        return view('Alquileres.nuevo_infraccion',compact('clientes','vehicles','travels','readings'));
+    }
+
+    public function infraccionesPost(Request $request)
+    {
+        $input = $request->all();
+        $readings = Reading::where('sensor_id','=','12')->get();
+        //dd($input);
+        //if($input['optradio']!="" && $input['descripcion']!=""){
+        if($input['optradio']!=""){
+            DB::beginTransaction();
+            try {
+                $reading = new Reading();
+                $reading->travel_id = $input['optradio'];
+                $reading->sensor_id = '12';
+
+                $reading->description = 'Papeleta 1';
+
+                $reading->save();
+
+            } catch (Exception $e) {
+                DB::rollback();
+                return redirect()->action('HomeController@infracciones')->with('stored', 'No se registró la infraccion.'); 
+            }
+            DB::commit();
+            return redirect()->action('HomeController@infracciones')->with('stored', 'Se registró la infraccion correctamente.'); 
+        }
+        else{
+            return redirect()->action('HomeController@infracciones')->with('delete', 'Seleccione un viaje y detalle una infraccion'); 
+        }
+    }
+
     public function reporte_recorrido_filtro()
     {
         $travel = Travel::all();
@@ -185,7 +226,7 @@ class HomeController extends Controller
             $travel= Travel::where('vehicle_id','=',$input['vehicle_id'])->get();
         }
 
-        
+        //dd($travel);
         return view('Reportes.recorridos_filtro', compact('travel','clientes','vehicles'));
         
         // return redirect()->action('RentingController@index',['rentings'=>$rentings,'clientes'=>$clientes,'vehicles'=>$vehicles])->with('stored', 'Se ha filtrado los alquileres correctamente');
@@ -229,7 +270,7 @@ public function sensores()
         //$input['fechaFin']
         //$input['sensor_id'];
         //dd($input);
-        if($input['sensor_id']!="" && $input['travel_id']!=""){
+        if($input['sensor_id']!="" && $input['travel_id']!="" && $input['fechaInicial']=="" && $input['fechaFin']==""){
             $sensorselected = Sensor::find($input['sensor_id']);
             $readinglist = DB::table('readings')
                 ->select(DB::raw("DATE_FORMAT(updated_at,'%Y-%m-%d') as dia"), DB::raw('value as value'), DB::raw('sensor_id as sensor_id'))
@@ -239,7 +280,83 @@ public function sensores()
                 ])
                 ->get();
         }
+        elseif ($input['sensor_id']!="" && $input['travel_id']!="" && $input['fechaInicial']!="" && $input['fechaFin']=="") {
+            $sensorselected = Sensor::find($input['sensor_id']);
+            $readinglist = DB::table('readings')
+                ->select(DB::raw("DATE_FORMAT(updated_at,'%Y-%m-%d') as dia"), DB::raw('value as value'), DB::raw('sensor_id as sensor_id'))
+                ->where([
+                    ['sensor_id','=', $input['sensor_id']],
+                    ['travel_id','=', $input['travel_id']],
+                    ['created_at','>',$input['fechaInicial']]
+                ])
+                ->get();
+        }
+        elseif ($input['sensor_id']!="" && $input['travel_id']!="" && $input['fechaInicial']=="" && $input['fechaFin']!="") {
+            $sensorselected = Sensor::find($input['sensor_id']);
+            $readinglist = DB::table('readings')
+                ->select(DB::raw("DATE_FORMAT(updated_at,'%Y-%m-%d') as dia"), DB::raw('value as value'), DB::raw('sensor_id as sensor_id'))
+                ->where([
+                    ['sensor_id','=', $input['sensor_id']],
+                    ['travel_id','=', $input['travel_id']],
+                    ['created_at','<',$input['fechaFin']]
+                ])
+                ->get();
+        }
+        elseif ($input['sensor_id']!="" && $input['travel_id']!="" && $input['fechaInicial']!="" && $input['fechaFin']!="") {
+            $sensorselected = Sensor::find($input['sensor_id']);
+            $readinglist = DB::table('readings')
+                ->select(DB::raw("DATE_FORMAT(updated_at,'%Y-%m-%d') as dia"), DB::raw('value as value'), DB::raw('sensor_id as sensor_id'))
+                ->where([
+                    ['sensor_id','=', $input['sensor_id']],
+                    ['travel_id','=', $input['travel_id']],
+                    ['created_at','>',$input['fechaInicial']],
+                    ['created_at','<',$input['fechaFin']]
+                ])
+                ->get();
+        }
+        //sin travel
+        elseif ($input['sensor_id']!="" && $input['travel_id']=="" && $input['fechaInicial']=="" && $input['fechaFin']==""){
+            $sensorselected = Sensor::find($input['sensor_id']);
+            $readinglist = DB::table('readings')
+                ->select(DB::raw("DATE_FORMAT(updated_at,'%Y-%m-%d') as dia"), DB::raw('value as value'), DB::raw('sensor_id as sensor_id'))
+                ->where([
+                    ['sensor_id','=', $input['sensor_id']]
+                ])
+                ->get();
+        }
+        elseif ($input['sensor_id']!="" && $input['travel_id']=="" && $input['fechaInicial']!="" && $input['fechaFin']=="") {
+            $sensorselected = Sensor::find($input['sensor_id']);
+            $readinglist = DB::table('readings')
+                ->select(DB::raw("DATE_FORMAT(updated_at,'%Y-%m-%d') as dia"), DB::raw('value as value'), DB::raw('sensor_id as sensor_id'))
+                ->where([
+                    ['sensor_id','=', $input['sensor_id']],
+                    ['created_at','>',$input['fechaInicial']]
+                ])
+                ->get();
+        }
+        elseif ($input['sensor_id']!="" && $input['travel_id']=="" && $input['fechaInicial']=="" && $input['fechaFin']!="") {
+            $sensorselected = Sensor::find($input['sensor_id']);
+            $readinglist = DB::table('readings')
+                ->select(DB::raw("DATE_FORMAT(updated_at,'%Y-%m-%d') as dia"), DB::raw('value as value'), DB::raw('sensor_id as sensor_id'))
+                ->where([
+                    ['sensor_id','=', $input['sensor_id']],
+                    ['created_at','<',$input['fechaFin']]
+                ])
+                ->get();
+        }
+        elseif ($input['sensor_id']!="" && $input['travel_id']=="" && $input['fechaInicial']!="" && $input['fechaFin']!="") {
+            $sensorselected = Sensor::find($input['sensor_id']);
+            $readinglist = DB::table('readings')
+                ->select(DB::raw("DATE_FORMAT(updated_at,'%Y-%m-%d') as dia"), DB::raw('value as value'), DB::raw('sensor_id as sensor_id'))
+                ->where([
+                    ['sensor_id','=', $input['sensor_id']],
+                    ['created_at','>',$input['fechaInicial']],
+                    ['created_at','<',$input['fechaFin']]
+                ])
+                ->get();
+        }
         else{
+            //por defecto
             $sensorselected= Sensor::find('1');
             $readinglist = DB::table('readings')
                 ->select(DB::raw("DATE_FORMAT(updated_at,'%Y-%m-%d') as dia"), DB::raw('value as value'), DB::raw('sensor_id as sensor_id'))
@@ -282,5 +399,25 @@ public function sensores()
     public function filtroUsuarios()
     {
         return view('Filtros.filtroUsuarios');
+    }
+
+    
+    public function destroyPutInfracciones($id)
+    {
+        try {
+            DB::beginTransaction();
+            //dd($id_available);
+            $infracc = Reading::find($id);
+            //dd($available);
+            $infracc->delete();
+            
+        } catch (Exception $e) {
+            DB::rollback();
+                
+            return redirect()->action('HomeController@infracciones')->with('stored', 'No se eliminó la infraccion.');
+        }
+        DB::commit();
+        return redirect()->action('HomeController@infracciones')->with('stored', 'Se ha eliminado la infraccion correctamente para el vehículo.'); 
+
     }
 }

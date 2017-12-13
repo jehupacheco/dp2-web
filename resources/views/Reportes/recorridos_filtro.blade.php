@@ -238,7 +238,7 @@
                       <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-5">
                         <!-- <button type="submit" class="btn btn-success">Buscar</button> -->
                         <button type="submit"  class="btn btn-success">Buscar</button>
-                        <a href="{{url('/')}}" class="btn btn-success">Regresar</a>
+                        <a href="{{url('/reportes/recorrido/filtro')}}" class="btn btn-success">Regresar</a>
                       </div>
                     </div>
                   </form>
