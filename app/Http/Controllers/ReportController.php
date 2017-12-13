@@ -27,7 +27,10 @@ class ReportController extends Controller
         $input = $request->all();
         $clientes= Client::where('organization_id','!=',7)->get();
         $vehicles= Vehicle::all();
+        $status = false;
         //dd($input);
+        if($input['client_id'] !="") $status = true;
+
         if($input['client_id'] !="" && $input['fechaInicial'] =="" && $input['fechaFin'] ==""){
             $rentings = Renting::where('client_id','=',$input['client_id'])->get();
         }
@@ -57,6 +60,6 @@ class ReportController extends Controller
             return $renting->getOrgId()!=7;
         });
         
-        return view('Reportes.pantallaDeFiltros', compact('rentings','clientes','vehicles'));
+        return view('Reportes.pantallaDeFiltros', compact('rentings','clientes','vehicles'),compact('status'));
     }
 }

@@ -198,6 +198,17 @@
                       </table>
                     </div>
                   </div>
+
+                  <div class="ln_solid"></div>
+                  <form method="POST" action="{{url('/reportes/clientes/invoice')}}" data-parsley-validate class="form-horizontal form-label-left">
+                    <input type="hidden" name="id_cliente" value="">
+                    <input type="hidden" value="">
+                    <input type="hidden" value="">
+                    <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                      <a href="{{url('/')}}" class="btn btn-primary" type="button">Generar Reporte</a>      
+                    </div>
+                  </form>
+
                 </div>
             </div>
           </div>
