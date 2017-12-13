@@ -220,8 +220,9 @@
                             <th>
                               <div class="icheckbox_flat-green" style="position: relative;"><input type="checkbox" id="check-all" class="flat" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>
                             </th>
-                            <th class="column-title" style="display: table-cell;">Viaje </th>
+                            <th class="column-title" style="display: table-cell;">Id Viaje </th>
                             <th class="column-title" style="display: table-cell;">Vehículo(placa) </th>
+                            <th class="column-title" style="display: table-cell;">Organización </th>
                             <th class="column-title" style="display: table-cell;">Fecha </th>
                             <th class="column-title" style="display: table-cell;">Detalle </th>
                             <th class="column-title" style="display: table-cell;">Ver</th>
@@ -239,7 +240,8 @@
                               <div class="icheckbox_flat-green" style="position: relative;"><input type="checkbox" class="flat" name="table_records" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>
                             </td>
                             <td class=" ">{{$reading->travel_id}}</td>
-                            <td class=" ">{{$reading->travel_id}}</td>                            
+                            <td class=" ">{{$reading->getVehiclePlacaById2($reading->travel_id)}}</td>
+                            <td class=" ">{{$reading->getOrganization($reading->travel_id)}}</td>
                             <td class=" ">{{$reading->created_at}}</td>
                             <td class=" ">{{$reading->description}}</td>
                             <td><a href="{{url('/infracciones/'.$reading->id.'/destroyPut')}}" class="btn btn-danger btn-xs fa fa-trash"></a></td>
