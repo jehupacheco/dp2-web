@@ -137,9 +137,6 @@
                             @if(auth()->user()->can('Reportes de Sensores'))
                             <li><a href="{{url('/reportes/sensores')}}">Reporte de Sensores</a></li>
                             @endif
-                            @if(auth()->user()->can('Reportes de Historial de Alertas'))
-                            <li><a href="#">Reporte de Historial de Alertas</a></li>
-                            @endif
                         </ul>
                     </li>
                     @endif

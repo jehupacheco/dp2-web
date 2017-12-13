@@ -61,6 +61,8 @@ Route::group(['middleware' => ['permission:Alquileres']], function () {
 
 	Route::get('/alquileres/nuevo', 'RentingController@create');
 	Route::post('/alquileres/nuevo', 'RentingController@store');
+
+	Route::get('/alquileres/{renting_id}/invoice', 'RentingController@show_invoice');
 	Route::get('/alquileres/{renting_id}/destroy', 'RentingController@destroy');
 
 	//Entregas y devoluciones

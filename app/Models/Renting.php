@@ -45,6 +45,12 @@ class Renting extends Model
     	return $vehicle->plate;
     }
 
+    public function getClient()
+    {
+        $client = CLient::find($this->client_id);
+        return $client;
+    }
+
     public function getClientNameById($client_id)
     {
     	$client = CLient::find($client_id);

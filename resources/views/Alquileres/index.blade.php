@@ -358,7 +358,7 @@
                                   <td class=" ">{{$renting->finishes_at}}</td>
                                   <td class="a-right a-right ">S/. {{$renting->getCostUnitById($renting->vehicle_id)}}</td>
                                   <td class="a-right a-right ">S/. {{$renting->getTotalCost()}}</td>
-                                  <td><a href="#" class="btn btn-info btn-xs fa fa-pencil"></a><a data-href="{{url('alquileres/'.$renting->id.'/destroy')}}" class="btn btn-danger btn-xs fa fa-trash" title="Eliminar" data-toggle="modal" data-target="#modalEliminar"></a></td>
+                                  <td><a href="{{url('alquileres/'.$renting->id.'/invoice')}}" class="btn btn-success btn-xs fa fa-file-text-o"></a><a data-href="{{url('alquileres/'.$renting->id.'/destroy')}}" class="btn btn-danger btn-xs fa fa-trash" title="Eliminar" data-toggle="modal" data-target="#modalEliminar"></a></td>
                                 </tr>
                                 @endforeach
                                 

@@ -172,14 +172,14 @@
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <br>
                 <div class="form-group required">
-                    <label for="nombre" class="control-label col-md-3">Velocidad Máxima: </label>
-                    <div class=" input-group col-md-8">
+                    <label for="nombre" class="control-label col-md-4">Velocidad Máxima (Km/h): </label>
+                    <div class=" input-group col-md-7">
                         <input type="number" step='0.01' id="max_vel" name="max_vel" required="required" class="form-control col-md-7 col-xs-12" value="{{$org->vel_max}}">
                     </div> 
                 </div>  
                 <div class="form-group required">
-                    <label for="nombre" class="control-label col-md-3">Organización: </label>
-                    <div class=" input-group col-md-8">
+                    <label for="nombre" class="control-label col-md-4">Organización: </label>
+                    <div class=" input-group col-md-7">
                         <input type="text"  class="form-control col-md-7 col-xs-12" value="{{$org->name}}" readonly="true">
                         <input type="hidden" id="org_id" name="org_id" class="form-control col-md-7 col-xs-12" value="{{$org->id}}">
                     </div> 
