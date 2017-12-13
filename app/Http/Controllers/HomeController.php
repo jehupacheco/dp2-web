@@ -42,8 +42,8 @@ class HomeController extends Controller
 
         $last_date_of_update =  Carbon::createFromFormat('Y-m-d H:i:s',Auth::user()->password_updated_at);
         $conf = new Configuration();
-        $num_dias = $conf->getParameter('daystochangepassword');
-       
+        $num_dias = $conf->getParameter('daystochangepassword',Auth::user()->organization_id);
+
         if($current_date->diffInDays($last_date_of_update)>=$num_dias){
             $pass_changed=false;
             return view('Seguridad.password.changepassword',compact('pass_changed'));

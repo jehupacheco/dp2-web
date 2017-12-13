@@ -31,6 +31,13 @@ class User extends Authenticatable
     ];
 
 
+    public function getOrgName()
+    {
+        $org = Organization::find($this->organization_id);
+
+        return $org->name;
+    }
+
     public function getOrganizationsList(){
         $user = $this;
         $my_org_id = -1;
