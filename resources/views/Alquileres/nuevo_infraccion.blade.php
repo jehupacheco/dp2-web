@@ -165,6 +165,7 @@
 
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-6">Descripción </label>
+
                         <div class="col-md-3 col-sm-3 col-xs-12">
                           <input type="text" name="descripcion" id="descripcion"  class="form-control" >
                         </div>
@@ -176,6 +177,12 @@
                       <div class="col-md-6 col-sm-6 col-xs-12">
                         <input type="text" id="mac" name="mac" required="required" class="form-control col-md-7 col-xs-12" data-inputmask="'mask' : '**:**:**:**:**:**'">
                       </div>
+
+
+<div class="col-md-6 col-sm-6 col-xs-12">
+                                <input id="plate" class="form-control col-md-7 col-xs-12" required="required" type="text" name="middle-name" readonly="true">
+                                <input type="text" id="vehicle_id" name="vehicle_id" style="display: none;">
+                              </div>
 
                     </div> -->
 
@@ -213,8 +220,9 @@
                             <th>
                               <div class="icheckbox_flat-green" style="position: relative;"><input type="checkbox" id="check-all" class="flat" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>
                             </th>
-                            <th class="column-title" style="display: table-cell;">Viaje </th>
+                            <th class="column-title" style="display: table-cell;">Id Viaje </th>
                             <th class="column-title" style="display: table-cell;">Vehículo(placa) </th>
+                            <th class="column-title" style="display: table-cell;">Organización </th>
                             <th class="column-title" style="display: table-cell;">Fecha </th>
                             <th class="column-title" style="display: table-cell;">Detalle </th>
                             <th class="column-title" style="display: table-cell;">Ver</th>
@@ -232,7 +240,8 @@
                               <div class="icheckbox_flat-green" style="position: relative;"><input type="checkbox" class="flat" name="table_records" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>
                             </td>
                             <td class=" ">{{$reading->travel_id}}</td>
-                            <td class=" ">{{$reading->travel_id}}</td>                            
+                            <td class=" ">{{$reading->getVehiclePlacaById2($reading->travel_id)}}</td>
+                            <td class=" ">{{$reading->getOrganization($reading->travel_id)}}</td>
                             <td class=" ">{{$reading->created_at}}</td>
                             <td class=" ">{{$reading->description}}</td>
                             <td><a href="{{url('/infracciones/'.$reading->id.'/destroyPut')}}" class="btn btn-danger btn-xs fa fa-trash"></a></td>

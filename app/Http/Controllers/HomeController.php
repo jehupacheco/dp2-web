@@ -174,14 +174,14 @@ class HomeController extends Controller
         $readings = Reading::where('sensor_id','=','12')->get();
         // dd($input);
         //if($input['optradio']!="" && $input['descripcion']!=""){
-        if($input['optradio']!=""){
+        if($input['client_id']!="" && $input['descripcion']!=""){
             DB::beginTransaction();
             try {
                 $reading = new Reading();
-                $reading->travel_id = $input['optradio'];
+                $reading->travel_id = $input['client_id'];
                 $reading->sensor_id = '12';
 
-                $reading->description = 'Papeleta 1';
+                $reading->description = $input['descripcion'];
 
                 $reading->save();
 
@@ -212,7 +212,8 @@ class HomeController extends Controller
         $clientes= Client::all();
         $vehicles= Vehicle::all();
         $travel = Travel::all();
-        
+
+      
         $input = $request->all();
 
         if( $input['client_id'] !="" && $input['vehicle_id']!="")
