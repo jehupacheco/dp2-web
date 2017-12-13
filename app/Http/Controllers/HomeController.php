@@ -174,14 +174,14 @@ class HomeController extends Controller
         $readings = Reading::where('sensor_id','=','12')->get();
         //dd($input);
         //if($input['optradio']!="" && $input['descripcion']!=""){
-        if($input['client_id']!=""){
+        if($input['client_id']!="" && $input['descripcion']!=""){
             DB::beginTransaction();
             try {
                 $reading = new Reading();
                 $reading->travel_id = $input['client_id'];
                 $reading->sensor_id = '12';
 
-                $reading->description = 'Infraccion';
+                $reading->description = $input['descripcion'];
 
                 $reading->save();
 
