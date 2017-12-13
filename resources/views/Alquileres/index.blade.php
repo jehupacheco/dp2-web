@@ -441,6 +441,9 @@
 </script>
 
 <script>
+  var parkingTableInitialized = false;
+
+
   $(document).ready(function() {
       $('#dtTableRenting').DataTable({
           "language": {
@@ -450,13 +453,18 @@
   });
 
   $('#parkings-tab').click(function() {
-      setTimeout(function () {
-        $('#dtTableParkingRenting').DataTable({
-            "language": {
-                "url": "{{asset('json/spanishDataTable.json')}}"
-            }
-        });
-      }, 500);
+      if (!parkingTableInitialized) {
+        setTimeout(function () {
+          $('#dtTableParkingRenting').DataTable({
+              "language": {
+                  "url": "{{asset('json/spanishDataTable.json')}}"
+              }
+          });
+        }, 500);
+
+        parkingTableInitialized = true;
+      }
+
   })
 
   $(document).ready(function() {

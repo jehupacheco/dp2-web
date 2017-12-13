@@ -364,8 +364,7 @@
 
   icons.play();
 
-  var urljson = <?php echo json_encode($url); ?>;
-  var url = urljson.address;
+  var url = <?php echo json_encode($url); ?> + '/JoelFiles';
   document.getElementById("buttonManual").onclick = function() {modoManual()};
   document.getElementById("buttonAuto").onclick = function() {modoAuto()};
   document.getElementById("button-").onclick = function() {disminuir()};

@@ -8,6 +8,7 @@ use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Token;
 use App\Models\Client;
+use Carbon\Carbon;
 
 class AuthenticateController extends Controller
 {
@@ -36,8 +37,20 @@ class AuthenticateController extends Controller
             return response()->json(['error' => 'This user has been blocked'], 401);
         }
         // all good so return the token
+        $now = Carbon::now();
         $organization = $client->organization()->get()->first();
         $sensors = $organization->sensors()->get();
-        return response()->json(compact('token', 'id', 'organization', 'sensors'));
+        $currentRentings = $client->rentings()->where('starts_at', '<=', $now)->where('finishes_at', '>=', $now)->get();
+        $parking_ip = '';
+
+        if ($currentRentings->count() > 0) {
+            foreach ($currentRentings as $renting) {
+                if ($renting->vehicle()->get()->first()->organization()->get()->first()->is_parking) {
+                    $parking_ip = $renting->vehicle()->get()->mac;
+                }
+            }
+        }
+
+        return response()->json(compact('token', 'id', 'organization', 'sensors', 'parking_ip'));
     }
 }

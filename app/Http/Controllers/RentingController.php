@@ -60,8 +60,12 @@ class RentingController extends Controller
         $user = Auth::user();
         // $this->update_list_of_vehicles($user); //Actualizamos la lista de los vehículos, para saber si ya estan disponibles
         if($user->can('Vehículos - Todas las Organizaciones')){
-            $clientes = Client::all();
-            $vehicles = Vehicle::where('organization_id','!=',7)->get();
+            $clientes = Client::all()->filter(function($client) {
+                return !$client->organization()->get()->first()->is_parking;
+            });
+            $vehicles = Vehicle::all()->filter(function($vehicle) {
+                return !$vehicle->organization()->get()->first()->is_parking;
+            });
         }
         else{
             $id_organizations = $user->getOrganizationsList();
@@ -69,12 +73,20 @@ class RentingController extends Controller
             $vehicles = Vehicle::wherein('organization_id',$id_organizations)->where('organization_id','!=',7)->get();
         }
 
+        $parkingClients = Client::all()->filter(function($client) {
+            return $client->organization()->get()->first()->is_parking;
+        });
+
+        $parkingVehicles = Vehicle::all()->filter(function($vehicle) {
+            return $vehicle->organization()->get()->first()->is_parking && !$vehicle->is_rented();
+        });
+
         $vehicles = $vehicles->filter(function($vehicle)
         {
             return !$vehicle->is_rented();
         });
         
-        return view('Alquileres.nuevo_alquiler',compact('clientes','vehicles'));
+        return view('Alquileres.nuevo_alquiler',compact('clientes','vehicles', 'parkingClients', 'parkingVehicles'));
     }
 
     /**
@@ -216,10 +228,10 @@ class RentingController extends Controller
         $id_organizations = $user->getOrganizationsList();
 
         $rentings = Renting::where('delivered_at','=',null)->orWhere('returned_at','=',null)->get();
-        $rentings = $rentings->filter(function($renting)
-        {
-            return $renting->getOrgId()!=7;
-        });
+        // $rentings = $rentings->filter(function($renting)
+        // {
+        //     return $renting->getOrgId()!=7;
+        // });
 
         $rentingsAll = Renting::all();
         $rentingsAll = $rentingsAll->filter(function($renting) use ($id_organizations)

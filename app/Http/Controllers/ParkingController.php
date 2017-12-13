@@ -125,7 +125,7 @@ class ParkingController extends Controller
             ])->latest()
             ->first();
         //$url = Organization::find('7');
-        return view('Estacionamiento.ver', compact('clima_de_hoy','today','temperature','luminosity','uv','angle','humidity','url'));
+        return view('Estacionamiento.ver', compact('clima_de_hoy','today','temperature','luminosity','uv','angle','humidity','url', 'vehicle'));
     }
 
     /**
