@@ -211,7 +211,6 @@ class HomeController extends Controller
         
         $clientes= Client::all();
         $vehicles= Vehicle::all();
-        $travel = Travel::all();
 
         $input = $request->all();
 
