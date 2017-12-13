@@ -207,7 +207,7 @@ class AutoController extends Controller
             //dd($available);
             $placa = $available->id_vehicle;
             //dd($available);
-            $available->delete();
+            $available = vehicle_available::where('id_available','=',$id_available)->delete();
             
         } catch (Exception $e) {
             DB::rollback();
