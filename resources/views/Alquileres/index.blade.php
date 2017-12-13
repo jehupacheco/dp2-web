@@ -413,7 +413,7 @@
                         </div>
                         @endcan
                       </div>
-
+                  </div>
                   </div>
                 </div>
             </div>
