@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Travel;
 use App\Models\Vehicle;
+use App\vehicle_available;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
@@ -65,6 +66,16 @@ class TravelController extends Controller
             return response()->json(['errors' => [
                 'vehicle_id' => [
                     'Vehicle doesn\'t belong to the same organization'
+                ]
+            ]], 422);
+        }
+
+        $vehicle_available = vehicle_available::where('id_vehicle','=',$vehicle->id)->where('finishes_at', '>', $now)->where('starts_at', '<=', $now)->get();
+
+        if ($vehicle_available->count() > 0) {
+            return response()->json(['errors' => [
+                'vehicle' => [
+                    'Vehicle is disabled',
                 ]
             ]], 422);
         }
