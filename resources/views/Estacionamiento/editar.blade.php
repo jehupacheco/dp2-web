@@ -74,6 +74,13 @@
                     <textarea required="required" class="form-control col-md-7 col-xs-12" rows="3" name="description" id="description" >{{$vehicle->description}}</textarea>
                   </div>
                 </div>
+                <div class="form-group">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Precio x Hora (S/.) <span class="required">*</span>
+                  </label>
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="number" step="0.1" id="price" name="price" required="required" class="form-control col-md-7 col-xs-12" value="{{$vehicle->price}}">
+                  </div>
+                </div>
 
                 <div class="form-group">
                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="mac"> IP Address <span class="required">*</span>

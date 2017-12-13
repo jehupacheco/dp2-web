@@ -126,9 +126,7 @@
                     <div class="col-xs-12 bottom text-center">
                       <div class="col-xs-12 col-sm-6 emphasis">
                         <p class="ratings">
-                          @if(!$org->is_parking)
                           <a> Precio/hora: {{$vehiculo->price}} soles</a>
-                          @endif
                         </p>
                       </div>
                       <div class="col-xs-12 col-sm-6 emphasis">
@@ -137,7 +135,7 @@
                           </i> <i class="fa fa-comments-o"></i> </a>
                         @endif
                         <a type="button" class="btn btn-primary btn-xs" href="{{$org->is_parking ? url('/estacionamientos/'.$vehiculo->id.'/ver') : url('/vehiculos/'.$vehiculo->id.'/ver')}}">
-                          <i class="fa fa-automobile"> </i> Ver {{$org->is_parking ? 'Estacionamiento' : 'Vehiculo'}}
+                          <i class="fa fa-automobile"> </i> Ver
                         </a>
                       </div>
                     </div>
