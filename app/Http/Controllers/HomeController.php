@@ -179,7 +179,7 @@ class HomeController extends Controller
             try {
                 $reading = new Reading();
                 $reading->travel_id = $input['client_id'];
-                $reading->sensor_id = '12';
+                $reading->sensor_id = 12;
 
                 $reading->description = $input['descripcion'];
 
