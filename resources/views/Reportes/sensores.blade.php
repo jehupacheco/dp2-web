@@ -71,7 +71,7 @@
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="form-group">
                   <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Viaje</label>
-                  <div class="col-md-3 col-sm-3 col-xs-12">
+                  <div class="col-md-6 col-sm-6 col-xs-12">
                     <input id="travel_name" class="form-control col-md-3 col-xs-12" type="text" name="travel_name" readonly="true">
                     <input id="travel_id" name="travel_id" type="text" readonly="true" style="display: none;">
                   </div>
@@ -162,7 +162,7 @@
 
                 <div class="form-group">
                   <label class="control-label col-md-3 col-sm-3 col-xs-12">Tipo de sensor</label>
-                  <div class="col-md-3 col-sm-3 col-xs-12">
+                  <div class="col-md-6 col-sm-6 col-xs-12">
                     <select id="sensor_id" name="sensor_id" class="form-control">
                       <option>Elija una opción</option>
                       @foreach($sensors as $sensor)
@@ -174,14 +174,14 @@
                 </div>
                 <div class="form-group">
                   <label for="fechaInicial" class="control-label col-md-3 col-sm-3 col-xs-12">Fecha de Inicio</label>
-                  <div class="col-md-3 col-sm-3 col-xs-12">
+                  <div class="col-md-6 col-sm-6 col-xs-12">
                     <input id="fechaInicial" class="form-control col-md-7 col-xs-12" type="date" name="fechaInicial">
                   </div>
                   
                 </div>
                 <div class="form-group">
                   <label for="fechaFin" class="control-label col-md-3 col-sm-3 col-xs-12">Fecha Final</label>
-                  <div class="col-md-3 col-sm-3 col-xs-12">
+                  <div class="col-md-6 col-sm-6 col-xs-12">
                     <input id="fechaFin" class="form-control col-md-7 col-xs-12" type="date" name="fechaFin">
                   </div>
                   
