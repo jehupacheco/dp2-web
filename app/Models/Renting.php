@@ -10,6 +10,8 @@ use Carbon\Carbon;
 
 class Renting extends Model
 {
+    protected $appends = ['totalCost'];
+
     public function client()
     {
         return $this->belongsTo('App\Models\Client');
@@ -75,4 +77,45 @@ class Renting extends Model
         // dd($end_date->diffInHours($start_date));
         return $end_date->diffInHours($start_date)*$vehicle->price;
     }
+
+    public function getNHours(){
+        $vehicle_id = $this->vehicle_id;
+        $vehicle = Vehicle::find($vehicle_id);
+
+        // $now = Carbon::now();
+        $start_date = Carbon::createFromFormat('Y-m-d H:i:s',$this->starts_at);
+        if($this->returned_at !=null){//Aún no se ha devuelto el vehículo
+            if($this->returned_at>$this->finishes_at)
+                $end_date = Carbon::createFromFormat('Y-m-d H:i:s',$this->returned_at);
+            else
+                $end_date = Carbon::createFromFormat('Y-m-d H:i:s',$this->finishes_at);
+        }
+        else{
+            $end_date = Carbon::createFromFormat('Y-m-d H:i:s',$this->finishes_at);
+        }
+        // dd($start_date);
+        // dd($end_date->diffInHours($start_date));
+        return $end_date->diffInHours($start_date);
+    }
+
+    public function getTotalCostAttribute()
+    {
+        $vehicle_id = $this->vehicle_id;
+        $vehicle = Vehicle::find($vehicle_id);
+
+        // $now = Carbon::now();
+        $start_date = Carbon::createFromFormat('Y-m-d H:i:s',$this->starts_at);
+        if($this->returned_at !=null){//Aún no se ha devuelto el vehículo
+            if($this->returned_at>$this->finishes_at)
+                $end_date = Carbon::createFromFormat('Y-m-d H:i:s',$this->returned_at);
+            else
+                $end_date = Carbon::createFromFormat('Y-m-d H:i:s',$this->finishes_at);
+        }
+        else{
+            $end_date = Carbon::createFromFormat('Y-m-d H:i:s',$this->finishes_at);
+        }
+        // dd($start_date);
+        // dd($end_date->diffInHours($start_date));
+        return $end_date->diffInHours($start_date)*$vehicle->price;
+    }    
 }
