@@ -94,8 +94,7 @@ class ReadingController extends Controller
         ]);
 
         $client = JWTAuth::parseToken()->authenticate();
-        // $ip = $request->ip();
-        $ip = '183.88.218.23';
+        $ip = $request->ip();
 
         $vehicle = Vehicle::where('mac', $ip)->get()->first();
 

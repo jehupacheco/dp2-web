@@ -55,8 +55,8 @@ class ParkingController extends Controller
             $vehiculo = new Vehicle();
             $vehiculo->description = $input['description'];
             $vehiculo->plate = '';
+            $vehiculo->mac = str_replace('_', '', $input['mac']);
             $vehiculo->price = $input['price'];
-            $vehicle->mac = str_replace('_', '', $input['mac']);
             $vehiculo->organization_id = $input['org_id'];
             $vehiculo->save();
         } catch (Exception $e) {
@@ -88,43 +88,13 @@ class ParkingController extends Controller
         Date::setLocale('es');
         $today = Date::now()->format('l j F Y H:i:s');
 
-        $angle = DB::table('readings')
-            ->where([
-                ['travel_id','=','4'],
-                ['sensor_id','=','11']
-            ])->latest()
-            ->first();
-        $temperature = DB::table('readings')
-            ->where([
-                ['travel_id','=','4'],
-                ['sensor_id','=','4']
-            ])->latest()
-            ->first();
-        $luminosity = DB::table('readings')
-            ->where([
-                ['travel_id','=','4'],
-                ['sensor_id','=','9']
-            ])->latest()
-            ->first();
-        $uv = DB::table('readings')
-            ->where([
-                ['travel_id','=','4'],
-                ['sensor_id','=','10']
-            ])->latest()
-            ->first();
-        $humidity = DB::table('readings')
-            ->where([
-                ['travel_id','=','4'],
-                ['sensor_id','=','7']
-            ])->latest()
-            ->first();
-        // dd($today);
-        $url = DB::table('organizations')
-            ->where([
-                ['id','=','7']
-            ])->latest()
-            ->first();
-        //$url = Organization::find('7');
+        $angle = $vehicle->readings()->where('sensor_id', 11)->latest()->first();
+        $temperature = $vehicle->readings()->where('sensor_id', 4)->latest()->first();
+        $luminosity = $vehicle->readings()->where('sensor_id', 9)->latest()->first();
+        $uv = $vehicle->readings()->where('sensor_id', 10)->latest()->first();
+        $humidity = $vehicle->readings()->where('sensor_id', 7)->latest()->first();
+        $url = $vehicle->mac;
+
         return view('Estacionamiento.ver', compact('clima_de_hoy','today','temperature','luminosity','uv','angle','humidity','url', 'vehicle'));
     }
 

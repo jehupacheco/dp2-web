@@ -33,6 +33,11 @@ class Vehicle extends Model
         return $org->name; 
     }
 
+    public function readings()
+    {
+        return $this->hasManyThrough('App\Models\Reading', 'App\Models\Travel');
+    }
+
     public function travels()
     {
         return $this->hasMany('App\Models\Travel');
