@@ -34,8 +34,9 @@ class SensorController extends Controller
         $sensorVelocidad = null;
         $sensorBateria = null;
         $sensorHumedad = null;
+        
         if ($travel != null) {
-            
+
             $sensorPeso = Reading::where('travel_id','=',$travel->id)->where('sensor_id','=','1')->orderBy('created_at','desc')->first();
             $sensoRitmoCardio = Reading::where('travel_id','=',$travel->id)->where('sensor_id','=','2')->orderBy('created_at','desc')->first();
             $sensorProximidad = Reading::where('travel_id','=',$travel->id)->where('sensor_id','=','3')->orderBy('created_at','desc')->first();
@@ -45,7 +46,7 @@ class SensorController extends Controller
             $sensorHumedad = Reading::where('travel_id','=',$travel->id)->where('sensor_id','=','7')->orderBy('created_at','desc')->first();
         }
         //return view('Sensores.index',compact('vehiculo'));
-        return view('Sensores.index',compact('vehiculo','sensorPeso','sensoRitmoCardio','sensorProximidad','sensorTemperatura',          'sensorVelocidad','sensorBateria','sensorHumedad'));
+        return view('Sensores.index',compact('vehiculo','sensorPeso','sensoRitmoCardio','sensorProximidad','sensorTemperatura',          'sensorVelocidad','sensorBateria','sensorHumedad','sensors'));
     }
 
     /**
