@@ -108,6 +108,7 @@ class HomeController extends Controller
         $vehicles= Vehicle::all();
         $vehicle= Vehicle::find($id_vehiculo);
         $sensors= Sensor::all();
+        
         $travel = Travel::find($id_travel);
 
         $positions = Position::where('vehicle_id','=',$id_vehiculo)->where('created_at','>=',$travel->started_at)->where('created_at','<=',$travel->ended_at)->get();
@@ -116,13 +117,15 @@ class HomeController extends Controller
         $num_papeletas = DB::table('readings')
                 ->select(DB::raw("count(sensor_id) as total"))->where('travel_id','=',$id_travel)->where('sensor_id','=',11)->get();
         
-        $sensorselected = Sensor::find($input['sensor_id']);
+
         //$input['vehicle_id']
         //$input['fechaInicial']        
         //$input['fechaFin']
         //$input['sensor_id'];
         //dd($input);
+
         if($input['sensor_id']!="" && $input['sensor_id']!="Elija una opción"){
+            $sensorselected = Sensor::find($input['sensor_id']);
             $readinglist = DB::table('readings')
                 ->select(DB::raw("DATE_FORMAT(created_at,'%Y-%m-%d') as dia"), DB::raw('value as value'), DB::raw('sensor_id as sensor_id'))
                 ->where([
@@ -130,6 +133,17 @@ class HomeController extends Controller
                 ])
                 ->where('travel_id','=',$id_travel)
                 ->get();
+                //dd($readinglist);
+        }else{
+            $sensorselected = Sensor::find('1');
+            $readinglist = DB::table('readings')
+                ->select(DB::raw("DATE_FORMAT(created_at,'%Y-%m-%d') as dia"), DB::raw('value as value'), DB::raw('sensor_id as sensor_id'))
+                ->where([
+                    ['sensor_id','=', '1']
+                ])
+                ->where('travel_id','=',$id_travel)
+                ->get();
+                //dd($readinglist);
         }
 
         $inicio=Carbon::parse($travel->ended_at);
@@ -137,7 +151,7 @@ class HomeController extends Controller
 
 
         $horas_alquiler = $fin->diffInHours($inicio)*$vehicle->price;
-
+        //dd($input);
         return view('Reportes.clienteXVehiculo', compact('sensors','vehicles','vehicle','reading','sensorselected','readinglist','travel','papeletas','num_papeletas','horas_alquiler','positions'));
 
 
@@ -221,6 +235,7 @@ public function sensores()
         //$input['fechaInicial']        
         //$input['fechaFin']
         //$input['sensor_id'];
+        //dd($input);
         if($input['sensor_id']!="" && $input['travel_id']!=""){
             $sensorselected = Sensor::find($input['sensor_id']);
             $readinglist = DB::table('readings')
