@@ -24,7 +24,11 @@ class RentingController extends Controller
         $rentings = Renting::all();
         $rentings = $rentings->filter(function($renting)
         {
-            return $renting->getOrgId() != 7;
+            return !$renting->vehicle()->get()->first()->organization()->get()->first()->is_parking;
+        });
+
+        $parkingRentings = Renting::all()->filter(function($renting) {
+            return $renting->vehicle()->get()->first()->organization()->get()->first()->is_parking;
         });
 
 
@@ -43,7 +47,7 @@ class RentingController extends Controller
 
         $clientes= Client::all();
         $vehicles= Vehicle::all();
-        return view('Alquileres.index', compact('rentings','clientes','vehicles'));
+        return view('Alquileres.index', compact('rentings','clientes','vehicles', 'parkingRentings'));
     }
 
     /**
