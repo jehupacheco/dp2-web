@@ -47,7 +47,7 @@
                 </div>
                 <div class="x_content">
                   <br />
-                  <form id="demo-form2"  method="POST" action="{{url('/reportes/recorrido/filtro/filtrado')}}" data-parsley-validate class="form-horizontal form-label-left">
+                  <form id="demo-form2"  method="POST" action="{{url('/reportes/recorrido/filtro/filtrado')}}"data-parsley-validate class="form-horizontal form-label-left">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Cliente <span class="required">*</span>
