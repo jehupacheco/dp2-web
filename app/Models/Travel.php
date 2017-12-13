@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Travel extends Model
 {
     protected $fillable = [
-        'started_at'
+        'started_at','vehicle_id'
     ];
 
     public function readings()

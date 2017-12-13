@@ -144,6 +144,11 @@ Route::group(['middleware' => ['permission:Reportes de Clientes']], function () 
 });
 Route::get('/reportes/viajesCliente','HomeController@viajesCliente');
 
+
+Route::get('/infracciones/nuevo','HomeController@infracciones');
+Route::post('Infracciones/nuevoPost','HomeController@infraccionesPost');
+Route::get('/infracciones/{id}/destroyPut','HomeController@destroyPutInfracciones');
+
 Route::get('/reportes/sensores','HomeController@sensores');
 Route::post('/reportes/sensores/filtrado', 'HomeController@filtrado_sensores');
 Route::post('reportes/recorridos/postMet', 'HomeController@filtrado_sensores_reporte_postMet');

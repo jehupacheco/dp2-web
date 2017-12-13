@@ -39,6 +39,7 @@
                   <!-- <li><a href="#">Todos los Clientes</a></li> -->
                   <li><a href="{{url('/alquileres/nuevo')}}">Nuevo Alquiler <i class="fa fa-plus" aria-hidden="true"></i></a></li>
                   <li><a href="{{url('/alquileres/entrega-devolucion/nuevo')}}">Entrega/Devolución <i class="fa fa-car" aria-hidden="true"></i></a></li>
+                  <li><a href="{{url('/infracciones/nuevo')}}">Infracciones <i class="fa fa-plus" aria-hidden="true"></i></a></li>
                 </ul>
               </div>
           </div>
