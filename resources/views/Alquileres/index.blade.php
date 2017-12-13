@@ -311,56 +311,138 @@
 
                   <div class="x_content">
 
-                    <p>Seleccionar una fila para ver su detalle</p>
+                    <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                      <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#vehicles" id="vehicles-tab" role="tab" data-toggle="tab" aria-expanded="true">Vehiculos</a>
+                        </li>
+                        @can('Estacionamiento')
+                        <li role="presentation" class=""><a href="#parkings" role="tab" id="parkings-tab" data-toggle="tab" aria-expanded="false">Estacionamientos</a>
+                        </li>
+                        @endcan
+                      </ul>
+                      <div id="myTabContent" class="tab-content">
+                        <div role="tabpanel" class="tab-pane fade active in" id="vehicles" aria-labelledby="vehicles-tab">
+                          <p>Seleccionar una fila para ver su detalle</p>
 
-                    <div class="table-responsive">
-                      <table id="dtTableRenting" class="table table-striped jambo_table bulk_action">
-                        <thead>
-                          <tr class="headings">
-                            <!-- <th>
-                              <div class="icheckbox_flat-green" style="position: relative;"><input type="checkbox" id="check-all" class="flat" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>
-                            </th> -->
-                            <th class="column-title" style="display: table-cell;">Placa </th>
-                            <th class="column-title" style="display: table-cell;">Organización </th>
-                            <th class="column-title" style="display: table-cell;">Cliente</th>
-                            <th class="column-title" style="display: table-cell;">Fecha Inicio  </th>
-                            <th class="column-title" style="display: table-cell;">Fecha Fin </th>
-                            <th class="column-title" style="display: table-cell;">Costo x Hora </th>
-                            <th class="column-title" style="display: table-cell;">Costo Total</th>
-                            <th class="column-title" style="display: table-cell;">Acciones</th>
-                            
-                            <th class="bulk-actions" colspan="7" style="display: none;">
-                              <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt">1 Records Selected</span> ) <i class="fa fa-chevron-down"></i></a>
-                            </th>
-                          </tr>
-                        </thead>
+                          <div class="table-responsive">
+                            <table id="dtTableRenting" class="table table-striped jambo_table bulk_action">
+                              <thead>
+                                <tr class="headings">
+                                  <!-- <th>
+                                    <div class="icheckbox_flat-green" style="position: relative;"><input type="checkbox" id="check-all" class="flat" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>
+                                  </th> -->
+                                  <th class="column-title" style="display: table-cell;">Placa </th>
+                                  <th class="column-title" style="display: table-cell;">Organización </th>
+                                  <th class="column-title" style="display: table-cell;">Cliente</th>
+                                  <th class="column-title" style="display: table-cell;">Fecha Inicio  </th>
+                                  <th class="column-title" style="display: table-cell;">Fecha Fin </th>
+                                  <th class="column-title" style="display: table-cell;">Costo x Hora </th>
+                                  <th class="column-title" style="display: table-cell;">Costo Total</th>
+                                  <th class="column-title" style="display: table-cell;">Acciones</th>
+                                  
+                                  <th class="bulk-actions" colspan="7" style="display: none;">
+                                    <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt">1 Records Selected</span> ) <i class="fa fa-chevron-down"></i></a>
+                                  </th>
+                                </tr>
+                              </thead>
 
-                        <tbody>
-                          @foreach($rentings as $renting)
-                          <tr class="even pointer">
-                            <!-- <td class="a-center ">
-                              <div class="icheckbox_flat-green" style="position: relative;"><input type="checkbox" class="flat" name="table_records" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>
-                            </td> -->
-                            <td class=" ">{{$renting->getPlateById($renting->vehicle_id)}}</td>
-                            <td class=" ">{{$renting->getOrgNameById($renting->vehicle_id)}}</td>
-                            <td class=" ">{{$renting->getClientNameById($renting->client_id)}}</td>
-                            <td class=" ">{{$renting->starts_at}}</td>
-                            <td class=" ">{{$renting->finishes_at}}</td>
-                            <td class="a-right a-right ">S/. {{$renting->getCostUnitById($renting->vehicle_id)}}</td>
-                            <td class="a-right a-right ">S/. {{$renting->getTotalCost()}}</td>
-                            <td><a href="#" class="btn btn-info btn-xs fa fa-pencil"></a><a href="{{url('alquileres/'.$renting->id.'/destroy')}}" class="btn btn-danger btn-xs fa fa-trash"></a></td>
-                          </tr>
-                          @endforeach
-                          
-                        </tbody>
-                      </table>
-                    </div>
+                              <tbody>
+                                @foreach($rentings as $renting)
+                                <tr class="even pointer">
+                                  <!-- <td class="a-center ">
+                                    <div class="icheckbox_flat-green" style="position: relative;"><input type="checkbox" class="flat" name="table_records" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>
+                                  </td> -->
+                                  <td class=" ">{{$renting->getPlateById($renting->vehicle_id)}}</td>
+                                  <td class=" ">{{$renting->getOrgNameById($renting->vehicle_id)}}</td>
+                                  <td class=" ">{{$renting->getClientNameById($renting->client_id)}}</td>
+                                  <td class=" ">{{$renting->starts_at}}</td>
+                                  <td class=" ">{{$renting->finishes_at}}</td>
+                                  <td class="a-right a-right ">S/. {{$renting->getCostUnitById($renting->vehicle_id)}}</td>
+                                  <td class="a-right a-right ">S/. {{$renting->getTotalCost()}}</td>
+                                  <td><a href="{{url('alquileres/'.$renting->id.'/invoice')}}" class="btn btn-success btn-xs fa fa-file-text-o"></a><a data-href="{{url('alquileres/'.$renting->id.'/destroy')}}" class="btn btn-danger btn-xs fa fa-trash" title="Eliminar" data-toggle="modal" data-target="#modalEliminar"></a></td>
+                                </tr>
+                                @endforeach
+                                
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                        @can('Estacionamiento')
+                        <div role="tabpanel" class="tab-pane fade" id="parkings" aria-labelledby="parkings-tab">
+                          <p>Seleccionar una fila para ver su detalle</p>
+
+                          <div class="table-responsive">
+                            <table id="dtTableParkingRenting" class="table table-striped jambo_table bulk_action">
+                              <thead>
+                                <tr class="headings">
+                                  <!-- <th>
+                                    <div class="icheckbox_flat-green" style="position: relative;"><input type="checkbox" id="check-all" class="flat" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>
+                                  </th> -->
+                                  <th class="column-title" style="display: table-cell;">Organización </th>
+                                  <th class="column-title" style="display: table-cell;">Cliente</th>
+                                  <th class="column-title" style="display: table-cell;">Fecha Inicio  </th>
+                                  <th class="column-title" style="display: table-cell;">Fecha Fin </th>
+                                  <th class="column-title" style="display: table-cell;">Costo x Hora </th>
+                                  <th class="column-title" style="display: table-cell;">Costo Total</th>
+                                  <th class="column-title" style="display: table-cell;">Acciones</th>
+                                  
+                                  <th class="bulk-actions" colspan="6" style="display: none;">
+                                    <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt">1 Records Selected</span> ) <i class="fa fa-chevron-down"></i></a>
+                                  </th>
+                                </tr>
+                              </thead>
+
+                              <tbody>
+                                @foreach($parkingRentings as $renting)
+                                <tr class="even pointer">
+                                  <!-- <td class="a-center ">
+                                    <div class="icheckbox_flat-green" style="position: relative;"><input type="checkbox" class="flat" name="table_records" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>
+                                  </td> -->
+                                  <td class=" ">{{$renting->getOrgNameById($renting->vehicle_id)}}</td>
+                                  <td class=" ">{{$renting->getClientNameById($renting->client_id)}}</td>
+                                  <td class=" ">{{$renting->starts_at}}</td>
+                                  <td class=" ">{{$renting->finishes_at}}</td>
+                                  <td class="a-right a-right ">S/. {{$renting->getCostUnitById($renting->vehicle_id)}}</td>
+                                  <td class="a-right a-right ">S/. {{$renting->getTotalCost()}}</td>
+                                  <td><a href="#" class="btn btn-info btn-xs fa fa-pencil"></a><a data-href="{{url('alquileres/'.$renting->id.'/destroy')}}" class="btn btn-danger btn-xs fa fa-trash" title="Eliminar" data-toggle="modal" data-target="#modalEliminar"></a></td>
+                                </tr>
+                                @endforeach
+                                
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                        @endcan
+                      </div>
+                  </div>
                   </div>
                 </div>
             </div>
           </div>
     </div>
     <!-- /page content -->
+
+<!-- Modal Eliminar-->
+    <div id="modalEliminar" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Confirmar</h4>
+          </div>
+          <div class="modal-body">
+            <p>¿Está seguro que desea eliminar el alquiler?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+            <a class="btn btn-danger btn-ok">Confirmar</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
 @endsection
 
 
@@ -382,13 +464,35 @@
 </script>
 
 <script>
+  var parkingTableInitialized = false;
+
+  $('#modalEliminar').on('shown.bs.modal', function (e) {
+      $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+  });
+
   $(document).ready(function() {
       $('#dtTableRenting').DataTable({
           "language": {
               "url": "{{asset('json/spanishDataTable.json')}}"
           }
       });
-  } );
+  });
+
+  $('#parkings-tab').click(function() {
+      if (!parkingTableInitialized) {
+        setTimeout(function () {
+          $('#dtTableParkingRenting').DataTable({
+              "language": {
+                  "url": "{{asset('json/spanishDataTable.json')}}"
+              }
+          });
+        }, 500);
+
+        parkingTableInitialized = true;
+      }
+
+  })
+
   $(document).ready(function() {
     $('#dtTableClient').DataTable({
         "language": {

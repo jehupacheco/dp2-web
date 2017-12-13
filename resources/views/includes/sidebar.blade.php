@@ -55,12 +55,12 @@
                     @if(auth()->user()->can('Vehículos - Todas las Organizaciones'))
                     <li>
                         <a>
-                            <i class="fa fa-bus"></i> Vehiculos 
+                            <i class="fa fa-bus"></i> Vehículos 
                             <span class="fa fa-chevron-down"></span>
                         </a>
                         <ul class="nav child_menu">
                             @foreach($all_organizations as $org)
-                                @if($org->name != "Estacionamiento")
+                                @if(!$org->is_parking)
                                 <li><a href="{{url('/vehiculos/'.$org->id.'/lista')}}">Vehículo {{$org->name}}</a></li>
                                 @endif
                             @endforeach
@@ -137,14 +137,11 @@
                             @if(auth()->user()->can('Reportes de Sensores'))
                             <li><a href="{{url('/reportes/sensores')}}">Reporte de Sensores</a></li>
                             @endif
-                            @if(auth()->user()->can('Reportes de Historial de Alertas'))
-                            <li><a href="#">Reporte de Historial de Alertas</a></li>
-                            @endif
                         </ul>
                     </li>
                     @endif
                     @if(auth()->user()->can('Seguridad'))
-                    <li><a><i class="fa fa-cog"></i> Seguridad <span class="fa fa-chevron-down"></span></a>
+                    <li><a><i class="fa fa-shield"></i> Seguridad <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="{{url('/usuarios/nuevo')}}">Crear usuario</a></li>
                             <li><a href="{{url('/cambiar/password')}}">Cambiar Contraseña</a></li>
@@ -154,16 +151,24 @@
                     @endif
                     @if(auth()->user()->can('Configuración'))
                     <li>
-                        <a href="{{url('/vehiculos/Configuracion')}}">
-                            <i class="fa fa-asterisk"></i>Configuracion
+                        <a href="{{url('/configuracion')}}">
+                            <i class="fa fa-cog"></i>Configuracion
                         </a>
                     </li>
                     @endif
                     @if(auth()->user()->can('Estacionamiento'))
                     <li>
-                        <a href="{{url('/estacionamiento')}}">
-                            <i class="fa fa-car"></i>Estacionamiento
+                        <a>
+                            <i class="fa fa-car"></i> Estacionamientos 
+                            <span class="fa fa-chevron-down"></span>
                         </a>
+                        <ul class="nav child_menu">
+                            @foreach($all_organizations as $org)
+                                @if($org->is_parking)
+                                <li><a href="{{url('/estacionamientos/'.$org->id.'/lista')}}">Estacionamientos - {{$org->name}}</a></li>
+                                @endif
+                            @endforeach
+                        </ul>
                     </li>
                     @endif
                     {{--  <li>

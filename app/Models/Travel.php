@@ -27,7 +27,7 @@ class Travel extends Model
 
     public function getClientNameById($client_id)
     {
-        $client = CLient::find($client_id);
+        $client = Client::find($client_id);
         return $client->name.' '.$client->lastname;
     }
 

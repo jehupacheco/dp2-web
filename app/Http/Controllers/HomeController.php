@@ -42,8 +42,8 @@ class HomeController extends Controller
 
         $last_date_of_update =  Carbon::createFromFormat('Y-m-d H:i:s',Auth::user()->password_updated_at);
         $conf = new Configuration();
-        $num_dias = $conf->getParameter('daystochangepassword');
-       
+        $num_dias = $conf->getParameter('daystochangepassword',Auth::user()->organization_id);
+
         if($current_date->diffInDays($last_date_of_update)>=$num_dias){
             $pass_changed=false;
             return view('Seguridad.password.changepassword',compact('pass_changed'));
@@ -154,8 +154,6 @@ class HomeController extends Controller
         //dd($input);
         return view('Reportes.clienteXVehiculo', compact('sensors','vehicles','vehicle','reading','sensorselected','readinglist','travel','papeletas','num_papeletas','horas_alquiler','positions'));
 
-
-
     }
 
     public function infracciones()
@@ -213,7 +211,6 @@ class HomeController extends Controller
         
         $clientes= Client::all();
         $vehicles= Vehicle::all();
-        $travel = Travel::all();
 
         $input = $request->all();
 
@@ -235,10 +232,6 @@ class HomeController extends Controller
         // return redirect()->action('RentingController@index',['rentings'=>$rentings,'clientes'=>$clientes,'vehicles'=>$vehicles])->with('stored', 'Se ha filtrado los alquileres correctamente');
     }
 
-    public function filtroReporte()
-    {
-        return view('Reportes.pantallaDeFiltros');
-    }
 
     public function asignarauto()
     {
@@ -277,7 +270,7 @@ public function sensores()
         //$input['fechaFin']
         //$input['sensor_id'];
         //dd($input);
-        if($input['sensor_id']!="" && $input['travel_id']!=""){
+        if($input['sensor_id']!="" && $input['travel_id']!="" && $input['fechaInicial']=="" && $input['fechaFin']==""){
             $sensorselected = Sensor::find($input['sensor_id']);
             $readinglist = DB::table('readings')
                 ->select(DB::raw("DATE_FORMAT(updated_at,'%Y-%m-%d') as dia"), DB::raw('value as value'), DB::raw('sensor_id as sensor_id'))
@@ -287,7 +280,83 @@ public function sensores()
                 ])
                 ->get();
         }
+        elseif ($input['sensor_id']!="" && $input['travel_id']!="" && $input['fechaInicial']!="" && $input['fechaFin']=="") {
+            $sensorselected = Sensor::find($input['sensor_id']);
+            $readinglist = DB::table('readings')
+                ->select(DB::raw("DATE_FORMAT(updated_at,'%Y-%m-%d') as dia"), DB::raw('value as value'), DB::raw('sensor_id as sensor_id'))
+                ->where([
+                    ['sensor_id','=', $input['sensor_id']],
+                    ['travel_id','=', $input['travel_id']],
+                    ['created_at','>',$input['fechaInicial']]
+                ])
+                ->get();
+        }
+        elseif ($input['sensor_id']!="" && $input['travel_id']!="" && $input['fechaInicial']=="" && $input['fechaFin']!="") {
+            $sensorselected = Sensor::find($input['sensor_id']);
+            $readinglist = DB::table('readings')
+                ->select(DB::raw("DATE_FORMAT(updated_at,'%Y-%m-%d') as dia"), DB::raw('value as value'), DB::raw('sensor_id as sensor_id'))
+                ->where([
+                    ['sensor_id','=', $input['sensor_id']],
+                    ['travel_id','=', $input['travel_id']],
+                    ['created_at','<',$input['fechaFin']]
+                ])
+                ->get();
+        }
+        elseif ($input['sensor_id']!="" && $input['travel_id']!="" && $input['fechaInicial']!="" && $input['fechaFin']!="") {
+            $sensorselected = Sensor::find($input['sensor_id']);
+            $readinglist = DB::table('readings')
+                ->select(DB::raw("DATE_FORMAT(updated_at,'%Y-%m-%d') as dia"), DB::raw('value as value'), DB::raw('sensor_id as sensor_id'))
+                ->where([
+                    ['sensor_id','=', $input['sensor_id']],
+                    ['travel_id','=', $input['travel_id']],
+                    ['created_at','>',$input['fechaInicial']],
+                    ['created_at','<',$input['fechaFin']]
+                ])
+                ->get();
+        }
+        //sin travel
+        elseif ($input['sensor_id']!="" && $input['travel_id']=="" && $input['fechaInicial']=="" && $input['fechaFin']==""){
+            $sensorselected = Sensor::find($input['sensor_id']);
+            $readinglist = DB::table('readings')
+                ->select(DB::raw("DATE_FORMAT(updated_at,'%Y-%m-%d') as dia"), DB::raw('value as value'), DB::raw('sensor_id as sensor_id'))
+                ->where([
+                    ['sensor_id','=', $input['sensor_id']]
+                ])
+                ->get();
+        }
+        elseif ($input['sensor_id']!="" && $input['travel_id']=="" && $input['fechaInicial']!="" && $input['fechaFin']=="") {
+            $sensorselected = Sensor::find($input['sensor_id']);
+            $readinglist = DB::table('readings')
+                ->select(DB::raw("DATE_FORMAT(updated_at,'%Y-%m-%d') as dia"), DB::raw('value as value'), DB::raw('sensor_id as sensor_id'))
+                ->where([
+                    ['sensor_id','=', $input['sensor_id']],
+                    ['created_at','>',$input['fechaInicial']]
+                ])
+                ->get();
+        }
+        elseif ($input['sensor_id']!="" && $input['travel_id']=="" && $input['fechaInicial']=="" && $input['fechaFin']!="") {
+            $sensorselected = Sensor::find($input['sensor_id']);
+            $readinglist = DB::table('readings')
+                ->select(DB::raw("DATE_FORMAT(updated_at,'%Y-%m-%d') as dia"), DB::raw('value as value'), DB::raw('sensor_id as sensor_id'))
+                ->where([
+                    ['sensor_id','=', $input['sensor_id']],
+                    ['created_at','<',$input['fechaFin']]
+                ])
+                ->get();
+        }
+        elseif ($input['sensor_id']!="" && $input['travel_id']=="" && $input['fechaInicial']!="" && $input['fechaFin']!="") {
+            $sensorselected = Sensor::find($input['sensor_id']);
+            $readinglist = DB::table('readings')
+                ->select(DB::raw("DATE_FORMAT(updated_at,'%Y-%m-%d') as dia"), DB::raw('value as value'), DB::raw('sensor_id as sensor_id'))
+                ->where([
+                    ['sensor_id','=', $input['sensor_id']],
+                    ['created_at','>',$input['fechaInicial']],
+                    ['created_at','<',$input['fechaFin']]
+                ])
+                ->get();
+        }
         else{
+            //por defecto
             $sensorselected= Sensor::find('1');
             $readinglist = DB::table('readings')
                 ->select(DB::raw("DATE_FORMAT(updated_at,'%Y-%m-%d') as dia"), DB::raw('value as value'), DB::raw('sensor_id as sensor_id'))

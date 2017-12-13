@@ -12,6 +12,7 @@ use Session;
 use Redirect;
 use App\Http\Requests\ChangePasswordRequest;
 use App\Http\Requests\UserRequest;
+use App\Http\Requests\UserProfileRequest;
 use Spatie\Permission\Models\Role;
 use Carbon\Carbon;
 
@@ -34,7 +35,7 @@ class UserController extends Controller
      */
     public function show_profile()
     {
-        return view('Usuarios\perfil\ver-perfil');
+        return view('Usuarios.perfil.index');
     }
 
     public function create()
@@ -144,9 +145,24 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function show_edit_profile()
     {
-        //
+        return view('Usuarios.perfil.edit_user');
+    }
+
+    public function update_profile(Request $request)
+    {
+
+        $this->validate($request, [
+            'email' => 'unique:users,email,'.Auth::user()->id
+        ]);
+        $input = $request->all();
+        
+        $user = Auth::user();
+        $user->name = $input['name'];
+        $user->email = $input['email'];
+        $user->save();
+        return redirect()->action('UserController@show_profile')->with('stored', 'Se actualizó el perfil de usuario correctamente.'); 
     }
 
     /**

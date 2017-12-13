@@ -87,7 +87,7 @@ class AutoController extends Controller
             return redirect()->action('AutoController@configuracion')->with('delete', 'Modificación insatisfactoria de parámetros.'); 
         }
         DB::commit();
-        return redirect()->action('AutoController@configuracion')->with('stored', 'Los parámetros de la organización '.$org->name.' se MODIFICARON correctamente.'); 
+        return redirect()->action('AutoController@mostrar_lista_tipo',['tipo_id'=>$org->id])->with('stored', 'Los parámetros de la organización '.$org->name.' se MODIFICARON correctamente.'); 
     }
 
     public function store(VehicleRequest $request,$tipo_id)
@@ -153,6 +153,7 @@ class AutoController extends Controller
             $vehicle->description = $input['description'];
             $vehicle->price = $input['price'];
             $vehicle->mac = $input['mac'];
+            $vehicle->max_weight = $input['max_weight'];
 
             $vehicle->save();
 

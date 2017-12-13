@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Client;
+use App\Models\Organization;
 use DB;
 use App\Http\Requests\ClientRequest;
 use Auth;
@@ -37,7 +38,11 @@ class ClientController extends Controller
     public function show_profile($cliente_id)
     {
         $cliente = Client::find($cliente_id);
-        return view('Clientes.perfil.ver-perfil',compact('cliente'));
+
+        $rentings = $cliente->lastRentings();
+
+
+        return view('Clientes.perfil.ver-perfil',compact('cliente','rentings'));
     }
 
 
@@ -55,7 +60,11 @@ class ClientController extends Controller
      */
     public function create()
     {
-        return view('Clientes.nuevo_cliente');
+        $user = Auth::user();
+        $id_organizations = $user->getOrganizationsList();
+        $organizations=Organization::wherein('id',$id_organizations)->get();
+
+        return view('Clientes.nuevo_cliente',compact('organizations'));
     }
 
     /**
@@ -67,22 +76,26 @@ class ClientController extends Controller
     public function store(ClientRequest $request)
     {
         $input = $request->all();
-        DB::beginTransaction();
-        try {
-            $cliente = new Client();
-            $cliente->name = $input['name'];
-            $cliente->lastname = $input['lastname'];
-            $cliente->phone = $input['phone'];
-            $cliente->email = $input['email'];
-            $cliente->password = bcrypt($input['password']);
-            $cliente->organization_id = $input['org_id'];
-            $cliente->save();
-        } catch (Exception $e) {
-            DB::rollback();
+        if($input['org_id']!="ninguno"){
+            DB::beginTransaction();
+            try {
+                $cliente = new Client();
+                $cliente->name = $input['name'];
+                $cliente->lastname = $input['lastname'];
+                $cliente->phone = $input['phone'];
+                $cliente->email = $input['email'];
+                $cliente->password = bcrypt($input['password']);
+                $cliente->organization_id = $input['org_id'];
+                $cliente->save();
+            } catch (Exception $e) {
+                DB::rollback();
+                return redirect()->action('ClientController@index')->with('stored', 'Se registró el Cliente correctamente.'); 
+            }
+            DB::commit();
             return redirect()->action('ClientController@index')->with('stored', 'Se registró el Cliente correctamente.'); 
         }
-        DB::commit();
-        return redirect()->action('ClientController@index')->with('stored', 'Se registró el Cliente correctamente.'); 
+        else
+            return redirect()->action('ClientController@create')->with('delete', 'Usted debe seleccionar una organización para el cliente.');
     }
 
     /**

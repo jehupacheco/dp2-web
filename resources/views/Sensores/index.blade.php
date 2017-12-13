@@ -38,22 +38,85 @@
 			                  <div class="clearfix"></div>
 			                </div>
 			                <div class="text-center">
+			                	@foreach ($sensors as $sensor)
+			                	@if($sensor->sensor_id == '1')
+			                	@if(!is_null($sensorPeso))
 			                	<br>
-			                	 <img src="{{asset('images/weightsensor.png')}}" alt="" class="" height="25" width="25">     500 g
+			                	<img src="{{asset('images/weightsensor.png')}}" alt="" class="" height="25" width="25">     {{$sensorPeso->value}} g
 			                	<br><br>
-			                	<img src="{{asset('images/corazonsensor.png')}}" alt="" class="" height="25" width="45">    75 lpm 
+			                	@else
+			                	<br>
+			                	<img src="{{asset('images/weightsensor.png')}}" alt="" class="" height="25" width="25">     --<small><B><FONT COLOR="red"> (No hay datos)</FONT></small>
 			                	<br><br>
-			                	<img src="{{asset('images/nearnesssensor.png')}}" alt="" class="" height="30" width="45">    10 km  
+			                	@endif
+			                	@endif
+			                	@endforeach
+			                	@foreach ($sensors as $sensor)
+			                	@if($sensor->sensor_id == '2')
+			                	@if(!is_null($sensoRitmoCardio))
+			                	<img src="{{asset('images/corazonsensor.png')}}" alt="" class="" height="25" width="45">    {{$sensoRitmoCardio->value}} lpm 
 			                	<br><br>
-			                	<img src="{{asset('images/temperaturesensor.png')}}" alt="" class="" height="35" width="35">   25°C     
+			                	@else
+			                	<img src="{{asset('images/corazonsensor.png')}}" alt="" class="" height="25" width="45">    --<small><B><FONT COLOR="red"> (No hay datos)</FONT></small>
 			                	<br><br>
-			                	<img src="{{asset('images/speedsensor.png')}}" alt="" class="" height="30" width="45">   35 kmh    
+			                	@endif
+			                	@endif
+			                	@endforeach
+			                	@foreach ($sensors as $sensor)
+			                	@if($sensor->sensor_id == '3')
+			                	@if(!is_null($sensorProximidad))
+			                	<img src="{{asset('images/nearnesssensor.png')}}" alt="" class="" height="30" width="45">    {{$sensorProximidad->value}} km  
 			                	<br><br>
-			                	<img src="{{asset('images/baterysensor.png')}}" alt="" class="" height="30" width="45">  99%      
+			                	@else
+			                	<img src="{{asset('images/nearnesssensor.png')}}" alt="" class="" height="30" width="45">    --<small><B><FONT COLOR="red"> (No hay datos)</FONT></small>
 			                	<br><br>
-			                	<img src="{{asset('images/humiditysensor.png')}}" alt="" class="" height="30" width="45">  84%      
+			                	@endif
+			                	@endif
+			                	@endforeach
+			                	@foreach ($sensors as $sensor)
+			                	@if($sensor->sensor_id == '4')
+			                	@if(!is_null($sensorTemperatura))
+			                	<img src="{{asset('images/temperaturesensor.png')}}" alt="" class="" height="35" width="35">   {{$sensorTemperatura->value}} °C     
 			                	<br><br>
-			                	<img src="{{asset('images/locationsensor.png')}}" alt="" class="" height="30" width="45">lat: -12,0689 Long:-77,0802
+			                	@else
+			                	<img src="{{asset('images/temperaturesensor.png')}}" alt="" class="" height="35" width="35">  --<small><B><FONT COLOR="red"> (No hay datos)</FONT></small>
+			                	<br><br>
+			                	@endif
+			                	@endif
+			                	@endforeach
+			                	@foreach ($sensors as $sensor)
+			                	@if($sensor->sensor_id == '5')
+			                	@if(!is_null($sensorVelocidad))
+			                	<img src="{{asset('images/speedsensor.png')}}" alt="" class="" height="30" width="45">   {{$sensorVelocidad->value}} kmh
+			                	<br><br>
+			                	@else
+			                	<img src="{{asset('images/speedsensor.png')}}" alt="" class="" height="30" width="45">   --<small><B><FONT COLOR="red"> (No hay datos)</FONT></small>
+			                	<br><br>
+			                	@endif
+			                	@endif
+			                	@endforeach
+			                	@foreach ($sensors as $sensor)
+			                	@if($sensor->sensor_id == '6')
+			                	@if(!is_null($sensorBateria))
+			                	<img src="{{asset('images/baterysensor.png')}}" alt="" class="" height="30" width="45">  {{$sensorBateria->value}} %      
+			                	<br><br>
+			                	@else
+			                	<img src="{{asset('images/baterysensor.png')}}" alt="" class="" height="30" width="45">  --<small><B><FONT COLOR="red"> (No hay datos)</FONT></small>
+			                	<br><br>
+			                	@endif
+			                	@endif
+			                	@endforeach
+			                	@foreach ($sensors as $sensor)
+			                	@if($sensor->sensor_id == '7')
+			                	@if(!is_null($sensorHumedad))
+			                	<img src="{{asset('images/humiditysensor.png')}}" alt="" class="" height="30" width="45">  {{$sensorHumedad->value}} %
+			                	<br><br>
+			                	@else
+			                	<img src="{{asset('images/humiditysensor.png')}}" alt="" class="" height="30" width="45">  --<small><B><FONT COLOR="red"> (No hay datos)</FONT></small>
+			                	<br><br>
+			                	@endif
+			                	@endif
+			                	@endforeach
 			                </div>
 			              </div>
 			    </div>

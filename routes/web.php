@@ -18,8 +18,9 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('/asignarauto','HomeController@asignarauto');
 
 
-	Route::get('/usuarios/1/perfil','UserController@show_profile');
-
+	Route::get('/perfil','UserController@show_profile');
+	Route::get('perfil/edit','UserController@show_edit_profile');
+	Route::post('perfil/edit','UserController@update_profile');
 
 
 	Route::get('/usuarios/nuevo','UserController@create');
@@ -60,6 +61,8 @@ Route::group(['middleware' => ['permission:Alquileres']], function () {
 
 	Route::get('/alquileres/nuevo', 'RentingController@create');
 	Route::post('/alquileres/nuevo', 'RentingController@store');
+
+	Route::get('/alquileres/{renting_id}/invoice', 'RentingController@show_invoice');
 	Route::get('/alquileres/{renting_id}/destroy', 'RentingController@destroy');
 
 	//Entregas y devoluciones
@@ -89,7 +92,7 @@ Route::get('/ubicaciones/usuario/1/mapa','LocationController@mostrar_mapa');
 
 
 Route::group(['middleware' => ['permission:Vehículos - Solo su Organización|Vehículos - Todas las Organizaciones|Vehículos para pacientes de Cardiopatía|Vehículos para la Jardinería|Vehículos para Ventas|Vehículos Eco-amigables|Vehículos para Trasporte Urbano 1|Vehículos para Trasporte Urbano 2']], function () {
-	Route::get('/vehiculos/Configuracion','AutoController@configuracion');
+
 
 	Route::get('/vehiculos/{id}/deshabilitar','AutoController@deshabilitar');
 	Route::post('/vehiculos/deshabilitarPut','AutoController@deshabilitarPut');
@@ -111,10 +114,22 @@ Route::group(['middleware' => ['permission:Vehículos - Solo su Organización|Ve
 });
 
 
+Route::group(['middleware' => ['permission:Configuración']], function () {
+	Route::get('/configuracion','ConfigurationController@index');
+	Route::post('/configuracion/actualizar','ConfigurationController@store');
+});
 
 Route::group(['middleware' => ['permission:Estacionamiento']], function () {
-    Route::get('/estacionamiento','ParkingController@index');
+		// Route::get('/estacionamiento','ParkingController@index');
+		Route::get('/estacionamientos/{tipo_id}/lista','ParkingController@index');
+		Route::get('/estacionamientos/{vehicle}/ver', 'ParkingController@show');
+		Route::get('/estacionamientos/{tipo_id}/nuevo','ParkingController@create');
+		Route::post('/estacionamientos/{tipo_id}/nuevo','ParkingController@store');
+		Route::get('/estacionamientos/{vehicle}/edit', 'ParkingController@edit');
+		Route::post('/estacionamientos/{vehicle}/edit', 'ParkingController@update');
 });
+
+
 
 Route::get('/reportes/{id_viaje}/{id_vehiculo}/clienteXvehiculo','HomeController@clienteXvehiculo');
 Route::post('/reportes/{travel_id}/vehiculo/{id_vehiculo}/clienteXvehiculoPostMet','HomeController@clienteXvehiculoPostMet');
@@ -123,8 +138,10 @@ Route::get('/Filtros/filtroAutos','HomeController@filtroAutos');
 
 Route::get('/Filtros/filtroUsuarios','HomeController@filtroUsuarios');
 
-Route::get('/reportes/filtrosReportes','HomeController@filtroReporte');
-
+Route::group(['middleware' => ['permission:Reportes de Clientes']], function () {
+	Route::get('/reportes/filtrosReportes','ReportController@filtroReporte');
+	Route::post('/reportes/filtrosReportes/Clientes','ReportController@filtroReporteClientes');
+});
 Route::get('/reportes/viajesCliente','HomeController@viajesCliente');
 
 

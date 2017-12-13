@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Models\Organization;
+use App\Models\Renting;
 use Carbon\Carbon;
 
 class Client extends Authenticatable
@@ -38,6 +39,13 @@ class Client extends Authenticatable
         return $this->hasManyThrough('App\Models\Reading', 'App\Models\Travel');
     }
 
+    public function getOrgName()
+    {
+        $org = Organization::find($this->organization_id);
+
+        return $org->name;
+    }
+
     public function getOrgNameById($org_id)
     {
         $org = Organization::find($org_id);
@@ -58,5 +66,10 @@ class Client extends Authenticatable
     public function currentObjectives()
     {
         return $this->objectives()->where('ends_at', '>=', Carbon::now());
+    }
+
+    public function lastRentings()
+    {
+        return Renting::where('client_id','=',$this->id)->orderBy('id', 'asc')->take(-5)->get();
     }
 }
