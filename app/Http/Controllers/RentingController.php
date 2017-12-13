@@ -344,4 +344,10 @@ class RentingController extends Controller
     }
 
 
+    public function show_invoice($renting_id)
+    {
+        $renting = Renting::find($renting_id);
+        return view('Alquileres.invoice',compact('renting'));
+    }
+
 }
