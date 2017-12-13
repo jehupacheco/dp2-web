@@ -79,7 +79,7 @@
                             <thead>
                               <tr>
                                 <th>#</th>
-                                <th class="column-title" style="display: table-cell;">Placa </th>
+                                <th class="column-title" style="display: table-cell;">Vehículo (Placa) </th>
                                 <th class="column-title" style="display: table-cell;">Organización </th>
                                 <th class="column-title" style="display: table-cell;">Fecha Inicio  </th>
                                 <th class="column-title" style="display: table-cell;">Fecha Fin </th>

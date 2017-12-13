@@ -166,7 +166,7 @@
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-6">Descripción </label>
                         <div class="col-md-3 col-sm-3 col-xs-12">
-                          <input id="descripcion" type="text" class="form-control" >
+                          <input type="text" name="descripcion" id="descripcion"  class="form-control" >
                         </div>
                     </div>
                     

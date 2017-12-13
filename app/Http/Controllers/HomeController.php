@@ -172,7 +172,7 @@ class HomeController extends Controller
     {
         $input = $request->all();
         $readings = Reading::where('sensor_id','=','12')->get();
-        //dd($input);
+        // dd($input);
         //if($input['optradio']!="" && $input['descripcion']!=""){
         if($input['optradio']!=""){
             DB::beginTransaction();
@@ -211,7 +211,8 @@ class HomeController extends Controller
         
         $clientes= Client::all();
         $vehicles= Vehicle::all();
-
+        $travel = Travel::all();
+        
         $input = $request->all();
 
         if( $input['client_id'] !="" && $input['vehicle_id']!="")
