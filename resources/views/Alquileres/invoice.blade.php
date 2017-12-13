@@ -148,7 +148,7 @@
                         <div class="col-xs-12">
                           <button class="btn btn-default" onclick="window.print();"><i class="fa fa-print"></i> Imprimir</button>
                           
-                          <button class="btn btn-primary pull-right" style="margin-right: 5px;"><i class="fa fa-download"></i> Generate PDF</button>
+                          <!-- <button class="btn btn-primary pull-right" style="margin-right: 5px;"><i class="fa fa-download"></i> Generate PDF</button> -->
                         </div>
                       </div>
                     </section>

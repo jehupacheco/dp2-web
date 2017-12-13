@@ -164,7 +164,7 @@ return [
         Watson\BootstrapForm\BootstrapFormServiceProvider::class,
         Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
-        'Jenssegers\Date\DateServiceProvider',
+        Barryvdh\DomPDF\ServiceProvider::class,
     ],
 
     /*
@@ -219,6 +219,7 @@ return [
         'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
         'Pusher' => Pusher\Pusher::class,
         'Date' => Jenssegers\Date\Date::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
     ],
 
 ];

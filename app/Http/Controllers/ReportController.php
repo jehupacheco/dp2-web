@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Renting;
 use App\Models\Client;
 use App\Models\Vehicle;
+use PDF;
 
 class ReportController extends Controller
 {
@@ -106,6 +107,19 @@ class ReportController extends Controller
             return $renting->getOrgId()!=7;
         });
         
+        // $view =  \View::make('Reportes.client_invoice', compact('rentings','client'))->render();
+        // $pdf = \App::make('dompdf.wrapper');
+        // $pdf = PDF::loadHTML($view);
+        // return $pdf->stream();
+        // // $view = \View::make('Reportes.client_invoice',compact('rentings','client'))
+        // $pdf = PDF::loadView('Reportes.client_invoice', compact('rentings','client'));
+        // return $pdf->download('invoice.pdf');
+
+        // $view =  \View::make('Reportes.client_invoice', compact('rentings','client'))->render();
+        // $pdf = \App::make('dompdf.wrapper');
+        // $pdf->loadHTML($view);
+        // return $pdf->download('invoice.pdf');
+
         return view('Reportes.client_invoice', compact('rentings','client'));
     }
 }
