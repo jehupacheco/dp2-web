@@ -46,7 +46,7 @@ class AuthenticateController extends Controller
         if ($currentRentings->count() > 0) {
             foreach ($currentRentings as $renting) {
                 if ($renting->vehicle()->get()->first()->organization()->get()->first()->is_parking) {
-                    $parking_ip = $renting->vehicle()->get()->mac;
+                    $parking_ip = $renting->vehicle()->get()->first()->mac;
                 }
             }
         }
