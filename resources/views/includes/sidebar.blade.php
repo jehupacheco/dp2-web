@@ -29,12 +29,12 @@
                 <ul class="nav side-menu">
 
                     @can('Dashboard')
-                    <li>
+                    {{--  <li>
                         <a href="{{url('/')}}">
                             <i class="fa fa-dashboard"></i>
                             Dashboard
                         </a>
-                    </li>
+                    </li>  --}}
                     @endcan
                     @can('Organizaciones')
                     <li>

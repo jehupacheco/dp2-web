@@ -49,6 +49,7 @@ class HomeController extends Controller
             return view('Seguridad.password.changepassword',compact('pass_changed'));
         }
         else{
+            return redirect()->action('OrganizationsController@index');
             return view('dashboard');
         }
 
