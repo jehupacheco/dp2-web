@@ -55,8 +55,8 @@ class ParkingController extends Controller
             $vehiculo = new Vehicle();
             $vehiculo->description = $input['description'];
             $vehiculo->plate = '';
-            $vehiculo->price = 0.0;
-            $vehiculo->mac = $input['mac'];
+            $vehiculo->price = $input['price'];
+            $vehicle->mac = str_replace('_', '', $input['mac']);
             $vehiculo->organization_id = $input['org_id'];
             $vehiculo->save();
         } catch (Exception $e) {
@@ -154,8 +154,8 @@ class ParkingController extends Controller
         try {
             $vehicle->plate = '';
             $vehicle->description = $input['description'];
-            $vehicle->price = 0.0;
-            $vehicle->mac = $input['mac'];
+            $vehicle->price = $input['price'];
+            $vehicle->mac = str_replace('_', '', $input['mac']);
 
             $vehicle->save();
 
