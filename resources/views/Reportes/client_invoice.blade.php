@@ -17,7 +17,7 @@
               <div class="col-md-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Factura <small>Detalle de factura del alquiler</small></h2>
+                    <h2>Reporte <small>Lista de alquileres de cliente</small></h2>
                    
                     <div class="clearfix"></div>
                   </div>
@@ -75,7 +75,7 @@
                             <thead>
                               <tr>
                                 <th>#</th>
-                                <th class="column-title" style="display: table-cell;">Vahículo (Placa) </th>
+                                <th class="column-title" style="display: table-cell;">Vehículo (Placa) </th>
                                 <th class="column-title" style="display: table-cell;">Organización </th>
                                 <th class="column-title" style="display: table-cell;">Fecha Inicio  </th>
                                 <th class="column-title" style="display: table-cell;">Fecha Fin </th>
@@ -144,7 +144,7 @@
                         <div class="col-xs-12">
                           <button class="btn btn-default" onclick="window.print();"><i class="fa fa-print"></i> Imprimir</button>
                           
-                          <button class="btn btn-primary pull-right" style="margin-right: 5px;"><i class="fa fa-download"></i> Generate PDF</button>
+                          <!-- <button class="btn btn-primary pull-right" style="margin-right: 5px;"><i class="fa fa-download"></i> Generate PDF</button> -->
                         </div>
                       </div>
                     </section>
