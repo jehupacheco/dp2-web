@@ -302,37 +302,5 @@
       });
     </script>
 
-    <script>
-      Chart.defaults.global.legend = {
-        enabled: false
-      };
-      var readinglist = <?php echo json_encode($readinglist); ?>;
-      var sensor = <?php echo json_encode($sensorselected); ?>;
-      // Line chart
-      //console.log(readinglist);
-      var labels = [],data=[];
-      for (var i = 0; i < readinglist.length; i++) {
-          labels.push(readinglist[i].dia);
-          data.push(readinglist[i].value);
-      }
-      var ctx = document.getElementById("lineChart");
-      var lineChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels: labels,
-          datasets: [{
-            label: sensor.description,
-            backgroundColor: "rgba(38, 185, 154, 0.31)",
-            borderColor: "rgba(38, 185, 154, 0.7)",
-            pointBorderColor: "rgba(38, 185, 154, 0.7)",
-            pointBackgroundColor: "rgba(38, 185, 154, 0.7)",
-            pointHoverBackgroundColor: "#fff",
-            pointHoverBorderColor: "rgba(220,220,220,1)",
-            pointBorderWidth: 1,
-            data: data
-          }]
-        },
-      });
 
-    </script>
 @endpush
