@@ -156,7 +156,7 @@
                                       </div>
                                       </div>
                                       <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                                         <button type="button" class="btn btn-primary" onclick="getCliente('demo-form2', 'dtTableClient')" data-dismiss="modal" value="Confirmar">Aceptar</button>
                                       </div>
 
@@ -470,7 +470,7 @@
                                       </div>
                                       </div>
                                       <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                                         <button type="button" class="btn btn-primary" onclick="getVehiculo('demo-form3', 'dtTableVehicleParking')" data-dismiss="modal" value="Confirmar">Aceptar</button>
                                       </div>
 
@@ -527,7 +527,7 @@
               </div>
             </div>
           </div>
-
+        </div>
         
     </div>
     <!-- /page content -->
