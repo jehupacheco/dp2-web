@@ -41,6 +41,7 @@ class ClientController extends Controller
 
         $rentings = $cliente->lastRentings();
 
+
         return view('Clientes.perfil.ver-perfil',compact('cliente','rentings'));
     }
 

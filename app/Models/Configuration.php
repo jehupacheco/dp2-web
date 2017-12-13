@@ -16,10 +16,10 @@ class Configuration extends Model
     ];
 
 
-    public function getParameter($cad)
+    public function getParameter($cad,$org_id)
     {
     	if($cad=='daystochangepassword')
-        $conf = Configuration::find(1);
+        $conf = Configuration::where('organization_id','=',$org_id)->where('type','=',1)->first();
 
         return (int)$conf->value; 
     }

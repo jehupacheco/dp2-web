@@ -12,7 +12,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Perfil de Usuario</h3>
+                <h3>Perfil de Cliente</h3>
               </div>
 
 
@@ -24,7 +24,7 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Reporte de usuario <small>reporte de actividad</small></h2>
+                    <h2>Reporte de cliente <small>reporte de actividad</small></h2>
                     
                     <div class="clearfix"></div>
                   </div>
@@ -171,14 +171,15 @@
                                   <td>{{$renting->getPlateById($renting->vehicle_id)}}</td>
                                   <td>{{$renting->getOrgNameById($renting->vehicle_id)}}</td>
                                   @if(!is_null($renting->delivered_at))
-                                  <td class=" ">&nbsp;&nbsp;&nbsp;<i class="fa fa-check fa-lg" style="color: #49ea49;"></i></td> 
+                                  <td class=" " title="{{$renting->delivered_at}}">&nbsp;&nbsp;&nbsp;<i class="fa fa-check fa-lg" style="color: #49ea49;"></i></td> 
                                   @else
-                                  <td class=" ">&nbsp;&nbsp;&nbsp;<i class="fa fa-minus-circle fa-lg" aria-hidden="true"></i></td>
+                              
+                                  <td class=" " title="Debe ser entregado al cliente en {{$renting->starts_at}}">&nbsp;&nbsp;&nbsp;<i class="fa fa-minus-circle fa-lg" aria-hidden="true"></i></td>
                                   @endif
                                   @if(!is_null($renting->returned_at))
-                                  <td class=" ">&nbsp;&nbsp;&nbsp;<i class="fa fa-check fa-lg" style="color: #49ea49;"></i></td>
+                                  <td class=" " title="{{$renting->returned_at}}">&nbsp;&nbsp;&nbsp;<i class="fa fa-check fa-lg" style="color: #49ea49;"></i></td>
                                   @else
-                                  <td class=" ">&nbsp;&nbsp;&nbsp;<i class="fa fa-minus-circle fa-lg" aria-hidden="true"></i></td>
+                                  <td class=" " title="Se debe devolver el {{$renting->finishes_at}}">&nbsp;&nbsp;&nbsp;<i class="fa fa-minus-circle fa-lg" aria-hidden="true"></i></td>
                                   @endif
 
                                 </tr>

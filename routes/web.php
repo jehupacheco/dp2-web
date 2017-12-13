@@ -18,8 +18,9 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('/asignarauto','HomeController@asignarauto');
 
 
-	Route::get('/usuarios/1/perfil','UserController@show_profile');
-
+	Route::get('/perfil','UserController@show_profile');
+	Route::get('perfil/edit','UserController@show_edit_profile');
+	Route::post('perfil/edit','UserController@update_profile');
 
 
 	Route::get('/usuarios/nuevo','UserController@create');
