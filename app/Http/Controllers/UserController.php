@@ -34,7 +34,7 @@ class UserController extends Controller
      */
     public function show_profile()
     {
-        return view('Usuarios.perfil.verperfil');
+        return view('Usuarios.perfil.index');
     }
 
     public function create()
