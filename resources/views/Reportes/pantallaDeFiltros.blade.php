@@ -198,6 +198,18 @@
                       </table>
                     </div>
                   </div>
+                  @if($cliente_id!="")
+                  <div class="ln_solid"></div>
+                  <form method="POST" action="{{url('/reportes/clientes/'.$cliente_id.'/invoice')}}" data-parsley-validate class="form-horizontal form-label-left">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <input type="hidden" name="cliente_id" value="{{$cliente_id}}">
+                    <input type="hidden" name="fecha_inicio" value="{{$fecha_inicio}}">
+                    <input type="hidden" name="fecha_fin" value="{{$fecha_fin}}">
+                    <div class="col-md-12 col-sm-12 col-xs-12 text-center">    
+                      <button type="submit"  class="btn btn-success">Generar Reporte</button> 
+                    </div>
+                  </form>
+                  @endif
                 </div>
             </div>
           </div>

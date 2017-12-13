@@ -19,7 +19,10 @@ class ReportController extends Controller
         {
             return $renting->getOrgId()!=7;
         });
-        return view('Reportes.pantallaDeFiltros', compact('rentings','clientes'));
+        $fecha_inicio="";
+        $fecha_fin ="";
+        $cliente_id ="";
+        return view('Reportes.pantallaDeFiltros', compact('rentings','clientes'),compact('fecha_inicio','fecha_fin','cliente_id'));
     }
 
     public function filtroReporteClientes(Request $request)
@@ -28,6 +31,8 @@ class ReportController extends Controller
         $clientes= Client::where('organization_id','!=',7)->get();
         $vehicles= Vehicle::all();
         //dd($input);
+ 
+
         if($input['client_id'] !="" && $input['fechaInicial'] =="" && $input['fechaFin'] ==""){
             $rentings = Renting::where('client_id','=',$input['client_id'])->get();
         }
@@ -57,6 +62,50 @@ class ReportController extends Controller
             return $renting->getOrgId()!=7;
         });
         
-        return view('Reportes.pantallaDeFiltros', compact('rentings','clientes','vehicles'));
+        $fecha_inicio=$input['fechaInicial'];
+        $fecha_fin = $input['fechaFin'];
+        $cliente_id = $input['client_id'];
+        return view('Reportes.pantallaDeFiltros', compact('rentings','clientes','vehicles'),compact('fecha_inicio','fecha_fin','cliente_id'));
+    }
+
+
+    public function GenerarReporteClientes(Request $request,$client_id)
+    {
+        $input = $request->all();
+        $client= Client::find($client_id);
+        $vehicles= Vehicle::all();
+        //dd($input);
+ 
+
+        if($input['cliente_id'] !="" && $input['fecha_inicio'] =="" && $input['fecha_fin'] ==""){
+            $rentings = Renting::where('client_id','=',$input['cliente_id'])->get();
+        }
+        elseif ($input['fecha_inicio'] !="" && $input['cliente_id'] =="" && $input['fecha_fin'] =="") {
+            $rentings = Renting::where('starts_at','>',$input['fecha_inicio'])->get();
+        }
+        elseif ($input['fecha_fin'] !="" && $input['fecha_inicio'] =="" && $input['cliente_id'] =="") {
+            $rentings = Renting::where('finishes_at','<',$input['fecha_fin'])->get();
+        }
+        elseif ($input['cliente_id'] !="" && $input['fecha_inicio'] !="" && $input['fecha_fin'] =="") {
+            $rentings = Renting::where('client_id','=',$input['cliente_id'])->where('starts_at','>',$input['fecha_inicio'])->get();
+        }
+        elseif ($input['cliente_id'] !="" && $input['fecha_fin'] !="" && $input['fecha_inicio'] =="") {
+            $rentings = Renting::where('client_id','=',$input['cliente_id'])->where('finishes_at','<',$input['fecha_fin'])->get();
+        }
+        elseif ($input['fecha_inicio'] !="" && $input['fecha_fin'] !="" && $input['cliente_id'] =="") {
+            $rentings = Renting::where('starts_at','>',$input['fecha_inicio'])->where('finishes_at','<',$input['fecha_fin'])->get();
+        }
+        elseif ($input['cliente_id'] !="" && $input['fecha_inicio'] !="" && $input['fecha_fin'] !=""){
+            $rentings = Renting::where('client_id','=',$input['cliente_id'])->where('starts_at','>',$input['fecha_inicio'])->where('finishes_at','<',$input['fecha_fin'])->get();
+        }
+        else{
+            $rentings = Renting::all();
+        }
+        $rentings = $rentings->filter(function($renting)
+        {
+            return $renting->getOrgId()!=7;
+        });
+        
+        return view('Reportes.client_invoice', compact('rentings','client'));
     }
 }

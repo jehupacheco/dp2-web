@@ -40,7 +40,7 @@
                         <div class="col-sm-4 invoice-col">
                           De:
                           <address>
-                                          <strong>{{$renting->getOrgNameById($renting->vehicle_id)}} SAC.</strong>
+                                          <strong>{{$client->getOrgName()}} SAC.</strong>
                                           <br>Av. Universitaria 1801, San Miguel 
                                           <br>Lima-32 PERU 
                                           <br>Telf. (511) 6262000
@@ -51,22 +51,18 @@
                         <div class="col-sm-4 invoice-col">
                           Para:
                           <address>
-                                          <strong>{{$renting->getClient()->name}} {{$renting->getClient()->lastname}}</strong>
-                                          <br>Organización: {{$renting->getOrgNameById($renting->vehicle_id)}}
-                                          <br>Celular: {{$renting->getClient()->phone}}
-                                          <br>Email: {{$renting->getClient()->email}}
+                                          <strong>{{$client->name}} {{$client->lastname}}</strong>
+                                          <br>Organización: {{$client->getOrgName()}}
+                                          <br>Celular: {{$client->phone}}
+                                          <br>Email: {{$client->email}}
                                       </address>
                         </div>
                         <!-- /.col -->
                         <div class="col-sm-4 invoice-col">
-                          <b>Factura #{{$renting->id}}</b>
+                          <b>Factura #18123</b>
                           <br>
                           <br>
-                          <b>Orden ID:</b> {{$renting->id}}
-                          <br>
-                          <b>Fecha de pago:</b> {{$renting->returned_at}}
-                          <br>
-                          <b>Cuenta:</b> 968-34567
+                          <b>Orden ID:</b> 18123
                         </div>
                         <!-- /.col -->
                       </div>
@@ -79,7 +75,7 @@
                             <thead>
                               <tr>
                                 <th>#</th>
-                                <th class="column-title" style="display: table-cell;">Vehículo (Placa) </th>
+                                <th class="column-title" style="display: table-cell;">Vahículo (Placa) </th>
                                 <th class="column-title" style="display: table-cell;">Organización </th>
                                 <th class="column-title" style="display: table-cell;">Fecha Inicio  </th>
                                 <th class="column-title" style="display: table-cell;">Fecha Fin </th>
@@ -88,8 +84,10 @@
                               </tr>
                             </thead>
                             <tbody>
+                              <?php $cant = 1; ?>
+                              @foreach($rentings as $renting)
                               <tr>
-                                <td>1</td>
+                                <td>{{$cant}}</td>
                                 <td class=" ">{{$renting->getPlateById($renting->vehicle_id)}}</td>
 	                            <td class=" ">{{$renting->getOrgNameById($renting->vehicle_id)}}</td>
 	                            <td class=" ">{{$renting->starts_at}}</td>
@@ -97,6 +95,8 @@
 	                            <td class="a-right a-right ">S/. {{$renting->getCostUnitById($renting->vehicle_id)}}</td>
 	                            <td class="a-right a-right ">S/. {{$renting->getTotalCost()}}</td>
                               </tr>
+                              <?php $cant = $cant + 1; ?>
+                              @endforeach
                             </tbody>
                           </table>
                         </div>
@@ -105,35 +105,31 @@
                       <!-- /.row -->
 
                       <div class="row">
-                        <!-- accepted payments column -->
-                        <div class="col-xs-6">
-                          <p class="lead">Métodos de Pago:</p>
-                          <img src="{{asset('images/visa.png')}}" alt="Visa">
-                          <img src="{{asset('images/mastercard.png')}}" alt="Mastercard">
-                          <img src="{{asset('images/american-express.png')}}" alt="American Express">
-                          <img src="{{asset('images/paypal.png')}}" alt="Paypal">
-                          <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
-                            En {{$renting->getOrgNameById($renting->vehicle_id)}} SAC. se puede usar estas tarjetas de crédito y débito como métodos de pago: Visa, MasterCard, American Express y Paypal.
-                          </p>
-                        </div>
-                        <!-- /.col -->
-                        <div class="col-xs-6">
+
+                        <div class="col-xs-6 col-xs-offset-6">
                           <p class="lead">Monto adeudado</p>
                           <div class="table-responsive">
                             <table class="table">
                               <tbody>
                                 <tr>
                                   <th style="width:50%">Subtotal:</th>
-                                  <td>S/.{{$renting->getTotalCost()}}</td>
+                                  <?php 
+                                  $costoTotal=0.0;
+                                  foreach ($rentings as $renting) {
+                                    $costoTotal = $costoTotal+ $renting->getTotalCost();
+                                  } 
+
+                                  ?>
+                                  <td>S/.{{$costoTotal}}</td>
                                 </tr>
                                 <tr>
                                   <th>IGV (18%)</th>
-                                  <?php $igv =  $renting->getTotalCost()*0.18 ?>
+                                  <?php $igv =  $costoTotal*0.18 ?>
                                   <td>S/.{{$igv}}</td>
                                 </tr>
                                 <tr>
                                   <th>Total:</th>
-                                  <td>S/.{{$renting->getTotalCost() + $igv}}</td>
+                                  <td>S/.{{$costoTotal + $igv}}</td>
                                 </tr>
                               </tbody>
                             </table>

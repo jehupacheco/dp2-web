@@ -141,6 +141,7 @@ Route::get('/Filtros/filtroUsuarios','HomeController@filtroUsuarios');
 Route::group(['middleware' => ['permission:Reportes de Clientes']], function () {
 	Route::get('/reportes/filtrosReportes','ReportController@filtroReporte');
 	Route::post('/reportes/filtrosReportes/Clientes','ReportController@filtroReporteClientes');
+	Route::post('/reportes/clientes/{client_id}/invoice','ReportController@GenerarReporteClientes');
 });
 Route::get('/reportes/viajesCliente','HomeController@viajesCliente');
 

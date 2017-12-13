@@ -43,15 +43,6 @@
                   <ul class="nav navbar-right panel_toolbox">
                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                     </li>
-                    <li class="dropdown">
-                      <button type="button" class="btn"><i class="fa fa-wrench"></i></button>
-                      <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">Settings 1</a>
-                        </li>
-                        <li><a href="#">Settings 2</a>
-                        </li>
-                      </ul>
-                    </li>
                     <li><a class="close-link"><i class="fa fa-close"></i></a>
                     </li>
                   </ul>
@@ -392,7 +383,7 @@
                                       </div>
                                       </div>
                                       <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                                         <button type="button" class="btn btn-primary" onclick="getCliente('demo-form3', 'dtTableClientParking')" data-dismiss="modal" value="Confirmar">Aceptar</button>
                                       </div>
 
@@ -499,12 +490,12 @@
                                 </div>
                             </div>
 
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-6">Costo Total </label>
                                 <div class="col-md-3 col-sm-3 col-xs-12">
                                   <input id="price_total" type="text" class="form-control" readonly="true" placeholder="S/.">
                                 </div>
-                            </div>
+                            </div> -->
 
                             <div class="ln_solid"></div>
                             <div class="form-group">
@@ -543,23 +534,22 @@
   });
 </script>
 <script>
+
   function getCliente(form, table){
       $('#' + form + ' #client_id').val($('#'+ table + ' input:radio:checked').val());
       $('#' + form + ' #client_name').val($('#'+ table + ' input:radio:checked').attr("alt"));
     }
+
 
   function getVehiculo(form, table){
       $('#' + form + ' #vehicle_id').val($('#' + table + ' input:radio:checked').val());
       $('#' + form + ' #plate').val($('#' + table + ' input:radio:checked').attr("alt"));
       $('#' + form + ' #price_hour').val($('#precioVehiculo' + $('#' + form + ' #vehicle_id').val()).attr("alt") + ' Soles');
 
-      var precio = parseFloat($('#' + form + ' #price_hour').val());
 
-      var start = moment($('#' + form +' #start_date').val());
-      var end  =  moment($('#' + form +' #end_date').val());
-      var difference = end.diff(start,'days');
-      var total = precio * difference;
-      $('#' + form + ' price_total').val(total.toFixed(2) + ' Soles');
+
+      var total = 0.00;
+      $('#price_total').val(total.toFixed(2) + ' Soles');
     }
 </script>
 
@@ -665,10 +655,21 @@ $('.modalBuscarVehiculoParking').on('shown.bs.modal', function() {
           console.log("apply event fired, start/end dates are " + picker.startDate.format('MMMM D HH:mm:ss, YYYY') + " to " + picker.endDate.format('MMMM D HH:mm:ss, YYYY'));
           $('#' + form + ' #start_date').val(picker.startDate.format('YYYY/MM/DD HH:mm:ss')); 
           $('#' + form + ' #end_date').val(picker.endDate.format('YYYY/MM/DD HH:mm:ss')); 
+
+          var precio = parseFloat($('#' + form + ' #price_hour').val());
+          var start = moment($('#' + form +' #start_date').val());
+          var end  =  moment($('#' + form +' #end_date').val());
+
+          var difference = end.diff(start,'hours');
+
+          var total = precio * difference;
+          $('#price_total').val(total.toFixed(2) + ' Soles');
         });
         $('#' + form + ' #reportrange').on('cancel.daterangepicker', function(ev, picker) {
           console.log("cancel event fired");
         });
+
+        
       }
 
       var parkingTabOpened = false;
