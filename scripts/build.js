@@ -114,6 +114,8 @@ var scripts = [
   //bootstrap-daterangepicker
   //'/vendors/moment/min/moment.min.js'
   //'/production/js/datepicker/daterangepicker.js'
+  '/vendors/raphael/raphael.min.js',
+  '/vendors/morris.js/morris.min.js',
     
 ];
 

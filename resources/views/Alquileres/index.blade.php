@@ -347,7 +347,8 @@
                             <td class=" ">{{$renting->finishes_at}}</td>
                             <td class="a-right a-right ">S/. {{$renting->getCostUnitById($renting->vehicle_id)}}</td>
                             <td class="a-right a-right ">S/. {{$renting->getTotalCost()}}</td>
-                            <td><a href="#" class="btn btn-info btn-xs fa fa-pencil"></a><a href="{{url('alquileres/'.$renting->id.'/destroy')}}" class="btn btn-danger btn-xs fa fa-trash"></a></td>
+                            <td><a href="#" class="btn btn-info btn-xs fa fa-pencil"></a><a data-href="{{url('alquileres/'.$renting->id.'/destroy')}}" class="btn btn-danger btn-xs fa fa-trash" title="Eliminar" data-toggle="modal" data-target="#modalEliminar"></a></td>
+
                           </tr>
                           @endforeach
                           
@@ -360,6 +361,28 @@
           </div>
     </div>
     <!-- /page content -->
+
+<!-- Modal Eliminar-->
+    <div id="modalEliminar" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Confirmar</h4>
+          </div>
+          <div class="modal-body">
+            <p>¿Está seguro que desea eliminar el alquiler?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+            <a class="btn btn-danger btn-ok">Confirmar</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
 @endsection
 
 
@@ -381,6 +404,10 @@
 </script>
 
 <script>
+  $('#modalEliminar').on('shown.bs.modal', function (e) {
+            $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+        });
+
   $(document).ready(function() {
       $('#dtTableRenting').DataTable({
           "language": {
